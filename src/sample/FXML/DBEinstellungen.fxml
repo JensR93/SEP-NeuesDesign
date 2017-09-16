@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <JFXToolbar prefHeight="50.0" prefWidth="600.0" styleClass="toolbarDBE" stylesheets="@../CSS/custom.css">
+               <center>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="DATENBANK EINSTELLUNGEN" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Text>
+               </center>
+            </JFXToolbar>
+            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="101.0" promptText="Host" unFocusColor="#757575">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXTextField>
+            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="158.0" promptText="DB Name" unFocusColor="#757575">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXTextField>
+            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="218.0" promptText="Benutzer" unFocusColor="#757575">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXTextField>
+            <JFXTextField accessibleRole="PASSWORD_FIELD" cache="true" labelFloat="true" layoutX="216.0" layoutY="275.0" pickOnBounds="false" promptText="Passwort" unFocusColor="#757575">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btnClose21" layoutX="167.0" layoutY="333.0"  prefHeight="39.0" prefWidth="292.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Einstellungen speichern" textFill="#757575">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#757575" glyphName="CHECK" size="20" wrappingWidth="40.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
