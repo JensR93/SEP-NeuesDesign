@@ -4,8 +4,6 @@
 
 package sample.FXML;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXToolbar;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,6 +11,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToolbar;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ import javafx.util.Duration;
 
 public class DashboardController implements Initializable{
 
-    private AnchorPane home, add, list;
+    private AnchorPane home, add, Spieler;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -126,7 +126,7 @@ public class DashboardController implements Initializable{
     private void createPages() {
         try {
             home = FXMLLoader.load(getClass().getResource("test.fxml"));
-            list = FXMLLoader.load(getClass().getResource("test.fxml"));
+            Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             add = FXMLLoader.load(getClass().getResource("test.fxml"));
 
             //set up default node on page load
@@ -136,12 +136,16 @@ public class DashboardController implements Initializable{
         }
 
     }
+    @FXML public void setNodeSpieler(ActionEvent event)
+    {
+        setNode(Spieler);
+    }
 
     private void setNode(Node node)
     {
         holderPane.getChildren().clear();
         holderPane.getChildren().add((Node) node);
-        FadeTransition ft = new FadeTransition(Duration.millis(10000));
+        FadeTransition ft = new FadeTransition(Duration.millis(3000));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
