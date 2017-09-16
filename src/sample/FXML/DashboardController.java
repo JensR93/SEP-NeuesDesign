@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -28,6 +29,8 @@ import javafx.util.Duration;
 public class DashboardController implements Initializable{
 
     private AnchorPane home, add, Spieler;
+
+    private GridPane Turnier;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -128,7 +131,7 @@ public class DashboardController implements Initializable{
             home = FXMLLoader.load(getClass().getResource("test.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             add = FXMLLoader.load(getClass().getResource("test.fxml"));
-
+            Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             //set up default node on page load
             setNode(home);
         } catch (IOException ex) {
@@ -140,7 +143,10 @@ public class DashboardController implements Initializable{
     {
         setNode(Spieler);
     }
-
+    @FXML public void setNodeTurnier(ActionEvent event)
+    {
+        setNode(Turnier);
+    }
     private void setNode(Node node)
     {
         holderPane.getChildren().clear();

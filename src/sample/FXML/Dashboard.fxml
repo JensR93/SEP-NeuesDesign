@@ -61,7 +61,7 @@
                                                 <FontAwesomeIconView fill="#757575" glyphName="HOME" size="20" wrappingWidth="40.0" />
                                              </graphic>
                                           </JFXButton>
-                                          <JFXButton fx:id="btnTurnierübersicht" onAction="#turnierübersichtoeffnen" prefHeight="37.0" prefWidth="208.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="1">
+                                          <JFXButton fx:id="btnTurnierübersicht" onAction="#setNodeTurnier" prefHeight="37.0" prefWidth="208.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
