@@ -28,7 +28,7 @@ import javafx.util.Duration;
 
 public class DashboardController implements Initializable{
 
-    private AnchorPane home, add, Spieler;
+    private AnchorPane home, add, Spieler, Einstellungen;
 
     private GridPane Turnier;
 
@@ -132,6 +132,7 @@ public class DashboardController implements Initializable{
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             add = FXMLLoader.load(getClass().getResource("test.fxml"));
             Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
+            Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             //set up default node on page load
             setNode(home);
         } catch (IOException ex) {
@@ -142,6 +143,10 @@ public class DashboardController implements Initializable{
     @FXML public void setNodeSpieler(ActionEvent event)
     {
         setNode(Spieler);
+    }
+    @FXML public void setNodeEinstellungen(ActionEvent event)
+    {
+        setNode(Einstellungen);
     }
     @FXML public void setNodeTurnier(ActionEvent event)
     {
