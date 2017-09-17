@@ -51,8 +51,8 @@ public class EinstellungenController implements Initializable {
     }
 
     private void DesignLaden() {
-        rdGewinner.setSelectedColor(Color.AQUA);
-        rdVerlierer.setSelectedColor(Color.AQUA);
-        rdAus.setSelectedColor(Color.AQUA);
+       /* rdGewinner.setSelectedColor(Color.color(78, 106, 156, 1));
+        rdVerlierer.setSelectedColor(Color.color(78, 106, 156, 1));
+        rdAus.setSelectedColor(Color.color(78, 106, 156, 1));*/
     }
 }

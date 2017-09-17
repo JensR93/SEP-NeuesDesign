@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="parentPane" prefHeight="627.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
+<AnchorPane id="AnchorPane" fx:id="parentPane" focusTraversable="true" prefHeight="680.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
    <children>
       <AnchorPane layoutX="42.0" layoutY="37.0" prefHeight="570.0" prefWidth="357.0" styleClass="card-white" stylesheets="@../CSS/custom.css">
          <children>
