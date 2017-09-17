@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToolbar;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -20,17 +21,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class DashboardController implements Initializable{
 
-    private AnchorPane home, add, Spieler, Einstellungen;
-
-    private GridPane Turnier;
+    private AnchorPane home, add;
+    private JFXTabPane Spieler;
+    private GridPane Turnier,Einstellungen;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -78,7 +79,7 @@ public class DashboardController implements Initializable{
     private JFXButton btnBeenden; // Value injected by FXMLLoader
 
     @FXML // fx:id="holderPane"
-    private AnchorPane holderPane; // Value injected by FXMLLoader
+    private StackPane holderPane; // Value injected by FXMLLoader
 
     @FXML
     void Beenden(ActionEvent event)
@@ -152,8 +153,15 @@ public class DashboardController implements Initializable{
     {
         setNode(Turnier);
     }
+
+    private static void test(){
+
+    }
+
     private void setNode(Node node)
     {
+
+
         holderPane.getChildren().clear();
         holderPane.getChildren().add((Node) node);
         FadeTransition ft = new FadeTransition(Duration.millis(3000));

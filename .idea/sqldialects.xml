@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/ErgebnisDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/FeldDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/SQLConnection.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/SetzlisteDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/SpielDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/SpielerDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/SpielklasseDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/TeamDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/TurnierDAOimpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/sample/DAO/VereinDAOimpl.java" dialect="MySQL" />
+  </component>
+</project>
