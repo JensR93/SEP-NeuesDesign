@@ -26,12 +26,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sample.DAO.auswahlklasse;
+import sample.Main;
 
-public class DashboardController implements Initializable{
+public  class DashboardController implements Initializable{
 
-    private AnchorPane home, add;
+
+    private AnchorPane home;
+    private StackPane Turnier;
     private JFXTabPane Spieler;
-    private GridPane Turnier,Einstellungen;
+    private GridPane Einstellungen;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -53,6 +57,9 @@ public class DashboardController implements Initializable{
 
     @FXML // fx:id="btnHome"
     private JFXButton btnHome; // Value injected by FXMLLoader
+
+
+
 
     @FXML // fx:id="btnTurnierübersicht"
     private JFXButton btnTurnierübersicht; // Value injected by FXMLLoader
@@ -131,11 +138,12 @@ public class DashboardController implements Initializable{
         try {
             home = FXMLLoader.load(getClass().getResource("test.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-            add = FXMLLoader.load(getClass().getResource("test.fxml"));
+            //add = FXMLLoader.load(getClass().getResource("test.fxml"));
             Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             //set up default node on page load
             setNode(home);
+
         } catch (IOException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -146,6 +154,10 @@ public class DashboardController implements Initializable{
         setNode(Spieler);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
+    {
+        setNode(Einstellungen);
+    }
+     public void setNodeEinstellungen()
     {
         setNode(Einstellungen);
     }
@@ -161,7 +173,6 @@ public class DashboardController implements Initializable{
     private void setNode(Node node)
     {
 
-
         holderPane.getChildren().clear();
         holderPane.getChildren().add((Node) node);
         FadeTransition ft = new FadeTransition(Duration.millis(3000));
@@ -171,6 +182,10 @@ public class DashboardController implements Initializable{
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
         ft.play();
+
+
+
+
     }
 
 
@@ -178,6 +193,8 @@ public class DashboardController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         createPages();
 
-
     }
+
+
+
 }
