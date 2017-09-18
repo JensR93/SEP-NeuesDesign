@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import sample.*;
+import sample.FXML.DashboardController;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -21,12 +22,7 @@ import java.util.Hashtable;
 public class auswahlklasse
 {
 
-
     private static Turnier turnierzumupdaten;
-
-
-
-
 
 
     private TurnierDAO turnierDAO = new TurnierDAOimpl();
@@ -188,7 +184,9 @@ public class auswahlklasse
     public static void turnierAuswahlSpeichern (Turnier turnier)
     {
         aktuelleTurnierAuswahl = turnier;
+
     }
+
 
     public static void spielklassenAuswahlSpeichern (Spielklasse spielklasse)
     {
