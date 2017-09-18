@@ -31,7 +31,8 @@ public class DashboardController implements Initializable{
 
     private AnchorPane home, add;
     private JFXTabPane Spieler;
-    private GridPane Turnier,Einstellungen;
+    private GridPane Einstellungen;
+    private StackPane Turnier;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -124,9 +125,9 @@ public class DashboardController implements Initializable{
 
     private void createPages() {
         try {
-            home = FXMLLoader.load(getClass().getResource("test.fxml"));
+            home = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-            add = FXMLLoader.load(getClass().getResource("test.fxml"));
+            add = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             //set up default node on page load

@@ -16,8 +16,6 @@
     -fx-background-color: transparent;
     -fx-background-radius: 50;
     -fx-alignment: CENTER_LEFT;
-    -fx-max-height: 39pxpx;
-    -fx-max-width: 260;
 }
 .side-buttons:active{
     -fx-background-color: #F3F3F3;
