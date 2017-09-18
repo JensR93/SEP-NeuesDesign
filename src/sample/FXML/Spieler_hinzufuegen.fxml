@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
       <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
         <content>
@@ -28,11 +28,9 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="447.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="13.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" valignment="TOP" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,34 +38,34 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="t_vn" focusColor="#757575" labelFloat="true" maxWidth="250.0" promptText="Vorname" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <JFXTextField fx:id="t_vn" focusColor="#757575" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="uxfjoiskld">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_nn" focusColor="#757575" maxWidth="250.0" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <JFXTextField fx:id="t_nn" focusColor="#757575" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="test" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_spid" focusColor="#757575" maxWidth="250.0" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <JFXTextField fx:id="t_spid" focusColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxWidth="250.0" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </JFXDatePicker>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
                         <Text fx:id="t_einzel" strokeType="OUTSIDE" strokeWidth="0.0" text="Einzel:">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Text>
-                        <JFXTextField fx:id="t_re" focusColor="#757575" maxWidth="1.7976931348623157E308">
+                        <JFXTextField fx:id="t_re" focusColor="#757575" maxWidth="80.0">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -77,7 +75,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Text>
-                        <JFXTextField fx:id="t_rd" focusColor="#757575" maxWidth="1.7976931348623157E308">
+                        <JFXTextField fx:id="t_rd" focusColor="#757575" maxWidth="80.0">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -87,14 +85,14 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Text>
-                        <JFXTextField fx:id="t_rm" focusColor="#757575" maxWidth="1.7976931348623157E308">
+                        <JFXTextField fx:id="t_rm" focusColor="#757575" maxWidth="80.0">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </JFXTextField>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                      <children>
                         <JFXRadioButton fx:id="r_m" text="Männlich">
                            <HBox.margin>
@@ -104,7 +102,7 @@
                         <JFXRadioButton fx:id="r_w" text="Weiblich" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
                         <ChoiceBox fx:id="combo_verein" minWidth="200.0">
                            <HBox.margin>
@@ -118,7 +116,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
                         <JFXButton fx:id="b_abbrechen" text="Abbrechen">
                            <HBox.margin>
