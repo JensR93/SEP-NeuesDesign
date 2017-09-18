@@ -8,239 +8,189 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="726.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="518.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="517.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <AnchorPane prefHeight="570.0" prefWidth="448.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <children>
-            <GridPane layoutY="44.0" prefHeight="457.0" prefWidth="357.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <VBox prefHeight="33.0" prefWidth="299.0">
-                     <children>
-                        <Label text="Sprache" textFill="#757575">
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Group>
-                           <children>
-                              <JFXRadioButton layoutY="14.0" text="Deutsch" textFill="#757575">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="Language" />
-                                 </toggleGroup>
-                              </JFXRadioButton>
-                              <JFXRadioButton layoutX="121.0" layoutY="14.0" styleClass="JFXRadioButton" stylesheets="@../CSS/custom.css" text="English" textFill="#757575" toggleGroup="$Language">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </JFXRadioButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets left="50.0" />
-                           </VBox.margin>
-                        </Group>
-                     </children>
-                  </VBox>
-                  <GridPane GridPane.rowIndex="4">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="170.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="185.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </JFXColorPicker>
-                        <Label text="Ausstehende Spiele:" textFill="#757575" GridPane.columnSpan="2">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Label>
-                     </children>
-                  </GridPane>
-                  <GridPane prefHeight="0.0" prefWidth="419.0" GridPane.rowIndex="6">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="170.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="185.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="163.0" text="Gespielte Spiele:" textFill="#757575">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" />
-                           </GridPane.margin>
-                        </JFXColorPicker>
-                     </children>
-                  </GridPane>
-                  <GridPane GridPane.rowIndex="1">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="245.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="112.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <JFXToggleButton prefHeight="58.0" prefWidth="84.0" stylesheets="@../CSS/custom.css" text=" " textAlignment="CENTER" textFill="TRANSPARENT" toggleColor="#959a95" toggleLineColor="#23c42c" unToggleColor="#959a95" unToggleLineColor="#757575" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </JFXToggleButton>
-                        <Label prefHeight="53.0" prefWidth="237.0" text="Schiedsrichter standardmäßig verwenden" textAlignment="CENTER" textFill="#757575" wrapText="true">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Label>
-                     </children>
-                  </GridPane>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="354.0" text="Vormerkung als Schiedsrichter" textFill="#757575" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="41.0" prefWidth="299.0" GridPane.rowIndex="3">
-                     <children>
-                        <JFXRadioButton fx:id="rdVerlierer" text="Verlierer" textFill="#757575">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="level" />
-                           </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="rdGewinner" text="Gewinner" textFill="#757575" toggleGroup="$level">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="rdAus" text="Aus" textFill="#757575" toggleGroup="$level">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </JFXRadioButton>
-                     </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </HBox>
-                  <GridPane GridPane.rowIndex="5">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="170.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="185.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Aktive Spiele:" textFill="#757575">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </JFXColorPicker>
-                     </children>
-                  </GridPane>
-               </children>
-            </GridPane>
-            <JFXButton fx:id="btnClose21" layoutX="55.0" layoutY="517.0" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575">
+            <JFXButton fx:id="btnClose21" layoutX="85.0" layoutY="530.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="50.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-         </children>
-      </AnchorPane>
-      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.9" prefHeight="41.0" prefWidth="248.0" style="-fx-border-radius: 50; -fx-background-color: rgb(255.0, 255.0, 255.0);" styleClass="card-white" stylesheets="@../CSS/custom.css" />
-      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="235.0" text="Spieleinstellungen" textFill="#757575">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.9" prefHeight="41.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" />
-      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="99.0" prefWidth="656.0" text="Drucker" textFill="#757575" GridPane.columnIndex="1">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="699.0" prefWidth="526.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <VBox layoutX="28.0" layoutY="85.0" prefHeight="81.0" prefWidth="285.0" spacing="10.0">
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="430.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="550.0" minWidth="10.0" prefWidth="222.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="493.0" minWidth="0.0" prefWidth="168.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <JFXTextField />
+                  <JFXToggleButton contentDisplay="CENTER" prefHeight="58.0" prefWidth="84.0" text=" " textAlignment="CENTER" textFill="TRANSPARENT" toggleColor="#959a95" toggleLineColor="#23c42c" unToggleColor="#959a95" unToggleLineColor="#757575" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXToggleButton>
+                  <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXColorPicker>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ausstehende Spiele:" textFill="#757575" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXColorPicker>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Aktive Spiele:" textFill="#757575" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <JFXColorPicker maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="color-picker" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXColorPicker>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="163.0" text="Gespielte Spiele:" textFill="#757575" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="91.0" text="Vormerkung als Schiedsrichter:" textFill="#757575" wrapText="true" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sprache:" textFill="#757575">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="121.0" text="Schiedsrichter standardmäßig verwenden:" textFill="#757575" wrapText="true" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <JFXRadioButton fx:id="rdGewinner" text="Gewinner" textFill="#757575">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Vormerkung" />
+                           </toggleGroup>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="rdVerlierer" text="Verlierer" textFill="#757575" toggleGroup="$Vormerkung">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="rdAus" text="Aus" textFill="#757575" toggleGroup="$Vormerkung">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXRadioButton>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <JFXRadioButton fx:id="rdVerlierer1" text="Deutsch" textFill="#757575">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Sprache" />
+                           </toggleGroup>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="rdVerlierer2" text="English" textFill="#757575" toggleGroup="$Sprache">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXRadioButton>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-white" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="260.0" text="Spieleinstellungen" textFill="#757575" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="20.0" right="20.0" top="50.0" />
+         </GridPane.margin>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="81.0" prefWidth="285.0" spacing="10.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <JFXTextField labelFloat="true" promptText="Aktueller Drucker" unFocusColor="#757575">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXTextField>
                </children>
             </VBox>
-            <Label layoutX="28.0" layoutY="60.0" text="Aktueller Drucker" textFill="#757575">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btnClose2111" layoutX="55.0" layoutY="217.0" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575">
+            <JFXButton fx:id="btnClose2111" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -248,7 +198,7 @@
                   <FontAwesomeIconView fill="#757575" glyphName="PRINT" size="20" wrappingWidth="40.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnClose21111" layoutX="55.0" layoutY="159.0" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575">
+            <JFXButton fx:id="btnClose21111" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="250.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -259,7 +209,19 @@
                   <Insets right="15.0" />
                </padding>
             </JFXButton>
+            <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-white" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="260.0" text="Drucker" textFill="#757575" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="20.0" right="20.0" top="50.0" />
+         </GridPane.margin>
       </AnchorPane>
    </children>
 </GridPane>

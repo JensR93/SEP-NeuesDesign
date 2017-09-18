@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class EinstellungenController implements Initializable {
     @FXML
-    private AnchorPane parentPane;
+    private GridPane gridPane;
 
     @FXML
     private ToggleGroup Language;
