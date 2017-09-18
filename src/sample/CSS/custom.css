@@ -17,9 +17,6 @@
     -fx-background-radius: 50;
     -fx-alignment: CENTER_LEFT;
 }
-.side-buttons:active{
-    -fx-background-color: #F3F3F3;
-}
 
 .buttonDBE{
     -fx-background-color: transparent;
@@ -89,6 +86,20 @@
     -fx-text-fill: red;
     -fx-font-weight: bold;
     -fx-background-color: #ffffff;
+}
+
+.font
+{
+    -fx-font-weight: bold;
+    -fx-text-fill: #757575;
+    -fx-font-size: 16px;
+}
+
+.text-field {
+    -fx-prompt-text-fill: gray;
+}
+.text-field > .text {
+    -fx-effect: dropshadow( two-pass-box , blue , .5, 10 , 1 , 1);
 }
 
 /*Material look tableview*/

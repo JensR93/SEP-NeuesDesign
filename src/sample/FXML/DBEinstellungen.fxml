@@ -26,7 +26,7 @@
       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Host" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Host" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -34,7 +34,7 @@
             <Insets left="150.0" right="150.0" top="60.0" />
          </GridPane.margin>
       </JFXTextField>
-      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="DB Name" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="DB Name" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -42,7 +42,7 @@
             <Insets left="150.0" right="150.0" top="30.0" />
          </GridPane.margin>
       </JFXTextField>
-      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Benutzer" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Benutzer" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -50,7 +50,7 @@
             <Insets left="150.0" right="150.0" top="30.0" />
          </GridPane.margin>
       </JFXTextField>
-      <JFXTextField accessibleRole="PASSWORD_FIELD" cache="true" labelFloat="true" minHeight="39.0" minWidth="250.0" pickOnBounds="false" prefHeight="39.0" prefWidth="300.0" promptText="Passwort" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <JFXTextField accessibleRole="PASSWORD_FIELD" cache="true" labelFloat="true" minHeight="39.0" minWidth="250.0" pickOnBounds="false" prefHeight="39.0" prefWidth="300.0" promptText="Passwort" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>

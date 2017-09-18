@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.EinstellungenController">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
@@ -26,9 +26,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <children>
-            <JFXButton fx:id="btnClose21" layoutX="85.0" layoutY="530.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="50.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+            <JFXButton fx:id="btnClose21" layoutX="85.0" layoutY="530.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -39,12 +39,12 @@
                   <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="493.0" minWidth="0.0" prefWidth="168.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="203.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="44.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="115.0" prefHeight="115.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <JFXToggleButton contentDisplay="CENTER" prefHeight="58.0" prefWidth="84.0" text=" " textAlignment="CENTER" textFill="TRANSPARENT" toggleColor="#959a95" toggleLineColor="#23c42c" unToggleColor="#959a95" unToggleLineColor="#757575" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -179,7 +179,7 @@
             <Insets bottom="50.0" left="20.0" right="20.0" top="50.0" />
          </GridPane.margin>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="400.0" prefHeight="630.0" prefWidth="600.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
          <children>
             <VBox prefHeight="81.0" prefWidth="285.0" spacing="10.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="100.0">
                <children>
@@ -190,7 +190,7 @@
                   </JFXTextField>
                </children>
             </VBox>
-            <JFXButton fx:id="btnClose2111" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="400.0">
+            <JFXButton fx:id="btnClose2111" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -198,7 +198,7 @@
                   <FontAwesomeIconView fill="#757575" glyphName="PRINT" size="20" wrappingWidth="40.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnClose21111" onAction="#exit" prefHeight="39.0" prefWidth="248.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="250.0">
+            <JFXButton fx:id="btnClose21111" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="250.0">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
