@@ -21,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -29,7 +28,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import sample.DAO.auswahlklasse;
 import sample.Main;
-import sample.Turnier;
 
 public  class DashboardController implements Initializable{
 
@@ -139,17 +137,12 @@ public  class DashboardController implements Initializable{
     private void createPages() {
         try {
             home = FXMLLoader.load(getClass().getResource("test.fxml"));
-
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             //add = FXMLLoader.load(getClass().getResource("test.fxml"));
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
-            Turnier = fxmlLoader.load();
-            ((Turnier_ladenController) fxmlLoader.getController()).setController(this);
-
-
+            Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             //set up default node on page load
-            setNode(Turnier,"test.fxml");
+            setNode(home);
 
         } catch (IOException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,44 +151,37 @@ public  class DashboardController implements Initializable{
     }
     @FXML public void setNodeSpieler(ActionEvent event)
     {
-        setNode(Spieler,"Spieler_hinzufuegen.fxml");
+        setNode(Spieler);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
-        setNode(Einstellungen,"Einstellungen.fxml");
+        setNode(Einstellungen);
     }
      public void setNodeEinstellungen()
     {
-        setNode(Einstellungen,"Einstellungen.fxml");
+        setNode(Einstellungen);
     }
     @FXML public void setNodeTurnier(ActionEvent event)
     {
-        setNode(Turnier,"Turnier_laden.fxml");
+        setNode(Turnier);
     }
 
     private static void test(){
 
     }
 
-
-    private void setNode(Node node, String string)
+    private void setNode(Node node)
     {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
-       // ((Turnier_ladenController) fxmlLoader.getController()).setController(this);
-
-
 
         holderPane.getChildren().clear();
         holderPane.getChildren().add((Node) node);
-        FadeTransition ft = new FadeTransition(Duration.millis(500));
+        FadeTransition ft = new FadeTransition(Duration.millis(3000));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
         ft.play();
-
 
 
 

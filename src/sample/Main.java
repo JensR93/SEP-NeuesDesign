@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -18,6 +19,8 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setMaximized(true);
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMinHeight(768);
+        primaryStage.setMinWidth(1360);
         primaryStage.show();
     }
 

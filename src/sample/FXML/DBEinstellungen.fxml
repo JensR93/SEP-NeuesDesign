@@ -4,54 +4,82 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="458.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints fillHeight="false" maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="50.0" valignment="TOP" vgrow="NEVER" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="70.0" prefHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="70.0" prefHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="70.0" prefHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+  </rowConstraints>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <JFXToolbar prefHeight="50.0" prefWidth="600.0" styleClass="toolbarDBE" stylesheets="@../CSS/custom.css">
-               <center>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="DATENBANK EINSTELLUNGEN" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font></Text>
-               </center>
-            </JFXToolbar>
-            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="101.0" promptText="Host" unFocusColor="#757575">
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Host" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" top="60.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="DB Name" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" top="30.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField labelFloat="true" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="300.0" promptText="Benutzer" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" top="30.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXTextField accessibleRole="PASSWORD_FIELD" cache="true" labelFloat="true" minHeight="39.0" minWidth="250.0" pickOnBounds="false" prefHeight="39.0" prefWidth="300.0" promptText="Passwort" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="150.0" right="150.0" top="30.0" />
+         </GridPane.margin>
+      </JFXTextField>
+      <JFXToolbar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="250.0" prefHeight="50.0" prefWidth="300.0" styleClass="toolbarDBE" stylesheets="@../CSS/custom.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <center>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="DATENBANK EINSTELLUNGEN" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></JFXTextField>
-            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="158.0" promptText="DB Name" unFocusColor="#757575">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></JFXTextField>
-            <JFXTextField labelFloat="true" layoutX="216.0" layoutY="218.0" promptText="Benutzer" unFocusColor="#757575">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></JFXTextField>
-            <JFXTextField accessibleRole="PASSWORD_FIELD" cache="true" labelFloat="true" layoutX="216.0" layoutY="275.0" pickOnBounds="false" promptText="Passwort" unFocusColor="#757575">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
-            </JFXTextField>
-            <JFXButton fx:id="btnClose21" layoutX="167.0" layoutY="333.0"  prefHeight="39.0" prefWidth="292.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Einstellungen speichern" textFill="#757575">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="CHECK" size="20" wrappingWidth="40.0" />
-               </graphic>
-            </JFXButton>
-         </children>
-      </AnchorPane>
+            </Text>
+         </center>
+      </JFXToolbar>
+      <JFXButton fx:id="btnClose211" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="39.0" prefWidth="300.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="#757575" glyphName="CHECK" size="20" wrappingWidth="40.0" />
+         </graphic>
+         <GridPane.margin>
+            <Insets bottom="25.0" left="150.0" right="150.0" top="25.0" />
+         </GridPane.margin>
+      </JFXButton>
    </children>
-</StackPane>
+</GridPane>
