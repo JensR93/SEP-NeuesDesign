@@ -255,8 +255,6 @@ dashboardController.setNodeKlassehinzufuegen();
                     flow[i].setPadding(new Insets(10));
                     klasssemixed_vbox.getChildren().addAll(flow[i]);
                 }
-                System.out.println("Anzahl Spielklassen = "+obs_spielklasse.size());
-                System.out.println("vbox: "+klassseeinzel_vbox.getChildren());
 
                 tabpane_uebersicht.setOnMouseClicked(event ->{
 
