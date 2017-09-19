@@ -47,6 +47,7 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 public class Turnier_ladenController extends Application implements Initializable, ControlledScreen {
     String baseName = "resources.Main";
     String titel ="";
+    DashboardController controller;
     DashboardController dashboardController = new DashboardController();
     @FXML
     private JFXTextField t_turniersuche;
@@ -406,8 +407,11 @@ public class Turnier_ladenController extends Application implements Initializabl
             //((Node)(event.getSource())).getScene().getWindow().hide();
             try {
 
-                setNode(NeuerSpieler);
+                //setNode(NeuerSpieler);
 
+                controller.setNodeEinstellungen();
+
+                //holderPane.getParent().
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -425,7 +429,10 @@ public class Turnier_ladenController extends Application implements Initializabl
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Badminton Turnierverwaltung - Turnier: "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
     }*/
-
+public void setController(DashboardController controller)
+{
+    this.controller = controller;
+}
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
             //((Node)(event.getSource())).getScene().getWindow().hide();
