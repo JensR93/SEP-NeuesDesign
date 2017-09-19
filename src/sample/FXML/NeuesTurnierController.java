@@ -33,10 +33,11 @@ public class NeuesTurnierController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
     DashboardController controller;
+    Turnier_ladenController controllerTurnier;
     boolean erfolg = false;
     TurnierDAO turnierDao = new TurnierDAOimpl();
 
-    Dictionary<Integer,Turnier> turnierliste = turnierDao.getAllTurniere();
+
     @FXML
     private JFXTextField Turniername;
     @FXML
@@ -53,6 +54,10 @@ public class NeuesTurnierController implements Initializable{
     public void setController(DashboardController controller)
     {
         this.controller = controller;
+    }
+    public void setControllerTurnier(Turnier_ladenController controller)
+    {
+        this.controllerTurnier = controller;
     }
 
     @FXML
@@ -74,9 +79,10 @@ public class NeuesTurnierController implements Initializable{
             }
 
 
-            if(erfolg)
-
+            if(erfolg) {
                 auswahlklasse.InfoBenachrichtigung("Turnier erstellt", turnier.getName() + " wurde erstellt.");
+                auswahlklasse.getTurniere().add(turnier);
+            }
 
             else
                 auswahlklasse.WarnungBenachrichtigung("Turnier nicht erstellt", turnier.getName() + " wurde nicht erstellt.");
@@ -142,6 +148,7 @@ public class NeuesTurnierController implements Initializable{
     }
 
     private void ladeTurnierladen() {
+        controllerTurnier.tabelleReload();
         controller.setNodeTurnier();
     }
 

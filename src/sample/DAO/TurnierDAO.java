@@ -1,8 +1,7 @@
 package sample.DAO;
 
+import javafx.collections.ObservableList;
 import sample.Turnier;
-
-import java.util.Dictionary;
 
 public interface TurnierDAO {
      boolean create(Turnier turnier);
@@ -12,5 +11,5 @@ public interface TurnierDAO {
      boolean readFelder_Neu(Turnier turnierEingabe);
    // public List<Turnier> getAllTurniere();
 
-     Dictionary<Integer,Turnier> getAllTurniere();
+     ObservableList getAllTurniere();
 }

@@ -60,7 +60,6 @@ public class Turnier_ladenController extends Application implements Initializabl
     public TableColumn TurnierNameSpalte;
     @FXML
     public TableColumn TurnierIDSpalte;
-    ObservableList<Turnier> turniere = FXCollections.observableArrayList();
     @FXML
     private StackPane holderPane;
     @FXML
@@ -68,7 +67,7 @@ public class Turnier_ladenController extends Application implements Initializabl
     private JFXTabPane NeuerSpieler;
     private StackPane TurnierLaden;
     TurnierDAO t = new TurnierDAOimpl();
-
+    ObservableList <Turnier> obs_turniere_anzeige=FXCollections.observableArrayList();
     private static Stage primaryStage;
     public Turnier_ladenController()
     {
@@ -85,7 +84,10 @@ public class Turnier_ladenController extends Application implements Initializabl
         primaryStage.setTitle(refresh);
     }
 
-
+public void tabelleReload()
+{
+    TurnierlisteTabelle.refresh();
+}
 
     @FXML
     private void zeigeTabelle() {
@@ -93,15 +95,16 @@ public class Turnier_ladenController extends Application implements Initializabl
 
 
 
-        Enumeration enumKeys = auswahlklasse.getTurnierliste().keys();
 
-        while(enumKeys.hasMoreElements()){
-            int key = (int) enumKeys.nextElement();
-            //index = 0-->Altes Turnier oben!
-            turniere.add(0,auswahlklasse.getTurnierliste().get(key));
+
+        if(t_turniersuche.getText().equals(""))
+        {
+            TurnierlisteTabelle.setItems(auswahlklasse.getTurniere());
+        }
+        else
+        {
 
         }
-        TurnierlisteTabelle.setItems(turniere);
         TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier,Integer>("turnierid"));
 
         //TurnierIDSpalte.setCellFactory(integerCellFactory);
@@ -151,7 +154,7 @@ public class Turnier_ladenController extends Application implements Initializabl
             } catch (MissingResourceException e) {
                 System.err.println(e);
             }
-            t_turniersuche.setText(titel);
+            t_turniersuche.setPromptText(titel);
 
             try {
                 ResourceBundle bundle = ResourceBundle.getBundle(baseName);
@@ -300,13 +303,18 @@ public class Turnier_ladenController extends Application implements Initializabl
                                 boolean erfolg2 = t.delete(clickedRow);
                                 if (erfolg2) {
                                     auswahlklasse.InfoBenachrichtigung("Turnier löschen erfolgreich", clickedRow.getName() + " wurde gelöscht.");
-                                    auswahlklasse.getTurnierliste().remove(getTurnierzumupdaten().getTurnierid());
+
+                                    auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
+
+                                    if(obs_turniere_anzeige.size()>0)
+                                    {
+                                        obs_turniere_anzeige.remove(getTurnierzumupdaten());
+                                    }
 
                                 } else {
                                     auswahlklasse.WarnungBenachrichtigung("Turnier Löschen nicht erfolgreich", clickedRow.getName() + " konnte nicht gelöscht werden!");
                                 }
                                 auswahlklasse.setTurnierzumupdaten(null);
-                                turniere.clear();
                                 zeigeTabelle();
 
                             }
@@ -334,18 +342,21 @@ public class Turnier_ladenController extends Application implements Initializabl
             t_turniersuche.textProperty().addListener((observable, oldValue, newValue) -> {
                 // System.out.println("textfield changed from " + oldValue + " to " + newValue);
                 //obs_spieler.clear();
-
-                turniere.clear();
+                obs_turniere_anzeige.clear();
+                ObservableList<Turnier> obs_turniere = auswahlklasse.getTurniere();
+                //auswahlklasse.getTurniere().clear();
 
                 TurnierlisteTabelle.refresh();
-                Enumeration e = auswahlklasse.getTurnierliste().keys();
-                while (e.hasMoreElements()) {
-                    int key = (int) e.nextElement();
-                    if (auswahlklasse.getTurnierliste().get(key).getName().toUpperCase().contains(t_turniersuche.getText().toUpperCase())) {
-                        turniere.add(0, auswahlklasse.getTurnierliste().get(key));
+                for(int i=0;i<auswahlklasse.getTurniere().size();i++)
+                {
+                    if (obs_turniere.get(i).getName().toUpperCase().contains(t_turniersuche.getText().toUpperCase())) {
+                        obs_turniere_anzeige.add(obs_turniere.get(i));
                     }
-                    ;
+
                 }
+                TurnierlisteTabelle.setItems(obs_turniere_anzeige);
+                //auswahlklasse.setTurniere(obs_turniere_anzeige);
+
 
 
             });
@@ -396,7 +407,9 @@ public void setController(DashboardController controller)
 
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
-
+            FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
+            fxmlLoaderNeuesTurnier.load();
+            ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setControllerTurnier(this);
             controller.setNodeNeuesTurnier();
         } catch (Exception e) {
             e.printStackTrace();
