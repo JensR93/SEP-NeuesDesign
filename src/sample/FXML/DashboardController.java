@@ -136,13 +136,29 @@ public  class DashboardController implements Initializable{
 
     private void createPages() {
         try {
-            home = FXMLLoader.load(getClass().getResource("test.fxml"));
+            //home = FXMLLoader.load(getClass().getResource("test.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             //add = FXMLLoader.load(getClass().getResource("test.fxml"));
-            Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
-            Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
+
+
+
+            //Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
+            FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
+            Turnier = fxmlLoaderTurnier.load();
+            ((Turnier_ladenController) fxmlLoaderTurnier.getController()).setController(this);
+
+
+
+
+            //Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
+            FXMLLoader fxmlLoaderEinstellungen = new FXMLLoader(getClass().getResource("Einstellungen.fxml"));
+            Einstellungen = fxmlLoaderEinstellungen.load();
+            ((EinstellungenController) fxmlLoaderEinstellungen.getController()).setController(this);
+
+
+
             //set up default node on page load
-            setNode(home);
+            setNode(Turnier);
 
         } catch (IOException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
