@@ -3,17 +3,24 @@ package sample.FXML;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 /**
  * Created by jens on 19.09.2017.
  */
-public class ZeitplanController {
+public class ZeitplanController implements Initializable{
 
+private ArrayList labelliste = new ArrayList();
 
     @FXML
     private GridPane grid_zeitplan;
@@ -26,6 +33,19 @@ public class ZeitplanController {
 
     @FXML
     private Label Objekt3;
+    @FXML
+    private TextArea labelanzeige;
+
+
+    private void  setztlabelAnzeige()
+    {
+        labelanzeige.setText("");
+        for(int i=0;i<labelliste.size();i++)
+        {
+            labelanzeige.setText(labelanzeige.getText()+labelliste.get(i));
+        }
+
+    }
 
     @FXML
     void DragvomObjekt(MouseEvent event) {
@@ -60,13 +80,18 @@ public class ZeitplanController {
 
             Objekt2.setText(Objekt1.getText());
             Objekt1.setText(str);
-
+            labelliste.remove(Objekt1);
+            labelliste.add(1,Objekt1);
+            setztlabelAnzeige();
         }
         if(str.equals(Objekt3.getText()))
         {
 
             Objekt3.setText(Objekt1.getText());
             Objekt1.setText(str);
+            labelliste.remove(Objekt1);
+            labelliste.add(2,Objekt1);
+            setztlabelAnzeige();
         }
 
 
@@ -113,12 +138,20 @@ public class ZeitplanController {
             Objekt1.setText(Objekt2.getText());
             Objekt2.setText(str);
 
+            labelliste.remove(Objekt2);
+            labelliste.add(0,Objekt2);
+            setztlabelAnzeige();
+
         }
         if(str.equals(Objekt3.getText()))
         {
 
             Objekt3.setText(Objekt2.getText());
             Objekt2.setText(str);
+
+            labelliste.remove(Objekt2);
+            labelliste.add(2,Objekt2);
+            setztlabelAnzeige();
         }
     }
 
@@ -142,6 +175,9 @@ public class ZeitplanController {
 
             Objekt1.setText(Objekt3.getText());
             Objekt3.setText(str);
+            labelliste.remove(Objekt3);
+            labelliste.add(0,Objekt3);
+            setztlabelAnzeige();
 
         }
         if(str.equals(Objekt2.getText()))
@@ -149,10 +185,20 @@ public class ZeitplanController {
 
             Objekt2.setText(Objekt3.getText());
             Objekt3.setText(str);
+            labelliste.remove(Objekt3);
+            labelliste.add(1,Objekt3);
+
+            setztlabelAnzeige();
         }
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        labelliste.add(Objekt1);
+        labelliste.add(Objekt2);
+        labelliste.add(Objekt3);
 
-
+        labelanzeige.setText(String.valueOf(labelliste));
+    }
 }
