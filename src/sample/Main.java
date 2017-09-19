@@ -11,6 +11,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("FXML/Dashboard.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setMaximized(true);

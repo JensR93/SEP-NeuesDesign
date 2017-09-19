@@ -44,12 +44,15 @@ public class EinstellungenController implements Initializable {
     void exit(ActionEvent event) {
 
     }
-
+DashboardController controller;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DesignLaden();
     }
-
+    public void setController(DashboardController controller)
+    {
+        this.controller = controller;
+    }
     private void DesignLaden() {
        /* rdGewinner.setSelectedColor(Color.color(78, 106, 156, 1));
         rdVerlierer.setSelectedColor(Color.color(78, 106, 156, 1));

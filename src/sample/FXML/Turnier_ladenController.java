@@ -44,9 +44,10 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 /**
  * Created by jens on 17.09.2017.
  */
-public class Turnier_ladenController extends Application implements Initializable, ControlledScreen {
+public class Turnier_ladenController extends Application implements Initializable {
     String baseName = "resources.Main";
     String titel ="";
+    DashboardController controller;
     DashboardController dashboardController = new DashboardController();
     @FXML
     private JFXTextField t_turniersuche;
@@ -406,26 +407,20 @@ public class Turnier_ladenController extends Application implements Initializabl
             //((Node)(event.getSource())).getScene().getWindow().hide();
             try {
 
-                setNode(NeuerSpieler);
+                //setNode(NeuerSpieler);
 
+                controller.setNodeEinstellungen();
+
+                //holderPane.getParent().
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-/*    private void MainLaden() throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        primaryStage = new Stage();
-
-        auswahlklasse.addStagesdict(primaryStage,"Main");
-        primaryStage.setScene(new Scene(root1));
-*//**//*
-        primaryStage.show();
-        primaryStage.setMaximized(true);
-        primaryStage.setTitle("Badminton Turnierverwaltung - Turnier: "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
-    }*/
-
+public void setController(DashboardController controller)
+{
+    this.controller = controller;
+}
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
             //((Node)(event.getSource())).getScene().getWindow().hide();
@@ -448,20 +443,6 @@ public class Turnier_ladenController extends Application implements Initializabl
 
         }
     }
-    ScreensController myController;
-    @Override
-    public void setScreenParent(ScreensController screenParent) {
-        myController = screenParent;
-    }
 
-/*    @FXML
-    private void goToScreen2(ActionEvent event){
-        myController.setScreen(Main.screen2ID);
-    }
-
-    @FXML
-    private void goToScreen3(ActionEvent event){
-        myController.setScreen(Main.screen3ID);
-    }*/
 }
 
