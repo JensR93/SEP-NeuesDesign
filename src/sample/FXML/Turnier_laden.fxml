@@ -42,7 +42,7 @@
             </Text>
             <HBox alignment="CENTER" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="btn_neuesTurnier" text="Neues Turnier" textFill="#757575">
+                  <JFXButton fx:id="btn_neuesTurnier" onAction="#pressBtn_neuesTurnier" text="Neues Turnier" textFill="#757575">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

@@ -44,11 +44,13 @@ public class EinstellungenController implements Initializable {
     void exit(ActionEvent event) {
 
     }
-DashboardController controller;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DesignLaden();
     }
+
+    DashboardController controller;
     public void setController(DashboardController controller)
     {
         this.controller = controller;
