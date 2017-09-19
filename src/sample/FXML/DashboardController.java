@@ -129,10 +129,24 @@ public class DashboardController implements Initializable{
             home = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             add = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
-            Turnier = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
-            Einstellungen = FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
-            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klassenuebersicht.fxml"));
+
+
+            FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
+            Turnier=fxmlLoaderTurnier.load();
+            ((Turnier_ladenController) fxmlLoaderTurnier.getController()).setController(this);
+
+
+            FXMLLoader fxmlLoaderEinstellungen = new FXMLLoader(getClass().getResource("Einstellungen.fxml"));
+            Einstellungen = fxmlLoaderEinstellungen.load();
+            ((EinstellungenController) fxmlLoaderEinstellungen.getController()).setController(this);
+
+
             //set up default node on page load
+
+            FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
+            Klassenuebersicht = fxmlLoaderKlassenuebersicht.load();
+            ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setController(this);
+
             setNode(home);
         } catch (IOException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,6 +158,10 @@ public class DashboardController implements Initializable{
         setNode(Spieler);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
+    {
+        setNode(Einstellungen);
+    }
+    public void setNodeEinstellungen()
     {
         setNode(Einstellungen);
     }
