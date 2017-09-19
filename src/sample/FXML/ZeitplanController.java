@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class ZeitplanController implements Initializable{
 
-private ArrayList labelliste = new ArrayList();
+private ArrayList<Label> labelliste = new ArrayList();
 
     @FXML
     private GridPane grid_zeitplan;
@@ -42,7 +42,7 @@ private ArrayList labelliste = new ArrayList();
         labelanzeige.setText("");
         for(int i=0;i<labelliste.size();i++)
         {
-            labelanzeige.setText(labelanzeige.getText()+labelliste.get(i));
+            labelanzeige.setText(labelanzeige.getText()+"\n"+labelliste.get(i));
         }
 
     }
