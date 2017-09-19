@@ -68,7 +68,7 @@ public class Turnier_ladenController extends Application implements Initializabl
     private JFXTabPane NeuerSpieler;
     private StackPane TurnierLaden;
     TurnierDAO t = new TurnierDAOimpl();
-    Dictionary<Integer,Turnier> turnierliste = t.getAllTurniere();
+
     private static Stage primaryStage;
     public Turnier_ladenController()
     {
@@ -86,33 +86,6 @@ public class Turnier_ladenController extends Application implements Initializabl
     }
 
 
-
-    private void createPages() {
-        try {
-
-            NeuerSpieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-
-            //set up default node on page load
-            //setNode(NeuerSpieler);
-
-        } catch (IOException ex) {
-            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    private void setNode(Node node)
-    {
-
-        holderPane.getChildren().clear();
-        holderPane.getChildren().add((Node) node);
-        FadeTransition ft = new FadeTransition(Duration.millis(3000));
-        ft.setNode(node);
-        ft.setFromValue(0.1);
-        ft.setToValue(1);
-        ft.setCycleCount(1);
-        ft.setAutoReverse(false);
-        ft.play();
-    }
 
     @FXML
     private void zeigeTabelle() {
@@ -145,7 +118,6 @@ public class Turnier_ladenController extends Application implements Initializabl
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-            createPages();
 
             Properties saveProps = new Properties();
             saveProps.setProperty("path1", "/somethingpath1");
@@ -409,7 +381,7 @@ public class Turnier_ladenController extends Application implements Initializabl
 
                 //setNode(NeuerSpieler);
 
-                controller.setNodeEinstellungen();
+                controller.setNodeKlassenuebersicht();
 
                 //holderPane.getParent().
             } catch (Exception e) {
@@ -421,23 +393,11 @@ public void setController(DashboardController controller)
 {
     this.controller = controller;
 }
+
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
-            //((Node)(event.getSource())).getScene().getWindow().hide();
-            Stage stage = new Stage();
 
-
-            auswahlklasse.addStagesdict(stage, "NeuesTurnier");
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("neuesTurnier.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-            if (getTurnierzumupdaten() != null) {
-                stage.setTitle(getTurnierzumupdaten().getName() + " bearbeiten");
-            } else {
-                stage.setTitle("Neues Turnier");
-            }
+            controller.setNodeNeuesTurnier();
         } catch (Exception e) {
             e.printStackTrace();
 

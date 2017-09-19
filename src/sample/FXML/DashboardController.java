@@ -29,11 +29,10 @@ import javafx.util.Duration;
 
 public class DashboardController implements Initializable{
 
-    private AnchorPane home, add;
     private JFXTabPane Spieler,Klassehinzufuegen;
-    private GridPane Einstellungen;
+    private GridPane Einstellungen,NeuesTurnier;
     private GridPane Klassenuebersicht;
-    private StackPane Turnier;
+    private StackPane Turnier,home;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -126,9 +125,13 @@ public class DashboardController implements Initializable{
 
     private void createPages() {
         try {
-            home = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
+            home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-            add = FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
+
+            FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
+            NeuesTurnier=fxmlLoaderNeuesTurnier.load();
+            ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setController(this);
+
 
             Klassehinzufuegen= FXMLLoader.load(getClass().getResource("Klasse_hinzufügen.fxml"));
 
@@ -148,7 +151,7 @@ public class DashboardController implements Initializable{
             Klassenuebersicht = fxmlLoaderKlassenuebersicht.load();
             ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setController(this);
 
-            setNode(home);
+            setNode(Turnier);
         } catch (IOException ex) {
             Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -174,7 +177,10 @@ public class DashboardController implements Initializable{
     {
         setNode(Turnier);
     }
-
+    public void setNodeTurnier()
+    {
+        setNode(Turnier);
+    }
     @FXML public void setNodeHome(ActionEvent event){
         setNode(home);
     }
@@ -182,7 +188,14 @@ public class DashboardController implements Initializable{
     {
         setNode(Klassenuebersicht);
     }
-
+    public void setNodeKlassenuebersicht()
+    {
+        setNode(Klassenuebersicht);
+    }
+    public void setNodeNeuesTurnier()
+    {
+        setNode(NeuesTurnier);
+    }
     private static void test(){
 
     }
