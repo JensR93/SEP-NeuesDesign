@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="grid_zeitplan" onDragDetected="#DragvomObjekt" onDragOver="#dragaufObjekt" prefHeight="270.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.ZeitplanController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="Objekt1" onDragDetected="#label1dragdetected" onDragDropped="#label1dragdropped" onDragOver="#label1dragover" text="Labe1111111111111l">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="Objekt2" onDragDetected="#label2dragdetected" onDragDropped="#label2dragdropped" onDragOver="#label2dragover" text="Label22222222222222" GridPane.rowIndex="1">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="Objekt3" onDragDetected="#label3dragdetected" onDragDropped="#label3dragdropped" onDragOver="#label3dragover" text="Label33333333333" GridPane.rowIndex="2">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</GridPane>
