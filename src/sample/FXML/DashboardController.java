@@ -21,10 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class DashboardController implements Initializable{
@@ -57,6 +54,12 @@ public class DashboardController implements Initializable{
 
     @FXML // fx:id="btnTurnierübersicht"
     private JFXButton btnTurnierübersicht; // Value injected by FXMLLoader
+
+    @FXML
+    private JFXButton btnSpieluebersicht;
+
+    @FXML
+    private JFXButton btnTurnierbaum;
 
     @FXML // fx:id="btnKlassen"
     private JFXButton btnKlassen; // Value injected by FXMLLoader
@@ -123,7 +126,7 @@ public class DashboardController implements Initializable{
 
     }
 
-    private void createPages() {
+    public void createPages() {
         try {
             home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
@@ -133,11 +136,10 @@ public class DashboardController implements Initializable{
             ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setController(this);
 
 
-            Klassehinzufuegen= FXMLLoader.load(getClass().getResource("Klasse_hinzufügen.fxml"));
 
-            FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
-            Turnier=fxmlLoaderTurnier.load();
-            ((Turnier_ladenController) fxmlLoaderTurnier.getController()).setController(this);
+            FXMLLoader fxmlLoaderKlassehinzu = new FXMLLoader(getClass().getResource("Klasse_hinzufügen.fxml"));
+            Klassehinzufuegen=fxmlLoaderKlassehinzu.load();
+            ((Klasse_hinzufügenController) fxmlLoaderKlassehinzu.getController()).setDashboardController(this);
 
 
             FXMLLoader fxmlLoaderEinstellungen = new FXMLLoader(getClass().getResource("Einstellungen.fxml"));
@@ -149,7 +151,7 @@ public class DashboardController implements Initializable{
 
             FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
             Klassenuebersicht = fxmlLoaderKlassenuebersicht.load();
-            ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setController(this);
+            ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setDashboardController(this);
 
             setNode(Turnier);
         } catch (IOException ex) {
@@ -213,11 +215,28 @@ public class DashboardController implements Initializable{
         ft.play();
     }
 
+    public void allesFreigeben(){
+        btnKlassen.setDisable(false);
+        btnSpieler.setDisable(false);
+        btnHome.setDisable(false);
+        btnStatistik.setDisable(false);
+        btnzeitplan.setDisable(false);
+        btnTurnierbaum.setDisable(false);
+        btnSpieluebersicht.setDisable(false);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        createPages();
+        createTurnierLadenPage();
+    }
 
-
+    private void createTurnierLadenPage() {
+        try {
+            FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
+            Turnier=fxmlLoaderTurnier.load();
+            ((Turnier_ladenController) fxmlLoaderTurnier.getController()).setDashboardController(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

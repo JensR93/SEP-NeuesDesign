@@ -3,7 +3,7 @@ package sample.FXML;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
-import javafx.animation.FadeTransition;
+import com.sun.xml.internal.bind.v2.schemagen.episode.Klass;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,32 +12,22 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import sample.DAO.*;
-import sample.Main;
 import sample.Spiel;
 import sample.Team;
 import sample.Turnier;
 
-import javax.naming.ldap.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 
@@ -47,8 +37,9 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 public class Turnier_ladenController extends Application implements Initializable {
     String baseName = "resources.Main";
     String titel ="";
-    DashboardController controller;
-    DashboardController dashboardController = new DashboardController();
+    DashboardController dashboardController;
+    KlassenuebersichtController klassenuebersichtController;
+
     @FXML
     private JFXTextField t_turniersuche;
     ContextMenu contextMenu=new ContextMenu();
@@ -392,7 +383,13 @@ public void tabelleReload()
 
                 //setNode(NeuerSpieler);
 
-                controller.setNodeKlassenuebersicht();
+                FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
+                fxmlLoaderKlassenuebersicht.load();
+                ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setTurnier_ladenController(this);
+                klassenuebersichtController.SpielklassenHinzufuegen();
+                dashboardController.allesFreigeben();
+                dashboardController.createPages();
+                dashboardController.setNodeKlassenuebersicht();
 
                 //holderPane.getParent().
             } catch (Exception e) {
@@ -400,17 +397,30 @@ public void tabelleReload()
             }
         }
     }
-public void setController(DashboardController controller)
+public void setDashboardController(DashboardController dashboardController)
 {
-    this.controller = controller;
+    this.dashboardController = dashboardController;
 }
+
+    public KlassenuebersichtController getKlassenuebersichtController() {
+        return klassenuebersichtController;
+    }
+
+    public void setKlassenuebersichtController(KlassenuebersichtController klassenuebersichtController1)
+    {
+        this.klassenuebersichtController = klassenuebersichtController1;
+    }
 
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
             FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
             fxmlLoaderNeuesTurnier.load();
             ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setControllerTurnier(this);
-            controller.setNodeNeuesTurnier();
+
+
+
+
+            dashboardController.setNodeNeuesTurnier();
         } catch (Exception e) {
             e.printStackTrace();
 
