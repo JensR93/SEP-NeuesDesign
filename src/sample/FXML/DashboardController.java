@@ -33,7 +33,7 @@ public class DashboardController implements Initializable{
     private JFXTabPane Spieler;
     private GridPane Einstellungen;
     private StackPane Turnier;
-
+//
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
