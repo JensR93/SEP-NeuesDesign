@@ -108,7 +108,7 @@ public class Gruppe extends Spielsystem {
 			for (int j=0; j<anzahlTeams/2;j++){
 				Spiel spiel = new Spiel(spielSystemIDberechnen(),this);
 				if(this.getRundenArray().size()<=getAktuelleRunde()){
-					this.getRundenArray().add(new ArrayList<>());
+					this.getRundenArray().add(new ZeitplanRunde());
 				}
 				if(!this.getRundenArray().get(getAktuelleRunde()).contains(spiel)) {
 					this.getRundenArray().get(getAktuelleRunde()).add(spiel);
@@ -289,7 +289,7 @@ public class Gruppe extends Spielsystem {
 			rundenNummer = (rundenNummer - (rundenNummer /100000 * 100000)) /1000;
 			Spiel spiel =spiele.get(i);
 			while(this.getRundenArray().size()-1<rundenNummer){
-				this.getRundenArray().add(new ArrayList<>());
+				this.getRundenArray().add(new ZeitplanRunde());
 			}
 			this.getRundenArray().get(rundenNummer).add(spiel);
 		}

@@ -122,13 +122,13 @@ public class KO extends Spielsystem {
 		int hoechsterSetzplatz;
 		SpielTree aktuellerKnoten = finale;
 		finale.setSpiel(dicSpiele.get(getSpielSystemArt()*10000000));
-		this.getRundenArray().add(new ArrayList<>());
+		this.getRundenArray().add(new ZeitplanRunde());
 		this.getRundenArray().get(0).add(finale.getSpiel());
 
 		for (int i=0; i<anzahlRunden-1; i++){ //erstelle für jeder Runde Spiele
 			aktuellerKnoten = finale.getSpielTree(spielSystemIDberechnen(),finale);
 			hoechsterSetzplatz = (int) Math.pow(2,i+2);
-			this.getRundenArray().add(0,new ArrayList<>());
+			this.getRundenArray().add(0,new ZeitplanRunde());
 			for (int j=1; j<=Math.pow(2,i); j++)
 			{
 				int leftKnotenSpielID = ((aktuellerKnoten.getSpielID()-getSpielSystemArt()*10000000-getAktuelleRunde()*1000)*2+getSpielSystemArt()*10000000+getAktuelleRunde()*1000)+1000;
@@ -159,12 +159,12 @@ public class KO extends Spielsystem {
 		int hoechsterSetzplatz;
 		SpielTree aktuellerKnoten = finale;
 		finale.setSpiel(new Spiel(spielSystemIDberechnen(),1,2,this));
-		this.getRundenArray().add(new ArrayList<>());
+		this.getRundenArray().add(new ZeitplanRunde());
 		this.getRundenArray().get(0).add(finale.getSpiel());
 
 		for (int i=0; i<anzahlRunden-1; i++){ //erstelle für jeder Runde Spiele
 			aktuellerKnoten = finale.getSpielTree(spielSystemIDberechnen(),finale);
-			this.getRundenArray().add(0,new ArrayList<>());
+			this.getRundenArray().add(0,new ZeitplanRunde());
 			hoechsterSetzplatz = (int) Math.pow(2,i+2);
 			for (int j=1; j<=Math.pow(2,i); j++)
 			{

@@ -1,18 +1,19 @@
 package sample.FXML;
 
-import com.jfoenix.controls.JFXTextField;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import sample.DAO.auswahlklasse;
+import sample.Zeitplan;
+import sample.ZeitplanRunde;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 /**
@@ -20,34 +21,48 @@ import java.util.ResourceBundle;
  */
 public class ZeitplanController implements Initializable{
 
-private ArrayList<Label> labelliste = new ArrayList();
+    private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
 
     @FXML
     private GridPane grid_zeitplan;
 
     @FXML
-    private Label Objekt1;
-
-    @FXML
-    private Label Objekt2;
-
-    @FXML
-    private Label Objekt3;
-    @FXML
-    private TextArea labelanzeige;
+    private TableView<ZeitplanRunde> tableview_runden;
 
 
-    private void  setztlabelAnzeige()
-    {
-        labelanzeige.setText("");
-        for(int i=0;i<labelliste.size();i++)
-        {
-            labelanzeige.setText(labelanzeige.getText()+"\n"+labelliste.get(i));
-        }
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl()));
+        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
+        sortiereRundenListe();
+        tableColumnsErstellen();
     }
 
-    @FXML
+    private void sortiereRundenListe() {
+        rundenListe.sort(new Comparator<ZeitplanRunde>() {
+            @Override
+            public int compare(ZeitplanRunde o1, ZeitplanRunde o2) {
+                return o1.getRundenNummer()-o2.getRundenNummer();
+            }
+        });
+    }
+
+
+    private void tableColumnsErstellen() {
+        TableColumn<ZeitplanRunde,String> rundenName = new TableColumn("RundenName");
+        TableColumn index = new TableColumn("#");
+        TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn("Spiele");
+        index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
+        rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
+        anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
+        tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
+        tableview_runden.setItems(rundenListe);
+    }
+}
+
+
+
+/*@FXML
     void DragvomObjekt(MouseEvent event) {
 
     }
@@ -190,15 +205,4 @@ private ArrayList<Label> labelliste = new ArrayList();
 
             setztlabelAnzeige();
         }
-    }
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        labelliste.add(Objekt1);
-        labelliste.add(Objekt2);
-        labelliste.add(Objekt3);
-
-        labelanzeige.setText(String.valueOf(labelliste));
-    }
-}
+    }*/
