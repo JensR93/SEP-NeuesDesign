@@ -18,7 +18,7 @@ public abstract class Spielsystem {
 	private int spielSystemArt;
 	private int extraRunde=0;
 	private List<Team> platzierungsListe;
-	private ArrayList<ArrayList<Spiel>> runden =new ArrayList<>();
+	private ArrayList<ZeitplanRunde> runden =new ArrayList<>();
 
 	protected int spielsystemCode;
 
@@ -33,7 +33,7 @@ public abstract class Spielsystem {
 		spielSystemID += offeneRundenSpiele;
 		return spielSystemID;
 	}
-	protected ArrayList<ArrayList<Spiel>> getRundenArray(){
+	protected ArrayList<ZeitplanRunde> getRundenArray(){
 		return runden;
 	}
 
@@ -118,8 +118,8 @@ public abstract class Spielsystem {
 		});
 		return teamList;
 	}
-	public ArrayList<ArrayList<Spiel>> getRunden(){
-		ArrayList<ArrayList<Spiel>> neueRunden = (ArrayList<ArrayList<Spiel>>)runden.clone();
+	public ArrayList<ZeitplanRunde> getRunden(){
+		ArrayList<ZeitplanRunde> neueRunden = (ArrayList<ZeitplanRunde>)runden.clone();
 		return neueRunden;
 	}
 	public abstract ArrayList<Team> getSetzliste();

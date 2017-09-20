@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Klasse_hinzufügenController">
+   <tabs>
+      <Tab text="Klassendaten">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane styleClass="font" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="161.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="300.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text fx:id="t_disziplin" fill="#757575" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" text="Disziplin:">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="30.0" top="20.0" />
+                           </GridPane.margin></Text>
+                        <ChoiceBox fx:id="combo_disziplin" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="250.0" prefHeight="39.0" prefWidth="250.0" styleClass="card-white" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER">
+                           <GridPane.margin>
+                              <Insets bottom="14.0" left="60.0" right="60.0" top="23.0" />
+                           </GridPane.margin></ChoiceBox>
+                        <Text fx:id="t_niveau" fill="#757575" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau:" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="30.0" top="20.0" />
+                           </GridPane.margin></Text>
+                        <ChoiceBox fx:id="combo_niveau" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="card-white" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                           <GridPane.margin>
+                              <Insets bottom="14.0" left="60.0" right="60.0" top="23.0" />
+                           </GridPane.margin></ChoiceBox>
+                        <Text fx:id="t_zaehlweise" fill="#757575" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0" text="Zählweise:" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="30.0" top="20.0" />
+                           </GridPane.margin></Text>
+                        <VBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                           <children>
+                              <JFXRadioButton contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="20.0" text="21" textFill="#757575">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Zaehlweise" />
+                                 </toggleGroup>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="60.0" right="60.0" top="10.0" />
+                                 </VBox.margin>
+                              </JFXRadioButton>
+                              <JFXRadioButton contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="20.0" text="11 mit Verlängerung" textFill="#757575" toggleGroup="$Zaehlweise">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="60.0" right="60.0" top="10.0" />
+                                 </VBox.margin></JFXRadioButton>
+                              <JFXRadioButton contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="20.0" text="11 ohne Verlängerung" textFill="#757575" toggleGroup="$Zaehlweise">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="60.0" right="60.0" top="10.0" />
+                                 </VBox.margin></JFXRadioButton>
+                           </children>
+                        </VBox>
+                        <JFXButton fx:id="b_klasseSpeichern" alignment="CENTER" maxHeight="39.0" maxWidth="1.7976931348623157E308" onAction="#pressBtn_KlasseSpeichern" prefHeight="39.0" prefWidth="250.0" styleClass="card-white" text="Klasse speichern" textFill="#757575" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="#757575" glyphName="PRINT" size="20" wrappingWidth="40.0" />
+                           </graphic>
+                           <GridPane.margin>
+                              <Insets bottom="36.0" left="60.0" right="60.0" />
+                           </GridPane.margin>
+                        </JFXButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>

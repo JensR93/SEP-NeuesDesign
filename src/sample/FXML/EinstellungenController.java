@@ -50,6 +50,11 @@ public class EinstellungenController implements Initializable {
         DesignLaden();
     }
 
+    DashboardController controller;
+    public void setController(DashboardController controller)
+    {
+        this.controller = controller;
+    }
     private void DesignLaden() {
        /* rdGewinner.setSelectedColor(Color.color(78, 106, 156, 1));
         rdVerlierer.setSelectedColor(Color.color(78, 106, 156, 1));

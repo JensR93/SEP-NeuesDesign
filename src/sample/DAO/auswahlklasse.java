@@ -26,7 +26,7 @@ public class auswahlklasse
 
 
     private TurnierDAO turnierDAO = new TurnierDAOimpl();
-    private static Dictionary<Integer, Turnier> turnierliste = new Hashtable<Integer,Turnier>();
+
     private static Dictionary<Integer, Verein> vereine = new Hashtable<Integer, Verein>();
     private static Dictionary<String, Stage> stagesdict = new Hashtable<String,Stage>();
     private static Dictionary<Integer, Spieler> spieler = new Hashtable<Integer,Spieler>();
@@ -35,15 +35,35 @@ public class auswahlklasse
     private static Spieler SpielerzumHinzufeuegen=null;
     private static ArrayList<Spieler> vorhandeneSpieler;
   //  private static Dictionary<Spieler,ArrayList> dictvorhandenespieler = new Hashtable();
+private static ObservableList <Turnier> turniere = FXCollections.observableArrayList();
 
     private static Spiel SpielAuswahlErgebniseintragen;
     private static ObservableList<Spieler> obs_spieler = FXCollections.observableArrayList();
     private static Notifications noteficationBuilder;
 
 
+    public static void setVereine(Dictionary<Integer, Verein> vereine) {
+        auswahlklasse.vereine = vereine;
+    }
+
+    public static void setStagesdict(Dictionary<String, Stage> stagesdict) {
+        auswahlklasse.stagesdict = stagesdict;
+    }
+
+    public static ObservableList getTurniere() {
+        return turniere;
+    }
+
+    public static void setTurniere(ObservableList turniere) {
+        auswahlklasse.turniere = turniere;
+    }
+
+    public static void setObs_spieler(ObservableList<Spieler> obs_spieler) {
+        auswahlklasse.obs_spieler = obs_spieler;
+    }
 
     public void readTurnierListe() {
-        turnierliste= turnierDAO.getAllTurniere();
+      turniere = turnierDAO.getAllTurniere();
     }
     public static Turnier getTurnierzumupdaten() {
         return turnierzumupdaten;
@@ -147,9 +167,7 @@ public class auswahlklasse
         return aktuelleTurnierAuswahl;
     }
 
-    public static Dictionary<Integer, Turnier> getTurnierliste() {
-        return turnierliste;
-    }
+
     public static Dictionary<Integer, Verein> getVereine() {
         return vereine;
     }
