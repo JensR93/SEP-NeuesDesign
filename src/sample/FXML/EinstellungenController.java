@@ -5,14 +5,23 @@ import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class EinstellungenController implements Initializable {
+
+    String baseName = "resources.Main";
+    String titel ="";
+
+    @FXML
+    private Label Label_Spieleinstellungen;
+
     @FXML
     private GridPane gridPane;
 
@@ -47,7 +56,22 @@ public class EinstellungenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         DesignLaden();
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("Label_Spieleinstellungen");
+            Label_Spieleinstellungen.setText(titel);
+            titel = bundle.getString("Label_2");
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
     }
 
     DashboardController controller;
