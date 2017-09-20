@@ -287,6 +287,11 @@ public class DashboardController implements Initializable{
 
     }
 
+    private static void buttonHighlight(JFXButton button)
+    {
+
+    }
+
     private void setNode(Node node)
     {
         holderPane.getChildren().clear();

@@ -283,7 +283,10 @@ public void tabelleReload()
                                 //Turnier löschen
                                 boolean erfolg2 = t.delete(clickedRow);
                                 if (erfolg2) {
-                                    auswahlklasse.InfoBenachrichtigung("Turnier löschen erfolgreich", clickedRow.getName() + " wurde gelöscht.");
+                                    ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+                                    String titel1 = bundle.getString("Label_Spieleinstellungen");
+                                    String titel2 = bundle.getString("Label_Spieleinstellungen");
+                                    auswahlklasse.InfoBenachrichtigung("Titel löschen", "Das Turnier "+ clickedRow.getName()+" wurde gelöscht");
 
                                     auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
 
