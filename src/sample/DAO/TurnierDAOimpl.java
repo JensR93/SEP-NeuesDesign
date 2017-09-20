@@ -316,6 +316,8 @@ public class TurnierDAOimpl implements TurnierDAO {
                 Team gast = spielklasse.getTurnier().getTeams().get(gastid);
                 Time date = spielResult.getTime("AufrufZeit");
                 LocalTime aufrufzeit = LocalTime.now();
+                int zeitplanNummer = spielResult.getInt("ZeitplanNummer");
+                int rundenZeitplanNummer = spielResult.getInt("RundenZeitplanNummer");
                 if(date!=null){
                     aufrufzeit=date.toLocalTime();
                 }
@@ -332,7 +334,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         feld = spielklasse.getTurnier().getFelder().get(i);
                     }
                 }
-                spiele.add(new Spiel(spielid,heim,gast,aufrufzeit,schiedsrichter,status,systemspielid,feld));
+                spiele.add(new Spiel(spielid,heim,gast,aufrufzeit,schiedsrichter,status,systemspielid,feld,zeitplanNummer,rundenZeitplanNummer));
 
             }
             smt.close();

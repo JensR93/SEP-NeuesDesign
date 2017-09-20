@@ -121,7 +121,9 @@ public class SpielDAOimpl implements SpielDAO {
                 + "Heim = ?, "
                 + "Gast = ?, "
                 + "SiegerID = ?, "
-                + "SpielklasseID = ? "
+                + "SpielklasseID = ?, "
+                + "ZeitplanNummer = ?, "
+                + "RundenZeitplanNummer = ? "
                 + "WHERE SpielID = ? "
                 ;
         try {
@@ -161,8 +163,10 @@ public class SpielDAOimpl implements SpielDAO {
                 smt.setNull(7,Types.INTEGER);
             }
             smt.setInt(8, spiel.getSpielsystem().getSpielklasse().getSpielklasseID());
+            smt.setInt(9,spiel.getZeitplanNummer());
+            smt.setInt(10,spiel.getRundenZeitplanNummer());
 
-            smt.setInt(9, spiel.getSpielID());
+            smt.setInt(11, spiel.getSpielID());
             smt.executeUpdate();
             smt.close();
 

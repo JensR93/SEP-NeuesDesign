@@ -253,7 +253,7 @@ public class Spiel {
 	}
 
 
-	public Spiel(int spielID, Team heim, Team gast, LocalTime aufrufZeit, Spieler schiedsrichter, int status, int systemSpielID, Feld feld) {
+	public Spiel(int spielID, Team heim, Team gast, LocalTime aufrufZeit, Spieler schiedsrichter, int status, int systemSpielID, Feld feld, int zeitplanNummer, int RundenZeitplanNummer) {
 		this.spielID = spielID;
 		this.heim = heim;						//Constructor für einlesen. Anschließend MUSS Spielsystem gesettet werden!)
 		this.gast = gast;
@@ -262,6 +262,8 @@ public class Spiel {
 		this.status = status;
 		this.systemSpielID = systemSpielID;
 		this.feld = feld;
+		this.zeitplanNummer=zeitplanNummer;
+		this.rundenZeitplanNummer = getRundenZeitplanNummer();
 	}
 
 	public Team getSieger(){
@@ -284,7 +286,10 @@ public class Spiel {
 	}
 
 	public void setZeitplanNummer(int zeitplanNummer) {
-		this.zeitplanNummer = zeitplanNummer;
+		if(zeitplanNummer!=this.zeitplanNummer) {
+			this.zeitplanNummer = zeitplanNummer;
+			spielDAO.update(this);
+		}
 	}
 
 	public int getRundenZeitplanNummer() {
@@ -292,7 +297,11 @@ public class Spiel {
 	}
 
 	public void setRundenZeitplanNummer(int rundenZeitplanNummer) {
-		this.rundenZeitplanNummer = rundenZeitplanNummer;
+		if(rundenZeitplanNummer!=this.rundenZeitplanNummer){
+			this.rundenZeitplanNummer = rundenZeitplanNummer;
+			spielDAO.update(this);
+		}
+
 	}
 
 	public Spielsystem getSpielsystem() {
@@ -358,6 +367,35 @@ public class Spiel {
 			return "Runde "+rundenNummer + 1;
 		}
 		return "";
+	}
+	public String getRundenNameKurz(){
+		String rundenName ="";
+		rundenName += disziplinKurzform();
+		rundenName += "-";
+		rundenName += spielsystem.getSpielklasse().getNiveau();
+		rundenName += " ";
+		rundenName += getRundenName();
+		return rundenName;
+	}
+	private String disziplinKurzform(){
+		String disziplin = spielsystem.getSpielklasse().getDisziplin().toUpperCase();
+		String kurzform = "";
+		if(disziplin.contains("DAMENEINZEL")){
+			kurzform = "DE";
+		}
+		else if(disziplin.contains("HERRENEINZEL")) {
+			kurzform = "HE";
+		}
+		else if(disziplin.contains("HERRENDOPPEL")) {
+			kurzform = "HD";
+		}
+		else if(disziplin.contains("DAMENDOPPEL")) {
+			kurzform = "DD";
+		}
+		else if(disziplin.contains("MIXED")) {
+			kurzform = "MX";
+		}
+		return kurzform;
 	}
 	public void setStatus(int status) {
 		this.status = status;

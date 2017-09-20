@@ -17,7 +17,7 @@ public class Zeitplan {
     private static ArrayList<ZeitplanRunde> alleRundenSortiert = new ArrayList<>();
 
 
-    public static void zeitplanErstellen(Turnier turnier){
+    public static void optimalenZeitplanErstellen(Turnier turnier){
         resetteAlles();
         alleSpielsystemeEinlesen(turnier);
         if (spielsystemRunden.size()>0){
@@ -82,6 +82,32 @@ public class Zeitplan {
             }
         }
     }
+
+    public static ObservableList<Spiel> zeitplanErstellen(ArrayList<ZeitplanRunde> alleRunden){
+        int spielnummer = 1;
+        for(int i=0;i<alleRunden.size();i++){
+            for(int j=0;j<alleRunden.get(i).size();j++){
+                Spiel spiel = alleRunden.get(i).get(j);
+                if(spiel.getHeim()==null || spiel.getGast()==null){
+                    zeitplan.add(spiel);
+                    spiel.setZeitplanNummer(spielnummer);
+                    spiel.setRundenZeitplanNummer(i+1);
+                    spielnummer++;
+                }
+                else if (!spiel.getHeim().isFreilos() && !spiel.getGast().isFreilos()){
+                    zeitplan.add(spiel);
+                    spiel.setZeitplanNummer(spielnummer);
+                    spiel.setRundenZeitplanNummer(i+1);
+                    spielnummer++;
+                }
+                else{
+                    spiel.setRundenZeitplanNummer(i+1);
+                }
+            }
+        }
+        return zeitplan;
+    }
+
     private static void listenVereinen(){
         int spielnummer = 1;
         for(int i=alleRundenSortiert.size()-1;i>=0;i--){

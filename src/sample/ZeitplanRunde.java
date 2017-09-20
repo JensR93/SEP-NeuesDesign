@@ -13,11 +13,7 @@ public class ZeitplanRunde extends ArrayList<Spiel>{
         String rundenName ="";
         if(this.get(0) != null){
             Spiel spiel = this.get(0);
-            rundenName += disziplinKurzform(spiel);
-            rundenName += "-";
-            rundenName += spiel.getSpielsystem().getSpielklasse().getNiveau();
-            rundenName += " ";
-            rundenName += spiel.getRundenName();
+            rundenName =spiel.getRundenNameKurz();
         }
         return rundenName;
     }
@@ -27,25 +23,5 @@ public class ZeitplanRunde extends ArrayList<Spiel>{
             rundenNummer = this.get(0).getRundenZeitplanNummer();
         }
         return rundenNummer;
-    }
-    private String disziplinKurzform(Spiel spiel){
-        String disziplin = spiel.getSpielsystem().getSpielklasse().getDisziplin().toUpperCase();
-        String kurzform = "";
-        if(disziplin.contains("DAMENEINZEL")){
-            kurzform = "DE";
-        }
-        else if(disziplin.contains("HERRENEINZEL")) {
-            kurzform = "HE";
-        }
-        else if(disziplin.contains("HERRENDOPPEL")) {
-            kurzform = "HD";
-        }
-        else if(disziplin.contains("DAMENDOPPEL")) {
-            kurzform = "DD";
-        }
-        else if(disziplin.contains("MIXED")) {
-            kurzform = "MX";
-        }
-        return kurzform;
     }
 }
