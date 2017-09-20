@@ -26,6 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sample.Team;
 
 public class DashboardController implements Initializable{
 
@@ -149,13 +150,14 @@ public class DashboardController implements Initializable{
     {
         setNode(Turnier);
     }
+    @FXML public void setNodeTeam(ActionEvent event)
+    {
 
-    @FXML public void setNodeHome(ActionEvent event){
-        setNode(home);
     }
 
-    private static void test(){
-
+    @FXML public void setNodeHome(ActionEvent event)
+    {
+        setNode(home);
     }
 
     private void setNode(Node node)
