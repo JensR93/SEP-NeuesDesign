@@ -4,18 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import sample.DAO.auswahlklasse;
-import sample.Spiel;
 import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 /**
@@ -35,12 +33,22 @@ public class ZeitplanController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl()));
+        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
+        sortiereRundenListe();
         tableColumnsErstellen();
+    }
+
+    private void sortiereRundenListe() {
+        rundenListe.sort(new Comparator<ZeitplanRunde>() {
+            @Override
+            public int compare(ZeitplanRunde o1, ZeitplanRunde o2) {
+                return o1.getRundenNummer()-o2.getRundenNummer();
+            }
+        });
     }
 
 
     private void tableColumnsErstellen() {
-        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
         TableColumn<ZeitplanRunde,String> rundenName = new TableColumn("RundenName");
         TableColumn index = new TableColumn("#");
         TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn("Spiele");
