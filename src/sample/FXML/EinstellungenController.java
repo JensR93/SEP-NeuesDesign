@@ -62,9 +62,7 @@ public class EinstellungenController implements Initializable {
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("Label_Spieleinstellungen");
-            Label_Spieleinstellungen.setText(titel);
-            titel = bundle.getString("Label_2");
+
 
         }
         catch ( MissingResourceException e ) {
