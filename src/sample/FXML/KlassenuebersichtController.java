@@ -81,24 +81,8 @@ public class KlassenuebersichtController implements Initializable {
     }
 
     public void pressBtn_Spielsystem(Spielklasse spielklasse) throws Exception {
-        try {
-            auswahlklasse.spielklassenAuswahlSpeichern(spielklasse);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SpielSystem_neu.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-//            for (int i=1; i<a.getStages().size()-1;i++){
-//                a.getStages().get(i).close();
-//            }
-            auswahlklasse.getStagesdict().put("Spielsytem",stage);
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-            stage.setTitle(spielklasse.getDisziplin()+ " "+ spielklasse.getNiveau());
-
-        } catch(Exception e) {
-            e.printStackTrace();
-            System.out.println("Fehler beim laden");
-        }
+        auswahlklasse.setAktuelleSpielklassenAuswahl(spielklasse);
+auswahlklasse.getDashboardController().setNodeSpielsystem();
     }
 
     @Override

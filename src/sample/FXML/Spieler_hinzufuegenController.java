@@ -19,12 +19,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import sample.*;
 import sample.DAO.TurnierDAO;
 import sample.DAO.auswahlklasse;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -229,9 +231,10 @@ public class Spieler_hinzufuegenController implements Initializable{
                     }
                 }
                 Dictionary<Spieler,ObservableList> obs = new Hashtable<>();
-                ExcelImport.setDict_doppelte_spieler(obs);
-                ExcelImport.setAktuellerSpieler(spieler_neu);
-                ExcelImport.getDict_doppelte_spieler().put(spieler_neu,obs_vorhanden);
+               auswahlklasse.setDict_doppelte_spieler(obs);
+                //auswahlklasse.setAktuellerSpieler(spieler_neu);
+
+                auswahlklasse.getDict_doppelte_spieler().put(spieler_neu,obs_vorhanden);
 
 
 
@@ -266,7 +269,7 @@ public class Spieler_hinzufuegenController implements Initializable{
         spielerTabelleAktualisieren();
         tabpane_spieler.getSelectionModel().select(tab_spbea);
         tabelle_spielerliste.getSelectionModel().select(spieler_neu);
-
+        throw new Exception("");
     }
 
 
@@ -287,15 +290,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     public void pressBtn_Popup (ActionEvent event) throws Exception {
         //System.out.println("test");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielerVorhanden.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        auswahlklasse.getStagesdict().put("SpielerVorhanden",stage);
-        stage.setScene(new Scene(root1));
-        stage.show();
-        stage.show();
-        stage.show();
-        stage.setTitle("Spieler vorhanden");
+auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     }
 
     private void zeigePopup()
@@ -406,7 +401,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+auswahlklasse.setSpieler_hinzufuegenController(this);
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -899,6 +894,89 @@ public class Spieler_hinzufuegenController implements Initializable{
         });
 
     }
+
+    @FXML
+    public void pressBtn_ExcelImport (ActionEvent event) throws Exception {
+        try {
+
+            FileChooser fileChooser = new FileChooser();
+
+            Stage stage = new Stage();
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+
+                if (ExcelImport.importExcelData(file.getAbsolutePath())) {
+                    /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ExcelImportAbgeschlossen.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage2 = new Stage();
+                    a.addStage(stage2);
+                    stage2.setScene(new Scene(root1));
+                    stage2.show();*/
+                    if(auswahlklasse.getSpielererfolgreich().size()>0) {
+                        String s ="";
+                        Enumeration e = auswahlklasse.getSpielererfolgreich().keys();
+                        while(e.hasMoreElements())
+                        {
+                            s+=e.nextElement().toString();
+                            if(e.hasMoreElements())
+                            {
+                                s+=" --- ";
+                            }
+                        }
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Spielerimport - Neue Spieler");
+                        alert.setHeaderText("Spieler erfolgreich eingelesen! ");
+                        alert.setContentText(s);
+                        alert.showAndWait();
+                        //ExcelImport.setSpielererfolgreich(null);
+                    }
+
+                    if(auswahlklasse.getSpielerupdate().size()>0) {
+                        Enumeration eu = auswahlklasse.getSpielerupdate().keys();
+                        String s ="";
+                        while(eu.hasMoreElements())
+                        {
+                            s+=eu.nextElement().toString();
+                            if(eu.hasMoreElements())
+                            {
+                                s+=" --- ";
+                            }
+                        }
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Spielerimport - Update");
+                        alert.setHeaderText("Spieler erfolgreich aktualisiert! ");
+                        alert.setContentText(String.valueOf(s));
+                        alert.showAndWait();
+                        //ExcelImport.setSpielerupdate(null);
+                    }
+                    if(auswahlklasse.getObs_vereine_erfolgreich().size()>0) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Vereinimport - Neue Vereine");
+                        alert.setHeaderText("Vereine erfolgreich hinzugefügt ");
+                        alert.setContentText(String.valueOf(auswahlklasse.getObs_vereine_erfolgreich()));
+                        alert.showAndWait();
+                        //ExcelImport.getObs_vereine_erfolgreich().clear();
+                    }
+                    //ExcelImport ex = new ExcelImport();
+                    //ex.pressBtn_Popup();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Spielerimport");
+                    alert.setHeaderText("Spieler konnten nicht eingelesen werden!");
+                    alert.setContentText("Schade :(");
+
+                    alert.showAndWait();
+                }
+                ExcelImport.resetteAlles();
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
     private void FuelleFelder(Spieler clickedRow)
     {
 
@@ -977,7 +1055,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            auswahlklasse.getStagesdict().put("NeuerVerein",stage);
+
             stage.setScene(new Scene(root1));
             stage.show();
             stage.setTitle("Neuer Verein");
@@ -993,7 +1071,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            auswahlklasse.getStagesdict().put("SpielerEigenschaften",stage);
+
             stage.setScene(new Scene(root1));
             stage.show();
             stage.setTitle("Spieler Eigenschaften");

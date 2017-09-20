@@ -5,13 +5,15 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -22,22 +24,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="754.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
    <tabs>
       <Tab text="Setzliste">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Setzliste erstellen">
                         <items>
-                              <MenuItem mnemonicParsing="false" text="Nach Setzlisten-Reihenfolge" />
-                              <Menu mnemonicParsing="false" text="Nach Ranglistenpunkte">
+                              <MenuItem mnemonicParsing="false" onAction="#erstelleSetzlisteNormal" text="Nach Setzlisten-Reihenfolge" />
+                              <Menu fx:id="menu_rlp" mnemonicParsing="false" text="Nach Ranglistenpunkte">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Alle" />
                                 </items>
                               </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#erstelleSetzlisteZufall" text="Zufällig" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Spieler">
@@ -48,49 +51,82 @@
                       <Menu mnemonicParsing="false" text="Hilfe" />
                     </menus>
                   </MenuBar>
-                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="268.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="302.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints />
                         <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="345.0">
                                  <children>
-                                    <JFXButton text="Spieler entfernen">
-                                       <graphic>
-                                          <MaterialDesignIconView glyphName="MINUS" size="20" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXTextField />
+                                    <JFXTextField fx:id="t_suchleistesetzliste" labelFloat="true" promptText="Setzliste durchsuchen" />
+                                    <Label fx:id="anzahlsetzlistespieler" text="Label" textFill="#160af2">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Label>
                                  </children>
                               </HBox>
-                              <TableView prefHeight="380.0" prefWidth="300.0" />
+                              <TableView fx:id="spielsystem_setzliste" maxHeight="600.0" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="345.0" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                        <StackPane alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowSpan="3">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="300.0">
+                              <VBox fx:id="vbox_allespieler" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="100.0">
                                  <children>
-                                    <JFXTextField focusColor="#757575" minWidth="300.0" promptText="Spieler suchen" />
+                                    <HBox maxHeight="-Infinity" prefHeight="190.0" prefWidth="445.0">
+                                       <children>
+                                          <JFXTextField fx:id="t_suchleistespieler" focusColor="#757575" labelFloat="true" maxHeight="-Infinity" minWidth="300.0" prefHeight="42.0" prefWidth="300.0" promptText="Spieler suchen" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="spielsystem_spielerliste_alleSpieler" maxHeight="600.0" maxWidth="1.7976931348623157E308" prefHeight="728.0" prefWidth="445.0" />
                                  </children>
-                              </HBox>
-                              <TableView prefHeight="380.0" prefWidth="300.0" />
+                              </VBox>
+                              <VBox fx:id="vbox_info" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="445.0">
+                                 <children>
+                                    <Label fx:id="label_spiele" prefHeight="17.0" prefWidth="530.0" text="Anzahl Spiele: ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="label_spieler" prefHeight="17.0" prefWidth="523.0" text="Anzahl Spieler in der Setzliste: ">
+                                       <VBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btn_stoppen" mnemonicParsing="false" onAction="#stoppeSpielsystem" prefHeight="78.0" prefWidth="163.0" text="Spielsystem stoppen" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+                        <VBox alignment="CENTER" GridPane.columnIndex="1">
+                           <children>
+                              <FontAwesomeIconView fx:id="pfeil_links" glyphName="ANGLE_DOUBLE_LEFT" onMouseClicked="#verschiebevonSpielerliste" size="36.0" />
+                              <FontAwesomeIconView fx:id="pfeil_rechts" glyphName="ANGLE_DOUBLE_RIGHT" onMouseClicked="#verschiebevonSetzliste" size="36.0" />
                            </children>
                         </VBox>
+                        <Label fx:id="l_meldungsetzliste1" text="Label" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Spielsystem starten">
+      <Tab fx:id="tabsperst" text="Spielsystem starten">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -112,15 +148,18 @@
                         </Text>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <JFXRadioButton text="Gruppe" />
-                              <JFXRadioButton text="Gruppe mit Endrunde" />
-                              <JFXRadioButton text="K.O.-System" />
-                              <JFXRadioButton text="Schweizer System" />
+                              <JFXRadioButton fx:id="radio_gruppe" onAction="#klassenSwitch" selected="true" text="Gruppe">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="spielSystemAuswahl" />
+                                 </toggleGroup></JFXRadioButton>
+                              <JFXRadioButton fx:id="radio_gruppeMitE" onAction="#klassenSwitch" text="Gruppe mit Endrunde" toggleGroup="$spielSystemAuswahl" />
+                              <JFXRadioButton fx:id="radio_ko" onAction="#klassenSwitch" text="K.O.-System" toggleGroup="$spielSystemAuswahl" />
+                              <JFXRadioButton fx:id="radio_schweizer" onAction="#klassenSwitch" text="Schweizer System" toggleGroup="$spielSystemAuswahl" />
                            </children>
                         </HBox>
                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <AnchorPane>
+                              <AnchorPane fx:id="gruppe">
                                  <children>
                                     <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
@@ -136,7 +175,7 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="gruppeMitEndrunde" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
@@ -151,13 +190,13 @@
                                       </rowConstraints>
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppengröße:" GridPane.halignment="RIGHT" />
-                                          <JFXTextField focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
+                                          <JFXTextField fx:id="textField_gruppenGroesse" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </JFXTextField>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Weiterkommender:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                          <JFXTextField focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <JFXTextField fx:id="textField_anzahlWeiterkommender" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
@@ -173,39 +212,51 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="koSystem" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                    <AnchorPane fx:id="koTrostRundeJa" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                          <GridPane visible="false">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <JFXRadioButton text="Ja" />
-                                                <JFXRadioButton text="Nein" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
+                                                <AnchorPane fx:id="koTrostRundeNein" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <JFXRadioButton fx:id="radio_trostJa" onAction="#trostSwitch" text="Ja">
+                                                               <toggleGroup>
+                                                                  <ToggleGroup fx:id="Trostrunde" />
+                                                               </toggleGroup>
+                                                            </JFXRadioButton>
+                                                            <JFXRadioButton text="Nein" toggleGroup="$Trostrunde" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <JFXRadioButton text="Ja" />
+                                                      <JFXRadioButton text="Nein" />
+                                                   </children>
+                                                </HBox>
                                              </children>
-                                          </HBox>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <children>
-                                                <JFXRadioButton text="Ja" />
-                                                <JFXRadioButton text="Nein" />
-                                             </children>
-                                          </HBox>
+                                          </GridPane>
                                        </children>
-                                    </GridPane>
+                                    </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="schweizerSystem" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
@@ -229,7 +280,7 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <JFXButton text="Spielsystem starten" StackPane.alignment="BOTTOM_LEFT">
+                              <JFXButton fx:id="btn_spielklasseStarten" onAction="#pressbtn_spielklasseStarten" text="Spielsystem starten" StackPane.alignment="BOTTOM_LEFT">
                                  <StackPane.margin>
                                     <Insets bottom="10.0" left="10.0" />
                                  </StackPane.margin>

@@ -388,6 +388,7 @@ public void tabelleReload()
 
                 FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
                 fxmlLoaderKlassenuebersicht.load();
+
                 auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
                 auswahlklasse.getDashboardController().allesFreigeben();
                 auswahlklasse.getDashboardController().createPages();

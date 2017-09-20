@@ -27,8 +27,10 @@ import java.util.ResourceBundle;
  */
 public class ExcelImport implements Initializable{
 
+
+    private static Spieler aktuellerSpieler = new Spieler();
+    private static Spieler UpdateSpieler = new Spieler();
     private static ObservableList obs_vorh=FXCollections.observableArrayList();
-    static boolean freilos=true;
 
     public static ObservableList getObs_vorh() {
         return obs_vorh;
@@ -37,60 +39,9 @@ public class ExcelImport implements Initializable{
     public static void setObs_vorh(ObservableList obs_vorh) {
         ExcelImport.obs_vorh = obs_vorh;
     }
-
-    private static Spieler aktuellerSpieler = new Spieler();
-    private static Dictionary<Spieler, ObservableList> dict_doppelte_spieler = new Hashtable<Spieler, ObservableList>();
-
-    private static Dictionary<String , Spieler> spielerupdate = new Hashtable<>();
-    private static Dictionary<String , Spieler> spielererfolgreich = new Hashtable<>();
-
-    private static ObservableList obs_vereine_erfolgreich=FXCollections.observableArrayList();
-    public static Spieler getAktuellerSpieler() {
-        return aktuellerSpieler;
-    }
-
-    public static void setAktuellerSpieler(Spieler aktuellerSpieler) {
-        ExcelImport.aktuellerSpieler = aktuellerSpieler;
-    }
-    public static ObservableList getObs_vereine_erfolgreich() {
-        return obs_vereine_erfolgreich;
-    }
-
-    public static void setObs_vereine_erfolgreich(ObservableList obs_vereine_erfolgreich) {
-        ExcelImport.obs_vereine_erfolgreich = obs_vereine_erfolgreich;
-    }
-    public static Dictionary<Spieler, ObservableList> getDict_doppelte_spieler() {
-        return dict_doppelte_spieler;
-    }
-/*
+    static boolean freilos=true;
 
 
-    private static ObservableList obs_erf_spieler=FXCollections.observableArrayList();
-    public static ObservableList getObs_erf_spieler() {
-        return obs_erf_spieler;
-    }
-    private static ObservableList obs_upd_f_spieler=FXCollections.observableArrayList();
-
-
-    //region Getter&Setter
-    public static void setDict_doppelte_spieler(Dictionary<Spieler, ObservableList> dict_doppelte_spieler) {
-        ExcelImport.dict_doppelte_spieler = dict_doppelte_spieler;
-    }
-    public static void setObs_erf_spieler(ObservableList obs_erf_spieler) {
-        ExcelImport.obs_erf_spieler = obs_erf_spieler;
-    }
-
-
-
-    public static ObservableList getObs_upd_f_spieler() {
-        return obs_upd_f_spieler;
-    }
-
-    public static void setObs_upd_f_spieler(ObservableList obs_upd_f_spieler) {
-        ExcelImport.obs_upd_f_spieler = obs_upd_f_spieler;
-    }
-
-*/
 
 //endregion
 
@@ -107,6 +58,12 @@ public class ExcelImport implements Initializable{
 
             worksheet = workbook.getSheet("Mixed");
             readWorkSheetDoubleMixed(worksheet);
+            ExcelImport exc= new ExcelImport();
+            try {
+                exc.pressBtn_Popup();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -126,16 +83,16 @@ public class ExcelImport implements Initializable{
                 HSSFRow row = worksheet.getRow(actualRow);
                 Spieler sp = readRow(row);
                 if(sp!=null) {
-                    ExcelImport exc= new ExcelImport();
-                    exc.pressBtn_Popup();
+
+
                     //ExcelImport.getObs_vorh().add(sp);
-                    if(dict_doppelte_spieler.get(aktuellerSpieler)==null)
+                    if(auswahlklasse.getDict_doppelte_spieler().get(aktuellerSpieler)==null)
                     {
                         // auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",sp.toString()+" wurde hinzugefügt.");
                         sp.getSpielerDAO().create(sp);
                         auswahlklasse.getSpieler().put(sp.getSpielerID(),sp);
                         auswahlklasse.getObs_spieler().add(sp);
-                        spielererfolgreich.put(sp.toString(),sp);
+                        auswahlklasse.getSpielererfolgreich().put(sp.toString(),sp);
                         System.out.println("hhhh");
                     }
                     else
@@ -143,8 +100,10 @@ public class ExcelImport implements Initializable{
                         System.out.println("DUPLIKATE");
                     }
                     if(obs_vorh!=null)
-                    {obs_vorh.clear();}
-                    dict_doppelte_spieler.remove(sp.getExtSpielerID());
+                    {
+                        obs_vorh.clear();
+                    }
+                    //auswahlklasse.getDict_doppelte_spieler().remove(sp.getExtSpielerID());
                     System.out.println("Spieler erfolgreich (ohne Duplikat) erstellt");
 
 
@@ -155,6 +114,7 @@ public class ExcelImport implements Initializable{
             }
 
         }
+
     }
 
 
@@ -173,14 +133,14 @@ public class ExcelImport implements Initializable{
                     ExcelImport exc= new ExcelImport();
                     exc.pressBtn_Popup();
                     //ExcelImport.getObs_vorh().add(sp);
-                    if(dict_doppelte_spieler.get(sp)==null)
+                    if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
                     {
                         System.out.println("Spieler nicht vorhanden"+sp.getVName());
                         //auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",sp.toString()+" wurde hinzugefügt.");
                         sp.getSpielerDAO().create(sp);
                         auswahlklasse.getSpieler().put(sp.getSpielerID(),sp);
                         auswahlklasse.getObs_spieler().add(sp);
-                        spielererfolgreich.put(sp.toString(),sp);
+                        auswahlklasse.getSpielererfolgreich().put(sp.toString(),sp);
                     }
                     obs_vorh.clear();
                     //dict_doppelte_spieler.remove(sp.getExtSpielerID());
@@ -201,14 +161,14 @@ public class ExcelImport implements Initializable{
                         ExcelImport exc= new ExcelImport();
                         exc.pressBtn_Popup();
                         //ExcelImport.getObs_vorh().add(sp);
-                        if(dict_doppelte_spieler.get(tempSpieler)==null)
+                        if(auswahlklasse.getDict_doppelte_spieler().get(tempSpieler)==null)
                         {
                             System.out.println("Spieler nicht vorhanden"+tempSpieler.getVName());
                             //auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",tempSpieler.toString()+" wurde hinzugefügt.");
                             tempSpieler.getSpielerDAO().create(tempSpieler);
                             auswahlklasse.getSpieler().put(tempSpieler.getSpielerID(),tempSpieler);
                             auswahlklasse.getObs_spieler().add(sp);
-                            spielererfolgreich.put(tempSpieler.toString(),tempSpieler);
+                            auswahlklasse.getSpielererfolgreich().put(tempSpieler.toString(),tempSpieler);
                         }
                         obs_vorh.clear();
                         //dict_doppelte_spieler.remove(sp.getExtSpielerID());
@@ -414,7 +374,7 @@ public class ExcelImport implements Initializable{
                         verein = new Verein(extVereinsID, vereinsname, verband);
                         auswahlklasse.addVerein(verein);
                         System.out.println("neu");
-                        obs_vereine_erfolgreich.add(verein);
+                        auswahlklasse.getObs_vereine_erfolgreich().add(verein);
                     }
 
                     Spieler neuerSpieler = new Spieler(vName,nName,gDatum,geschlecht,rPunkte,verein,extSpielerID,"");
@@ -438,8 +398,8 @@ public class ExcelImport implements Initializable{
                                 if(!obs_vorh.contains(sp)) {
                                     obs_vorh.add(sp);
                                 }
-                                dict_doppelte_spieler.put(neuerSpieler, obs_vorh);
-                                aktuellerSpieler = neuerSpieler;
+                                auswahlklasse.getDict_doppelte_spieler().put(neuerSpieler, FXCollections.observableArrayList(obs_vorh));
+                                aktuellerSpieler=neuerSpieler;
 
                                 //system.out.println(neuerSpieler.getExtSpielerID()+"........"+dict_doppelte_spieler.get(neuerSpieler.getExtSpielerID()));
                                 //exc.pressBtn_Popup();
@@ -455,74 +415,79 @@ public class ExcelImport implements Initializable{
         return null;
     }
 
-    public static Dictionary<String, Spieler> getSpielerupdate() {
-        return spielerupdate;
+
+    public static Spieler getAktuellerSpieler() {
+        return aktuellerSpieler;
     }
 
-    public static void setSpielerupdate(Dictionary<String, Spieler> spielerupdate) {
-        ExcelImport.spielerupdate = spielerupdate;
+    public static void setAktuellerSpieler(Spieler aktuellerSpieler) {
+        ExcelImport.aktuellerSpieler = aktuellerSpieler;
     }
 
-    public static Dictionary<String, Spieler> getSpielererfolgreich() {
-        return spielererfolgreich;
+    public static Spieler getUpdateSpieler() {
+        return UpdateSpieler;
     }
 
-    public static void setSpielererfolgreich(Dictionary<String, Spieler> spielererfolgreich) {
-        ExcelImport.spielererfolgreich = spielererfolgreich;
+    public static void setUpdateSpieler(Spieler updateSpieler) {
+        UpdateSpieler = updateSpieler;
     }
 
     public  void pressBtn_Popup() throws Exception {
         //System.out.println("test");
         boolean b = false;
         if (aktuellerSpieler != null && aktuellerSpieler.toString()!=null) {
-            if(spielererfolgreich!=null&&spielererfolgreich.size()>0)
+            if(auswahlklasse.getSpielererfolgreich()!=null&&auswahlklasse.getSpielererfolgreich().size()>0)
             {
 
 
-                if (spielererfolgreich.get(aktuellerSpieler.toString()) != null) {
+                if (auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()) != null) {
 
 
-                    if(spielererfolgreich.get(aktuellerSpieler.toString())!=null) {
+                    if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString())!=null) {
                         int[] rpunktealt=aktuellerSpieler.getrPunkte();
-                        for(int i=0;i<spielererfolgreich.get(aktuellerSpieler.toString()).getrPunkte().length;i++)
+                        for(int i=0;i<auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte().length;i++)
                         {
 
                             if(rpunktealt[i]!=0)
                             {
                                 System.out.println(rpunktealt[i]);
-                                if(spielererfolgreich.get(aktuellerSpieler.toString()).getrPunkte()[i]==0)
+                                if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte()[i]==0)
                                 {
-                                    spielererfolgreich.get(aktuellerSpieler.toString()).getrPunkte()[i]=Integer.valueOf(rpunktealt[i]);
+                                    auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte()[i]=Integer.valueOf(rpunktealt[i]);
                                 }
 
                             }
 
                         }
                         //spielererfolgreich.get(aktuellerSpieler.toString()).setrPunkte(rpunktekomplett);
-                       // aktuellerSpieler.setrPunkte(rpunktekomplett);
-                       // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
-                        aktuellerSpieler.getSpielerDAO().update(spielererfolgreich.get(aktuellerSpieler.toString()));
+                        // aktuellerSpieler.setrPunkte(rpunktekomplett);
+                        // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
+                        aktuellerSpieler.getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()));
                         b=true; System.out.println("Spieler wurde schon hinzugefügt, RLP aktualisiert");
 
                     }
                     //System.out.println(aktuellerSpieler.toString()+String.valueOf(aktuellerSpieler.getrPunkte()));
                 }
             }
-            if (aktuellerSpieler != null && aktuellerSpieler.toString()!=null) {
-                if (spielerupdate != null && spielerupdate.size() > 0) {
+/*
+   WIRD BENÖTIGT
 
 
-                    if (spielerupdate.get(aktuellerSpieler.toString()) != null) {
+   if (aktuellerSpieler != null && aktuellerSpieler.toString()!=null) {
+                if (UpdateSpieler != null && UpdateSpieler .size() > 0) {
 
 
-                        if (spielerupdate.get(aktuellerSpieler.toString()) != null) {
+                    if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()) != null) {
+
+
+                        if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()) != null) {
                             int[] rpunktealt = aktuellerSpieler.getrPunkte();
-                            for (int i = 0; i < spielerupdate.get(aktuellerSpieler.toString()).getrPunkte().length; i++) {
+                            for (int i = 0; i < auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte().length; i++) {
 
                                 if (rpunktealt[i] != 0) {
                                     System.out.println(rpunktealt[i]);
-                                    if (spielerupdate.get(aktuellerSpieler.toString()).getrPunkte()[i] == 0) {
-                                        spielerupdate.get(aktuellerSpieler.toString()).getrPunkte()[i] = Integer.valueOf(rpunktealt[i]);
+                                    if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte()[i] == 0) {
+                                        auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte()[i] = Integer.valueOf(rpunktealt[i]);
                                     }
 
                                 }
@@ -531,7 +496,7 @@ public class ExcelImport implements Initializable{
                             //spielererfolgreich.get(aktuellerSpieler.toString()).setrPunkte(rpunktekomplett);
                             // aktuellerSpieler.setrPunkte(rpunktekomplett);
                             // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
-                            aktuellerSpieler.getSpielerDAO().update(spielerupdate.get(aktuellerSpieler.toString()));
+                            aktuellerSpieler.getSpielerDAO().update(auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()));
                             b = true;
                             System.out.println("Spieler wurde schon hinzugefügt, RLP aktualisiert");
 
@@ -539,16 +504,11 @@ public class ExcelImport implements Initializable{
                         //System.out.println(aktuellerSpieler.toString()+String.valueOf(aktuellerSpieler.getrPunkte()));
                     }
                 }
-            }
+            }*/
 
-            if(!b&&dict_doppelte_spieler.size()>0)  {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/spielerVorhanden.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                auswahlklasse.getStagesdict().put("SpielerVorhanden", stage);
-                stage.setScene(new Scene(root1));
-                stage.showAndWait();
-                stage.setTitle("Spieler vorhanden");
+            if(!b&&auswahlklasse.getDict_doppelte_spieler().size()>0)  {
+
+                auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             }
         }
     }
@@ -564,17 +524,13 @@ public class ExcelImport implements Initializable{
     }
 
 
-    public static void setDict_doppelte_spieler(Dictionary<Spieler, ObservableList> dict_doppelte_spieler) {
-        ExcelImport.dict_doppelte_spieler = dict_doppelte_spieler;
-    }
+
     public static void resetteAlles()
     {
-        dict_doppelte_spieler=new Hashtable<>();
+/*        auswahlklasse.setDict_doppelte_spieler(new Hashtable<>());
         obs_vorh.clear();
-        obs_vereine_erfolgreich.clear();
-
-        spielererfolgreich=new Hashtable<>();
-        spielerupdate=new Hashtable<>();
+        auswahlklasse.setSpielererfolgreich(new Hashtable<>());
+        auswahlklasse.setSpielerupdate(new Hashtable<>());*/
 
     }
 }

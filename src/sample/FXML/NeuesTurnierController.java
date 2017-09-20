@@ -121,14 +121,6 @@ public class NeuesTurnierController implements Initializable{
 
 
             auswahlklasse.setTurnierzumupdaten(null);
-            if(auswahlklasse.getStagesdict().get("TurnierLaden")!=null) {
-                auswahlklasse.getStagesdict().get("TurnierLaden").close();
-                auswahlklasse.getStagesdict().remove("TurnierLaden");
-            }
-            if(auswahlklasse.getStagesdict().get("NeuesTurnier")!=null) {
-                auswahlklasse.getStagesdict().get("NeuesTurnier").close();
-                auswahlklasse.getStagesdict().remove("NeuesTurnier");
-            }
 
             ladeTurnierladen();
 
