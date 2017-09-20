@@ -21,10 +21,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setTitle("Hello World");
         scene.setFill(Color.rgb(216,216,216));
-        primaryStage.setMaximized(false);
+        primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
-        primaryStage.setMinHeight(768);
-        primaryStage.setMinWidth(1360);
         primaryStage.show();
 
     }
