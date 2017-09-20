@@ -37,8 +37,6 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 public class Turnier_ladenController extends Application implements Initializable {
     String baseName = "resources.Main";
     String titel ="";
-    DashboardController dashboardController;
-    KlassenuebersichtController klassenuebersichtController;
 
     @FXML
     private JFXTextField t_turniersuche;
@@ -77,6 +75,7 @@ public class Turnier_ladenController extends Application implements Initializabl
 
 public void tabelleReload()
 {
+    turnierlisteLaden();
     TurnierlisteTabelle.refresh();
 }
 
@@ -111,7 +110,7 @@ public void tabelleReload()
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        auswahlklasse.setTurnier_ladenController(this);
 
             Properties saveProps = new Properties();
             saveProps.setProperty("path1", "/somethingpath1");
@@ -163,16 +162,7 @@ public void tabelleReload()
             }
             TurnierNameSpalte.setText(titel);
 
-            auswahlklasse a = new auswahlklasse();
-            a.readTurnierListe();
-            if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
-                auswahlklasse.getAktuelleTurnierAuswahl().getObs_spiele().clear();
-                auswahlklasse.getAktuelleTurnierAuswahl().getObs_aktiveSpiele().clear();
-                auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().clear();
-                auswahlklasse.getAktuelleTurnierAuswahl().getObs_gespielteSpiele().clear();
-                auswahlklasse.getAktuelleTurnierAuswahl().getObs_zukuenftigeSpiele().clear();
-            }
-            zeigeTabelle();
+        turnierlisteLaden();
 
             TurnierlisteTabelle.setRowFactory(tv -> {
                 TableRow row = new TableRow();
@@ -358,6 +348,19 @@ public void tabelleReload()
 
     }
 
+    private void turnierlisteLaden() {
+        auswahlklasse a = new auswahlklasse();
+        auswahlklasse.readTurnierListe();
+        if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_spiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_aktiveSpiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_gespielteSpiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_zukuenftigeSpiele().clear();
+        }
+        zeigeTabelle();
+    }
+
 
     private void auswahlSpeichern(Turnier item) {
 
@@ -385,11 +388,10 @@ public void tabelleReload()
 
                 FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
                 fxmlLoaderKlassenuebersicht.load();
-                ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setTurnier_ladenController(this);
-                klassenuebersichtController.SpielklassenHinzufuegen();
-                dashboardController.allesFreigeben();
-                dashboardController.createPages();
-                dashboardController.setNodeKlassenuebersicht();
+                auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
+                auswahlklasse.getDashboardController().allesFreigeben();
+                auswahlklasse.getDashboardController().createPages();
+                auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
 
                 //holderPane.getParent().
             } catch (Exception e) {
@@ -397,30 +399,17 @@ public void tabelleReload()
             }
         }
     }
-public void setDashboardController(DashboardController dashboardController)
-{
-    this.dashboardController = dashboardController;
-}
 
-    public KlassenuebersichtController getKlassenuebersichtController() {
-        return klassenuebersichtController;
-    }
-
-    public void setKlassenuebersichtController(KlassenuebersichtController klassenuebersichtController1)
-    {
-        this.klassenuebersichtController = klassenuebersichtController1;
-    }
 
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
             FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
             fxmlLoaderNeuesTurnier.load();
-            ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setControllerTurnier(this);
 
 
 
 
-            dashboardController.setNodeNeuesTurnier();
+            auswahlklasse.getDashboardController().setNodeNeuesTurnier();
         } catch (Exception e) {
             e.printStackTrace();
 

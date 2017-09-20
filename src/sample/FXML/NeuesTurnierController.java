@@ -32,8 +32,6 @@ import jfxtras.labs.scene.control.BigDecimalField;
 public class NeuesTurnierController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
-    DashboardController controller;
-    Turnier_ladenController controllerTurnier;
     boolean erfolg = false;
     TurnierDAO turnierDao = new TurnierDAOimpl();
 
@@ -50,15 +48,6 @@ public class NeuesTurnierController implements Initializable{
     private Button btn_starten;
 
 
-
-    public void setController(DashboardController controller)
-    {
-        this.controller = controller;
-    }
-    public void setControllerTurnier(Turnier_ladenController controller)
-    {
-        this.controllerTurnier = controller;
-    }
 
     @FXML
     public void erstelleTurnier(ActionEvent event) throws Exception {
@@ -89,7 +78,7 @@ public class NeuesTurnierController implements Initializable{
             System.out.println("Erfolg");
 
             try {
-                controller.setNodeTurnier();
+                auswahlklasse.getDashboardController().setNodeTurnier();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -148,13 +137,13 @@ public class NeuesTurnierController implements Initializable{
     }
 
     private void ladeTurnierladen() {
-        controllerTurnier.tabelleReload();
-        controller.setNodeTurnier();
+        auswahlklasse.getTurnier_ladenController().tabelleReload();
+        auswahlklasse.getDashboardController().setNodeTurnier();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    auswahlklasse.setNeuesTurnierController(this);
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
