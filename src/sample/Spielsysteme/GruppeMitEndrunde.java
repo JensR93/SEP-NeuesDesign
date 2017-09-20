@@ -178,22 +178,22 @@ public class GruppeMitEndrunde extends Spielsystem{
 
 	private void rundenArrayErstellen() {
 		for (int i=0;i< alleGruppen.size();i++){
-			ArrayList<ArrayList<Spiel>> gruppenArrayList = alleGruppen.get(i).getRundenArray();
+			ArrayList<ZeitplanRunde> gruppenArrayList = alleGruppen.get(i).getRundenArray();
 			arrayListIntegrieren(gruppenArrayList);
 		}
-		ArrayList<ArrayList<Spiel>> endrundenArrayList = endrunde.getRunden();
+		ArrayList<ZeitplanRunde> endrundenArrayList = endrunde.getRunden();
 		for (int i=0;i<endrundenArrayList.size();i++){
-			this.getRundenArray().add(new ArrayList<>());
+			this.getRundenArray().add(new ZeitplanRunde());
 			for (int j=0;j<endrundenArrayList.get(i).size();j++){
 				this.getRundenArray().get(getRundenArray().size()-1).add(endrundenArrayList.get(i).get(j));
 			}
 		}
 	}
 
-	private void arrayListIntegrieren(ArrayList<ArrayList<Spiel>> gruppenArrayList) {
-		ArrayList<ArrayList<Spiel>> gesamtArrayList = this.getRundenArray();
+	private void arrayListIntegrieren(ArrayList<ZeitplanRunde> gruppenArrayList) {
+		ArrayList<ZeitplanRunde> gesamtArrayList = this.getRundenArray();
 		while(gruppenArrayList.size()>gesamtArrayList.size()){
-			gesamtArrayList.add(new ArrayList<>());
+			gesamtArrayList.add(new ZeitplanRunde());
 		}
 		for(int i=0;i<gruppenArrayList.size();i++){
 			for (int j=0;j<gruppenArrayList.get(i).size();j++){
