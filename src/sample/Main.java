@@ -19,7 +19,6 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("FXML/Dashboard.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Hello World");
         scene.setFill(Color.rgb(216,216,216));
         primaryStage.setMaximized(false);
