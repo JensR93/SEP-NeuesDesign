@@ -1,5 +1,7 @@
 package sample.DAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sample.*;
 import sample.Spielsysteme.*;
 
@@ -180,8 +182,9 @@ public class TurnierDAOimpl implements TurnierDAO {
     }
 
     @Override
-    public Dictionary<Integer,Turnier> getAllTurniere() {
-        Dictionary<Integer, Turnier> turnierListe = new Hashtable<Integer,Turnier>();
+    public ObservableList getAllTurniere() {
+        ObservableList turniere = FXCollections.observableArrayList();
+
         String sql ="SELECT * FROM Turnier";
 
         try {
@@ -193,7 +196,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                 int turnierid  = TurnierResult.getInt("TurnierID");
                 String turnierName = TurnierResult.getString("Name");
                 Date Datum = TurnierResult.getDate("Datum");
-                turnierListe.put(turnierid,new Turnier(turnierName,turnierid, Datum.toLocalDate()));
+                turniere.add(new Turnier(turnierName,turnierid, Datum.toLocalDate()));
             }
             smt.close();
 
@@ -204,7 +207,7 @@ public class TurnierDAOimpl implements TurnierDAO {
 
         readVereine();
         readSpieler();
-        return turnierListe;
+        return turniere;
     }
 
     private void spielListenFuellen(Turnier turnierEingabe) {

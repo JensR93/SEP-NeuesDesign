@@ -13,8 +13,8 @@ import java.util.Enumeration;
  */
 public class Zeitplan {
     private static ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
-    private static ArrayList<ArrayList<ArrayList<Spiel>>> spielsystemRunden = new ArrayList<>();
-    private static ArrayList<ArrayList<Spiel>> alleRundenSortiert = new ArrayList<>();
+    private static ArrayList<ArrayList<ZeitplanRunde>> spielsystemRunden = new ArrayList<>();
+    private static ArrayList<ZeitplanRunde> alleRundenSortiert = new ArrayList<>();
 
 
     public static void zeitplanErstellen(Turnier turnier){
@@ -26,7 +26,7 @@ public class Zeitplan {
         }
         listenVereinen();
     }
-    public static ArrayList<ArrayList<Spiel>> getAlleRunden(Turnier turnier){
+    public static ArrayList<ZeitplanRunde> getAlleRunden(Turnier turnier){
         alleSpielsystemeEinlesen(turnier);
         if (spielsystemRunden.size()>0){
             spielSystemeSortieren();
@@ -49,7 +49,8 @@ public class Zeitplan {
             while (e.hasMoreElements()){
                 int key =(int) e.nextElement();
                 if (turnier.getSpielklassen().get(key).getSpielsystem()!=null){
-                    spielsystemRunden.add(turnier.getSpielklassen().get(key).getSpielsystem().getRunden());
+                    ArrayList<ZeitplanRunde> getRunden = turnier.getSpielklassen().get(key).getSpielsystem().getRunden();
+                    spielsystemRunden.add(getRunden);
                 }
             }
         }
@@ -57,9 +58,9 @@ public class Zeitplan {
 
 
     private static void spielSystemeSortieren(){
-        Collections.sort(spielsystemRunden, new Comparator<ArrayList<ArrayList<Spiel>>>() {
+        Collections.sort(spielsystemRunden, new Comparator<ArrayList<ZeitplanRunde>>() {
             @Override
-            public int compare(ArrayList<ArrayList<Spiel>> list1, ArrayList<ArrayList<Spiel>> list2) {
+            public int compare(ArrayList<ZeitplanRunde> list1, ArrayList<ZeitplanRunde> list2) {
                 return list2.size()-list1.size();
             }
         });
@@ -71,7 +72,7 @@ public class Zeitplan {
             for (int i=0;i<spielsystemRunden.size();i++){
                 int verbleibendeRunden = spielsystemRunden.get(i).size();
                 if (verbleibendeRunden!=0){
-                    ArrayList<Spiel> runde = spielsystemRunden.get(i).get(verbleibendeRunden-1);
+                    ZeitplanRunde runde = spielsystemRunden.get(i).get(verbleibendeRunden-1);
                     alleRundenSortiert.add(runde);
                     spielsystemRunden.get(i).remove(runde);
                 }
@@ -89,14 +90,17 @@ public class Zeitplan {
                 if(spiel.getHeim()==null || spiel.getGast()==null){
                     zeitplan.add(spiel);
                     spiel.setZeitplanNummer(spielnummer);
-                    spiel.setRundenZeitplanNummer(i + 1);
+                    spiel.setRundenZeitplanNummer(alleRundenSortiert.size()-i);
                     spielnummer++;
                 }
                 else if (!spiel.getHeim().isFreilos() && !spiel.getGast().isFreilos()){
                     zeitplan.add(spiel);
                     spiel.setZeitplanNummer(spielnummer);
-                    spiel.setRundenZeitplanNummer(i + 1);
+                    spiel.setRundenZeitplanNummer(alleRundenSortiert.size()-i);
                     spielnummer++;
+                }
+                else{
+                    spiel.setRundenZeitplanNummer(alleRundenSortiert.size()-i);
                 }
             }
         }
