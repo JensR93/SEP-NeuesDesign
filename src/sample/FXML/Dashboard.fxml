@@ -140,7 +140,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierbaum" textFill="#757575" GridPane.rowIndex="1">
+            <JFXButton maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeTurnierbaum" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierbaum" textFill="#757575" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -151,7 +151,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="2">
+            <JFXButton maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeSpieluebersicht" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

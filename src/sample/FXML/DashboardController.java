@@ -33,6 +33,8 @@ public class DashboardController implements Initializable{
     private GridPane Einstellungen,NeuesTurnier;
     private GridPane Klassenuebersicht;
     private StackPane Turnier,home;
+    private AnchorPane Turnierbaum;
+    private VBox Spieluebersicht;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -127,7 +129,8 @@ public class DashboardController implements Initializable{
         try {
             home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-
+            Spieluebersicht = FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
+            Turnierbaum = FXMLLoader.load(getClass().getResource("Turnierbaum.fxml"));
             FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
             NeuesTurnier=fxmlLoaderNeuesTurnier.load();
             ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setController(this);
@@ -161,6 +164,15 @@ public class DashboardController implements Initializable{
     {
         setNode(Spieler);
     }
+    @FXML public void setNodeSpieluebersicht(ActionEvent event)
+    {
+        setNode(Spieluebersicht);
+    }
+    @FXML public void setNodeTurnierbaum(ActionEvent event)
+    {
+        setNode(Turnierbaum);
+    }
+
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
         setNode(Einstellungen);
