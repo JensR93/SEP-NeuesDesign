@@ -21,7 +21,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Hello World");
-        scene.setFill(Color.TRANSPARENT);
+        scene.setFill(Color.rgb(216,216,216));
         primaryStage.setMaximized(false);
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(768);

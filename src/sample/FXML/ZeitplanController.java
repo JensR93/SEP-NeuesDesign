@@ -13,6 +13,7 @@ import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
@@ -32,7 +33,10 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl()));
+        ArrayList<ZeitplanRunde> alleRunden =Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl());
+        if(alleRunden!=null){
+            rundenListe.addAll(alleRunden);
+        }
         Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
         sortiereRundenListe();
         tableColumnsErstellen();
