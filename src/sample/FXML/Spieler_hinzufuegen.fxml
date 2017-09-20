@@ -9,6 +9,7 @@
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
    <tabs>
       <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
         <content>
@@ -38,12 +39,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="t_vn" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="font" stylesheets="@../CSS/custom.css" text="Vorname" unFocusColor="#757575">
+                  <JFXTextField fx:id="t_vn" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="360.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                      <GridPane.margin>
                         <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_nn" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Nachname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="t_nn" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
@@ -51,25 +52,25 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_spid" focusColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="220.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" promptText="kkkk" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXDatePicker>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="t_spid" focusColor="#757575" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="360.0" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="220.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" spacing="50.0" GridPane.rowIndex="4">
                      <children>
-                        <JFXRadioButton fx:id="r_m" text="Männlich">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="r_w" text="Weiblich" />
+                        <JFXTextField fx:id="t_re" labelFloat="true" maxWidth="1.7976931348623157E308" />
+                        <JFXTextField fx:id="t_rm" labelFloat="true" maxWidth="1.7976931348623157E308" />
+                        <JFXTextField fx:id="t_rd" labelFloat="true" maxWidth="1.7976931348623157E308" />
                      </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
@@ -85,6 +86,17 @@
                         </JFXButton>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <children>
+                        <Label text="Geschlecht" />
+                        <JFXRadioButton fx:id="r_m" text="Männlich">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="r_w" text="Weiblich" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
                         <JFXButton fx:id="b_abbrechen" text="Abbrechen">
@@ -92,33 +104,17 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="b_spielerspeichern" text="Spieler speichern">
+                        <JFXButton fx:id="b_spielerspeichern" onAction="#pressBtn_SpielerSpeichern" text="Spieler speichern">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-                     <children>
-                        <JFXTextField unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                        </JFXTextField>
-                        <JFXTextField unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                        </JFXTextField>
-                        <JFXTextField unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                        </JFXTextField>
-                     </children>
-                  </HBox>
                </children>
+               <padding>
+                  <Insets bottom="50.0" left="20.0" right="20.0" />
+               </padding>
             </GridPane>
         </content>
          <graphic>
@@ -138,11 +134,6 @@
                       <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <JFXTextField fx:id="t_suchleistespielerhinzu" maxWidth="250.0" promptText="Spielersuche">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </JFXTextField>
                         <TableView fx:id="tabelle_spielerliste" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <columns>
                               <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="100.0" prefWidth="75.0" text="Vorname" />
@@ -153,6 +144,15 @@
                               <TableColumn fx:id="tabelle_spielerliste_geburtstag" minWidth="100.0" prefWidth="75.0" text="Geburtsdatum" />
                            </columns>
                         </TableView>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                           <children>
+                              <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="250.0" prefHeight="25.0" prefWidth="180.0" promptText="Spielersuche" />
+                              <Label fx:id="label_partner" textFill="RED">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
+                           </children>
+                        </HBox>
                      </children>
                   </GridPane>
                </children>
@@ -163,4 +163,7 @@
          </graphic>
       </Tab>
    </tabs>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </JFXTabPane>

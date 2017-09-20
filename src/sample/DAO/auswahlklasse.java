@@ -179,24 +179,9 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
         return updateSpieler;
     }
 
-    public static int getTab() {
-        return tab;
-    }
 
-    public static void setTab(int tab) {
-        auswahlklasse.tab = tab;
-    }
 
     private static Spieler updateSpieler;
-    private static int tab;
-
-    public static void setTabAuswahl(Spieler spieler, int tabspeichern)
-    {
-        updateSpieler=spieler;
-        tab=tabspeichern;
-
-
-    }
 
 
     public static ArrayList<Spieler> getVorhandeneSpieler() {
