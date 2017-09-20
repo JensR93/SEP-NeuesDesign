@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import sample.DAO.auswahlklasse;
 
 public class DashboardController implements Initializable{
 
@@ -30,8 +31,6 @@ public class DashboardController implements Initializable{
     private GridPane Einstellungen,NeuesTurnier;
     private GridPane Klassenuebersicht,Zeitplan;
     private StackPane Turnier,home;
-    private AnchorPane Turnierbaum;
-    private VBox Spieluebersicht;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -134,53 +133,27 @@ public class DashboardController implements Initializable{
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
 
-            FXMLLoader fxmlLoaderSpieluebersicht = new FXMLLoader(getClass().getResource("Spieluebersicht.fxml"));
-            Spieluebersicht = fxmlLoaderSpieluebersicht.load();
-            ((SpieluebersichtController) fxmlLoaderSpieluebersicht.getController()).setController(this);
+            NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
 
-            FXMLLoader fxmlLoaderTurnierbaum = new FXMLLoader(getClass().getResource("Turnierbaum.fxml"));
-            Turnierbaum = fxmlLoaderTurnierbaum.load();
-            ((TurnierbaumController) fxmlLoaderTurnierbaum.getController()).setController(this);
-
-            FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
-            NeuesTurnier=fxmlLoaderNeuesTurnier.load();
-            ((NeuesTurnierController) fxmlLoaderNeuesTurnier.getController()).setController(this);
+            Klassehinzufuegen =  FXMLLoader.load(getClass().getResource("Klasse_hinzufügen.fxml"));
 
 
 
-            FXMLLoader fxmlLoaderKlassehinzu = new FXMLLoader(getClass().getResource("Klasse_hinzufügen.fxml"));
-            Klassehinzufuegen=fxmlLoaderKlassehinzu.load();
-            ((Klasse_hinzufügenController) fxmlLoaderKlassehinzu.getController()).setDashboardController(this);
+
+            Einstellungen =  FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
 
 
-            FXMLLoader fxmlLoaderEinstellungen = new FXMLLoader(getClass().getResource("Einstellungen.fxml"));
-            Einstellungen = fxmlLoaderEinstellungen.load();
-            ((EinstellungenController) fxmlLoaderEinstellungen.getController()).setController(this);
+            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klassenuebersicht.fxml"));
 
 
-            //set up default node on page load
-
-            FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
-            Klassenuebersicht = fxmlLoaderKlassenuebersicht.load();
-            ((KlassenuebersichtController) fxmlLoaderKlassenuebersicht.getController()).setDashboardController(this);
-
-            setNode(Turnier);
         } catch (IOException ex) {
-            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
     }
     @FXML public void setNodeSpieler(ActionEvent event)
     {
         setNode(Spieler);
-    }
-    @FXML public void setNodeSpieluebersicht(ActionEvent event)
-    {
-        setNode(Spieluebersicht);
-    }
-    @FXML public void setNodeTurnierbaum(ActionEvent event)
-    {
-        setNode(Turnierbaum);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
@@ -219,6 +192,11 @@ public class DashboardController implements Initializable{
     }
     public void setNodeNeuesTurnier()
     {
+        try {
+            NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setNode(NeuesTurnier);
     }
     private static void test(){
@@ -250,14 +228,18 @@ public class DashboardController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        auswahlklasse.setDashboardController(this);
+        System.out.println(auswahlklasse.getDashboardController());
         createTurnierLadenPage();
+        setNodeTurnier();
     }
 
     private void createTurnierLadenPage() {
         try {
             FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
             Turnier=fxmlLoaderTurnier.load();
-            ((Turnier_ladenController) fxmlLoaderTurnier.getController()).setDashboardController(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

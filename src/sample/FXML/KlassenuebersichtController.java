@@ -36,24 +36,8 @@ public class KlassenuebersichtController implements Initializable {
     ObservableList<Spielklasse> obs_spielklasse= FXCollections.observableArrayList();
     ContextMenu context_spielklasse = new ContextMenu();
     ContextMenu contextMenu_all = new ContextMenu();
-    DashboardController dashboardController;
-    Turnier_ladenController turnier_ladenController;
 
-    public Turnier_ladenController getTurnier_ladenController() {
-        return turnier_ladenController;
-    }
 
-    public void setTurnier_ladenController(Turnier_ladenController turnier_ladenController) {
-        this.turnier_ladenController = turnier_ladenController;
-        FXMLLoader fxmlLoaderKlassen = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
-
-        try {
-            fxmlLoaderKlassen.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        turnier_ladenController.setKlassenuebersichtController(this);
-    }
 
 
     String baseName = "resources.Main";
@@ -82,14 +66,18 @@ public class KlassenuebersichtController implements Initializable {
 
 
 
-    public void setDashboardController(DashboardController dashboardController)
-    {
-        this.dashboardController = dashboardController;
-    }
 
     @FXML
     void setNodeNeueKlasse(ActionEvent event) {
-dashboardController.setNodeKlassehinzufuegen();
+
+
+        try {
+            FXMLLoader fxmlLoaderKlasseuebersicht = new FXMLLoader(getClass().getResource("Klasse_hinzufügen.fxml"));
+            fxmlLoaderKlasseuebersicht.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        auswahlklasse.getDashboardController().setNodeKlassehinzufuegen();
     }
 
     public void pressBtn_Spielsystem(Spielklasse spielklasse) throws Exception {
@@ -116,20 +104,8 @@ dashboardController.setNodeKlassehinzufuegen();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        if(turnier_ladenController!=null) {
-            if (turnier_ladenController.getKlassenuebersichtController() == null) {
-                FXMLLoader fxmlLoaderKlassen = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
 
-                try {
-                    fxmlLoaderKlassen.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ((Turnier_ladenController) fxmlLoaderKlassen.getController()).setKlassenuebersichtController(this);
-
-            }
-        }
-
+        auswahlklasse.setKlassenuebersichtController(this);
 
         SpielklassenHinzufuegen();
 
@@ -267,7 +243,7 @@ dashboardController.setNodeKlassehinzufuegen();
                             @Override
                             public void handle(ActionEvent event) {
                                 try {
-                                    dashboardController.setNodeKlassehinzufuegen();
+                                    auswahlklasse.getDashboardController().setNodeKlassehinzufuegen();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }

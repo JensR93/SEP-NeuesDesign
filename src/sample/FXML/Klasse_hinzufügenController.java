@@ -35,11 +35,6 @@ import java.util.ResourceBundle;
 public class Klasse_hinzufügenController implements Initializable
 {
 
-    public void setDashboardController(DashboardController dashboardController) {
-        this.dashboardController = dashboardController;
-    }
-
-    DashboardController dashboardController;
 
     String baseName = "resources.Main";
     String titel ="";
@@ -111,13 +106,16 @@ public class Klasse_hinzufügenController implements Initializable
 
 
         auswahlklasse.InfoBenachrichtigung("erf","klasse erstellt");
-        dashboardController.setNodeKlassenuebersicht();
+        auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
+        auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
+
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        auswahlklasse.setKlasse_hinzufügenController(this);
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );

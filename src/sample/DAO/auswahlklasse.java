@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import sample.*;
-import sample.FXML.DashboardController;
+import sample.FXML.*;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -22,10 +22,81 @@ import java.util.Hashtable;
 public class auswahlklasse
 {
 
+    private static DashboardController dashboardController;
+    private static Turnier_ladenController turnier_ladenController;
+    private static KlassenuebersichtController klassenuebersichtController;
+    private static Klasse_hinzufügenController klasse_hinzufügenController;
+    private static EinstellungenController einstellungenController;
+    private static NeuesTurnierController neuesTurnierController;
+
+
+    private static  TurnierDAO turnierDAO = new TurnierDAOimpl();
+
+    public static NeuesTurnierController getNeuesTurnierController() {
+        return neuesTurnierController;
+    }
+
+    public static void setNeuesTurnierController(NeuesTurnierController neuesTurnierController) {
+        auswahlklasse.neuesTurnierController = neuesTurnierController;
+    }
+
+
+
+
+    public static DashboardController getDashboardController() {
+        return dashboardController;
+    }
+
+    public static void setDashboardController(DashboardController dashboardController) {
+        auswahlklasse.dashboardController = dashboardController;
+    }
+
+    public static Turnier_ladenController getTurnier_ladenController() {
+        return turnier_ladenController;
+    }
+
+    public static void setTurnier_ladenController(Turnier_ladenController turnier_ladenController) {
+        auswahlklasse.turnier_ladenController = turnier_ladenController;
+    }
+
+    public static KlassenuebersichtController getKlassenuebersichtController() {
+        return klassenuebersichtController;
+    }
+
+    public static void setKlassenuebersichtController(KlassenuebersichtController klassenuebersichtController) {
+        auswahlklasse.klassenuebersichtController = klassenuebersichtController;
+    }
+
+    public static Klasse_hinzufügenController getKlasse_hinzufügenController() {
+        return klasse_hinzufügenController;
+    }
+
+    public static void setKlasse_hinzufügenController(Klasse_hinzufügenController klasse_hinzufügenController) {
+        auswahlklasse.klasse_hinzufügenController = klasse_hinzufügenController;
+    }
+
+    public static EinstellungenController getEinstellungenController() {
+        return einstellungenController;
+    }
+
+    public static void setEinstellungenController(EinstellungenController einstellungenController) {
+        auswahlklasse.einstellungenController = einstellungenController;
+    }
+
+    public static ZeitplanController getZeitplanController() {
+        return zeitplanController;
+    }
+
+    public static void setZeitplanController(ZeitplanController zeitplanController) {
+        auswahlklasse.zeitplanController = zeitplanController;
+    }
+
+    private static ZeitplanController zeitplanController;
+
     private static Turnier turnierzumupdaten;
 
 
-    private TurnierDAO turnierDAO = new TurnierDAOimpl();
+
 
     private static Dictionary<Integer, Verein> vereine = new Hashtable<Integer, Verein>();
     private static Dictionary<String, Stage> stagesdict = new Hashtable<String,Stage>();
@@ -62,7 +133,7 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
         auswahlklasse.obs_spieler = obs_spieler;
     }
 
-    public void readTurnierListe() {
+    public static void readTurnierListe() {
       turniere = turnierDAO.getAllTurniere();
     }
     public static Turnier getTurnierzumupdaten() {

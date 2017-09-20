@@ -4,25 +4,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import sample.DAO.auswahlklasse;
-import sample.Spiel;
 import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 /**
  * Created by jens on 19.09.2017.
  */
 public class ZeitplanController implements Initializable{
-
+    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
     private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
 
     @FXML
@@ -34,13 +38,82 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl()));
+        ArrayList<ZeitplanRunde> alleRunden =Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl());
+        if(alleRunden!=null){
+            rundenListe.addAll(alleRunden);
+        }
+        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
+        sortiereRundenListe();
         tableColumnsErstellen();
+
+
+        tableview_runden.setRowFactory(tv -> {
+            TableRow<ZeitplanRunde> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        event.consume();
+                    }
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    ZeitplanRunde draggedPerson = tableview_runden.getItems().remove(draggedIndex);
+
+                    int dropIndex ;
+
+                    if (row.isEmpty()) {
+                        dropIndex = tableview_runden.getItems().size() ;
+                    } else {
+                        dropIndex = row.getIndex();
+                    }
+
+                    tableview_runden.getItems().add(dropIndex, draggedPerson);
+
+                    event.setDropCompleted(true);
+                    tableview_runden.getSelectionModel().select(dropIndex);
+                    event.consume();
+                }
+            });
+
+            return row ;
+        });
+
+    }
+
+    private void sortiereRundenListe() {
+        rundenListe.sort(new Comparator<ZeitplanRunde>() {
+            @Override
+            public int compare(ZeitplanRunde o1, ZeitplanRunde o2) {
+                return o1.getRundenNummer()-o2.getRundenNummer();
+            }
+        });
     }
 
 
+
+
+
     private void tableColumnsErstellen() {
-        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
         TableColumn<ZeitplanRunde,String> rundenName = new TableColumn("RundenName");
         TableColumn index = new TableColumn("#");
         TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn("Spiele");

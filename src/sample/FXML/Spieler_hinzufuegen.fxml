@@ -9,7 +9,6 @@
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,8 +17,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
       <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
         <content>
@@ -38,24 +38,27 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="t_vn" focusColor="#757575" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Vorname">
+                  <JFXTextField fx:id="t_vn" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="font" stylesheets="@../CSS/custom.css" text="Vorname" unFocusColor="#757575">
                      <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_nn" focusColor="#757575" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Nachname" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="t_nn" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Nachname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="20.0" right="220.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="t_spid" focusColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="t_spid" focusColor="#757575" labelFloat="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Spieler ID" GridPane.rowIndex="3">
+                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
                      <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Geburtsdatum" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXDatePicker>
                   <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
@@ -96,25 +99,24 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label text="Ranglistenpunkte">
+                        <JFXTextField unFocusColor="#757575">
                            <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></Label>
-                        <JFXTextField fx:id="t_re" focusColor="#757575" labelFloat="true" maxWidth="80.0" promptText="Einzel">
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField unFocusColor="#757575">
                            <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></JFXTextField>
-                        <JFXTextField fx:id="t_rd" focusColor="#757575" labelFloat="true" maxWidth="80.0" promptText="Doppel">
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField unFocusColor="#757575">
                            <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></JFXTextField>
-                        <JFXTextField fx:id="t_rm" focusColor="#757575" labelFloat="true" maxWidth="80.0" promptText="Mixed" />
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </JFXTextField>
                      </children>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
                   </HBox>
                </children>
             </GridPane>
@@ -136,7 +138,7 @@
                       <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="250.0" promptText="Spielersuche">
+                        <JFXTextField fx:id="t_suchleistespielerhinzu" maxWidth="250.0" promptText="Spielersuche">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
