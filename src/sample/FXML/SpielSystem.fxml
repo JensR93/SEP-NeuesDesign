@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
@@ -187,13 +188,13 @@
                                       </rowConstraints>
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
                                                 <JFXRadioButton text="Ja" />
                                                 <JFXRadioButton text="Nein" />
                                              </children>
                                           </HBox>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
                                                 <JFXRadioButton text="Ja" />
@@ -231,7 +232,10 @@
                               <JFXButton text="Spielsystem starten" StackPane.alignment="BOTTOM_LEFT">
                                  <StackPane.margin>
                                     <Insets bottom="10.0" left="10.0" />
-                                 </StackPane.margin></JFXButton>
+                                 </StackPane.margin>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="CHECK" size="20" />
+                                 </graphic></JFXButton>
                            </children>
                         </StackPane>
                      </children>

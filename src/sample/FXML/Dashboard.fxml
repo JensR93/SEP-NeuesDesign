@@ -16,9 +16,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
    <children>
-      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="1742.0">
+      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="1150.0" prefWidth="1150.0" />
@@ -194,15 +194,15 @@
                   </JFXButton>
                </children>
                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" top="20.0" />
+                  <Insets bottom="5.0" left="10.0" top="20.0" />
                </GridPane.margin>
             </GridPane>
             <JFXToolbar fx:id="toolBar1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="220.0" styleClass="toolbar2" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets bottom="20.0" left="5.0" right="20.0" top="25.0" />
+                  <Insets bottom="20.0" left="10.0" top="25.0" />
                </GridPane.margin>
             </JFXToolbar>
-            <JFXToolbar fx:id="toolBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1300.0" styleClass="toolbar" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <JFXToolbar fx:id="toolBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" styleClass="toolbar" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <center>
                   <Text fill="#737373" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fonteffect" text="BADMINTON TURNIERVERWALTUNG" textAlignment="CENTER" wrappingWidth="468.13671875" BorderPane.alignment="CENTER">
                      <font>
@@ -214,7 +214,7 @@
                   <Insets />
                </opaqueInsets>
                <GridPane.margin>
-                  <Insets bottom="20.0" left="25.0" right="5.0" top="25.0" />
+                  <Insets bottom="20.0" left="25.0" right="10.0" top="25.0" />
                </GridPane.margin>
             </JFXToolbar>
             <StackPane fx:id="holderPane" prefHeight="150.0" prefWidth="200.0" styleClass="card-white-Dash" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -222,7 +222,7 @@
                   <Insets />
                </opaqueInsets>
                <GridPane.margin>
-                  <Insets bottom="5.0" left="25.0" right="5.0" top="20.0" />
+                  <Insets bottom="5.0" left="25.0" right="10.0" top="20.0" />
                </GridPane.margin>
             </StackPane>
          </children>
