@@ -3,166 +3,267 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1360.0" prefHeight="720.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
-   <top>
-      <JFXToolbar fx:id="toolBar" prefHeight="50.0" prefWidth="1300.0" styleClass="toolbar" stylesheets="@../CSS/custom.css" BorderPane.alignment="CENTER">
-         <right>
-            <HBox fx:id="toolBarRight" prefHeight="40.0" prefWidth="26.0" BorderPane.alignment="CENTER" />
-         </right>
-         <center>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="BADMINTON TURNIERVERWALTUNG" textAlignment="CENTER" wrappingWidth="468.13671875" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Text>
-         </center>
-      </JFXToolbar>
-   </top>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <center>
-      <StackPane fx:id="holderPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <GridPane prefHeight="28.0" prefWidth="220.0" styleClass="side-bar" stylesheets="@../CSS/custom.css" BorderPane.alignment="CENTER_LEFT">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="50.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
-        </rowConstraints>
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1360.0" styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="768.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1360.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="230.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="1100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" prefHeight="668.0" vgrow="ALWAYS" />
+         </rowConstraints>
          <children>
-            <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#Beenden" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="9">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" wrappingWidth="40.0" />
-               </graphic>
+            <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="220.0" styleClass="side-bar" stylesheets="@../CSS/custom.css" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="50.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="10.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#Beenden" prefHeight="39.0" prefWidth="190.0" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnzeitplan" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeZeitplan" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Zeitplan" textFill="#757575" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="CALENDAR" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnHome" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeHome" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Home" textFill="#757575" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="HOME" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTurnierübersicht" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeTurnier" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="ALIGN_JUSTIFY" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnKlassen" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeKlassenuebersicht" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Klassen" textFill="#757575" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="TABLE" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnStatistik" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#statistikoeffnen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Statistik" textFill="#757575" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="BAR_CHART" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="GEARS" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnSpieler" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeSpieler" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Spieler" textFill="#757575" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="USER" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnSpieluebersicht" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="BINOCULARS" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Auslosung" textFill="#757575" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="TREE" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="side-buttons" />
+                        <String fx:value="fonteffect" />
+                     </styleClass>
+                  </JFXButton>
+               </children>
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnzeitplan" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeZeitplan" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Zeitplan" textFill="#757575" GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="CALENDAR" size="20" wrappingWidth="40.0" />
-               </graphic>
+            </GridPane>
+            <JFXToolbar fx:id="toolBar1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="220.0" styleClass="toolbar2" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnHome" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeTurnier" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Home" textFill="#757575">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="HOME" size="20" wrappingWidth="40.0" />
-               </graphic>
+            </JFXToolbar>
+            <JFXToolbar fx:id="toolBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="1050.0" styleClass="toolbar" stylesheets="@../CSS/custom.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnTurnierübersicht" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeTurnier" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="7">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="ALIGN_JUSTIFY" size="20" wrappingWidth="40.0" />
-               </graphic>
+               <center>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fonteffect" text="BADMINTON TURNIERVERWALTUNG" textAlignment="CENTER" wrappingWidth="468.13671875" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </center>
+            </JFXToolbar>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnKlassen" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeKlassenuebersicht" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Klassen" textFill="#757575" GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="TABLE" size="20" wrappingWidth="40.0" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnStatistik" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#statistikoeffnen" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Statistik" textFill="#757575" GridPane.rowIndex="6">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="BAR_CHART" size="20" wrappingWidth="40.0" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="8">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="GEARS" size="20" wrappingWidth="40.0" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnSpieler" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" onAction="#setNodeSpieler" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Spieler" textFill="#757575" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="USER" size="20" wrappingWidth="40.0" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Turnierbaum" textFill="#757575" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="TREE" size="20" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnSpieluebersicht" disable="true" maxHeight="39.0" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="BINOCULARS" size="20" />
-               </graphic>
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="658.0" prefWidth="1100.0" styleClass="card-white-Dash" stylesheets="@../CSS/custom.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <StackPane fx:id="holderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="658.0" prefWidth="1100.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </StackPane>
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </GridPane>
+               </children>
+            </GridPane>
+            <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../Images/34394-200.png" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
-   </left>
-</BorderPane>
+   </children>
+</GridPane>

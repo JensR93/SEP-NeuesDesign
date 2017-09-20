@@ -1,16 +1,38 @@
+.Root{
+    -fx-background-color: #ffffff;
+}
+
 .toolbar{
     -fx-pref-height:70px;
-    -fx-background-color: #0eff02;
+    -fx-min-height: 70px;
+    -fx-background-color: #4059a9;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 0 0 0 50;
 }
+
+.toolbar2 {
+    -fx-background-color: #4059a9;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 0 0 50 0;
+}
+/*.fonteffect
+{
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+}*/
 
 .toolbarDBE{
     -fx-pref-height:50px;
-    -fx-background-color: #0eff02;
+    -fx-background-color: #4059a9;
 }
 
 .side-bar{
     -fx-background-color: #ffffff;
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 0 50 0 0;
 }
 .side-buttons{
     -fx-background-color: transparent;
@@ -40,7 +62,7 @@
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
     -fx-alignment: CENTER;
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);
 }
 
 
@@ -48,12 +70,27 @@
 {
     -fx-background-color: rgb(255.0, 255.0, 255.0);
     -fx-background-radius: 50px;
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+}
+
+.card-white-Dash
+{
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+    -fx-background-radius: 50 0 0 0;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+}
+
+.card-blue
+{
+    -fx-background-color: #4059a9;
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
 /*Toogle buttons for sideboard*/
 .button-raised
 {
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
     1);
     -fx-background-color: rgb(250, 250, 250);
 }
@@ -63,7 +100,7 @@
     -fx-text-fill: #757575;
     -fx-background-color: rgb(255.0, 255.0, 255.0);
     -fx-background-radius: 50px;
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
 
 .toggle-button
@@ -95,26 +132,27 @@
     -fx-font-size: 16px;
 }
 
-.text-field {
-    -fx-prompt-text-fill: gray;
+.button-pressed:pressed{
+   -fx-background-color: #399FFF;
 }
-.text-field > .text {
-    -fx-effect: dropshadow( two-pass-box , blue , .5, 10 , 1 , 1);
+
+.text-field {
+    -fx-prompt-text-fill: #757575;
 }
 
 /*Material look tableview*/
-.table-view {
+/*.table-view {
     /*     Constants used throughout the tableview. */
-    -fx-table-header-border-color: transparent;
+   /* -fx-table-header-border-color: transparent;
     -fx-table-cell-border-color: -fx-box-border;
     /*    Horizontal Lines*/
-    -fx-background-color: transparent;
+ /*   -fx-background-color: transparent;
 }
 
 /* The column header row is made up of a number of column-header, one for each
    TableColumn, and a 'filler' area that extends from the right-most column
    to the edge of the tableview, or up to the 'column control' button. */
-.table-view .filler, .table-view .column-header
+/*.table-view .filler, .table-view .column-header
 {
     -fx-size: 40;
     -fx-border-style: null;
@@ -150,7 +188,7 @@
 
 
 /*Progress bar*/
-.progress-bar>.track {
+/*.progress-bar>.track {
     -fx-background-color: derive(rgb(200.0, 200.0, 200.0), 50.0%);
     -fx-background-radius: 2.0;
     -fx-padding: 0.0;
@@ -164,7 +202,7 @@
     -fx-effect: null;
 }
 /*Control label*/
-.control-label {
+/*.control-label {
     -fx-font-size: 13.5px;
     -fx-padding: 8 0 0 0;
     -fx-font-family:'Roboto Medium';

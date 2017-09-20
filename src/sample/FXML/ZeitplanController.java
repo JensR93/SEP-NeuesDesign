@@ -4,20 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import sample.DAO.auswahlklasse;
-import sample.Spiel;
 import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
@@ -27,96 +22,18 @@ import java.util.ResourceBundle;
 public class ZeitplanController implements Initializable{
 
     private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
-    private ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
-    ArrayList<ArrayList<Spiel>> zeitplanTabelle = new ArrayList<>();
+
     @FXML
     private GridPane grid_zeitplan;
+
     @FXML
     private TableView<ZeitplanRunde> tableview_runden;
-    @FXML
-    private Canvas canvas_zeitplantabelle;
 
-    @FXML
-    public void pressBtn_speichern(){
-        ArrayList<ZeitplanRunde> neueRundenListe = new ArrayList<>();
-        neueRundenListe.addAll(rundenListe);
-        zeitplan = Zeitplan.zeitplanErstellen(neueRundenListe);
-        uebersichtZeichnen();
-    }
-
-    private void uebersichtZeichnen() {
-        arrayAufteilen();
-        tabelleZeichnen();
-    }
-
-    private void tabelleZeichnen() {
-        GraphicsContext gc = canvas_zeitplantabelle.getGraphicsContext2D();
-        int zellenHoehe = 40;
-        int zellenBreite = 80;
-        int xObenLinks = 20;
-        int yObenLinks =20;
-        if(zeitplanTabelle.size()>0) {
-            for (int i = 0; i < zeitplanTabelle.get(0).size(); i++) { //Spaltentitel erstellen
-                gc.beginPath();
-                gc.setStroke(Color.GREEN);
-                gc.setLineWidth(1);
-                gc.beginPath();
-
-                gc.moveTo(xObenLinks + i*zellenBreite, yObenLinks);
-                gc.lineTo(xObenLinks + (i+1) * zellenBreite, yObenLinks);
-                gc.lineTo(xObenLinks + (i+1) * zellenBreite, yObenLinks + zellenHoehe);
-                gc.lineTo(xObenLinks + i*zellenBreite, yObenLinks + zellenHoehe);
-                if(i==0) {
-                    gc.lineTo(xObenLinks + i*zellenBreite, yObenLinks);
-                }
-                gc.fillText("Feld " + (i + 1), xObenLinks + i * zellenBreite + 10, yObenLinks +20);
-                gc.stroke();
-                gc.closePath();
-            }
-            for (int i = 0; i < zeitplanTabelle.size(); i++) {
-                zeileZeichnen(xObenLinks, yObenLinks + i*zellenHoehe, zellenBreite, zellenHoehe, gc, zeitplanTabelle.get(i));
-            }
-        }
-
-    }
-
-    private void zeileZeichnen(int xObenLinks, int yObenLinks, int zellenBreite, int zellenHoehe, GraphicsContext gc, ArrayList<Spiel> spiele) {
-        for (int i = 0; i < spiele.size(); i++) { //Spaltentitel erstellen
-            gc.beginPath();
-            gc.setStroke(Color.GREEN);
-            gc.setLineWidth(1);
-            gc.beginPath();
-
-            gc.moveTo(xObenLinks + (i+1) * zellenBreite, yObenLinks);
-            gc.lineTo(xObenLinks + (i+1) * zellenBreite, yObenLinks + zellenHoehe);
-            gc.lineTo(xObenLinks + i*zellenBreite, yObenLinks + zellenHoehe);
-            if(i==0) {
-                gc.lineTo(xObenLinks + i*zellenBreite, yObenLinks);
-            }
-            gc.fillText(spiele.get(i).getRundenNameKurz(), xObenLinks + i * zellenBreite + 10, yObenLinks +20);
-            gc.stroke();
-            gc.closePath();
-        }
-    }
-
-    private void arrayAufteilen() {
-        int anzahlFelder = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();
-        ArrayList<Spiel> zeitplanKopie = new ArrayList<>();
-        zeitplanKopie.addAll(zeitplan);
-        while (zeitplanKopie.size()>0){
-            zeitplanTabelle.add(new ArrayList<>());
-            for (int i=0;i<anzahlFelder;i++){
-                Spiel spiel = zeitplanKopie.get(0);
-                zeitplanKopie.remove(spiel);
-                zeitplanTabelle.get(zeitplanTabelle.size()-1).add(spiel);
-            }
-        }
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl()));
-        Zeitplan.optimalenZeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
+        Zeitplan.zeitplanErstellen(auswahlklasse.getAktuelleTurnierAuswahl());
         sortiereRundenListe();
         tableColumnsErstellen();
     }
@@ -142,7 +59,6 @@ public class ZeitplanController implements Initializable{
         tableview_runden.setItems(rundenListe);
     }
 }
-
 
 
 
