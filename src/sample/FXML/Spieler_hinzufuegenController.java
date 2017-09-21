@@ -907,6 +907,8 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
     public void pressBtn_ExcelImport (ActionEvent event) throws Exception {
         try {
 
+            auswahlklasse.setDict_doppelte_spieler(new Hashtable<>());
+
             FileChooser fileChooser = new FileChooser();
 
             Stage stage = new Stage();
@@ -920,7 +922,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                     a.addStage(stage2);
                     stage2.setScene(new Scene(root1));
                     stage2.show();*/
-                    if(auswahlklasse.getSpielererfolgreich().size()>0) {
+                   /* if(auswahlklasse.getSpielererfolgreich().size()>0) {
                         String s ="";
                         Enumeration e = auswahlklasse.getSpielererfolgreich().keys();
                         while(e.hasMoreElements())
@@ -937,6 +939,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                         alert.setHeaderText("Spieler erfolgreich eingelesen! ");
                         alert.setContentText(s);
                         alert.showAndWait();
+
                         //ExcelImport.setSpielererfolgreich(null);
                     }
 
@@ -957,6 +960,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                         alert.setHeaderText("Spieler erfolgreich aktualisiert! ");
                         alert.setContentText(String.valueOf(s));
                         alert.showAndWait();
+
                         //ExcelImport.setSpielerupdate(null);
                     }
                     if(auswahlklasse.getObs_vereine_erfolgreich().size()>0) {
@@ -969,6 +973,9 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                     }
                     //ExcelImport ex = new ExcelImport();
                     //ex.pressBtn_Popup();
+
+
+
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Spielerimport");
@@ -976,8 +983,9 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                     alert.setContentText("Schade :(");
 
                     alert.showAndWait();
+                }*/
+
                 }
-                ExcelImport.resetteAlles();
             }
         }
         catch (Exception e)

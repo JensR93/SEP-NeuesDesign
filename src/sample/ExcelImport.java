@@ -45,7 +45,27 @@ public class ExcelImport implements Initializable{
 
 //endregion
 
-    public static boolean importExcelData(String excelDatei) {
+    public static boolean importExcelData(String excelDatei) throws Exception {
+
+
+        obs_vorh.clear();
+        aktuellerSpieler=new Spieler();
+        UpdateSpieler=new Spieler();
+
+
+        if(auswahlklasse.getDict_doppelte_spieler().size()>0)
+        {
+            System.out.println("getDict_doppelte_spieler nicht geleert!");
+        }
+        if(auswahlklasse.getSpielererfolgreich().size()>0)
+        {
+            System.out.println("getSpielererfolgreich nicht geleert!");
+
+        }
+        if(auswahlklasse.getSpielerupdate().size()>0)
+        {
+            System.out.println("getSpielerupdate nicht geleert!");
+        }
         try {
             FileInputStream iStream = new FileInputStream(excelDatei);
             HSSFWorkbook workbook = new HSSFWorkbook(iStream);
@@ -93,7 +113,7 @@ public class ExcelImport implements Initializable{
                         auswahlklasse.getSpieler().put(sp.getSpielerID(),sp);
                         auswahlklasse.getObs_spieler().add(sp);
                         auswahlklasse.getSpielererfolgreich().put(sp.toString(),sp);
-                        System.out.println("hhhh");
+                        System.out.println("Neuer Spieler erstellt");
                     }
                     else
                     {
@@ -130,8 +150,7 @@ public class ExcelImport implements Initializable{
                 Spieler sp = readRow(row);
                 if(sp!=null) {
                     // ExcelImport.getVorhandeneSpieler().add(sp);,
-                    ExcelImport exc= new ExcelImport();
-                    exc.pressBtn_Popup();
+
                     //ExcelImport.getObs_vorh().add(sp);
                     if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
                     {
@@ -158,8 +177,7 @@ public class ExcelImport implements Initializable{
                         auswahlklasse.getObs_spieler().add(tempSpieler);
                         auswahlklasse.addSpieler(tempSpieler);
                         //System.out.println(tempSpieler.getVName()+" "+tempSpieler.getNName()+" gespeichert"+ " geschlecht:"+tempSpieler.getGeschlecht()+" extID:"+tempSpieler.getExtSpielerID()+"verein: "+tempSpieler.getVerein()+" gdatum:"+tempSpieler.getGDatum());
-                        ExcelImport exc= new ExcelImport();
-                        exc.pressBtn_Popup();
+
                         //ExcelImport.getObs_vorh().add(sp);
                         if(auswahlklasse.getDict_doppelte_spieler().get(tempSpieler)==null)
                         {
@@ -392,7 +410,7 @@ public class ExcelImport implements Initializable{
 
                                     b=true;
                                 }}
-                            if(b&&obs_vorh!=null) {
+                            if(b&&obs_vorh!=null&&auswahlklasse.getSpielererfolgreich().get(sp.toString())==null&&auswahlklasse.getSpielerupdate().get(sp.toString())==null) {
                                 //vorhandeneSpieler.add(sp);
 
                                 if(!obs_vorh.contains(sp)) {
@@ -435,83 +453,17 @@ public class ExcelImport implements Initializable{
     public  void pressBtn_Popup() throws Exception {
         //System.out.println("test");
         boolean b = false;
-        if (aktuellerSpieler != null && aktuellerSpieler.toString()!=null) {
-            if(auswahlklasse.getSpielererfolgreich()!=null&&auswahlklasse.getSpielererfolgreich().size()>0)
-            {
-
-
-                if (auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()) != null) {
-
-
-                    if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString())!=null) {
-                        int[] rpunktealt=aktuellerSpieler.getrPunkte();
-                        for(int i=0;i<auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte().length;i++)
-                        {
-
-                            if(rpunktealt[i]!=0)
-                            {
-                                System.out.println(rpunktealt[i]);
-                                if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte()[i]==0)
-                                {
-                                    auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()).getrPunkte()[i]=Integer.valueOf(rpunktealt[i]);
-                                }
-
-                            }
-
-                        }
-                        //spielererfolgreich.get(aktuellerSpieler.toString()).setrPunkte(rpunktekomplett);
-                        // aktuellerSpieler.setrPunkte(rpunktekomplett);
-                        // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
-                        aktuellerSpieler.getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler.toString()));
-                        b=true; System.out.println("Spieler wurde schon hinzugefügt, RLP aktualisiert");
-
-                    }
-                    //System.out.println(aktuellerSpieler.toString()+String.valueOf(aktuellerSpieler.getrPunkte()));
-                }
-            }
-/*
-   WIRD BENÖTIGT
-
-
-   if (aktuellerSpieler != null && aktuellerSpieler.toString()!=null) {
-                if (UpdateSpieler != null && UpdateSpieler .size() > 0) {
-
-
-                    if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()) != null) {
-
-
-                        if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()) != null) {
-                            int[] rpunktealt = aktuellerSpieler.getrPunkte();
-                            for (int i = 0; i < auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte().length; i++) {
-
-                                if (rpunktealt[i] != 0) {
-                                    System.out.println(rpunktealt[i]);
-                                    if (auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte()[i] == 0) {
-                                        auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()).getrPunkte()[i] = Integer.valueOf(rpunktealt[i]);
-                                    }
-
-                                }
-
-                            }
-                            //spielererfolgreich.get(aktuellerSpieler.toString()).setrPunkte(rpunktekomplett);
-                            // aktuellerSpieler.setrPunkte(rpunktekomplett);
-                            // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
-                            aktuellerSpieler.getSpielerDAO().update(auswahlklasse.getSpielerupdate() .get(aktuellerSpieler.toString()));
-                            b = true;
-                            System.out.println("Spieler wurde schon hinzugefügt, RLP aktualisiert");
-
-                        }
-                        //System.out.println(aktuellerSpieler.toString()+String.valueOf(aktuellerSpieler.getrPunkte()));
-                    }
-                }
-            }*/
 
             if(!b&&auswahlklasse.getDict_doppelte_spieler().size()>0)  {
 
                 auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             }
+            else
+            {
+                auswahlklasse.getDashboardController().meldeformularImport();
+            }
         }
-    }
+
 
 
 
@@ -524,13 +476,4 @@ public class ExcelImport implements Initializable{
     }
 
 
-
-    public static void resetteAlles()
-    {
-/*        auswahlklasse.setDict_doppelte_spieler(new Hashtable<>());
-        obs_vorh.clear();
-        auswahlklasse.setSpielererfolgreich(new Hashtable<>());
-        auswahlklasse.setSpielerupdate(new Hashtable<>());*/
-
-    }
 }

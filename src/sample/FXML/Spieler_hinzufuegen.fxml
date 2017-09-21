@@ -13,6 +13,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
+<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
    <tabs>
       <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
         <content>
@@ -64,9 +65,9 @@
                   </JFXTextField>
                   <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" spacing="50.0" GridPane.rowIndex="4">
                      <children>
-                        <JFXTextField fx:id="t_re" labelFloat="true" maxWidth="1.7976931348623157E308" />
-                        <JFXTextField fx:id="t_rm" labelFloat="true" maxWidth="1.7976931348623157E308" />
-                        <JFXTextField fx:id="t_rd" labelFloat="true" maxWidth="1.7976931348623157E308" />
+                        <JFXTextField fx:id="t_re" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" />
+                        <JFXTextField fx:id="t_rm" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" />
+                        <JFXTextField fx:id="t_rd" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" />
                      </children>
                      <GridPane.margin>
                         <Insets />
@@ -89,12 +90,15 @@
                   <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                      <children>
                         <Label fx:id="Label_Geschlecht" text="Geschlecht" />
-                        <JFXRadioButton fx:id="r_m" text="Männlich">
+                        <JFXRadioButton fx:id="r_m" selected="true" text="Männlich">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Geschlecht" />
+                           </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="r_w" text="Weiblich" />
+                        <JFXRadioButton fx:id="r_w" text="Weiblich" toggleGroup="$Geschlecht" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
