@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane fx:id="holderPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Turnier_ladenController">
+<StackPane fx:id="holderPane" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Turnier_ladenController">
    <children>
       <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
@@ -35,7 +34,7 @@
                   <TableColumn fx:id="TurnierIDSpalte" minWidth="0.0" prefWidth="0.0" text="Column X" visible="false" />
               </columns>
             </TableView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Turnier laden" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <Text fx:id="t_TurnierLaden" strokeType="OUTSIDE" strokeWidth="0.0" text="Turnier laden" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

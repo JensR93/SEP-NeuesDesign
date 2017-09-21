@@ -8,6 +8,7 @@ package sample.FXML;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +25,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import sample.DAO.auswahlklasse;
 
 public class DashboardController implements Initializable{
+
+    String baseName = "resources.Main";
+    String titel ="";
 
     private JFXTabPane Spieler,Klassehinzufuegen,Spielsystem;
     private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden;
@@ -84,6 +89,9 @@ public class DashboardController implements Initializable{
 
     @FXML // fx:id="btnBeenden"
     private JFXButton btnBeenden; // Value injected by FXMLLoader
+
+    @FXML
+    private Text t_Btv;
 
     @FXML // fx:id="holderPane"
     private StackPane holderPane; // Value injected by FXMLLoader
@@ -317,6 +325,47 @@ public class DashboardController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("btnTurnierübersicht");
+            btnTurnierübersicht.setText(titel);
+
+            titel = bundle.getString("btnKlassen");
+            btnKlassen.setText(titel);
+
+            titel = bundle.getString("btnSpieler");
+            btnSpieler.setText(titel);
+
+            titel = bundle.getString("btnTurnierbaum");
+            btnTurnierbaum.setText(titel);
+
+            titel = bundle.getString("btnSpieluebersicht");
+            btnSpieluebersicht.setText(titel);
+
+            titel = bundle.getString("btnzeitplan");
+            btnzeitplan.setText(titel);
+
+            titel = bundle.getString("btnStatistik");
+            btnStatistik.setText(titel);
+
+            titel = bundle.getString("btnEinstellungen");
+            btnEinstellungen.setText(titel);
+
+            titel = bundle.getString("btnBeenden");
+            btnBeenden.setText(titel);
+
+            titel = bundle.getString("t_Btv");
+            t_Btv.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
+
 
         auswahlklasse.setDashboardController(this);
         System.out.println(auswahlklasse.getDashboardController());

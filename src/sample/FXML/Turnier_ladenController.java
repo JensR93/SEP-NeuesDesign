@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.DAO.*;
 import sample.Spiel;
@@ -49,6 +50,8 @@ public class Turnier_ladenController extends Application implements Initializabl
     public TableColumn TurnierNameSpalte;
     @FXML
     public TableColumn TurnierIDSpalte;
+    @FXML
+    private Text t_TurnierLaden;
     @FXML
     private StackPane holderPane;
     @FXML
@@ -157,10 +160,17 @@ public void tabelleReload()
             try {
                 ResourceBundle bundle = ResourceBundle.getBundle(baseName);
                 titel = bundle.getString("TurnierNameSpalte");
+                TurnierNameSpalte.setText(titel);
+
+                titel = bundle.getString("t_TurnierLaden");
+                t_TurnierLaden.setText(titel);
+
             } catch (MissingResourceException e) {
                 System.err.println(e);
             }
-            TurnierNameSpalte.setText(titel);
+
+
+
 
         turnierlisteLaden();
 
