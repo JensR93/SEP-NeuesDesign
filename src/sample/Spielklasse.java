@@ -1,14 +1,14 @@
 package sample;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 import sample.DAO.*;
 import sample.Enums.Disziplin;
 import sample.Enums.Niveau;
 import sample.Spielsysteme.Spielsystem;
-
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 public class Spielklasse {
 	private SpielklasseDAO spielklasseDAO = new SpielklasseDAOimpl();
@@ -19,7 +19,7 @@ public class Spielklasse {
 	private Spielsystem spielsystem;
 	private float meldeKosten = (float) 5;
 	private Turnier turnier;
-	private Hashtable<Integer, Spiel> spiele = new Hashtable<>();
+	private Hashtable<Integer,Spiel> spiele = new Hashtable<>();
 	private boolean aktiv;
 	private boolean einzel = false;
 	private boolean setzliste_gesperrt= false;

@@ -1,8 +1,8 @@
 package sample;
 
 import sample.DAO.*;
-import sample.Enums.*;
 import sample.Spielsysteme.*;
+import sample.Enums.*;
 
 public class Feld {
 	private FeldDAO feldDAO = new FeldDAOimpl();

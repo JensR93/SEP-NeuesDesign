@@ -68,12 +68,12 @@ public class Gruppe extends Spielsystem {
 			int setzPlatzFuerEndrunde;
 			if(zeile%2==0) {
 				setzPlatzFuerEndrunde = anzahlGruppen * zeile - (gruppenNummer - 1);
-				if (setzPlatzFuerEndrunde % 2 == 0) {
-					setzPlatzFuerEndrunde--;
-				}
-				else
-				{
-					setzPlatzFuerEndrunde++;
+				if(anzahlGruppen%2 == 0) {
+					if (setzPlatzFuerEndrunde % 2 == 0) {
+						setzPlatzFuerEndrunde--;
+					} else {
+						setzPlatzFuerEndrunde++;
+					}
 				}
 			}
 			else{
@@ -191,8 +191,8 @@ public class Gruppe extends Spielsystem {
 			for (int i=0;i<this.getRundenArray().get(rundenIndex).size();i++){
 				Spiel spiel = this.getRundenArray().get(rundenIndex).get(i);
 				spiel.setStatus(1);
-				spiel.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(spiel);
-				spiel.getSpielsystem().getSpielklasse().getTurnier().getObs_ausstehendeSpiele().add(spiel);
+				/*spiel.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(spiel);
+				spiel.getSpielsystem().getSpielklasse().getTurnier().getObs_ausstehendeSpiele().add(spiel);*/
 				//spiel.setFreilosErgebnis();
 				if (spiel.getHeim().isFreilos()){
 					spiel.setErgebnis(new Ergebnis(0,21,0,21));
@@ -301,6 +301,9 @@ public class Gruppe extends Spielsystem {
 		while(e.hasMoreElements()){
 			key = (int) e.nextElement();
 			getSpielklasse().getSpiele().get(key).setErgebnis(ergebnisse.get(key),"einlesen");
+			if (this.getExtraRunde()!=0){
+				this.beendeMatch(getSpielklasse().getSpiele().get(key));
+			}
 		}
 	}
 

@@ -1,5 +1,13 @@
 package sample;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -10,17 +18,6 @@ import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.CellType;
 import sample.DAO.auswahlklasse;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.ResourceBundle;
 
 /**
  * Created by Manuel Hüttermann on 15.08.2017.
@@ -41,8 +38,8 @@ public class ExcelImport implements Initializable{
     private static Spieler aktuellerSpieler = new Spieler();
     private static Dictionary<Spieler, ObservableList> dict_doppelte_spieler = new Hashtable<Spieler, ObservableList>();
 
-    private static Dictionary<String , Spieler> spielerupdate = new Hashtable<>();
-    private static Dictionary<String , Spieler> spielererfolgreich = new Hashtable<>();
+    private static Dictionary<String ,Spieler> spielerupdate = new Hashtable<>();
+    private static Dictionary<String ,Spieler> spielererfolgreich = new Hashtable<>();
 
     private static ObservableList obs_vereine_erfolgreich=FXCollections.observableArrayList();
     public static Spieler getAktuellerSpieler() {

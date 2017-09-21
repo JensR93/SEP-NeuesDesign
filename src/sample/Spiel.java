@@ -1,14 +1,14 @@
 package sample;
 
-import sample.DAO.*;
-import sample.Spielsysteme.*;
-
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.time.LocalTime;
 import java.util.Dictionary;
+
+import sample.DAO.*;
+import sample.Spielsysteme.*;
 
 public class Spiel {
 	//ErgebnisDAO ergebnisDAO = new ErgebnisDAOimpl();
@@ -79,15 +79,15 @@ public class Spiel {
 			return heim.toString();
 		}
 		else{
-			if (spielsystem.getSpielSystemArt()==2&&getVorrundenNummer()==0){
+			if (spielsystem instanceof sample.Spielsysteme.GruppeMitEndrunde && getVorrundenNummer()==0){
 				GruppeMitEndrunde hauptsystem = (GruppeMitEndrunde) spielsystem;
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
-				if (setzplatze.get(setzPlatzHeim)!=null){
+				if (setzplatze.get(setzPlatzHeim)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzHeim);
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
-			return "ausstehend" + getVorrundenNummer();
+			return "ausstehend";
 		}
 
 	}
@@ -96,10 +96,10 @@ public class Spiel {
 			return gast.toString();
 		}
 		else{
-			if (spielsystem.getSpielSystemArt()==2&&getVorrundenNummer()==0){
+			if (spielsystem instanceof sample.Spielsysteme.GruppeMitEndrunde && getVorrundenNummer()==0){
 				GruppeMitEndrunde hauptsystem = (GruppeMitEndrunde) spielsystem;
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
-				if (setzplatze.get(setzPlatzGast)!=null){
+				if (setzplatze.get(setzPlatzGast)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzGast);
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
@@ -151,7 +151,7 @@ public class Spiel {
 	}
 	public void setHeim(Team heim) {
 		this.heim = heim;
-		if(this.gast != null && !(this.getSystemSpielID()<30000000)){
+		if(this.gast != null && !(this.getSystemSpielArt()==1) && !(this.getSystemSpielArt()==2&&this.getVorrundenNummer()!=0)){
 			this.status = 1;
 
 		}
@@ -160,7 +160,7 @@ public class Spiel {
 
 	public void setGast(Team gast) {
 		this.gast = gast;
-		if(this.heim != null && !(this.getSystemSpielID()<30000000)){
+		if(this.heim != null && !(this.getSystemSpielArt()==1) && !(this.getSystemSpielArt()==2&&this.getVorrundenNummer()!=0)){
 			this.status = 1;
 		/*	if (this.heim.isFreilos()){
 				this.setErgebnis(new Ergebnis(0,21,0,21));
@@ -219,8 +219,9 @@ public class Spiel {
 		this.systemSpielID = systemSpielID;
 		this.turnier = this.spielsystem.getSpielklasse().getTurnier();
 		this.spielsystem.getSpielklasse().getSpiele().put(systemSpielID,this);
-		turnier.getObs_ausstehendeSpiele().add(this);
-		auswahlklasse.getAktuelleTurnierAuswahl().addobsAusstehendeSpiele(this);
+		//turnier.getObs_ausstehendeSpiele().add(this);
+		turnier.getObs_alleSpiele().add(this);
+		//auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().add(this);
 		//spielDAO.create(this);
 		this.status = 1;
 		if(heim.isFreilos()){
@@ -235,7 +236,8 @@ public class Spiel {
 		this.turnier = this.spielsystem.getSpielklasse().getTurnier();
 		//spielDAO.create(this);
 		this.spielsystem.getSpielklasse().getSpiele().put(systemSpielID,this);
-		this.spielsystem.getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().add(this);
+		//this.spielsystem.getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().add(this);
+		this.spielsystem.getSpielklasse().getTurnier().getObs_alleSpiele().add(this);
 
 	}
 
@@ -248,8 +250,8 @@ public class Spiel {
 		//this.spielDAO.create(this);
 		this.turnier = this.spielsystem.getSpielklasse().getTurnier();
 		this.spielsystem.getSpielklasse().getSpiele().put(systemSpielID,this);
-		this.spielsystem.getSpielklasse().getTurnier().getObs_ausstehendeSpiele().add(this);
-
+		//this.spielsystem.getSpielklasse().getTurnier().getObs_ausstehendeSpiele().add(this);
+		this.spielsystem.getSpielklasse().getTurnier().getObs_alleSpiele().add(this);
 	}
 
 
@@ -277,6 +279,7 @@ public class Spiel {
 
 	public void setSpielsystem(Spielsystem spielsystem) {
 		this.spielsystem = spielsystem;
+		this.spielsystem.getSpielklasse().getTurnier().getObs_alleSpiele().add(this);
 		this.spielsystem.getSpielklasse().getTurnier().getSpiele().put(spielID,this);
 		this.spielsystem.getSpielklasse().getSpiele().put(systemSpielID,this);
 	}
@@ -286,10 +289,7 @@ public class Spiel {
 	}
 
 	public void setZeitplanNummer(int zeitplanNummer) {
-		if(zeitplanNummer!=this.zeitplanNummer) {
-			this.zeitplanNummer = zeitplanNummer;
-			spielDAO.update(this);
-		}
+		this.zeitplanNummer = zeitplanNummer;
 	}
 
 	public int getRundenZeitplanNummer() {
@@ -297,11 +297,7 @@ public class Spiel {
 	}
 
 	public void setRundenZeitplanNummer(int rundenZeitplanNummer) {
-		if(rundenZeitplanNummer!=this.rundenZeitplanNummer){
-			this.rundenZeitplanNummer = rundenZeitplanNummer;
-			spielDAO.update(this);
-		}
-
+		this.rundenZeitplanNummer = rundenZeitplanNummer;
 	}
 
 	public Spielsystem getSpielsystem() {
@@ -368,35 +364,6 @@ public class Spiel {
 		}
 		return "";
 	}
-	public String getRundenNameKurz(){
-		String rundenName ="";
-		rundenName += disziplinKurzform();
-		rundenName += "-";
-		rundenName += spielsystem.getSpielklasse().getNiveau();
-		rundenName += " ";
-		rundenName += getRundenName();
-		return rundenName;
-	}
-	private String disziplinKurzform(){
-		String disziplin = spielsystem.getSpielklasse().getDisziplin().toUpperCase();
-		String kurzform = "";
-		if(disziplin.contains("DAMENEINZEL")){
-			kurzform = "DE";
-		}
-		else if(disziplin.contains("HERRENEINZEL")) {
-			kurzform = "HE";
-		}
-		else if(disziplin.contains("HERRENDOPPEL")) {
-			kurzform = "HD";
-		}
-		else if(disziplin.contains("DAMENDOPPEL")) {
-			kurzform = "DD";
-		}
-		else if(disziplin.contains("MIXED")) {
-			kurzform = "MX";
-		}
-		return kurzform;
-	}
 	public void setStatus(int status) {
 		this.status = status;
 		spielDAO.update(this);
@@ -431,9 +398,37 @@ public class Spiel {
 			return "";
 		}
 	}
-
+	public String getRundenNameKurz(){
+		String rundenName ="";
+		rundenName += disziplinKurzform();
+		rundenName += "-";
+		rundenName += spielsystem.getSpielklasse().getNiveau();
+		rundenName += " ";
+		rundenName += getRundenName();
+		return rundenName;
+	}
+	private String disziplinKurzform(){
+		String disziplin = spielsystem.getSpielklasse().getDisziplin().toUpperCase();
+		String kurzform = "";
+		if(disziplin.contains("DAMENEINZEL")){
+			kurzform = "DE";
+		}
+		else if(disziplin.contains("HERRENEINZEL")) {
+			kurzform = "HE";
+		}
+		else if(disziplin.contains("HERRENDOPPEL")) {
+			kurzform = "HD";
+		}
+		else if(disziplin.contains("DAMENDOPPEL")) {
+			kurzform = "DD";
+		}
+		else if(disziplin.contains("MIXED")) {
+			kurzform = "MX";
+		}
+		return kurzform;
+	}
 	public void setFreilosErgebnis(){
-		if (this.heim != null && this.heim.isFreilos()){
+		if (this.gast != null && this.heim != null && this.heim.isFreilos()){
 			this.ergebnis = new Ergebnis(0,21,0,21);
 			status=3;
 			this.spielsystem.beendeMatch(this);
@@ -444,10 +439,10 @@ public class Spiel {
 			gast.addGespieltePunkte(42,0);
 			gast.getTeamDAO().update(gast);
 			ergebnis.getErgebnisDAO().create(this);
-			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
-			this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);
+/*			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
+			this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);*/
 		}
-		else if(this.gast != null && this.gast.isFreilos()){
+		else if(this.heim != null && this.gast != null && this.gast.isFreilos()){
 			this.ergebnis = new Ergebnis(21,0,21,0);
 			status=3;
 			this.spielsystem.beendeMatch(this);
@@ -458,8 +453,8 @@ public class Spiel {
 			heim.addGespieltePunkte(42,0);
 			heim.getTeamDAO().update(heim);
 			ergebnis.getErgebnisDAO().create(this);
-			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
-			this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);
+/*			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
+			this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);*/
 		}
 
 
@@ -474,8 +469,8 @@ public class Spiel {
 		heim.getTeamDAO().update(heim);
 		gast.getTeamDAO().update(gast);
 		ergebnis.getErgebnisDAO().create(this);
-		this.getSpielsystem().getSpielklasse().getTurnier().getObs_aktiveSpiele().remove(this);
-		this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);
+/*		this.getSpielsystem().getSpielklasse().getTurnier().getObs_aktiveSpiele().remove(this);
+		this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);*/
 		if (this.feld != null){
 			this.feld.spielBeenden();
 		}
@@ -486,7 +481,9 @@ public class Spiel {
 		this.ergebnis = ergebnis;
 		statistikAktualisieren();
 		status=3;
-		this.spielsystem.beendeMatch(this,einlesen);
+		if (spielsystem.getSpielSystemArt()!=2 && this.getVorrundenNummer()!=0) {
+			this.spielsystem.beendeMatch(this, einlesen);
+		}
 	}
 
 	private void statistikAktualisieren() {

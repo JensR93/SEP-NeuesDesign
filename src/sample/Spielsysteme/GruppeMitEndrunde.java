@@ -78,8 +78,22 @@ public class GruppeMitEndrunde extends Spielsystem{
 			alleGruppen.add(new Gruppe(alleSetzListen.get(i),this,this.getSpielklasse(),i+1, gruppenSpiele, gruppenErgebnisse));
 
 		}
-		this.anzahlWeiterkommender = endrundenSpiele.size()+1;
+		this.anzahlWeiterkommender = (endrundenSpiele.size()+1)-anzahlSpieleMitFreilosen(endrundenSpiele);
 		endrunde= new KO(anzahlWeiterkommender,this, this.getSpielklasse(),false, endrundenSpiele, endrundenErgebnisse);
+	}
+
+	private int anzahlSpieleMitFreilosen(ArrayList<Spiel> endrundenSpiele) {
+		int anzahlSpieleMitFreilosen=0;
+		for (int i=0; i<endrundenSpiele.size();i++){
+			Spiel spiel = endrundenSpiele.get(i);
+			if (spiel.getHeim()!= null && spiel.getHeim().isFreilos()){
+				anzahlSpieleMitFreilosen++;
+			}
+			else if(spiel.getGast()!= null && spiel.getGast().isFreilos()){
+				anzahlSpieleMitFreilosen++;
+			}
+		}
+		return anzahlSpieleMitFreilosen;
 	}
 
 	private void setzListeAufteilen(){
@@ -128,6 +142,8 @@ public class GruppeMitEndrunde extends Spielsystem{
 			super.setzlisteDAO.create(templist.size(),templist.get(templist.size()-1),this.getSpielklasse());
 		}
 	}
+
+
 	private void endRundeErstellen(){
 		endrunde= new KO(anzahlWeiterkommender,this, this.getSpielklasse(),false);
 	}
@@ -140,17 +156,19 @@ public class GruppeMitEndrunde extends Spielsystem{
 			int setzplatzgast = spiel.getSetzPlatzGast();
 			if(setzPlatze.get(setzplatzheim) != null && setzPlatze.get(setzplatzheim)[0]==extraRundenID){
 				spiel.setHeim(platzierungsliste.get(setzPlatze.get(setzplatzheim)[1]-1));
+				spiel.setFreilosErgebnis();
 				spiel.getSpielDAO().update(spiel);
 			}
 			if(setzPlatze.get(setzplatzgast) != null && setzPlatze.get(setzplatzgast)[0]==extraRundenID){
 				spiel.setGast(platzierungsliste.get(setzPlatze.get(setzplatzgast)[1]-1));
+				spiel.setFreilosErgebnis();
 				spiel.getSpielDAO().update(spiel);
 			}
 		}
 		allePlatzierungslisten.add(platzierungsliste);
 		if (allePlatzierungslisten.size()==alleGruppen.size()){
 			int wildcards = anzahlWeiterkommender%anzahlGruppen;
-			int platzierungFuerWildcard = (int) Math.ceil(anzahlWeiterkommender/anzahlGruppen);
+			int platzierungFuerWildcard = (int) Math.ceil((double)anzahlWeiterkommender/anzahlGruppen);
 			ArrayList<Team> platzierteTeams = new ArrayList<>();
 			Dictionary<Integer,Team> wildCardTeams = new Hashtable<>(); //Dictionary mit Setzplatz;
 			for (int i=0;i<allePlatzierungslisten.size();i++){
@@ -168,9 +186,13 @@ public class GruppeMitEndrunde extends Spielsystem{
 				int setzplatzgast = spiel.getSetzPlatzGast();
 				if (wildCardTeams.get(setzplatzheim)!=null){
 					spiel.setHeim(wildCardTeams.get(setzplatzheim));
+					spiel.setFreilosErgebnis();
+					spiel.getSpielDAO().update(spiel);
 				}
 				if (wildCardTeams.get(setzplatzgast)!=null){
 					spiel.setGast(wildCardTeams.get(setzplatzgast));
+					spiel.setFreilosErgebnis();
+					spiel.getSpielDAO().update(spiel);
 				}
 			}
 		}
@@ -222,9 +244,14 @@ public class GruppeMitEndrunde extends Spielsystem{
 		int systemSpielID = spiel.getSystemSpielID();
 		int extraRundenNummer = systemSpielID-spiel.getSystemSpielID()/10000000 * 10000000;
 		extraRundenNummer = extraRundenNummer / 100000;
-		for (int i=0;i<alleGruppen.size();i++){
-			if (alleGruppen.get(i).getExtraRunde()==extraRundenNummer){
-				alleGruppen.get(i).beendeMatch(spiel);
+		if (extraRundenNummer==0){
+			endrunde.beendeMatch(spiel);
+		}
+		else {
+			for (int i = 0; i < alleGruppen.size(); i++) {
+				if (alleGruppen.get(i).getExtraRunde() == extraRundenNummer) {
+					alleGruppen.get(i).beendeMatch(spiel);
+				}
 			}
 		}
 		return false;
@@ -235,9 +262,14 @@ public class GruppeMitEndrunde extends Spielsystem{
 		int systemSpielID = spiel.getSystemSpielID();
 		int extraRundenNummer = systemSpielID-spiel.getSystemSpielID()/10000000 * 10000000;
 		extraRundenNummer = extraRundenNummer / 100000;
-		for (int i=0;i<alleGruppen.size();i++){
-			if (alleGruppen.get(i).getExtraRunde()==extraRundenNummer){
-				alleGruppen.get(i).beendeMatch(spiel,"einlesen");
+		if (extraRundenNummer==0){
+			endrunde.beendeMatch(spiel);
+		}
+		else {
+			for (int i = 0; i < alleGruppen.size(); i++) {
+				if (alleGruppen.get(i).getExtraRunde() == extraRundenNummer) {
+					alleGruppen.get(i).beendeMatch(spiel, "einlesen");
+				}
 			}
 		}
 		return false;

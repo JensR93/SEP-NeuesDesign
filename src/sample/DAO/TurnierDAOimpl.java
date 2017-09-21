@@ -133,8 +133,9 @@ public class TurnierDAOimpl implements TurnierDAO {
                     turnierEingabe.getSpielklassen().get(key).setSpielsystem(spielsystem);
                 }
             }
-            spielListenFuellen(turnierEingabe);
+//            spielListenFuellen(turnierEingabe);
             smt.close();
+            Zeitplan.zeitplanEinlesen(turnierEingabe);
 
             //turnier.setSpiele(readSpiele(turnier));
             return turnierEingabe;
@@ -210,6 +211,7 @@ public class TurnierDAOimpl implements TurnierDAO {
         return turniere;
     }
 
+/*
     private void spielListenFuellen(Turnier turnierEingabe) {
         Enumeration e = turnierEingabe.getSpiele().keys();
         while(e.hasMoreElements()){
@@ -230,6 +232,7 @@ public class TurnierDAOimpl implements TurnierDAO {
             }
         }
     }
+*/
 
     private Dictionary<Integer,Spielklasse> readSpielklassen(Turnier turnier) {
         Dictionary<Integer,Spielklasse> spielklassen = new Hashtable<Integer,Spielklasse>();

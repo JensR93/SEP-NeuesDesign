@@ -1,21 +1,21 @@
 package sample;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Insets;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import sample.DAO.*;
 import sample.Spielsysteme.*;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
  * Created by Florian-PC on 25.07.2017.
  */
 public class Team {
-
-
-
-
-
-
     private TeamDAO teamDAO = new TeamDAOimpl();
     private int teamid;
     private Spieler spielerEins;

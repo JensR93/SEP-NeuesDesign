@@ -352,11 +352,8 @@ public void tabelleReload()
         auswahlklasse a = new auswahlklasse();
         auswahlklasse.readTurnierListe();
         if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_spiele().clear();
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_aktiveSpiele().clear();
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().clear();
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_gespielteSpiele().clear();
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_zukuenftigeSpiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_angezeigteSpiele().clear();
         }
         zeigeTabelle();
     }
@@ -368,7 +365,7 @@ public void tabelleReload()
             auswahlklasse.turnierAuswahlSpeichern((Turnier) TurnierlisteTabelle.getSelectionModel().getSelectedItem());
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().clear();
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen_auswahl().clear();
-            auswahlklasse.getAktuelleTurnierAuswahl().getObs_spiele().clear();
+            auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
 
             t.read(auswahlklasse.getAktuelleTurnierAuswahl());
             //System.out.println(a.getAktuelleTurnierAuswahl().getName());

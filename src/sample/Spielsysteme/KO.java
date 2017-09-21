@@ -19,7 +19,7 @@ public class KO extends Spielsystem {
 		this.setzliste=setzliste;
 		this.platzDreiAusspielen = platzDreiAusspielen;
 		this.teilnehmerzahl=setzliste.size();
-		this.spielsystem = this;
+		this.spielsystem=this;
 		setSpielSystemArt(3);
 		finale = new SpielTree(spielSystemIDberechnen(), 1, 2);
 		freiloseHinzufuegen(setzliste);
@@ -49,7 +49,7 @@ public class KO extends Spielsystem {
 	}*/
 
 	public KO(int anzahlSpieler, Spielsystem gruppeMitEndrunde, Spielklasse spielklasse, boolean platzDreiAusspielen) {
-		this.spielsystem = gruppeMitEndrunde;//Constructor für Endrunde bei Gruppe mit Endrunde einlesen
+		this.spielsystem = gruppeMitEndrunde;//Constructor für Endrunde bei Gruppe mit Endrunde
 		this.platzDreiAusspielen = platzDreiAusspielen;
 		this.setSpielklasse(spielklasse);
 		this.teilnehmerzahl=anzahlSpieler;
@@ -57,11 +57,13 @@ public class KO extends Spielsystem {
 		finale = new SpielTree(spielSystemIDberechnen(), 1, 2);
 		freiloseHinzufuegen(anzahlSpieler);
 		knotenAufbauen(teilnehmerzahl);
+		freiloseZuKnotenHinzufuegen();
 		if(platzDreiAusspielen){
 			spielUmDreiErstellen();
 		}
 		alleSpieleSchreiben();
 	}
+
 
 	public KO(int anzahlSpieler, Spielsystem gruppeMitEndrunde, Spielklasse spielklasse, boolean platzDreiAusspielen, ArrayList<Spiel> spiele, Dictionary<Integer,Ergebnis> ergebnisse) {
 		this.spielsystem = gruppeMitEndrunde;//Constructor für Endrunde bei Gruppe mit Endrunde einlesen
@@ -95,6 +97,9 @@ public class KO extends Spielsystem {
 		for (int i=getRunden().size()-1; i>=0;i--){
 			for(int j=0;j<getRunden().get(i).size();j++){
 				Spiel spiel = getRundenArray().get(i).get(j);
+				if(spiel.getVorrundenNummer()==0){
+					int justforbreakpoint;
+				}
 				spiel.getSpielDAO().create(spiel);
 				spiel.setFreilosErgebnis();
 			}
@@ -160,7 +165,7 @@ public class KO extends Spielsystem {
 		int anzahlRunden = rundenBerechnen();
 		int hoechsterSetzplatz;
 		SpielTree aktuellerKnoten = finale;
-		finale.setSpiel(new Spiel(spielSystemIDberechnen(),1,2,this));
+		finale.setSpiel(new Spiel(spielSystemIDberechnen(),1,2,this.spielsystem));
 		this.getRundenArray().add(new ZeitplanRunde());
 		this.getRundenArray().get(0).add(finale.getSpiel());
 
@@ -191,6 +196,11 @@ public class KO extends Spielsystem {
 	return finale;
 	}
 
+	public int rundenBerechnen(){
+		setAnzahlRunden((int) Math.ceil(Math.log(teilnehmerzahl) / Math.log(2.0)));
+		return getAnzahlRunden();
+	}
+
 	public void ersteRundeFuellen(List<Team> setzliste){
 		//Zu erstem Knoten in erster Runde gehen:
 		SpielTree aktuellerKnoten = finale;
@@ -206,21 +216,36 @@ public class KO extends Spielsystem {
 					aktuellerKnoten.getSpiel().setGast(setzliste.get(j));
 				}
 			}
-
 			aktuellerKnoten = aktuellerKnoten.getSpielTree(aktuellerKnoten.getSpielID()+1, finale); //zum Spiel mit nächster ID gehen (im Turnierbaum 1 Spiel nach unten)
 		}
 	}
 
-	public int rundenBerechnen(){
-		setAnzahlRunden((int) Math.ceil(Math.log(teilnehmerzahl) / Math.log(2.0)));
-		return getAnzahlRunden();
+	private void freiloseZuKnotenHinzufuegen() { //nur für Endrunde, wenn keine Setzliste vorhanden
+
+		for (int setzplatz = anzahlFreilose+teilnehmerzahl;setzplatz>teilnehmerzahl;setzplatz--){
+			for (int i=0;i<this.getRundenArray().get(0).size();i++){
+				Spiel spiel =this.getRundenArray().get(0).get(i);
+				if(spiel.getSetzPlatzHeim()==setzplatz){
+					Team freilos = new Team("Freilos", this.getSpielklasse());
+					spiel.setHeim(freilos);
+					//spiel.getSpielDAO().update(spiel);
+				}
+				else if(spiel.getSetzPlatzGast()==setzplatz){
+					Team freilos = new Team("Freilos", this.getSpielklasse());
+					spiel.setGast(freilos);
+					//spiel.getSpielDAO().update(spiel);
+				}
+			}
+		}
 	}
+
 	private void freiloseHinzufuegen (List<Team> setzliste){
 		for (int i=setzliste.size(); i<Math.pow(2,rundenBerechnen());i++){
 			setzliste.add(new Team("Freilos",this.getSpielklasse()));
 			super.setzlisteDAO.create(setzliste.size(),setzliste.get(setzliste.size()-1),this.getSpielklasse());
 		}
 	}
+
 	private void freiloseHinzufuegen (int anzahlTeilnehmer){
 		for (int i=anzahlTeilnehmer; i<Math.pow(2,rundenBerechnen());i++){
 			anzahlFreilose++;
