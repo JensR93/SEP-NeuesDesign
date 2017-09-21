@@ -198,5 +198,6 @@ public class Zeitplan {
         zeitplanEinzel.sort(zeitplanComparator);
         zeitplanDoppel.sort(zeitplanComparator);
         zeitplanMixed.sort(zeitplanComparator);
+
     }
 }
