@@ -1,9 +1,6 @@
 package sample.FXML;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +70,10 @@ public class Spieler_hinzufuegenController implements Initializable{
     private JFXRadioButton r_m;
     @FXML
     private JFXRadioButton r_w;
+    @FXML
+    private Label Label_Geschlecht;
+    @FXML
+    private JFXButton btn_MeldefImport;
 
     //Tab2
     @FXML
@@ -636,11 +637,18 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
             titel = bundle.getString("tabelle_spielerliste_geburtstag");
+            tabelle_spielerliste_geburtstag.setText(titel);
+
+            titel = bundle.getString("btn_MeldefImport");
+            btn_MeldefImport.setText(titel);
+
+            titel = bundle.getString("Label_Geschlecht");
+            Label_Geschlecht.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
         }
-        tabelle_spielerliste_geburtstag.setText(titel);
+
 
 
 

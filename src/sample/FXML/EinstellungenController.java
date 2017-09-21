@@ -21,6 +21,10 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private Label Label_Spieleinstellungen;
+    @FXML
+    private Label lab_Sprache;
+    @FXML
+    private Label Label_SchiriStandVerw;
 
     @FXML
     private GridPane gridPane;
@@ -63,11 +67,21 @@ public class EinstellungenController implements Initializable {
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
 
+            titel = bundle.getString("Label_Spieleinstellungen");
+            Label_Spieleinstellungen.setText(titel);
 
+            titel = bundle.getString("lab_Sprache");
+            lab_Sprache.setText(titel);
+
+            titel = bundle.getString("Label_SchiriStandVerw");
+            Label_SchiriStandVerw.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
         }
+
+
+
 
 
     }
