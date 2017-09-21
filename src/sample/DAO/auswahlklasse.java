@@ -22,13 +22,88 @@ import java.util.Hashtable;
 public class auswahlklasse
 {
 
+
+
+
+
+    public static Dictionary<String, Spieler> getSpielererfolgreich() {
+        return spielererfolgreich;
+    }
+
+    public static void setSpielererfolgreich(Dictionary<String, Spieler> spielererfolgreich) {
+        auswahlklasse.spielererfolgreich = spielererfolgreich;
+    }
+
+    public static ObservableList getObs_erf_spieler() {
+        return obs_erf_spieler;
+    }
+
+    public static void setObs_erf_spieler(ObservableList obs_erf_spieler) {
+        auswahlklasse.obs_erf_spieler = obs_erf_spieler;
+    }
+
+    public static ObservableList getObs_vereine_erfolgreich() {
+        return obs_vereine_erfolgreich;
+    }
+
+    public static void setObs_vereine_erfolgreich(ObservableList obs_vereine_erfolgreich) {
+        auswahlklasse.obs_vereine_erfolgreich = obs_vereine_erfolgreich;
+    }
+
+    public static ObservableList getObs_upd_f_spieler() {
+        return obs_upd_f_spieler;
+    }
+
+    public static void setObs_upd_f_spieler(ObservableList obs_upd_f_spieler) {
+        auswahlklasse.obs_upd_f_spieler = obs_upd_f_spieler;
+    }
+
+    public static Dictionary<String, Spieler> getSpielerupdate() {
+        return spielerupdate;
+    }
+
+    public static void setSpielerupdate(Dictionary<String, Spieler> spielerupdate) {
+        auswahlklasse.spielerupdate = spielerupdate;
+    }
+
+    private static Dictionary<String , Spieler> spielerupdate = new Hashtable<>();
+    private static Dictionary<String , Spieler> spielererfolgreich = new Hashtable<>();
+    private static ObservableList obs_erf_spieler=FXCollections.observableArrayList();
+    private static ObservableList obs_vereine_erfolgreich=FXCollections.observableArrayList();
+    private static ObservableList obs_upd_f_spieler=FXCollections.observableArrayList();
     private static DashboardController dashboardController;
     private static Turnier_ladenController turnier_ladenController;
     private static KlassenuebersichtController klassenuebersichtController;
     private static Klasse_hinzufügenController klasse_hinzufügenController;
     private static EinstellungenController einstellungenController;
     private static NeuesTurnierController neuesTurnierController;
+    private static Spieler_hinzufuegenController spieler_hinzufuegenController;
+    private static Spieler_vorhandenController spieler_vorhandenController;
+    private static SpielsystemController spielsystemController;
 
+    public static Spieler_hinzufuegenController getSpieler_hinzufuegenController() {
+        return spieler_hinzufuegenController;
+    }
+
+    public static void setSpieler_hinzufuegenController(Spieler_hinzufuegenController spieler_hinzufuegenController) {
+        auswahlklasse.spieler_hinzufuegenController = spieler_hinzufuegenController;
+    }
+
+    public static Spieler_vorhandenController getSpieler_vorhandenController() {
+        return spieler_vorhandenController;
+    }
+
+    public static void setSpieler_vorhandenController(Spieler_vorhandenController spieler_vorhandenController) {
+        auswahlklasse.spieler_vorhandenController = spieler_vorhandenController;
+    }
+
+    public static SpielsystemController getSpielsystemController() {
+        return spielsystemController;
+    }
+
+    public static void setSpielsystemController(SpielsystemController spielsystemController) {
+        auswahlklasse.spielsystemController = spielsystemController;
+    }
 
     private static  TurnierDAO turnierDAO = new TurnierDAOimpl();
 
@@ -97,9 +172,17 @@ public class auswahlklasse
 
 
 
+    private static Dictionary<Spieler, ObservableList> dict_doppelte_spieler = new Hashtable<Spieler, ObservableList>();
+
+    public static Dictionary<Spieler, ObservableList> getDict_doppelte_spieler() {
+        return dict_doppelte_spieler;
+    }
+
+    public static void setDict_doppelte_spieler(Dictionary<Spieler, ObservableList> dict_doppelte_spieler) {
+        auswahlklasse.dict_doppelte_spieler = dict_doppelte_spieler;
+    }
 
     private static Dictionary<Integer, Verein> vereine = new Hashtable<Integer, Verein>();
-    private static Dictionary<String, Stage> stagesdict = new Hashtable<String,Stage>();
     private static Dictionary<Integer, Spieler> spieler = new Hashtable<Integer,Spieler>();
     private static Spielklasse aktuelleSpielklassenAuswahl = null;
     private static Turnier aktuelleTurnierAuswahl = null;
@@ -117,9 +200,6 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
         auswahlklasse.vereine = vereine;
     }
 
-    public static void setStagesdict(Dictionary<String, Stage> stagesdict) {
-        auswahlklasse.stagesdict = stagesdict;
-    }
 
     public static ObservableList getTurniere() {
         return turniere;
@@ -179,24 +259,9 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
         return updateSpieler;
     }
 
-    public static int getTab() {
-        return tab;
-    }
 
-    public static void setTab(int tab) {
-        auswahlklasse.tab = tab;
-    }
 
     private static Spieler updateSpieler;
-    private static int tab;
-
-    public static void setTabAuswahl(Spieler spieler, int tabspeichern)
-    {
-        updateSpieler=spieler;
-        tab=tabspeichern;
-
-
-    }
 
 
     public static ArrayList<Spieler> getVorhandeneSpieler() {
@@ -247,15 +312,6 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
     }
 
 
-
-    public static Dictionary<String, Stage> getStagesdict() {
-
-        return stagesdict;
-    }
-
-    public static void addStagesdict(Stage stage, String string) {
-        stagesdict.put(string,stage);
-    }
     /*public Dictionary<Integer, Spielklasse> getSpielklasseDict() {
         spielklassen=spielklasseDAO.getAllSpielklassenDict();
         return spielklassen;

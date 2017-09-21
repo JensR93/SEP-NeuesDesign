@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.DAO.*;
 import sample.Spiel;
@@ -49,6 +50,8 @@ public class Turnier_ladenController extends Application implements Initializabl
     public TableColumn TurnierNameSpalte;
     @FXML
     public TableColumn TurnierIDSpalte;
+    @FXML
+    private Text t_TurnierLaden;
     @FXML
     private StackPane holderPane;
     @FXML
@@ -157,10 +160,17 @@ public void tabelleReload()
             try {
                 ResourceBundle bundle = ResourceBundle.getBundle(baseName);
                 titel = bundle.getString("TurnierNameSpalte");
+                TurnierNameSpalte.setText(titel);
+
+                titel = bundle.getString("t_TurnierLaden");
+                t_TurnierLaden.setText(titel);
+
             } catch (MissingResourceException e) {
                 System.err.println(e);
             }
-            TurnierNameSpalte.setText(titel);
+
+
+
 
         turnierlisteLaden();
 
@@ -283,7 +293,10 @@ public void tabelleReload()
                                 //Turnier löschen
                                 boolean erfolg2 = t.delete(clickedRow);
                                 if (erfolg2) {
-                                    auswahlklasse.InfoBenachrichtigung("Turnier löschen erfolgreich", clickedRow.getName() + " wurde gelöscht.");
+                                    ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+                                    String titel1 = bundle.getString("Label_Spieleinstellungen");
+                                    String titel2 = bundle.getString("Label_Spieleinstellungen");
+                                    auswahlklasse.InfoBenachrichtigung("Titel löschen", "Das Turnier "+ clickedRow.getName()+" wurde gelöscht");
 
                                     auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
 
@@ -385,6 +398,7 @@ public void tabelleReload()
 
                 FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
                 fxmlLoaderKlassenuebersicht.load();
+
                 auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
                 auswahlklasse.getDashboardController().allesFreigeben();
                 auswahlklasse.getDashboardController().createPages();

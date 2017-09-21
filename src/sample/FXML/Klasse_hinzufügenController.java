@@ -1,4 +1,5 @@
 package sample.FXML;
+import com.jfoenix.controls.JFXRadioButton;
 import sample.Enums.Niveau;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -61,6 +62,12 @@ public class Klasse_hinzufügenController implements Initializable
 
     @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
+
+    @FXML
+    public JFXRadioButton radio_11mitVerl;
+
+    @FXML
+    public JFXRadioButton radio_11ohneVerl;
 
     private static int index_niveau=0;
     private static int index_diszipin=0;
@@ -152,11 +159,19 @@ public class Klasse_hinzufügenController implements Initializable
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
             titel = bundle.getString("b_klasseSpeichern");
+            b_klasseSpeichern.setText(titel);
+
+            titel = bundle.getString("radio_11mitVerl");
+            radio_11mitVerl.setText(titel);
+
+            titel = bundle.getString("radio_11ohneVerl");
+            radio_11ohneVerl.setText(titel);
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
         }
-        b_klasseSpeichern.setText(titel);
+
 
 
 

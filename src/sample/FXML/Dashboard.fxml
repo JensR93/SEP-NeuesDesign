@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1360.0" styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1360.0" styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.DashboardController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -217,7 +217,7 @@
                   <Insets />
                </GridPane.margin>
                <center>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fonteffect" text="BADMINTON TURNIERVERWALTUNG" textAlignment="CENTER" wrappingWidth="468.13671875" BorderPane.alignment="CENTER">
+                  <Text fx:id="t_Btv" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fonteffect" text="BADMINTON TURNIERVERWALTUNG" textAlignment="CENTER" wrappingWidth="468.13671875" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
