@@ -33,6 +33,10 @@ public class EinstellungenController implements Initializable {
     private Label lab_aktiveSpiele;
     @FXML
     private Label lab_gespielSpiele;
+    @FXML
+    private JFXButton rdVerlierer1; //Deutsch?
+    @FXML
+    private JFXButton rdVerlierer2; //Englisch?
 
     @FXML
     private GridPane gridPane;
@@ -95,6 +99,19 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("lab_gespielSpiele");
             lab_gespielSpiele.setText(titel);
+
+            titel = bundle.getString("rdVerlierer1");
+            rdVerlierer1.setText(titel);
+
+            titel = bundle.getString("rdVerlierer2");
+            rdVerlierer2.setText(titel);
+
+            titel = bundle.getString("rdGewinner");
+            rdGewinner.setText(titel);
+
+            titel = bundle.getString("rdVerlierer");
+            rdVerlierer.setText(titel);
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
