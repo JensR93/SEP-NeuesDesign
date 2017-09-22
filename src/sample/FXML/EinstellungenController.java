@@ -20,50 +20,58 @@ public class EinstellungenController implements Initializable {
     String titel ="";
 
     @FXML
-    private Label Label_Spieleinstellungen;
-    @FXML
-    private Label lab_Sprache;
-    @FXML
-    private Label Label_SchiriStandVerw;
-    @FXML
-    private Label lab_VormSchiri;
+    private JFXButton btnClose21;
+
     @FXML
     private Label lab_ausstehSpiel;
+
     @FXML
     private Label lab_aktiveSpiele;
+
     @FXML
     private Label lab_gespielSpiele;
-    @FXML
-    private JFXButton rdVerlierer1; //Deutsch?
-    @FXML
-    private JFXButton rdVerlierer2; //Englisch?
 
     @FXML
-    private GridPane gridPane;
+    private Label lab_VormSchiri;
 
     @FXML
-    private ToggleGroup Language;
+    private Label lab_Sprache;
 
     @FXML
-    private JFXRadioButton rdVerlierer;
-
-    @FXML
-    private ToggleGroup level;
+    private Label Label_SchiriStandVerw;
 
     @FXML
     private JFXRadioButton rdGewinner;
 
     @FXML
+    private ToggleGroup Vormerkung;
+
+    @FXML
+    private JFXRadioButton rdVerlierer;
+
+    @FXML
     private JFXRadioButton rdAus;
 
     @FXML
-    private JFXButton btnClose21;
+    private JFXRadioButton rdVerlierer1;
 
     @FXML
-    private JFXButton btnClose2111;
+    private ToggleGroup Sprache;
 
     @FXML
-    private JFXButton btnClose21111;
+    private JFXRadioButton rdVerlierer2;
+
+    @FXML
+    private Label Label_Spieleinstellungen;
+
+    @FXML
+    private Label Label_Drucker;
+
+    @FXML
+    private JFXButton btn_DruckerAendern;
+
+    @FXML
+    private JFXButton btn_TestseiteDrucken;
 
     @FXML
     void exit(ActionEvent event) {
@@ -111,6 +119,21 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("rdVerlierer");
             rdVerlierer.setText(titel);
+
+            titel = bundle.getString("rdAus");
+            rdAus.setText(titel);
+
+            titel = bundle.getString("btnClose21");
+            btnClose21.setText(titel);
+
+            titel = bundle.getString("Label_Drucker");
+            Label_Drucker.setText(titel);
+
+            titel = bundle.getString("btn_DruckerAendern");
+            btn_DruckerAendern.setText(titel);
+
+            titel = bundle.getString("btn_TestseiteDrucken");
+            btn_TestseiteDrucken.setText(titel);
 
         }
         catch ( MissingResourceException e ) {

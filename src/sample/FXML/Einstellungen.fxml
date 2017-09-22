@@ -204,7 +204,7 @@
                <children>
                   <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="260.0" text="Drucker" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <Label fx:id="Label_Drucker" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="260.0" text="Drucker" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -229,7 +229,7 @@
                               <Insets left="90.0" right="90.0" />
                            </GridPane.margin>
                         </JFXTextField>
-                        <JFXButton fx:id="btnClose21111" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="200.0" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                        <JFXButton fx:id="btn_DruckerAendern" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="200.0" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Drucker ändern" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -243,7 +243,7 @@
                               <Insets left="90.0" right="90.0" />
                            </GridPane.margin>
                         </JFXButton>
-                        <JFXButton fx:id="btnClose2111" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="200.0" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                        <JFXButton fx:id="btn_TestseiteDrucken" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="200.0" onAction="#exit" prefHeight="39.0" prefWidth="260.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Testseite Drucken" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

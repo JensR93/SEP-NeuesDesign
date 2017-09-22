@@ -21,6 +21,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import org.omg.CORBA.INITIALIZE;
@@ -43,6 +44,10 @@ import java.util.*;
  * Created by jens on 20.09.2017.
  */
 public class SpielsystemController implements Initializable {
+
+    String baseName = "resources.Main";
+    String titel ="";
+
     //region Deklaration
     TableColumn<Team,Integer> setzplatz = new TableColumn("Setzplatz");
     //Dictionary<Integer, Team> dicttest = new Hashtable<>();
@@ -98,10 +103,13 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private JFXRadioButton radio_trostJa;
+
     @FXML
     private FontAwesomeIconView pfeil_links;
+
     @FXML
     private FontAwesomeIconView pfeil_rechts;
+
     @FXML
     private JFXRadioButton radio_trostNein;
 
@@ -126,6 +134,42 @@ public class SpielsystemController implements Initializable {
     @FXML
     private JFXRadioButton radio_platzDreiAusspielen;
 
+    @FXML
+    private Text t_spielsystem;
+
+    @FXML
+    private Text t_Gruppengröße;
+
+    @FXML
+    private Text t_AnzahlWeiterkom;
+
+    @FXML
+    private RadioButton rb_Gruppe;
+
+    @FXML
+    private RadioButton rb_ko;
+
+    @FXML
+    private Text t_Trostrunde;
+
+    @FXML
+    private Tab tab_Setzliste;
+
+    @FXML
+    private Text t_Endrunde;
+
+    @FXML
+    private JFXRadioButton radio_platzDreiAusspielenNein;
+
+    @FXML
+    private Text t_Platz3;
+
+    @FXML
+    private Text t_AnzahlRunden;
+
+
+
+    @FXML
     private ArrayList<Team> team_setzliste = new ArrayList<>();
 
     Dictionary<Integer,Spielklasse> turnierauswahlspielklassendict = null;
@@ -993,6 +1037,74 @@ public class SpielsystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("t_spielsystem");
+            t_spielsystem.setText(titel);
+
+            titel = bundle.getString("radio_gruppe");
+            radio_gruppe.setText(titel);
+
+            titel = bundle.getString("radio_gruppeMitE");
+            radio_gruppeMitE.setText(titel);
+
+            titel = bundle.getString("radio_ko");
+            radio_ko.setText(titel);
+
+            titel = bundle.getString("radio_schweizer");
+            radio_schweizer.setText(titel);
+
+            titel = bundle.getString("t_Gruppengröße");
+            t_Gruppengröße.setText(titel);
+
+            titel = bundle.getString("t_AnzahlWeiterkom");
+            t_AnzahlWeiterkom.setText(titel);
+
+            titel = bundle.getString("rb_Gruppe");
+            rb_Gruppe.setText(titel);
+
+            titel = bundle.getString("rb_ko");
+            rb_ko.setText(titel);
+
+            titel = bundle.getString("t_Trostrunde");
+            t_Trostrunde.setText(titel);
+
+            titel = bundle.getString("tab_Setzliste");
+            tab_Setzliste.setText(titel);
+
+            titel = bundle.getString("tabsperst");
+            tabsperst.setText(titel);
+
+            titel = bundle.getString("t_Endrunde");
+            t_Endrunde.setText(titel);
+
+            titel = bundle.getString("radio_trostJa");
+            radio_trostJa.setText(titel);
+
+            titel = bundle.getString("radio_trostNein");
+            radio_trostNein.setText(titel);
+
+            titel = bundle.getString("radio_platzDreiAusspielen");
+            radio_platzDreiAusspielen.setText(titel);
+
+            titel = bundle.getString("radio_platzDreiAusspielenNein");
+            radio_platzDreiAusspielenNein.setText(titel);
+
+            titel = bundle.getString("t_Platz3");
+            t_Platz3.setText(titel);
+
+            titel = bundle.getString("t_AnzahlRunden");
+            t_AnzahlRunden.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
         auswahlklasse.setSpielsystemController(this);
         obs_setzliste.addListener((ListChangeListener)(c -> {
             anzahlsetzlistespieler.setText(obs_setzliste.size()+" Spieler");
