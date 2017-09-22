@@ -71,7 +71,7 @@
                               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                            </GridPane.margin>
                         </JFXColorPicker>
-                        <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ausstehende Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+                        <Label fx:id="lab_ausstehSpiel" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ausstehende Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -84,7 +84,7 @@
                               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                            </GridPane.margin>
                         </JFXColorPicker>
-                        <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Aktive Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+                        <Label fx:id="lab_aktiveSpiele" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Aktive Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -97,7 +97,7 @@
                               <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                            </GridPane.margin>
                         </JFXColorPicker>
-                        <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="163.0" text="Gespielte Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                        <Label fx:id="lab_gespielSpiele" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="163.0" text="Gespielte Spiele:" textFill="#757575" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -105,7 +105,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="91.0" text="Vormerkung als Schiedsrichter:" textFill="#757575" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                        <Label fx:id="lab_VormSchiri" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="91.0" text="Vormerkung als Schiedsrichter:" textFill="#757575" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

@@ -25,6 +25,14 @@ public class EinstellungenController implements Initializable {
     private Label lab_Sprache;
     @FXML
     private Label Label_SchiriStandVerw;
+    @FXML
+    private Label lab_VormSchiri;
+    @FXML
+    private Label lab_ausstehSpiel;
+    @FXML
+    private Label lab_aktiveSpiele;
+    @FXML
+    private Label lab_gespielSpiele;
 
     @FXML
     private GridPane gridPane;
@@ -75,6 +83,18 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("Label_SchiriStandVerw");
             Label_SchiriStandVerw.setText(titel);
+
+            titel = bundle.getString("lab_VormSchiri");
+            lab_VormSchiri.setText(titel);
+
+            titel = bundle.getString("lab_ausstehSpiel");
+            lab_ausstehSpiel.setText(titel);
+
+            titel = bundle.getString("lab_aktiveSpiele");
+            lab_aktiveSpiele.setText(titel);
+
+            titel = bundle.getString("lab_gespielSpiele");
+            lab_gespielSpiele.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
