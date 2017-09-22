@@ -96,6 +96,8 @@ public class SpielErgebnisEintragenController implements Initializable{
 
     @FXML
     void pressbtn_Abbbruch(ActionEvent event) {
+        leereSatzfelder();
+        auswahlklasse.getDashboardController().setNodeSpieluebersicht();
 
     }
     public boolean gueltigesErgebnis(int s11, int s12){
@@ -180,10 +182,14 @@ public class SpielErgebnisEintragenController implements Initializable{
 
     }
 
-    private void leereSatzfelder(TextField textField1, TextField textField2)
+    private void leereSatzfelder()
     {
-        textField1.setText("");
-        textField2.setText("");
+        ts1_1.setText("");
+        ts1_2.setText("");
+        ts2_1.setText("");
+        ts2_2.setText("");
+        ts3_1.setText("");
+        ts3_2.setText("");
     }
 
 

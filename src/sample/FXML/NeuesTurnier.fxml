@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
    </columnConstraints>
@@ -37,7 +37,7 @@
          </GridPane.margin></JFXDatePicker>
       <HBox prefHeight="92.0" prefWidth="69.0" GridPane.rowIndex="4">
          <children>
-            <JFXButton fx:id="btn_abbrechen" text="Abbrechen">
+            <JFXButton fx:id="btn_abbrechen" onAction="#Abbrechen" text="Abbrechen">
                <graphic>
                   <FontAwesomeIconView glyphName="CLOSE" size="20" />
                </graphic></JFXButton>

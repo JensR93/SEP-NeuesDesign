@@ -187,7 +187,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Auslosung" textFill="#757575" GridPane.rowIndex="5">
+                  <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeVisualisierung" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Auslosung" textFill="#757575" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

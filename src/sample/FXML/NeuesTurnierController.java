@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.DAO.*;
+import sample.ExcelImport;
 import sample.Feld;
 import sample.Turnier;
 
@@ -48,6 +49,11 @@ public class NeuesTurnierController implements Initializable{
     private Button btn_starten;
 
 
+    @FXML
+    public void Abbrechen(ActionEvent event) throws Exception
+    {
+        auswahlklasse.getDashboardController().setNodeTurnier();
+    }
 
     @FXML
     public void erstelleTurnier(ActionEvent event) throws Exception {

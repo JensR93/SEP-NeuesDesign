@@ -188,10 +188,11 @@ public class Spieler {
 			int key=(int) enumeration.nextElement();
 			Spielklasse spielklasse = auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielklasse();
 
-			if(auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().equals(spieler))
-			{
+			if(auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei()!=null) {
+				if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().equals(spieler)) {
 
-				vorhandenspielklassen.add(spielklasse);
+					vorhandenspielklassen.add(spielklasse);
+				}
 			}
 			if(auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei()!=null)
 			{

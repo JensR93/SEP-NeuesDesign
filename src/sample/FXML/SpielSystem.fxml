@@ -24,9 +24,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="754.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
+<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="754.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
    <tabs>
-      <Tab text="Setzliste">
+      <Tab fx:id="tab_Setzliste" text="Setzliste">
         <content>
           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -141,7 +141,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spielsystem:" GridPane.halignment="RIGHT">
+                        <Text fx:id="t_spielsystem" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielsystem:" GridPane.halignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -159,9 +159,9 @@
                         </HBox>
                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <children>
-                              <AnchorPane fx:id="gruppe">
+                              <AnchorPane fx:id="gruppe" visible="false">
                                  <children>
-                                    <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -175,9 +175,9 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="gruppeMitEndrunde" prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="gruppeMitEndrunde" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
-                                    <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -189,34 +189,34 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppengröße:" GridPane.halignment="RIGHT" />
+                                          <Text fx:id="t_Gruppengröße" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppengröße:" GridPane.halignment="RIGHT" />
                                           <JFXTextField fx:id="textField_gruppenGroesse" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </JFXTextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Weiterkommender:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                          <Text fx:id="t_AnzahlWeiterkom" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Weiterkommender:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                           <JFXTextField fx:id="textField_anzahlWeiterkommender" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </JFXTextField>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                          <Text fx:id="t_Endrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <JFXRadioButton text="Gruppe" />
-                                                <JFXRadioButton text="K.O." />
+                                                <JFXRadioButton fx:id="rb_Gruppe" text="Gruppe" />
+                                                <JFXRadioButton fx:id="rb_ko" text="K.O." />
                                              </children>
                                           </HBox>
                                        </children>
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="koSystem" prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="koSystem" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
                                     <AnchorPane fx:id="koTrostRundeJa" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <GridPane visible="false">
+                                          <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -228,7 +228,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
+                                                <Text fx:id="t_Trostrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
                                                 <AnchorPane fx:id="koTrostRundeNein" GridPane.columnIndex="1">
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -238,16 +238,16 @@
                                                                   <ToggleGroup fx:id="Trostrunde" />
                                                                </toggleGroup>
                                                             </JFXRadioButton>
-                                                            <JFXRadioButton text="Nein" toggleGroup="$Trostrunde" />
+                                                            <JFXRadioButton fx:id="radio_trostNein" text="Nein" toggleGroup="$Trostrunde" />
                                                          </children>
                                                       </HBox>
                                                    </children>
                                                 </AnchorPane>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                                <Text fx:id="t_Platz3" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <children>
-                                                      <JFXRadioButton text="Ja" />
-                                                      <JFXRadioButton text="Nein" />
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielen" text="Ja" />
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielenNein" text="Nein" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -256,9 +256,9 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="schweizerSystem" prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane fx:id="schweizerSystem" prefHeight="200.0" prefWidth="200.0" visible="false">
                                  <children>
-                                    <GridPane visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
@@ -270,7 +270,7 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Runden:" GridPane.halignment="RIGHT" />
+                                          <Text fx:id="t_AnzahlRunden" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Runden:" GridPane.halignment="RIGHT" />
                                           <JFXTextField focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />

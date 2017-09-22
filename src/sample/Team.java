@@ -129,7 +129,21 @@ public class Team {
         return spielklasse;
     }
 
-    public Spieler getSpielerEins() {
+    public Spieler getSpielerEins_MIX() {
+
+        if(spielklasse.toString().toUpperCase().contains("MIX"))
+        {
+            if(spielerEins.getGeschlecht())
+            {
+                return spielerEins;
+            }
+            if(spielerZwei!=null)
+            {
+            if(spielerZwei.getGeschlecht())
+            {
+                return spielerZwei;
+            }}
+        }
         return spielerEins;
     }
 
@@ -215,7 +229,34 @@ public class Team {
         return setzplatz;
     }
 
+    public Spieler getSpielerEins() {
+        return spielerEins;
+    }
+
+    public void setSpielerEins(Spieler spielerEins) {
+        this.spielerEins = spielerEins;
+    }
+
     public Spieler getSpielerZwei() {
+        return spielerZwei;
+    }
+
+    public void setSpielerZwei(Spieler spielerZwei) {
+        this.spielerZwei = spielerZwei;
+    }
+
+    public Spieler getSpielerZwei_MIX() {
+
+        if(spielklasse.toString().toUpperCase().contains("MIX")&&spielerZwei!=null)
+        {
+
+            if(!spielerEins.getGeschlecht()&&!getSpielerEins_MIX().equals(spielerEins))
+            {
+                return spielerEins;
+            }
+
+
+        }
         return spielerZwei;
     }
 
