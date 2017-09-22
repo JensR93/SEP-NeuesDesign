@@ -172,15 +172,6 @@ public class Klasse_hinzufügenController implements Initializable
             System.err.println( e );
         }
 
-
-
-
-
-
-
-
-
-
         try {
 
             comboBoxFill();

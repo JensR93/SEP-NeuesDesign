@@ -288,6 +288,7 @@ public class SpielsystemController implements Initializable {
         }
         auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
         auswahlklasse.getDashboardController().setNodeSpieluebersicht();
+        auswahlklasse.getVisualisierungController().klassenTabsErstellen();
     }
 
     private void gruppeMitEndrundeStarten() {
