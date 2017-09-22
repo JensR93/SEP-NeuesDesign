@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import sample.*;
 import sample.FXML.*;
+import sample.Spielsysteme.Spielsystem;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -34,29 +35,10 @@ public class auswahlklasse
         auswahlklasse.spielererfolgreich = spielererfolgreich;
     }
 
-    public static ObservableList getObs_erf_spieler() {
-        return obs_erf_spieler;
-    }
 
-    public static void setObs_erf_spieler(ObservableList obs_erf_spieler) {
-        auswahlklasse.obs_erf_spieler = obs_erf_spieler;
-    }
 
-    public static ObservableList getObs_vereine_erfolgreich() {
-        return obs_vereine_erfolgreich;
-    }
 
-    public static void setObs_vereine_erfolgreich(ObservableList obs_vereine_erfolgreich) {
-        auswahlklasse.obs_vereine_erfolgreich = obs_vereine_erfolgreich;
-    }
 
-    public static ObservableList getObs_upd_f_spieler() {
-        return obs_upd_f_spieler;
-    }
-
-    public static void setObs_upd_f_spieler(ObservableList obs_upd_f_spieler) {
-        auswahlklasse.obs_upd_f_spieler = obs_upd_f_spieler;
-    }
 
     public static Dictionary<String, Spieler> getSpielerupdate() {
         return spielerupdate;
@@ -66,11 +48,19 @@ public class auswahlklasse
         auswahlklasse.spielerupdate = spielerupdate;
     }
 
+
     private static Dictionary<String , Spieler> spielerupdate = new Hashtable<>();
     private static Dictionary<String , Spieler> spielererfolgreich = new Hashtable<>();
-    private static ObservableList obs_erf_spieler=FXCollections.observableArrayList();
+
+    public static ObservableList getObs_vereine_erfolgreich() {
+        return obs_vereine_erfolgreich;
+    }
+
+    public static void setObs_vereine_erfolgreich(ObservableList obs_vereine_erfolgreich) {
+        auswahlklasse.obs_vereine_erfolgreich = obs_vereine_erfolgreich;
+    }
+
     private static ObservableList obs_vereine_erfolgreich=FXCollections.observableArrayList();
-    private static ObservableList obs_upd_f_spieler=FXCollections.observableArrayList();
     private static DashboardController dashboardController;
     private static Turnier_ladenController turnier_ladenController;
     private static KlassenuebersichtController klassenuebersichtController;
@@ -80,6 +70,15 @@ public class auswahlklasse
     private static Spieler_hinzufuegenController spieler_hinzufuegenController;
     private static Spieler_vorhandenController spieler_vorhandenController;
     private static SpielsystemController spielsystemController;
+    private static SpieluebersichtController spieluebersichtController;
+
+    public static SpieluebersichtController getSpieluebersichtController() {
+        return spieluebersichtController;
+    }
+
+    public static void setSpieluebersichtController(SpieluebersichtController spieluebersichtController) {
+        auswahlklasse.spieluebersichtController = spieluebersichtController;
+    }
 
     public static Spieler_hinzufuegenController getSpieler_hinzufuegenController() {
         return spieler_hinzufuegenController;

@@ -402,7 +402,15 @@ public void tabelleReload()
                 auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
                 auswahlklasse.getDashboardController().allesFreigeben();
                 auswahlklasse.getDashboardController().createPages();
-                auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
+                if(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().size()>0)
+                {
+                    auswahlklasse.getDashboardController().setNodeSpieluebersicht();
+                }
+                else
+                {
+                    auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
+                }
+
 
                 //holderPane.getParent().
             } catch (Exception e) {

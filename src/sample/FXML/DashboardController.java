@@ -8,10 +8,9 @@ package sample.FXML;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
@@ -35,9 +34,10 @@ public class DashboardController implements Initializable{
     String titel ="";
 
     private JFXTabPane Spieler,Klassehinzufuegen,Spielsystem;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden;
-    private GridPane Klassenuebersicht,Zeitplan;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan, SpielErgebnisEintragen;
+
     private StackPane Turnier,home;
+    private VBox Spieluebersicht;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -148,7 +148,7 @@ public class DashboardController implements Initializable{
             Klassehinzufuegen =  FXMLLoader.load(getClass().getResource("Klasse_hinzufügen.fxml"));
 
 
-
+            Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
 
 
@@ -166,6 +166,7 @@ public class DashboardController implements Initializable{
 
     public void meldeformularImport()
     {
+        //Listen löschen nicht vollständig
         setNodeSpieler();
         if(auswahlklasse.getSpielererfolgreich().size()>0) {
             String s ="";
@@ -215,7 +216,20 @@ public class DashboardController implements Initializable{
             //ExcelImport.getObs_vereine_erfolgreich().clear();
         }
     }
+     public void setNodeSpieluebersicht()
+    {
+        try {
+            Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(Spieluebersicht);
+    }
+    @FXML public void setNodeSpieluebersicht(ActionEvent event)
+    {
 
+        setNode(Spieluebersicht);
+    }
     @FXML public void setNodeSpieler(ActionEvent event)
     {
         setNode(Spieler);
@@ -223,6 +237,15 @@ public class DashboardController implements Initializable{
     public void setNodeSpieler()
     {
         setNode(Spieler);
+    }
+    public void setNodeSpielergebnis()
+    {
+        try {
+            SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(SpielErgebnisEintragen);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
@@ -266,6 +289,15 @@ public class DashboardController implements Initializable{
             if(Spieler_vorhanden==null)
             {
                 Spieler_vorhanden =  FXMLLoader.load(getClass().getResource("Spieler_vorhanden.fxml"));
+            }
+            else
+            {
+                auswahlklasse.setSpielererfolgreich(new Hashtable<>());
+                auswahlklasse.setSpielerupdate(new Hashtable<>());
+                auswahlklasse.getObs_vereine_erfolgreich().clear();
+               // auswahlklasse.getSpieler_vorhandenController().resetteDaten();
+                System.out.println(auswahlklasse.getSpielererfolgreich());
+                auswahlklasse.getSpieler_vorhandenController().Tabellefuelle();
             }
 
         } catch (IOException e) {

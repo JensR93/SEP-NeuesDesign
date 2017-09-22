@@ -240,6 +240,10 @@ public class Spiel {
 		this.spielsystem.getSpielklasse().getTurnier().getObs_alleSpiele().add(this);
 
 	}
+	public int getSpielklasseid()
+	{
+		return  this.spielsystem.getSpielklasse().getSpielklasseID();
+	}
 
 	public Spiel(int systemSpielID, int setzPlatzHeim, int setzPlatzGast, Spielsystem spielsystem) {
 		this.systemSpielID = systemSpielID; //Constructor für SpielTree in KO-System

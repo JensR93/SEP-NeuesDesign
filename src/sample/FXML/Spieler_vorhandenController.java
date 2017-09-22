@@ -81,6 +81,13 @@ public class Spieler_vorhandenController implements Initializable
     //ArrayList<Spieler> vorhandeneSpieler;
     ObservableList<Spieler> obs_vorhandeneSpieler = FXCollections.observableArrayList();
     ObservableList<Spieler> obs_neuerSpieler = FXCollections.observableArrayList();
+public void resetteDaten()
+{
+    obs_vorhandeneSpieler.clear();
+    obs_neuerSpieler.clear();
+    updateSpieler=null;
+    getAktuellerSpieler=null;
+}
 
     @FXML
     public  void btn_UpdateSpielerPopup (ActionEvent event)
@@ -117,7 +124,7 @@ public class Spieler_vorhandenController implements Initializable
             }
             else {
                 try {
-                    pressBtn_LadeSpielerHinzu(event);
+                    pressBtn_LadeSpielerHinzu();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -133,41 +140,43 @@ public class Spieler_vorhandenController implements Initializable
     @FXML
     public void btn_SpeicherSpielerPopup(ActionEvent event)
     {
-        Spieler spielerzumHinzufuegen = getAktuellerSpieler;
-        System.out.println(spielerzumHinzufuegen.getNName());
-        spielerzumHinzufuegen.getSpielerDAO().create(spielerzumHinzufuegen);
-        if(auswahlklasse.getSpieler().get(spielerzumHinzufuegen)==null) {
-            auswahlklasse.addSpieler(spielerzumHinzufuegen);
-        }
+if(getAktuellerSpieler!=null) {
+    System.out.println(getAktuellerSpieler.getNName());
+    getAktuellerSpieler.getSpielerDAO().create(getAktuellerSpieler);
+    if (auswahlklasse.getSpieler().get(getAktuellerSpieler) == null) {
+        auswahlklasse.addSpieler(getAktuellerSpieler);
+        auswahlklasse.getSpieler().put(getAktuellerSpieler.getSpielerID(), getAktuellerSpieler);
         System.out.println("Erfolg");
+    }
+    if (auswahlklasse.getSpielererfolgreich() != null) {
+        if (auswahlklasse.getSpielererfolgreich().get(getAktuellerSpieler.toString()) == null) {
+            auswahlklasse.getSpielererfolgreich().put(getAktuellerSpieler.toString(), getAktuellerSpieler);
+        }
+    }
+    auswahlklasse.getDict_doppelte_spieler().remove(getAktuellerSpieler);
+    auswahlklasse.InfoBenachrichtigung("Spieler erfolreich hinzugefügt",getAktuellerSpieler.toString()+" wurde hinzugefügt.");
+}
+else
+{
+    System.out.println();
+}
 
-        auswahlklasse.getSpieler().put(spielerzumHinzufuegen.getSpielerID(),spielerzumHinzufuegen);
         try {
-            if(auswahlklasse.getDict_doppelte_spieler().size()>0&&spielerzumHinzufuegen!=null)
+            if(auswahlklasse.getDict_doppelte_spieler().size()>0)
             {
-                System.out.println("Neuer Frame");
+
                 obs_neuerSpieler.clear();
                 obs_vorhandeneSpieler.clear();
                 getAktuellerSpieler=null;
                 updateSpieler=null;
 
                 Tabellefuelle();
-                auswahlklasse.InfoBenachrichtigung("Spieler erfolreich hinzugefügt",spielerzumHinzufuegen.toString()+" wurde hinzugefügt.");
-                auswahlklasse.getDict_doppelte_spieler().remove(spielerzumHinzufuegen);
 
-                if(auswahlklasse.getSpielererfolgreich()!=null)
-                {
-                    if(auswahlklasse.getSpielererfolgreich().get(spielerzumHinzufuegen.toString())==null) {
-                        auswahlklasse.getSpielererfolgreich().put(spielerzumHinzufuegen.toString(), spielerzumHinzufuegen);
-                    }}
-                else
-                {
-                    //ExcelImport.setObs_vorh(null);
-                }
+
             }
             else {
 
-                pressBtn_LadeSpielerHinzu(event);
+                pressBtn_LadeSpielerHinzu();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -176,8 +185,8 @@ public class Spieler_vorhandenController implements Initializable
 
     }
     //region Button
-    public void pressBtn_LadeSpielerHinzu (ActionEvent event) throws Exception {
-auswahlklasse.getDashboardController().meldeformularImport();
+    public void pressBtn_LadeSpielerHinzu () throws Exception {
+        auswahlklasse.getDashboardController().meldeformularImport();
 
 
         //ExcelImport ex = new ExcelImport();
@@ -193,25 +202,105 @@ auswahlklasse.getDashboardController().meldeformularImport();
     }
 
     //Endregion
-    private void Tabellefuelle()
+    public void Tabellefuelle()
     {
+
+        Boolean elementevorhanden=true;
+
+
+
 
         Enumeration enumeration = auswahlklasse.getDict_doppelte_spieler().keys();
 
         if(enumeration.hasMoreElements())
         {
             Spieler key = (Spieler) enumeration.nextElement();
+
+
+            if(auswahlklasse.getSpielererfolgreich().size()>0) {
+                if (auswahlklasse.getSpielererfolgreich().get(key.toString()) != null) {
+
+
+                    int[] rpunktealt = key.getrPunkte();
+                    for (int i = 0; i < auswahlklasse.getSpielererfolgreich().get(key.toString()).getrPunkte().length; i++) {
+
+                        if (rpunktealt[i] != 0) {
+                            System.out.println(rpunktealt[i]);
+                            if (auswahlklasse.getSpielererfolgreich().get(key.toString()).getrPunkte()[i] == 0) {
+                                auswahlklasse.getSpielererfolgreich().get(key.toString()).getrPunkte()[i] = Integer.valueOf(rpunktealt[i]);
+                            }
+
+                        }
+
+                    }
+                    //spielererfolgreich.get(aktuellerSpieler.toString()).setrPunkte(rpunktekomplett);
+                    // aktuellerSpieler.setrPunkte(rpunktekomplett);
+                    // auswahlklasse.getSpieler().get( spielererfolgreich.get(aktuellerSpieler.getSpielerID())).setrPunkte(rpunktekomplett);
+                    key.getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(key.toString()));
+                    System.out.println("Spieler wurde schon hinzugefügt, RLP aktualisiert       "+key);
+
+                    elementevorhanden=false;
+
+                }
+            }
+            //System.out.println(aktuellerSpieler.toString()+String.valueOf(aktuellerSpieler.getrPunkte()));
+
             obs_vorhandeneSpieler=auswahlklasse.getDict_doppelte_spieler().get(key);
+
+            if(obs_vorhandeneSpieler==null)
+            {
+                elementevorhanden=false;
+            }
+            else if(obs_vorhandeneSpieler.size()==0)
+            {
+                elementevorhanden=false;
+            }
+
+            if(elementevorhanden)
+            {
+
+
+
+
             obs_neuerSpieler.add(key);
             getAktuellerSpieler=key;
+                setTable();
+            }
+            else
+            {
+                System.out.println("llere tabelle");
+                if(auswahlklasse.getDict_doppelte_spieler().get(key)!=null)
+                {
+                    auswahlklasse.getDict_doppelte_spieler().remove(key);
+                }
+
+                if(auswahlklasse.getDict_doppelte_spieler().size()>0)
+                {
+                    Tabellefuelle();
+                }
+                else
+                {
+                    try {
+                        pressBtn_LadeSpielerHinzu();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
+
+
+
+
+
+
 /*        else
         {
             obs_vorhandeneSpieler=auswahlklasse.getObs_vorhandeneSpielerSpielerhinzu();
             obs_neuerSpieler.add(auswahlklasse.getNeuerSpielerSpielerhinzu());
         }*/
 
-        setTable();
+
 
         //ExcelImport.getDict_doppelte_spieler().remove(ExcelImport.getAktuellerSpieler());
 
@@ -219,7 +308,7 @@ auswahlklasse.getDashboardController().meldeformularImport();
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-auswahlklasse.setSpieler_vorhandenController(this);
+        auswahlklasse.setSpieler_vorhandenController(this);
         Tabellefuelle();
         try
         {
@@ -478,7 +567,10 @@ auswahlklasse.setSpieler_vorhandenController(this);
         });
 
         if (obs_vorhandeneSpieler.size() > 0)
+        {
             popup_tabelle2.getSelectionModel().select(obs_vorhandeneSpieler.get(0));
+        }
+
 
         popup_tabelle2.refresh();
     }
