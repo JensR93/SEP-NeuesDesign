@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -283,6 +284,8 @@ public class SpielsystemController implements Initializable {
             spielerVornameSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("vName"));
             TableColumn<Spieler,String> spielerNachnameSpalte = new TableColumn("Nachname");
             spielerNachnameSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("nName"));
+            TableColumn<ImageView,String> spielerGeschlechtSpalte = new TableColumn("Geschlecht");
+            spielerGeschlechtSpalte.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iGeschlecht"));
             TableColumn<Spieler,String> spielerVereinSpalte = new TableColumn("Verein");
             spielerVereinSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("verein"));
             TableColumn<Spieler,Date> spielerGeburtsdatumSpalte = new TableColumn("Geburtsdatum");
@@ -290,7 +293,7 @@ public class SpielsystemController implements Initializable {
             TableColumn<Spieler,Integer> spielerRLP = new TableColumn("Ranglistenpunkte");
             spielerRLP.setCellValueFactory(new PropertyValueFactory<Spieler,Integer>("RLPanzeigen"));
             spielsystem_spielerliste_alleSpieler.setItems(obs_spieler);
-            spielsystem_spielerliste_alleSpieler.getColumns().addAll(spielerVornameSpalte,spielerNachnameSpalte,spielerRLP,spielerVereinSpalte,spielerGeburtsdatumSpalte);
+            spielsystem_spielerliste_alleSpieler.getColumns().addAll(spielerVornameSpalte,spielerNachnameSpalte,spielerGeschlechtSpalte,spielerRLP,spielerVereinSpalte,spielerGeburtsdatumSpalte);
         }
         else{
             System.out.println("kann Spielerliste nicht laden");
@@ -332,6 +335,7 @@ public class SpielsystemController implements Initializable {
         }
         auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
         auswahlklasse.getDashboardController().setNodeSpieluebersicht();
+        auswahlklasse.getVisualisierungController().klassenTabsErstellen();
     }
 
     private void gruppeMitEndrundeStarten() {
@@ -1020,8 +1024,8 @@ public class SpielsystemController implements Initializable {
             //team.getTeamDAO().addSpieler(team, false);
             //setzlisteDAO.create(ausgewaehlte_spielklasse.getSetzliste().size(),team,ausgewaehlte_spielklasse);
 
-
-            l_meldungsetzliste1.setText(team.getSpielerEins().getVName()+" "+team.getSpielerEins().getNName()+" und "+team.getSpielerZwei().getVName()+" "+team.getSpielerZwei().getNName()+" wurden der Setzliste hinzugefügt!");
+            team=new Team();
+            //l_meldungsetzliste1.setText(team.getSpielerEins().getVName()+" "+team.getSpielerEins().getNName()+" und "+team.getSpielerZwei().getVName()+" "+team.getSpielerZwei().getNName()+" wurden der Setzliste hinzugefügt!");
 
         }
         spielsystem_setzliste.refresh();
@@ -1111,7 +1115,15 @@ public class SpielsystemController implements Initializable {
         }));
         tabsperst.setDisable(false);
 
-        spielsystem_spielerliste_alleSpieler.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        if(ausgewaehlte_spielklasse.toString().toUpperCase().contains("MIX"))
+        {
+            spielsystem_spielerliste_alleSpieler.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        }
+        else
+        {
+            spielsystem_spielerliste_alleSpieler.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        }
+
         spielsystem_setzliste.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 //        System.out.println("------------------"+ausgewaehlte_spielklasse.isSetzliste_gesperrt());
 
@@ -1222,7 +1234,8 @@ public class SpielsystemController implements Initializable {
                             && event.getClickCount() == 2) {
                         Spieler clickedRow = (Spieler) row.getItem();
                         //(((Node)(event.getSource())).getScene().getWindow().hide();
-                        addSpieler(clickedRow);
+                        addSpielerMixCheck(clickedRow);
+
                     }
                     if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
                         Spieler clickedRow = (Spieler) row.getItem();
@@ -1296,17 +1309,31 @@ public class SpielsystemController implements Initializable {
 
                             }
                         });
-                        MenuItem item4 ;
+                        MenuItem item4 = null;
                         if(spielsystem_spielerliste_alleSpieler.getSelectionModel().getSelectedItems().size()>1)
                         {
-                            item4 = new MenuItem("Alle markierten Teams zur Setzliste hinzufügen");
+                            item4 = new MenuItem("Alle markierten Spieler zur Setzliste hinzufügen");
                         }
                         else
                         {
-                            item4 = new MenuItem("Team zur Setzliste hinzufügen");
+                            if(team!=null&&team.toString()==null)
+                            {
+                                item4 = new MenuItem("Team erstellen");
+                            }
+                            else if(team.getSpielerEins().getGeschlecht()&&!clickedRow.getGeschlecht()||!team.getSpielerEins().getGeschlecht()&&clickedRow.getGeschlecht())
+                            {
+                                item4 = new MenuItem("Als Doppelpartner von "+team.getSpielerEins());
+                            }
+
                         }
 
-                        item4.setOnAction(new EventHandler<ActionEvent>() {
+
+                        // Add MenuItem to ContextMenu
+                        contextMenu.getItems().clear();
+
+                        if(item4!=null)
+                        {
+                            item4.setOnAction(new EventHandler<ActionEvent>() {
 
                             @Override
                             public void handle(ActionEvent event) {
@@ -1318,9 +1345,9 @@ public class SpielsystemController implements Initializable {
 
                             }
                         });
-                        // Add MenuItem to ContextMenu
-                        contextMenu.getItems().clear();
-                        contextMenu.getItems().addAll(item4, item1, item2, item3);
+                            contextMenu.getItems().add(item4);
+                        }
+                        contextMenu.getItems().addAll(item1, item2, item3);
 
                         // When user right-click on Circle
                         spielsystem_spielerliste_alleSpieler.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
@@ -1385,6 +1412,31 @@ public class SpielsystemController implements Initializable {
 
     }//Ende Initialize
 
+    private void addSpielerMixCheck(Spieler clickedRow) {
+        if(ausgewaehlte_spielklasse.toString().toUpperCase().contains("MIX"))
+        {
+            if(team.toString()!=null)
+            {
+                if(team.getSpielerEins().getGeschlecht()&&!clickedRow.getGeschlecht()||!team.getSpielerEins().getGeschlecht()&&clickedRow.getGeschlecht())
+                {
+                    addSpieler(clickedRow);
+                }
+                else
+                {
+                    auswahlklasse.InfoBenachrichtigung("Gleiches Geschlecht","Bei Mixed muss Geschlecht verschieden sein");
+                }
+            }
+            else
+            {
+                addSpieler(clickedRow);
+            }
+        }
+        else
+        {
+            addSpieler(clickedRow);
+        }
+    }
+
     private void setzplatzZuruecksetzen(Team clickedRow) {
         removeTeam(clickedRow);
         if(ausgewaehlte_spielklasse.isEinzel())
@@ -1404,7 +1456,7 @@ public class SpielsystemController implements Initializable {
         for(int i=0;i<markierteTeams.size();i++)
         {
             Spieler spieler = (Spieler) markierteTeams.get(i);
-            addSpieler(spieler);
+            addSpielerMixCheck(spieler);
         }
     }
     private void markierteTeamszurSpielerliste() {

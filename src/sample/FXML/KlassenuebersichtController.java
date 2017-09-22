@@ -10,24 +10,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import sample.DAO.auswahlklasse;
 import sample.Spielklasse;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by Manuel Hüttermann on 19.09.2017.
@@ -117,6 +111,25 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
 
     }
 
+    private void sortiereSpielKlasse() {
+        obs_spielklasse.sort(new Comparator<Spielklasse>() {
+            @Override
+            public int compare(Spielklasse o1, Spielklasse o2) {
+                int a=0;
+                int b=0;
+                if(o1.toString().toUpperCase().contains("HERREN"))
+                {
+                    a=+100000;
+                }
+                if(o2.toString().toUpperCase().contains("HERREN"))
+                {
+                    b=+100000;
+                }
+                return a-b;
+            }
+        });
+
+    }
     public void SpielklassenHinzufuegen() {
         klasssemixed_vbox.getChildren().clear();
         klassseeinzel_vbox.getChildren().clear();
@@ -124,6 +137,7 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
         if(auswahlklasse.getAktuelleTurnierAuswahl()!=null)
         {
             obs_spielklasse=auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen();
+            sortiereSpielKlasse();
         }
 
         try

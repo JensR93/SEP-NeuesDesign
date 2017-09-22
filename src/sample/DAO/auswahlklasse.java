@@ -71,6 +71,15 @@ public class auswahlklasse
     private static Spieler_vorhandenController spieler_vorhandenController;
     private static SpielsystemController spielsystemController;
     private static SpieluebersichtController spieluebersichtController;
+    private static VisualisierungController visualisierungController;
+
+    public static VisualisierungController getVisualisierungController() {
+        return visualisierungController;
+    }
+
+    public static void setVisualisierungController(VisualisierungController visualisierungController) {
+        auswahlklasse.visualisierungController = visualisierungController;
+    }
 
     public static SpieluebersichtController getSpieluebersichtController() {
         return spieluebersichtController;
