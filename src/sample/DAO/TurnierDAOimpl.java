@@ -23,8 +23,11 @@ public class TurnierDAOimpl implements TurnierDAO {
 
         String sql = "INSERT INTO Turnier("
                 + "Datum, "
+                + "startzeitEinzel, "
+                + "startzeitDoppel, "
+                + "startzeitMixed, "
                 + "Name) "
-                + "VALUES(?,?)";
+                + "VALUES(?,?,?,?,?)";
 
         try {
             Connection con = SQLConnection.getCon();
@@ -36,7 +39,10 @@ public class TurnierDAOimpl implements TurnierDAO {
             smtID.close();
             PreparedStatement smt = con.prepareStatement(sql);
             smt.setObject(1, turnier.getDatum());
-            smt.setString(2, turnier.getName());
+            smt.setTimestamp(2,Timestamp.valueOf(turnier.getStartzeitEinzel()));
+            smt.setTimestamp(3,Timestamp.valueOf(turnier.getStartzeitDoppel()));
+            smt.setTimestamp(4,Timestamp.valueOf(turnier.getStartzeitMixed()));
+            smt.setString(5, turnier.getName());
             smt.executeUpdate();
             smt.close();
 
@@ -83,6 +89,9 @@ public class TurnierDAOimpl implements TurnierDAO {
                 "Datum = ?, " +
                 "Name= ?, " +
                 "SpielerPausenZeit = ?, " +
+                "startzeitEinzel = ?, " +
+                "startzeitDoppel = ?, " +
+                "startzeitMixed = ?, " +
                 "Zaehlweise = ? " +
                 "WHERE Turnierid = ?";
         try {
@@ -92,8 +101,11 @@ public class TurnierDAOimpl implements TurnierDAO {
             smt.setObject(2, turnier.getDatum());
             smt.setString(3, turnier.getName());
             smt.setInt(4, turnier.getSpielerPausenZeit());
-            smt.setInt(5, turnier.getZaehlweise());
-            smt.setInt(6, turnier.getTurnierid());
+            smt.setTimestamp(5, Timestamp.valueOf(turnier.getStartzeitEinzel()));
+            smt.setTimestamp(6, Timestamp.valueOf(turnier.getStartzeitDoppel()));
+            smt.setTimestamp(7, Timestamp.valueOf(turnier.getStartzeitMixed()));
+            smt.setInt(8, turnier.getZaehlweise());
+            smt.setInt(9, turnier.getTurnierid());
             smt.executeUpdate();
             smt.close();
 
@@ -197,7 +209,10 @@ public class TurnierDAOimpl implements TurnierDAO {
                 int turnierid  = TurnierResult.getInt("TurnierID");
                 String turnierName = TurnierResult.getString("Name");
                 Date Datum = TurnierResult.getDate("Datum");
-                turniere.add(new Turnier(turnierName,turnierid, Datum.toLocalDate()));
+                Timestamp startzeitEinzel = TurnierResult.getTimestamp("startzeitEinzel");
+                Timestamp startzeitDoppel = TurnierResult.getTimestamp("startzeitEinzel");
+                Timestamp startzeitMixed = TurnierResult.getTimestamp("startzeitEinzel");
+                turniere.add(new Turnier(Datum.toLocalDate(), turnierName,turnierid, startzeitEinzel.toLocalDateTime(),startzeitDoppel.toLocalDateTime(),startzeitMixed.toLocalDateTime()));
             }
             smt.close();
 

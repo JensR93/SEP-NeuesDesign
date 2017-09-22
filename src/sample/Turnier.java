@@ -3,14 +3,12 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 
 public class Turnier {
 	private int matchDauer;
@@ -21,6 +19,9 @@ public class Turnier {
 	private int spielerPausenZeit = 10;
 	private int turnierid;
 	private boolean zeitPlanAktuell;
+	private LocalDateTime startzeitEinzel;
+	private LocalDateTime startzeitDoppel;
+	private LocalDateTime startzeitMixed;
 
 	private  Dictionary<Integer, Spielklasse> spielklassen = new Hashtable<Integer,Spielklasse>();
 	private  ArrayList<Feld> felder = new ArrayList<>();
@@ -73,15 +74,36 @@ public class Turnier {
 		this.spiele.remove(spiel.getSpielID());
 	}
 
-	public Turnier(String name, int turnierid, LocalDate datum) {
+	/*public Turnier(String name, int turnierid, LocalDate datum) {
 		this.datum = datum;
 		this.name = name;
 		this.turnierid = turnierid;
+	}*/
+
+	public Turnier(LocalDate datum, String name, int turnierid, LocalDateTime startzeitEinzel, LocalDateTime startzeitDoppel, LocalDateTime startzeitMixed) {
+		this.datum = datum;
+		this.name = name;
+		this.turnierid = turnierid;
+		this.startzeitEinzel = startzeitEinzel;
+		this.startzeitDoppel = startzeitDoppel;
+		this.startzeitMixed = startzeitMixed;
 	}
 
 	public Turnier(String name, LocalDate datum) {
 		this.datum = datum;
 		this.name = name;
+	}
+
+	public LocalDateTime getStartzeitEinzel() {
+		return startzeitEinzel;
+	}
+
+	public LocalDateTime getStartzeitDoppel() {
+		return startzeitDoppel;
+	}
+
+	public LocalDateTime getStartzeitMixed() {
+		return startzeitMixed;
 	}
 
 	public void setTurnierid(int turnierid) {

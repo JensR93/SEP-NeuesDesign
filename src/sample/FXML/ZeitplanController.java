@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,12 +36,13 @@ public class ZeitplanController implements Initializable{
     private LocalTime startZeitEinzel = LocalTime.now().minusHours(10);
     private LocalTime startZeitDoppel = LocalTime.now().minusHours(5);
     private LocalTime startZeitMixed = LocalTime.now();
+    @FXML
+    private ScrollPane scrollpane_zeitplantabelle;
     ArrayList<ArrayList<Spiel>> zeitplanTabelle = new ArrayList<>();
     @FXML
     private GridPane grid_zeitplan;
     @FXML
     private TableView<ZeitplanRunde> tableview_runden;
-    @FXML
     private Canvas canvas_zeitplantabelle;
 
     @FXML
@@ -57,7 +59,7 @@ public class ZeitplanController implements Initializable{
     }
 
     private void tabelleZeichnen() {
-        GraphicsContext gc = canvas_zeitplantabelle.getGraphicsContext2D();
+        GraphicsContext gc;
 
         int zellenHoehe = 40;
         int zellenBreite = 120;
@@ -65,7 +67,10 @@ public class ZeitplanController implements Initializable{
         int yObenLinks =20;
 
         if(zeitplanTabelle.size()>0) {
-            canvas_zeitplantabelle = new Canvas(xObenLinks*2+zellenBreite*zeitplanTabelle.get(0).size(),zeitplanTabelle.size()*zeitplanTabelle.size()*zellenHoehe+yObenLinks*2);
+            //canvas_zeitplantabelle = new Canvas(xObenLinks*2+zellenBreite*zeitplanTabelle.get(0).size(),zeitplanTabelle.size()*zeitplanTabelle.size()*zellenHoehe+yObenLinks*2);
+            canvas_zeitplantabelle = new Canvas(5000,5000);
+            scrollpane_zeitplantabelle.setContent(canvas_zeitplantabelle);
+            gc = canvas_zeitplantabelle.getGraphicsContext2D();
             for (int i = 0; i < zeitplanTabelle.get(0).size(); i++) { //Spaltentitel erstellen
                 gc.beginPath();
                 gc.setStroke(Color.GREEN);
