@@ -866,9 +866,18 @@ public class SpielsystemController implements Initializable {
 
 
             TableColumn<Team,String> spielerEinsSpalte = new TableColumn("Spieler");
-            spielerEinsSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerEins"));
             TableColumn<Team,String> spielerZweiSpalte = new TableColumn("Partner");
-            spielerZweiSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerZwei"));
+            if(ausgewaehlte_spielklasse.toString().toUpperCase().contains("MIX"))
+            {
+                spielerEinsSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerEins_MIX"));
+                spielerZweiSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerZwei_MIX"));
+            }
+            else
+            {
+                spielerEinsSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerEins"));
+                spielerZweiSpalte.setCellValueFactory(new PropertyValueFactory<Team,String>("SpielerZwei"));
+            }
+
             TableColumn<Team,Integer> RLPSpalte = new TableColumn("RLP");
             RLPSpalte.setCellValueFactory(new PropertyValueFactory<Team,Integer>("RLPanzeigen"));
 

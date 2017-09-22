@@ -32,7 +32,8 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private JFXColorPicker color_ausstehend;
-
+    @FXML
+    private JFXColorPicker color_zukunft;
     @FXML
     private JFXColorPicker color_gespielt;
     @FXML
@@ -90,6 +91,26 @@ public class EinstellungenController implements Initializable {
     void exit(ActionEvent event) {
 
     }
+    @FXML
+    public void pressbtn_Standardeinstellungen(ActionEvent event)
+    {
+         ZukuenftigeSpieleFarbe="#ff0000" ;
+         AusstehendeSpieleFarbe="#006400" ;
+         AktiveSpieleFarbe="#00008b" ;
+         GespielteSpieleFarbe = "#ff0000";
+
+         Sprache = "de";
+         SchiedsrichterStandard=true;
+         VormerkungSchiedsrichter="Gewinner";
+        Einstellungen_schreiben();
+        SetzeEinstellungen();
+        try {
+            auswahlklasse.getSpieluebersichtController().printSpielTable();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
+
     String ZukuenftigeSpieleFarbe="#ff0000" ;
     String AusstehendeSpieleFarbe="#006400" ;
     String AktiveSpieleFarbe="#00008b" ;
@@ -128,7 +149,7 @@ public class EinstellungenController implements Initializable {
         color_ausstehend.setValue(Color.valueOf(AusstehendeSpieleFarbe));
         color_aktiv.setValue(Color.valueOf(AktiveSpieleFarbe));
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
-
+        color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
 
         if(Sprache.equals("de"))
         {
@@ -236,6 +257,22 @@ public class EinstellungenController implements Initializable {
     }
 
     private void changeListener() {
+        color_zukunft.setOnAction(e ->
+        {
+            //System.out.println(color_ausstehend.getValue());
+
+            if(!color_zukunft.getValue().equals(Color.valueOf(ZukuenftigeSpieleFarbe)))
+            {
+                System.out.println("Neue Farbe");
+                ZukuenftigeSpieleFarbe=color_zukunft.getValue().toString();
+                Einstellungen_schreiben();
+                try {
+                    auswahlklasse.getSpieluebersichtController().printSpielTable();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         color_ausstehend.setOnAction(e ->
         {
             //System.out.println(color_ausstehend.getValue());

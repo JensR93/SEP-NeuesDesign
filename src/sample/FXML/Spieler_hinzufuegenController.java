@@ -147,7 +147,18 @@ public class Spieler_hinzufuegenController implements Initializable{
         }
 
     }
+    @FXML
+    public void UpdateAbbrechen(ActionEvent event)
+    {
+        tab_sphin.setDisable(false);
+        tab_spbea.setDisable(false);
+        b_abbrechen.setVisible(false);
+        beschriftungHinzu();
+        felderLeeren();
+        Update=false;
 
+        tabpane_spieler.getSelectionModel().select(tab_spbea);
+    }
     private void felderLeeren()
     {
         t_vn.setText("");
@@ -270,7 +281,6 @@ public class Spieler_hinzufuegenController implements Initializable{
         spielerTabelleAktualisieren();
         tabpane_spieler.getSelectionModel().select(tab_spbea);
         tabelle_spielerliste.getSelectionModel().select(spieler_neu);
-        throw new Exception("");
     }
 
 
@@ -684,9 +694,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
                         @Override
                         public void handle(ActionEvent event) {
-                            tabpane_spieler.getSelectionModel().select(tab_sphin);
-                            FuelleFelder(clickedRow);
-                            spieler_neu=clickedRow;
+                            UpdateSpieler(clickedRow);
                         }
                     });
                     Menu item4 = new Menu("zur Setzliste hinzufügen");
@@ -1055,6 +1063,8 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         if(tabelle_spielerliste.getSelectionModel().getSelectedItem()!=null )
         {
             FuelleFelder(clickedRow);
+            b_abbrechen.setVisible(true);
+
             System.out.println("geklickt: "+clickedRow.getNName());
 
             System.out.println("turnier="+auswahlklasse.getAktuelleTurnierAuswahl().getName());
@@ -1095,24 +1105,5 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             e.printStackTrace();
         }
     }
-    @FXML
-    public void pressBtn_Abbrechen(ActionEvent event) throws Exception {
-        try {
-            // a.getStages().get(0).close();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    @FXML
-    public void pressBtn_AbbrechenBearbeiten (ActionEvent event) throws Exception {
-        try {
-            tab_sphin.setDisable(false);
-            tab_spbea.setDisable(false);
-
-            tabpane_spieler.getSelectionModel().select(tab_spbea);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

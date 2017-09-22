@@ -68,9 +68,7 @@ public class Klasse_hinzufügenController implements Initializable
 
     @FXML
     public JFXRadioButton radio_11ohneVerl;
-
-    private static int index_niveau=0;
-    private static int index_diszipin=0;
+    ;
     private static int index_anzahlRunden=0;
 
 
@@ -83,18 +81,13 @@ public class Klasse_hinzufügenController implements Initializable
 
 
             //combo_anzahlRunden.getItems().setAll("1", "2", "3");
-            combo_niveau.getSelectionModel().select(index_niveau);
-            combo_disziplin.getSelectionModel().select(index_diszipin);
+            combo_niveau.getSelectionModel().select(0);
+            combo_disziplin.getSelectionModel().select(0);
             //combo_anzahlRunden.getSelectionModel().select(1);
         }
         catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void setNiveau_auswahl(ActionEvent event){
-        index_niveau = combo_niveau.getSelectionModel().getSelectedIndex();
     }
 
 
@@ -175,8 +168,8 @@ public class Klasse_hinzufügenController implements Initializable
         try {
 
             comboBoxFill();
-            combo_niveau.getSelectionModel().select(index_niveau);
-            combo_disziplin.getSelectionModel().select(index_diszipin);
+            combo_niveau.getSelectionModel().select(0);
+            combo_disziplin.getSelectionModel().select(0);
         } catch (Exception e) {
             e.printStackTrace();
         }

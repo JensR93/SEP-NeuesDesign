@@ -729,23 +729,6 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item9 = new MenuItem("Kompletten Block markieren");
-                    item9.setOnAction(new EventHandler<ActionEvent>() {
-                        ArrayList<Spiel> spielselect = new ArrayList<>();
-
-                        @Override
-                        public void handle(ActionEvent event) {
-                            for (int i = 0; i < sortListe.size(); i++) {
-                                if (sortListe.get(i).getSpielklasseString().equals(clickedRow.getSpielklasseString())) {
-                                    System.out.println(sortListe.get(i));
-                                    spielselect.add(sortListe.get(i));
-                                    tabelle_spiele.getSelectionModel().select(sortListe.get(i));
-                                }
-                            }
-
-
-                        }
-                    });
 
                     contextMenu.getItems().clear();
                     //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
@@ -807,14 +790,14 @@ public class SpieluebersichtController implements Initializable {
                                 }
                             }
                         }
-                        contextMenu.getItems().addAll(item3, item4, item9);
+                        contextMenu.getItems().addAll(item3, item4);
                     }
                     if (clickedRow.getStatus() == 2) {   //aktiv
-                        contextMenu.getItems().addAll(item1, item2, item5, item6, item7, item9);
+                        contextMenu.getItems().addAll(item1, item2, item5, item6, item7);
                     }
                     if (clickedRow.getStatus() == 3) {
                         //gespielt
-                        contextMenu.getItems().addAll(item1, item8, item9);
+                        contextMenu.getItems().addAll(item1, item8);
                     }
 
                     // Add MenuItem to ContextMenu

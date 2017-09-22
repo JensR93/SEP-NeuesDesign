@@ -108,7 +108,7 @@
                               <Insets right="100.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="b_abbrechen" text="Abbrechen">
+                        <JFXButton fx:id="b_abbrechen" onAction="#UpdateAbbrechen" text="Abbrechen" visible="false">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
