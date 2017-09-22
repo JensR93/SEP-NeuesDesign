@@ -1,5 +1,8 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.PauseTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,32 +12,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 import org.controlsfx.control.CheckComboBox;
 import sample.*;
 import sample.DAO.auswahlklasse;
-import sample.Spielsysteme.GruppeMitEndrunde;
-import sample.Spielsysteme.Spielsystem;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -62,24 +54,24 @@ public class SpieluebersichtController implements Initializable {
     @FXML
     private GridPane gridPane_main;
     @FXML
-    private CheckBox check_gespielteSpiele = new CheckBox();
+    private JFXCheckBox check_gespielteSpiele = new JFXCheckBox();
     @FXML
-    private CheckBox check_aktiveSpiele = new CheckBox();
+    private JFXCheckBox check_aktiveSpiele = new JFXCheckBox();
     @FXML
-    private CheckBox check_ausstehendeSpiele = new CheckBox();
+    private JFXCheckBox check_ausstehendeSpiele = new JFXCheckBox();
     @FXML
-    private CheckBox check_zukuenftigeSpiele = new CheckBox();
+    private JFXCheckBox check_zukuenftigeSpiele = new JFXCheckBox();
 
     @FXML
     public TableView tabelle_spiele;
     @FXML
     private Tab tab_spieluebersicht = new Tab();
     @FXML
-    private Tab tab_turnierbaum = new Tab();
+    JFXTabPane tabPane_spielklassen = new JFXTabPane();
     @FXML
-    TabPane tabPane_spielklassen = new TabPane();
-    @FXML
-    private TextField tspielsuche;
+    private JFXTextField tspielsuche;
+
+    private HBox hBox =new HBox();
 
     //endregion
 
@@ -108,8 +100,8 @@ public class SpieluebersichtController implements Initializable {
     }
 
 
-    private void printSpielTable() throws Exception {
-        tabelle_spiele.getColumns().removeAll();
+    public void printSpielTable() throws Exception {
+        tabelle_spiele.getColumns().clear();
         if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
             TableColumn<Spiel, String> spielNummerSpalte = tableColoumnsetCellFactory("#", "SpielNummer");
             TableColumn<Spiel, String> spielFeldSpalte = tableColoumnsetCellFactory("Feld", "FeldNr");
@@ -144,13 +136,13 @@ public class SpieluebersichtController implements Initializable {
                             setAlignment(Pos.CENTER_RIGHT);
                         }
                         if (spiel.getStatus() == 3) {
-                            setTextFill(Color.RED);
+                            setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
                         } else if (spiel.getStatus() == 2) {
-                            setTextFill(Color.DARKBLUE);
+                            setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
                         } else if (spiel.getStatus() == 1) {
-                            setTextFill(Color.DARKGREEN);
+                            setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAusstehendeSpieleFarbe()));
                         } else {
-                            setTextFill(Color.BLACK);
+                            setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getZukuenftigeSpieleFarbe()));
                         }
                     }
                 }
@@ -560,33 +552,43 @@ public class SpieluebersichtController implements Initializable {
     }
 
     private void layoutErstellen() {
+        hBox.getChildren().clear();
+        checkComboBox.setConverter(new StringConverter<Spielklasse>() {
+            @Override
+            public String toString(Spielklasse object) {
+                return object.toString();
+            }
+
+            @Override
+            public Spielklasse fromString(String string) {
+                return null;
+            }
+        });
         lspielklassen = new Label("Spielklassen");
-        tspielsuche = new TextField("");
+        tspielsuche = new JFXTextField("");
+        tspielsuche.setLabelFloat(true);
         tspielsuche.setPromptText("Spielsuche");
         gridPane_main.getChildren().add(tspielsuche);
+        hBox.getChildren().addAll(lspielklassen,checkComboBox);
+        hBox.setSpacing(150);
         GridPane.setColumnIndex(tspielsuche, 0);
         GridPane.setRowIndex(tspielsuche, 0);
 
 
-        gridPane_main.getChildren().add(lspielklassen);
-        GridPane.setColumnIndex(lspielklassen, 1);
-        GridPane.setRowIndex(lspielklassen, 0);
         gridPane_main.getChildren().add(checkComboBox);
-        GridPane.setColumnIndex(checkComboBox, 2);
+        GridPane.setColumnIndex(checkComboBox, 5);
         GridPane.setRowIndex(checkComboBox, 0);
         gridPane_main.getChildren().add(check_aktiveSpiele);
-        GridPane.setColumnIndex(check_aktiveSpiele, 3);
+        GridPane.setColumnIndex(check_aktiveSpiele, 1);
         GridPane.setRowIndex(check_aktiveSpiele, 0);
         gridPane_main.getChildren().add(check_ausstehendeSpiele);
-        GridPane.setColumnIndex(check_ausstehendeSpiele, 4);
+        GridPane.setColumnIndex(check_ausstehendeSpiele, 2);
         GridPane.setRowIndex(check_ausstehendeSpiele, 0);
         gridPane_main.getChildren().add(check_gespielteSpiele);
-        GridPane.setColumnIndex(check_gespielteSpiele, 5);
+        GridPane.setColumnIndex(check_gespielteSpiele, 3);
         GridPane.setRowIndex(check_gespielteSpiele, 0);
         gridPane_main.getChildren().add(check_zukuenftigeSpiele);
-        GridPane.setColumnIndex(check_zukuenftigeSpiele, 6);
-        GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
-        GridPane.setColumnIndex(check_zukuenftigeSpiele, 7);
+        GridPane.setColumnIndex(check_zukuenftigeSpiele, 4);
         GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
         check_aktiveSpiele.setText("Aktive Spiele");
         check_aktiveSpiele.setSelected(true);
@@ -596,7 +598,7 @@ public class SpieluebersichtController implements Initializable {
         check_gespielteSpiele.setSelected(true);
         check_zukuenftigeSpiele.setText("Zukünftige Spiele");
         check_zukuenftigeSpiele.setSelected(true);
-        checkComboBox.setMaxWidth(400);
+        checkComboBox.setMaxWidth(800);
         checkComboBox.getItems().setAll(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen());
     }
 
@@ -838,15 +840,7 @@ public void spielInTabelleAuswaehlen(Spiel spiel)
     tabelle_spiele.getSelectionModel().select(spiel);
 }
     private void klassenTabsErstellen() {
-        tab_turnierbaum.setContent(tabPane_spielklassen);
-        for (int i = 0; i < auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size(); i++) {
-            Spielklasse spielklasse = auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().get(i);
-            if (spielklasse.getSpielsystem() != null) {
-                Tab tab = new Tab(spielklasse.toString());
-                tab.setClosable(false);
-                tabPane_spielklassen.getTabs().add(tab);
-            }
-        }
+    auswahlklasse.getDashboardController().setNodeVisualisierung();
     }
 
 
