@@ -17,6 +17,7 @@ import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -31,7 +32,9 @@ public class ZeitplanController implements Initializable{
     private ObservableList<Spiel> zeitplanDoppel = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanMixed = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
-
+    private LocalTime startZeitEinzel = LocalTime.now().minusHours(10);
+    private LocalTime startZeitDoppel = LocalTime.now().minusHours(5);
+    private LocalTime startZeitMixed = LocalTime.now();
     ArrayList<ArrayList<Spiel>> zeitplanTabelle = new ArrayList<>();
     @FXML
     private GridPane grid_zeitplan;
@@ -44,7 +47,7 @@ public class ZeitplanController implements Initializable{
     public void pressBtn_speichern(){
         ArrayList<ZeitplanRunde> neueRundenListe = new ArrayList<>();
         neueRundenListe.addAll(rundenListe);
-        zeitplanEinzel = Zeitplan.zeitplanErstellen(neueRundenListe,zeitplan);
+        zeitplanEinzel = Zeitplan.zeitplanErstellen(neueRundenListe);
         uebersichtZeichnen();
     }
 
@@ -55,11 +58,14 @@ public class ZeitplanController implements Initializable{
 
     private void tabelleZeichnen() {
         GraphicsContext gc = canvas_zeitplantabelle.getGraphicsContext2D();
+
         int zellenHoehe = 40;
-        int zellenBreite = 80;
+        int zellenBreite = 120;
         int xObenLinks = 20;
         int yObenLinks =20;
+
         if(zeitplanTabelle.size()>0) {
+            canvas_zeitplantabelle = new Canvas(xObenLinks*2+zellenBreite*zeitplanTabelle.get(0).size(),zeitplanTabelle.size()*zeitplanTabelle.size()*zellenHoehe+yObenLinks*2);
             for (int i = 0; i < zeitplanTabelle.get(0).size(); i++) { //Spaltentitel erstellen
                 gc.beginPath();
                 gc.setStroke(Color.GREEN);
@@ -77,15 +83,15 @@ public class ZeitplanController implements Initializable{
                 gc.stroke();
                 gc.closePath();
             }
-            for (int i = 0; i < zeitplanTabelle.size(); i++) {
-                zeileZeichnen(xObenLinks, yObenLinks + i*zellenHoehe, zellenBreite, zellenHoehe, gc, zeitplanTabelle.get(i));
+            for (int i = 1; i <= zeitplanTabelle.size(); i++) {
+                zeileZeichnen(xObenLinks, yObenLinks + i*zellenHoehe, zellenBreite, zellenHoehe, gc, zeitplanTabelle.get(i-1));
             }
         }
 
     }
 
     private void zeileZeichnen(int xObenLinks, int yObenLinks, int zellenBreite, int zellenHoehe, GraphicsContext gc, ArrayList<Spiel> spiele) {
-        for (int i = 0; i < spiele.size(); i++) { //Spaltentitel erstellen
+        for (int i = 0; i < spiele.size(); i++) {
             gc.beginPath();
             gc.setStroke(Color.GREEN);
             gc.setLineWidth(1);
@@ -103,28 +109,72 @@ public class ZeitplanController implements Initializable{
         }
     }
 
+    private ArrayList<ArrayList<ZeitplanRunde>> alleRundenHolen(){
+        ArrayList<ZeitplanRunde> einzelRunden;
+        ArrayList<ZeitplanRunde> doppelRunden;
+        ArrayList<ZeitplanRunde> mixedRunden;
+        einzelRunden = Zeitplan.getAlleRundenSortiert("EINZEL");
+        doppelRunden = Zeitplan.getAlleRundenSortiert("DOPPEL");
+        mixedRunden = Zeitplan.getAlleRundenSortiert("MIXED");
+        rundenListe.clear();
+        zeitplan.clear();
+        ArrayList<ArrayList<ZeitplanRunde>> alleDisziplinRunden = new ArrayList<>();
+        ArrayList<LocalTime> startZeiten = new ArrayList<>();
+        startZeiten.add(startZeitEinzel);
+        startZeiten.add(startZeitDoppel);
+        startZeiten.add(startZeitMixed);
+        startZeiten.sort(LocalTime::compareTo);
+        for (int i=0;i<startZeiten.size();i++){
+            if(startZeiten.get(i)==startZeitEinzel && einzelRunden !=null){
+                rundenListe.addAll(einzelRunden);
+                alleDisziplinRunden.add(einzelRunden);
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(einzelRunden,zeitplan));
+            }
+            if(startZeiten.get(i)==startZeitDoppel && doppelRunden !=null){
+                rundenListe.addAll(doppelRunden);
+                alleDisziplinRunden.add(doppelRunden);
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(doppelRunden,zeitplan));
+            }
+            if(startZeiten.get(i)==startZeitMixed && mixedRunden !=null){
+                rundenListe.addAll(mixedRunden);
+                alleDisziplinRunden.add(mixedRunden);
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(mixedRunden,zeitplan));
+            }
+        }
+        return alleDisziplinRunden;
+    }
+
     private void arrayAufteilen() {
         int anzahlFelder = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();
         ArrayList<Spiel> zeitplanKopie = new ArrayList<>();
         zeitplanKopie.addAll(zeitplan);
-
+        zeitplanTabelle.clear();
         if(zeitplanKopie.size()>0) {
-            zeitplanTabelle.add(new ArrayList<>());
-            for (int i = 0; i < anzahlFelder; i++) {
-                Spiel spiel = zeitplanKopie.get(0);
-                zeitplanKopie.remove(spiel);
-                zeitplanTabelle.get(zeitplanTabelle.size() - 1).add(spiel);
+            while (zeitplanKopie.size()>0) {
+                zeitplanTabelle.add(new ArrayList<>());
+                for (int i = 0; i < anzahlFelder; i++) {
+                    Spiel spiel = zeitplanKopie.get(0);
+                    zeitplanKopie.remove(spiel);
+                    zeitplanTabelle.get(zeitplanTabelle.size() - 1).add(spiel);
+                    if (zeitplanKopie.size() == 0) {
+                        return;
+                    }
+                }
             }
         }
-        if(zeitplanKopie.size()==0){
-            return;
-        }
 
+
+    }
+    public void pressBtn_optimalerZeitplan(){
+        alleRundenHolen();
+        uebersichtZeichnen();
+        tableColumnsErstellen();
+        tabelleZeichnen();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());
+        //Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());
         /*if (Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(),"EINZEL")!=null) {
 
             Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl(), "EINZEL");
@@ -137,15 +187,17 @@ public class ZeitplanController implements Initializable{
 
             Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl(), "MIXED");
         }*/
-        rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(), "EINZEL"));
+/*        rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(), "EINZEL"));
         rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(), "DOPPEL"));
         rundenListe.addAll(Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(), "MIXED"));
         sortiereRundenListe();
         tableColumnsErstellen();
         zeitplanEinzel=Zeitplan.getZeitplan("EINZEL");
         zeitplanDoppel=Zeitplan.getZeitplan("DOPPEL");
-        zeitplanMixed =Zeitplan.getZeitplan("MIXED");
+        zeitplanMixed =Zeitplan.getZeitplan("MIXED");*/
+        alleRundenHolen();
         uebersichtZeichnen();
+        tableColumnsErstellen();
     }
 
     private void sortiereRundenListe() {
@@ -165,6 +217,7 @@ public class ZeitplanController implements Initializable{
         index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
         rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
         anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
+        tableview_runden.getColumns().clear();
         tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
         tableview_runden.setItems(rundenListe);
     }

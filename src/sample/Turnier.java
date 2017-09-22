@@ -20,6 +20,7 @@ public class Turnier {
 	private int zaehlweise = 0; // 0=bis21 1=bis 11 mit Verlängerung 2=bis 11 ohne Verlängerung
 	private int spielerPausenZeit = 10;
 	private int turnierid;
+	private boolean zeitPlanAktuell;
 
 	private  Dictionary<Integer, Spielklasse> spielklassen = new Hashtable<Integer,Spielklasse>();
 	private  ArrayList<Feld> felder = new ArrayList<>();
@@ -141,6 +142,14 @@ public class Turnier {
 	public ArrayList<Feld> getFelder() {
 
 		return felder;
+	}
+
+	public boolean isZeitPlanAktuell() {
+		return zeitPlanAktuell;
+	}
+
+	public void setZeitPlanAktuell(boolean zeitPlanAktuell) {
+		this.zeitPlanAktuell = zeitPlanAktuell;
 	}
 
 	public void setFelder(ArrayList<Feld> felder) {

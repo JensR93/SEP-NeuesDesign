@@ -280,6 +280,24 @@ public class Spiel {
 			return null;
 		}
 	}
+	public boolean istTeamInSpiel(Team team){
+		if(team==gast||team==heim){
+			return true;
+		}
+		return false;
+	}
+	public String getErgebnisString(Team team1){
+		if(ergebnis!=null) {
+			if (team1 == heim) {
+				return getErgebnisString();
+			} else {
+				return ergebnis.toStringUmgedreht();
+			}
+		}
+		else{
+			return "";
+		}
+	}
 
 	public void setSpielsystem(Spielsystem spielsystem) {
 		this.spielsystem = spielsystem;

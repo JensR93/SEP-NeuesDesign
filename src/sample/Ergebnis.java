@@ -101,6 +101,14 @@ public class Ergebnis {
         }
         return ergebnis;
     }
+    public String toStringUmgedreht(){
+        String ergebnis = gast[0]+"-"+heim[0];
+        for (int i=1; i<gast.length;i++){
+            ergebnis=ergebnis+", "+gast[i]+"-"+heim[i];
+        }
+        return ergebnis;
+    }
+
 
     public ErgebnisDAO getErgebnisDAO() {
         return ergebnisDAO;
