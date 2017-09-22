@@ -130,6 +130,20 @@ public class Team {
     }
 
     public Spieler getSpielerEins() {
+
+        if(spielklasse.toString().toUpperCase().contains("MIX"))
+        {
+            if(spielerEins.getGeschlecht())
+            {
+                return spielerEins;
+            }
+            if(spielerZwei!=null)
+            {
+            if(spielerZwei.getGeschlecht())
+            {
+                return spielerZwei;
+            }}
+        }
         return spielerEins;
     }
 
@@ -216,6 +230,17 @@ public class Team {
     }
 
     public Spieler getSpielerZwei() {
+
+        if(spielklasse.toString().toUpperCase().contains("MIX")&&spielerZwei!=null)
+        {
+
+            if(!spielerEins.getGeschlecht()&&!getSpielerEins().equals(spielerEins))
+            {
+                return spielerEins;
+            }
+
+
+        }
         return spielerZwei;
     }
 

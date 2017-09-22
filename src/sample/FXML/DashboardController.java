@@ -347,13 +347,13 @@ public class DashboardController implements Initializable{
     {
         holderPane.getChildren().clear();
         holderPane.getChildren().add(node);
-        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+/*        FadeTransition ft = new FadeTransition(Duration.millis(1500));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
-        ft.play();
+        ft.play();*/
     }
 
     public void allesFreigeben(){
