@@ -195,10 +195,12 @@ public class Gruppe extends Spielsystem {
 				spiel.getSpielsystem().getSpielklasse().getTurnier().getObs_ausstehendeSpiele().add(spiel);*/
 				//spiel.setFreilosErgebnis();
 				if (spiel.getHeim().isFreilos()){
-					spiel.setErgebnis(new Ergebnis(0,21,0,21));
+					//spiel.setErgebnis(new Ergebnis(0,21,0,21));
+					spiel.setFreilosErgebnis();
 				}
 				else if(spiel.getGast().isFreilos()){
-					spiel.setErgebnis(new Ergebnis(21,0,21,0));
+					//spiel.setErgebnis(new Ergebnis(21,0,21,0));
+					spiel.setFreilosErgebnis();
 				}
 				spiel.getSpielDAO().update(spiel);
 			}

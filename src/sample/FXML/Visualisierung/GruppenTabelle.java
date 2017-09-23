@@ -16,12 +16,12 @@ import sample.Spielsysteme.Spielsystem;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class GruppenTabelle {
+public class GruppenTabelle implements Visualisierung {
     private Spielsystem spielsystem;
     private Tab tab;
     private int xObenLinksLeereZelle = 20;
     private int yObenLinksLeereZelle = 20;
-
+    private int zellenHoehePlatzierungsTabelle = 30;
     private int zellenBreite = 150;
     private int zellenHoehe = 50;
     private int xObenLinks = xObenLinksLeereZelle+zellenBreite; //Startpunkt
@@ -30,6 +30,11 @@ public class GruppenTabelle {
     public GruppenTabelle(Spielsystem spielsystem, Tab tab) {
         this.spielsystem = spielsystem;
         this.tab = tab;
+        spielsystem.setVisualisierung(this);
+    }
+
+    public void update(){
+        erstelleGruppenTabelle();
     }
 
     public void erstelleGruppenTabelle() {
@@ -217,9 +222,22 @@ public class GruppenTabelle {
         }
         int xObenLinksPlatzierungsTabelle = xObenLinksLeereZelle;
         int yObenLinksPlatzierungsTabelle = yObenLinksLeereZelle+zellenHoehe*2+anzahlTeilnehmer*zellenHoehe;
-        int zellenBreitePlatzierungsTabelle = 50;
-        int zellenHoehePlatzierungsTabelle = 20;
-        platzierungsTabelleErstellen(xObenLinksPlatzierungsTabelle,yObenLinksPlatzierungsTabelle,zellenBreitePlatzierungsTabelle,zellenHoehePlatzierungsTabelle,anzahlTeilnehmer,gc);
+        int xPlatzBreite = 20;
+        int xTeamSpielerBreite = 200;
+        int xSpieleBreite = 45;
+        int xSaetzeBreite = 45;
+        int xPunkteBreite=45;
+
+        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(xObenLinksPlatzierungsTabelle,
+                yObenLinksPlatzierungsTabelle,
+                zellenHoehePlatzierungsTabelle,
+                xPlatzBreite,
+                xTeamSpielerBreite,
+                xSpieleBreite,
+                xSaetzeBreite,
+                xPunkteBreite,
+                spielsystem,
+                gc);
     }
 
 
@@ -258,130 +276,7 @@ public class GruppenTabelle {
 
 
 
-    private void platzierungsTabelleErstellen(int xObenLinks, int yObenLinks, int zellenBreite, int zellenHoehe,int anzahlTeilnehmer, GraphicsContext gc){
-        int xPlatz = xObenLinks;
-        int xPlatzBreite = 50;
-        int xTeamSpieler = xObenLinks+xPlatzBreite;
-        int xTeamSpielerBreite = 150;
-        int xSpiele = xTeamSpieler+xTeamSpielerBreite;
-        int xSpieleBreite = 100;
-        int xSaetze = xSpiele+xSpieleBreite;
-        int xSaetzeBreite = 100;
-        int xPunkte = xSaetze+xSaetzeBreite;
-        int xPunkteBreite = 100;
 
-        gc.beginPath();
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
-        gc.beginPath();
-        gc.moveTo(xPlatz, yObenLinks);
-        gc.lineTo(xPlatz + xPlatzBreite, yObenLinks);
-        gc.lineTo(xPlatz + xPlatzBreite,  yObenLinks + zellenHoehe);
-        gc.lineTo(xPlatz, yObenLinks + zellenHoehe);
-        gc.lineTo(xPlatz, yObenLinks);
-        gc.fillText("Platz", xPlatz+5,yObenLinks+14);
-
-        gc.moveTo(xTeamSpieler, yObenLinks);
-        gc.lineTo(xTeamSpieler + xTeamSpielerBreite, yObenLinks);
-        gc.lineTo(xTeamSpieler + xTeamSpielerBreite, yObenLinks + zellenHoehe);
-        gc.lineTo(xTeamSpieler, yObenLinks + zellenHoehe);
-        gc.fillText("Team / Spieler", xTeamSpieler + 5,yObenLinks+14);
-
-        gc.moveTo(xSpiele, yObenLinks);
-        gc.lineTo(xSpiele + xSpieleBreite, yObenLinks);
-        gc.lineTo(xSpiele + xSpieleBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
-        gc.fillText("Spiele G/V", xSpiele + 5,yObenLinks+14);
-
-        gc.moveTo(xSaetze, yObenLinks);
-        gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks);
-        gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xSaetze, yObenLinks+zellenHoehe);
-        gc.fillText("Sätze", xSaetze + 5,yObenLinks+14);
-
-        gc.moveTo(xPunkte, yObenLinks);
-        gc.lineTo(xPunkte + xPunkteBreite, yObenLinks);
-        gc.lineTo(xPunkte + xPunkteBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xPunkte, yObenLinks+zellenHoehe);
-        gc.fillText("Punkte", xPunkte + 5,yObenLinks+14);
-
-        gc.stroke();
-        gc.closePath();
-
-
-
-        ArrayList<Team> platzierungsliste = spielsystem.getSetzliste();
-        for (int i=0; i<platzierungsliste.size();i++){
-            Team team = platzierungsliste.get(i);
-            if(team.isFreilos()){
-                platzierungsliste.remove(team);
-            }
-        }
-        platzierungsliste.sort(new Comparator<Team>() {
-            @Override
-            public int compare(Team o1, Team o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        for (int i=0;i<platzierungsliste.size();i++){
-            teamZeileErstellen(xObenLinks,yObenLinks+(i+1)*zellenHoehe,zellenHoehe,zellenBreite,platzierungsliste.get(i),i+1,gc);
-        }
-
-
-    }
-    private void teamZeileErstellen(int xObenLinks, int yObenLinks,int zellenHoehe,int zellenBreite, Team team,int platzierung, GraphicsContext gc){
-        int gespielteSpiele = team.getBisherigeGegner().size();
-        int gewonneneSpiele = team.getGewonneneSpiele();
-        int gewonnenePunkte = team.getGewonnnenePunkte();
-        int verlorenePunkte = team.getVerlorenePunkte();
-
-        int xPlatz = xObenLinks;
-        int xPlatzBreite = 50;
-        int xTeamSpieler = xObenLinks+xPlatzBreite;
-        int xTeamSpielerBreite = 150;
-        int xSpiele = xTeamSpieler+xTeamSpielerBreite;
-        int xSpieleBreite = 100;
-        int xSaetze = xSpiele+xSpieleBreite;
-        int xSaetzeBreite = 100;
-        int xPunkte = xSaetze+xSaetzeBreite;
-        int xPunkteBreite = 100;
-
-        gc.beginPath();
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
-
-        gc.moveTo(xPlatz + xPlatzBreite, yObenLinks);
-        gc.lineTo(xPlatz + xPlatzBreite,  yObenLinks + zellenHoehe);
-        gc.lineTo(xPlatz, yObenLinks + zellenHoehe);
-        gc.lineTo(xPlatz, yObenLinks);
-        gc.fillText(platzierung+".", xPlatz+5,yObenLinks+14);
-
-        gc.moveTo(xTeamSpieler + xTeamSpielerBreite, yObenLinks);
-        gc.lineTo(xTeamSpieler + xTeamSpielerBreite, yObenLinks + zellenHoehe);
-        gc.lineTo(xTeamSpieler, yObenLinks + zellenHoehe);
-        gc.fillText(team.toString(), xTeamSpieler + 5,yObenLinks+14);
-
-        gc.moveTo(xSpiele + xSpieleBreite, yObenLinks);
-        gc.lineTo(xSpiele + xSpieleBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
-        gc.fillText(gewonneneSpiele+":"+(gespielteSpiele-gewonneneSpiele), xSpiele + xSpieleBreite/2 - 10,yObenLinks+14);
-
-
-        gc.moveTo(xSaetze +xSaetzeBreite, yObenLinks);
-        gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xSaetze, yObenLinks+zellenHoehe);
-        gc.fillText("gewonneneSaetze:verloreneSaetze", xSaetze + xSaetzeBreite/2 - 10,yObenLinks+14);
-
-
-        gc.moveTo(xPunkte + xPunkteBreite, yObenLinks);
-        gc.lineTo(xPunkte + xPunkteBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xPunkte, yObenLinks+zellenHoehe);
-        gc.fillText(gewonnenePunkte+":"+verlorenePunkte, xPunkte + xPunkteBreite/2 - 10,yObenLinks+14);
-
-        gc.stroke();
-        gc.closePath();
-
-    }
 
 
 }

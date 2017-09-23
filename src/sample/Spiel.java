@@ -455,10 +455,10 @@ public class Spiel {
 			status=3;
 			this.spielsystem.beendeMatch(this);
 			spielDAO.update(this);
-			gast.addGewonnenenSatz();
+			/*gast.addGewonnenenSatz();
 			gast.addGewonnenenSatz();
 			gast.addGewonnenesSpiel();
-			gast.addGespieltePunkte(42,0);
+			gast.addGespieltePunkte(42,0);*/
 			gast.getTeamDAO().update(gast);
 			ergebnis.getErgebnisDAO().create(this);
 /*			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
@@ -469,10 +469,10 @@ public class Spiel {
 			status=3;
 			this.spielsystem.beendeMatch(this);
 			spielDAO.update(this);
-			heim.addGewonnenenSatz();
+			/*heim.addGewonnenenSatz();
 			heim.addGewonnenenSatz();
 			heim.addGewonnenesSpiel();
-			heim.addGespieltePunkte(42,0);
+			heim.addGespieltePunkte(42,0);*/
 			heim.getTeamDAO().update(heim);
 			ergebnis.getErgebnisDAO().create(this);
 /*			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
