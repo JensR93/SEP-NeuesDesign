@@ -73,6 +73,11 @@ public class SpieluebersichtController implements Initializable {
 
     private HBox hBox =new HBox();
 
+    public void SpracheLaden()
+    {
+
+    }
+
     //endregion
 
     ObservableList<Spiel> sortListe = FXCollections.observableArrayList(auswahlklasse.getAktuelleTurnierAuswahl().getObs_angezeigteSpiele());

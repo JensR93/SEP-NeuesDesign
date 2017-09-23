@@ -27,6 +27,11 @@ public class VisualisierungController implements Initializable {
     @FXML
     JFXTabPane tabPane_spielklassen;
 
+    public void SpracheLaden()
+    {
+
+    }
+
     public void klassenTabsErstellen() {
         tabPane_spielklassen.getTabs().clear();
         for(int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size();i++){

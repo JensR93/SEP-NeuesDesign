@@ -91,6 +91,12 @@ public class EinstellungenController implements Initializable {
     void exit(ActionEvent event) {
 
     }
+
+    public void SpracheLaden()
+    {
+
+    }
+
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
     {

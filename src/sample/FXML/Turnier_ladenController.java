@@ -67,6 +67,11 @@ public class Turnier_ladenController extends Application implements Initializabl
         System.out.println();
     }
 
+    public void SpracheLaden()
+    {
+
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("t");

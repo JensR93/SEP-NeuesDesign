@@ -77,6 +77,11 @@ public class SpielErgebnisEintragenController implements Initializable{
     @FXML
     private ImageView red_cross_3;
 
+    public void SpracheLaden()
+    {
+
+    }
+
     Dictionary<Integer, Spiel> dictspiele = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele();
 
     Spiel sp = dictspiele.get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID());

@@ -58,19 +58,16 @@ public class KlassenuebersichtController implements Initializable {
     @FXML
     private JFXButton b_neueKlasse;
 
+    public void SpracheLaden()
+    {
 
+    }
 
 
     @FXML
     void setNodeNeueKlasse(ActionEvent event) {
 
 
-        try {
-            FXMLLoader fxmlLoaderKlasseuebersicht = new FXMLLoader(getClass().getResource("Klasse_hinzufügen.fxml"));
-            fxmlLoaderKlasseuebersicht.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         auswahlklasse.getDashboardController().setNodeKlassehinzufuegen();
     }
 

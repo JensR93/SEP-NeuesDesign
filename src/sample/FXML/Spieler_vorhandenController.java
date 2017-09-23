@@ -73,6 +73,11 @@ public class Spieler_vorhandenController implements Initializable
     @FXML TableColumn popup_spielerid;
     @FXML TableColumn popup_spielerid2;
 
+    public void SpracheLaden()
+    {
+
+    }
+
     //endregion
     ExcelImport excelImport = new ExcelImport();
     Spieler updateSpieler;
