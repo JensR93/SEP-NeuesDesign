@@ -3,16 +3,21 @@ package sample.FXML.Visualisierung;
 import javafx.print.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import sample.*;
 import sample.DAO.auswahlklasse;
-import sample.Spiel;
-import sample.Spielklasse;
 import sample.Spielsysteme.Spielsystem;
-import sample.ZeitplanRunde;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 
-public class Turnierbaum {
+public class Turnierbaum implements Visualisierung {
 
     private int xObenLinks = 20; //Startpunkt
     private int yObenLinks = 20;
@@ -22,7 +27,7 @@ public class Turnierbaum {
     private int yAbstand = 20;
 
     Spielklasse spielklasse = auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().get(0);
-    Dictionary<Integer, Spiel> alleSpiele = spielklasse.getSpiele();
+    Dictionary<Integer,Spiel> alleSpiele = spielklasse.getSpiele();
     int anzahlSpiele = alleSpiele.size();
     double anzahlTeilnehmerDouble = (((Math.sqrt(1 + anzahlSpiele*2*4))/2*2)+1)/2;     //(1/2) + (((1/4) + anzahlSpiele*2)^(1/2))
     int anzahlTeilnehmer = (int) anzahlTeilnehmerDouble;
@@ -32,7 +37,7 @@ public class Turnierbaum {
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
         PrinterJob printerJob = PrinterJob.createPrinterJob();
-/*        if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getStagesdict().get("Main"))){
+        /*if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getStagesdict().get("Main"))){
             boolean success = printerJob.printPage(pageLayout, canvas);
             if (success) {
                 printerJob.endJob();
@@ -82,6 +87,16 @@ public class Turnierbaum {
             }
         }
         //druckeTurnierbaum();
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void drucken() {
+
     }
 }
 

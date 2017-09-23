@@ -2,6 +2,7 @@ package sample.Spielsysteme;
 import sample.*;
 import sample.DAO.*;
 import sample.Enums.*;
+import sample.FXML.Visualisierung.Visualisierung;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ public abstract class Spielsystem {
 	private int extraRunde=0;
 	private List<Team> platzierungsListe;
 	private ArrayList<ZeitplanRunde> runden =new ArrayList<>();
+	private Visualisierung visualisierung;
 
 	protected int spielsystemCode;
 
@@ -123,6 +125,14 @@ public abstract class Spielsystem {
 		return neueRunden;
 	}
 	public abstract ArrayList<Team> getSetzliste();
+	public void setVisualisierung(Visualisierung visualisierung){
+		this.visualisierung=visualisierung;
+	}
+	public void updateVisualisierung(){
+		if (visualisierung != null){
+			visualisierung.update();
+		}
+	}
 
 	public boolean systemWiederherstellen(int spielsystemCode){
 		return false;
