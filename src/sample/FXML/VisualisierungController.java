@@ -4,12 +4,14 @@ import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import sample.DAO.auswahlklasse;
 import sample.FXML.Visualisierung.GruppenTabelle;
+import sample.FXML.Visualisierung.PlatzierungsTabelle;
 import sample.FXML.Visualisierung.Turnierbaum;
 import sample.Spielklasse;
 import sample.Spielsysteme.GruppeMitEndrunde;
@@ -47,8 +49,21 @@ public class VisualisierungController implements Initializable {
         else if (spielsystem.getSpielSystemArt()==3){
             koVisualisierung(spielsystem, tab);
         }
+        else if(spielsystem.getSpielSystemArt()==5){
+            schweizerVisualisierung(spielsystem, tab);
+        }
 
     }
+
+    private void schweizerVisualisierung(Spielsystem spielsystem, Tab tab) {
+        ScrollPane scrollPane = new ScrollPane();
+        tab.setContent(scrollPane);
+        int zellenHoehe = 20;
+        Canvas canvas = new Canvas(600,spielsystem.getSetzliste().size()*zellenHoehe+100);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(20,20,zellenHoehe,15,200,45,45,45, spielsystem,gc);
+    }
+
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
         if(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size()>1) {

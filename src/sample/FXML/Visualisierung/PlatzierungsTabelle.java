@@ -8,7 +8,7 @@ import sample.Team;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class PlatzierungsTabelle {
+public class PlatzierungsTabelle implements Visualisierung {
     private int xObenLinks;
     private int yObenLinks;
     private int zellenHoehe;
@@ -147,5 +147,15 @@ public class PlatzierungsTabelle {
 
         gc.stroke();
         gc.closePath();
+    }
+
+    @Override
+    public void update() {
+        platzierungsTabelleErstellen();
+    }
+
+    @Override
+    public void drucken() {
+
     }
 }

@@ -37,6 +37,10 @@ public class GruppenTabelle implements Visualisierung {
         erstelleGruppenTabelle();
     }
 
+    public void drucken(){
+
+    }
+
     public void erstelleGruppenTabelle() {
 
         ArrayList<Team> teams = (ArrayList<Team>) spielsystem.getSetzliste().clone();
@@ -238,6 +242,7 @@ public class GruppenTabelle implements Visualisierung {
                 xPunkteBreite,
                 spielsystem,
                 gc);
+        yObenLinks-=zellenHoehe;
     }
 
 

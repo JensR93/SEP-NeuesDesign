@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
-public class Turnierbaum {
+public class Turnierbaum implements Visualisierung {
 
     private int xObenLinks = 20; //Startpunkt
     private int yObenLinks = 20;
@@ -87,6 +87,16 @@ public class Turnierbaum {
             }
         }
         //druckeTurnierbaum();
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void drucken() {
+
     }
 }
 

@@ -272,7 +272,7 @@
                                       </rowConstraints>
                                        <children>
                                           <Text fx:id="t_AnzahlRunden" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Runden:" GridPane.halignment="RIGHT" />
-                                          <JFXTextField focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
+                                          <JFXTextField focusColor="#757575" fx:id="textField_anzahlRundenSchweizer" maxWidth="250.0" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
