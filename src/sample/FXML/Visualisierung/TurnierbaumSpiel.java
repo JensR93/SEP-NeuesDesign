@@ -6,6 +6,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import sample.Ergebnis;
 import sample.Spiel;
+import sample.Team;
 
 public class TurnierbaumSpiel {
     private int yObenLinks;

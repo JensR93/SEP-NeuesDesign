@@ -2,6 +2,7 @@ package sample.FXML;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -31,10 +32,7 @@ import sample.DAO.SetzlisteDAOimpl;
 import sample.DAO.auswahlklasse;
 import sample.Spieler;
 import sample.Spielklasse;
-import sample.Spielsysteme.Gruppe;
-import sample.Spielsysteme.GruppeMitEndrunde;
-import sample.Spielsysteme.KO;
-import sample.Spielsysteme.Spielsystem;
+import sample.Spielsysteme.*;
 import sample.Team;
 
 import java.io.IOException;
@@ -167,6 +165,9 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private Text t_AnzahlRunden;
+
+    @FXML
+    private JFXTextField textField_anzahlRundenSchweizer;
 
 
 
@@ -332,10 +333,32 @@ public class SpielsystemController implements Initializable {
             if (radio_gruppeMitE.isSelected()){
                 gruppeMitEndrundeStarten();
             }
+            if(radio_schweizer.isSelected()){
+                schweizerSystemStarten();
+            }
         }
         auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
         auswahlklasse.getDashboardController().setNodeSpieluebersicht();
         auswahlklasse.getVisualisierungController().klassenTabsErstellen();
+    }
+
+    private void schweizerSystemStarten() {
+        try{
+            int anzahlRunden = Integer.valueOf(textField_anzahlRundenSchweizer.getText());
+            SchweizerSystem schweizerSystem = new SchweizerSystem(anzahlRunden,ausgewaehlte_spielklasse.getSetzliste(),ausgewaehlte_spielklasse);
+            ausgewaehlte_spielklasse.setSpielsystem(schweizerSystem);
+            l_meldungsetzliste1.setText("ERFOLG");
+            auswahlklasse.InfoBenachrichtigung("Spielsystem start","Das Spielsystem wurde erfolgreich gestartet");
+            //TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
+        }
+        catch (NumberFormatException e){
+            System.out.println("Bitte nur zahlen eintragen");
+        }
+        catch (Exception e) {
+            l_meldungsetzliste1.setText("Fehlschlag");
+            auswahlklasse.InfoBenachrichtigung("Fehler","Das Spielsystem konnte nicht erfolgreich gestartet werden");
+            e.printStackTrace();
+        }
     }
 
     private void gruppeMitEndrundeStarten() {
