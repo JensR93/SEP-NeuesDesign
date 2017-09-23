@@ -21,7 +21,7 @@ public class GruppenTabelle implements Visualisierung {
     private Tab tab;
     private int xObenLinksLeereZelle = 20;
     private int yObenLinksLeereZelle = 20;
-    private int zellenHoehePlatzierungsTabelle = 30;
+    private int zellenHoehePlatzierungsTabelle = 20;
     private int zellenBreite = 150;
     private int zellenHoehe = 50;
     private int xObenLinks = xObenLinksLeereZelle+zellenBreite; //Startpunkt

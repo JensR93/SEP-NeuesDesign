@@ -71,9 +71,8 @@ public class VisualisierungController implements Initializable {
 
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
-        if(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size()>1) {
-            gruppenTabelle.erstelleGruppenTabelle();
-        }
+        gruppenTabelle.erstelleGruppenTabelle();
+
     }
 
     private void gruppeMitEndrundeVisualisierung(Spielsystem spielsystem, Tab tab) {
