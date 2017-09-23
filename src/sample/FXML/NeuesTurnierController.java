@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import java.math.BigDecimal;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import sample.DAO.*;
 import sample.ExcelImport;
 import sample.Feld;
@@ -23,7 +25,11 @@ import sample.Turnier;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Dictionary;
 import java.util.MissingResourceException;
@@ -42,12 +48,32 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     private JFXDatePicker turnierDatum;
     @FXML
+    private JFXDatePicker date_doppel;
+
+    @FXML
+    private JFXTimePicker time_doppel;
+
+    @FXML
+    private JFXDatePicker date_einzel;
+
+    @FXML
+    private JFXTimePicker time_einzel;
+
+    @FXML
+    private JFXDatePicker date_mixed;
+
+    @FXML
+    private JFXTimePicker time_mixed;
+    @FXML
     private BigDecimalField AnzahlFelder;
     @FXML
     private Button btn_abbrechen;
     @FXML
     private Button btn_starten;
 
+    LocalDateTime startzeiteinzel;
+    LocalDateTime startzeidoppel;
+    LocalDateTime startzeitmixed;
 
     @FXML
     public void Abbrechen(ActionEvent event) throws Exception
@@ -58,16 +84,19 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     public void erstelleTurnier(ActionEvent event) throws Exception {
 
-        String date = turnierDatum.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate Datum = turnierDatum.getValue();
-        System.out.println("Felder:  " + AnzahlFelder.getText());
-        System.out.println("Name " + Turniername.getText());
-        System.out.println("Datum " + date);
+        LocalDate dateeinzel= date_einzel.getValue();
+        LocalDate datedoppel= date_doppel.getValue();
+        LocalDate datemixed= date_mixed.getValue();
+
+        LocalTime timeeinzel= time_einzel.getValue();
+        LocalTime timedoppel= time_doppel.getValue();
+        LocalTime timemixed= time_mixed.getValue();
+
         TurnierDAO t = new TurnierDAOimpl();
         FeldDAO feldDAO = new FeldDAOimpl();
         int anzahlfelder = Integer.parseInt(AnzahlFelder.getText());
         if (auswahlklasse.getTurnierzumupdaten() == null) {
-            Turnier turnier = new Turnier(Turniername.getText(), Datum);
+            Turnier turnier = new Turnier(Turniername.getText(),LocalDateTime.of(dateeinzel,timeeinzel),LocalDateTime.of(datedoppel,timedoppel),LocalDateTime.of(datemixed,timemixed));
             erfolg=t.create(turnier);
             for (int i = 0; i < anzahlfelder; i++) {
                 new Feld(turnier);
@@ -117,7 +146,9 @@ public class NeuesTurnierController implements Initializable{
 
             }
             auswahlklasse.getTurnierzumupdaten().setName(Turniername.getText());
-            auswahlklasse.getTurnierzumupdaten().setDatum(turnierDatum.getValue());
+            auswahlklasse.getTurnierzumupdaten().setStartzeitEinzel(LocalDateTime.of(dateeinzel,timeeinzel));
+            auswahlklasse.getTurnierzumupdaten().setStartzeitDoppel(LocalDateTime.of(datedoppel,timedoppel));
+            auswahlklasse.getTurnierzumupdaten().setStartzeitMixed(LocalDateTime.of(datemixed,timemixed));
             erfolg=turnierDao.update(auswahlklasse.getTurnierzumupdaten());
             if(erfolg)
                 auswahlklasse.InfoBenachrichtigung("Turnier Update",auswahlklasse.getTurnierzumupdaten().getName()+" wurde geupdatet");
@@ -141,6 +172,29 @@ public class NeuesTurnierController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        time_einzel.setIs24HourView(true);
+        time_doppel.setIs24HourView(true);
+        time_mixed.setIs24HourView(true);
+
+
+        StringConverter <LocalTime> uhrzeit =new StringConverter<LocalTime>() {
+            @Override
+            public String toString(LocalTime object) {
+                if(object!=null)
+                return object.toString();
+                else
+                    return null;
+            }
+
+            @Override
+            public LocalTime fromString(String string) {
+                return LocalTime.parse(string);
+            }
+        };
+        time_einzel.setConverter(uhrzeit);
+        time_doppel.setConverter(uhrzeit);
+        time_mixed.setConverter(uhrzeit);
+
     auswahlklasse.setNeuesTurnierController(this);
         try
         {
@@ -197,7 +251,7 @@ public class NeuesTurnierController implements Initializable{
         v=new BigDecimal(30);
         AnzahlFelder.setMaxValue(v);
         AnzahlFelder.setText(String.valueOf(1));
-        turnierDatum.setValue(LocalDate.now());
+        //turnierDatum.setValue(LocalDate.now());
         if(auswahlklasse.getTurnierzumupdaten()!=null)
         {
             turnierDao.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
@@ -217,7 +271,18 @@ public class NeuesTurnierController implements Initializable{
             {
                 AnzahlFelder.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getFelder().size()));
             }
-            turnierDatum.setValue(auswahlklasse.getTurnierzumupdaten().getDatum());
+
+             startzeiteinzel = auswahlklasse.getTurnierzumupdaten().getStartzeitEinzel();
+             startzeidoppel = auswahlklasse.getTurnierzumupdaten().getStartzeitDoppel();
+             startzeitmixed = auswahlklasse.getTurnierzumupdaten().getStartzeitMixed();
+            date_einzel.setValue(startzeiteinzel.toLocalDate());
+            time_einzel.setValue(startzeiteinzel.toLocalTime());
+
+            date_doppel.setValue(startzeidoppel.toLocalDate());
+            time_doppel.setValue(startzeidoppel.toLocalTime());
+
+            date_mixed.setValue(startzeitmixed.toLocalDate());
+            time_mixed.setValue(startzeitmixed.toLocalTime());
             Turniername.setText(auswahlklasse.getTurnierzumupdaten().getName());
 
         }
