@@ -263,7 +263,7 @@
             </GridPane>
             <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../Images/34394-200.png" />
+                  <Image url="@../Images/LogoBlau.png" />
                </image>
             </ImageView>
          </children>
