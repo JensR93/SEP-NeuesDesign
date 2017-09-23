@@ -11,5 +11,5 @@ public interface TurnierDAO {
      boolean readFelder_Neu(Turnier turnierEingabe);
    // public List<Turnier> getAllTurniere();
 
-     ObservableList getAllTurniere();
+     ObservableList getAllTurniere() throws Exception;
 }
