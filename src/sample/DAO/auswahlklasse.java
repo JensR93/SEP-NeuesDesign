@@ -221,7 +221,7 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
         auswahlklasse.obs_spieler = obs_spieler;
     }
 
-    public static void readTurnierListe() {
+    public static void readTurnierListe() throws Exception {
       turniere = turnierDAO.getAllTurniere();
     }
     public static Turnier getTurnierzumupdaten() {

@@ -79,7 +79,11 @@ public class Turnier_ladenController extends Application implements Initializabl
 
 public void tabelleReload()
 {
-    turnierlisteLaden();
+    try {
+        turnierlisteLaden();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     TurnierlisteTabelle.refresh();
 }
 
@@ -153,11 +157,13 @@ public void tabelleReload()
             }
 
 
+        try {
+            turnierlisteLaden();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-        turnierlisteLaden();
-
-            TurnierlisteTabelle.setRowFactory(tv -> {
+        TurnierlisteTabelle.setRowFactory(tv -> {
                 TableRow row = new TableRow();
                 row.setOnMouseClicked(event -> {
                     if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
@@ -346,7 +352,7 @@ public void tabelleReload()
 
 
 
-    private void turnierlisteLaden() {
+    private void turnierlisteLaden() throws Exception {
         auswahlklasse.readTurnierListe();
         if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();

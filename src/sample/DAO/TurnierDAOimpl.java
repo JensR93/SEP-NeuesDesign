@@ -195,7 +195,7 @@ public class TurnierDAOimpl implements TurnierDAO {
     }
 
     @Override
-    public ObservableList getAllTurniere() {
+    public ObservableList getAllTurniere() throws Exception {
         ObservableList turniere = FXCollections.observableArrayList();
 
         String sql ="SELECT * FROM Turnier";
@@ -219,6 +219,7 @@ public class TurnierDAOimpl implements TurnierDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Turnier lesen klappt nicht");
+            throw new Exception("Idiot, du musst die DATENBANK NEU LADEN!!!");
         }
 
         readVereine();
