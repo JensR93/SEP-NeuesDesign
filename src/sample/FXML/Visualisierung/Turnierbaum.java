@@ -13,6 +13,7 @@ import sample.*;
 import sample.DAO.auswahlklasse;
 import sample.Spielsysteme.Spielsystem;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -25,45 +26,32 @@ public class Turnierbaum implements Visualisierung {
     private int hoehe = 50;
     private int xAbstand = 100;
     private int yAbstand = 20;
+    private Spielsystem spielsystem;
+    private Canvas canvas;
+    private Tab tab;
 
-    Spielklasse spielklasse = auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().get(0);
-    Dictionary<Integer,Spiel> alleSpiele = spielklasse.getSpiele();
-    int anzahlSpiele = alleSpiele.size();
-    double anzahlTeilnehmerDouble = (((Math.sqrt(1 + anzahlSpiele*2*4))/2*2)+1)/2;     //(1/2) + (((1/4) + anzahlSpiele*2)^(1/2))
-    int anzahlTeilnehmer = (int) anzahlTeilnehmerDouble;
-    Canvas canvas;
-
-    private void druckeTurnierbaum(){
-        Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
-        /*if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getStagesdict().get("Main"))){
-            boolean success = printerJob.printPage(pageLayout, canvas);
-            if (success) {
-                printerJob.endJob();
-            }
-        }*/
-
-    }
-
-    public Turnierbaum(int xObenLinks, int yObenLinks, int breite, int hoehe, int xAbstand, int yAbstand) {
+    public Turnierbaum(int xObenLinks, int yObenLinks, int breite, int hoehe, int xAbstand, int yAbstand, Tab tab) {
         this.xObenLinks = xObenLinks;
         this.yObenLinks = yObenLinks;
         this.breite = breite;
         this.hoehe = hoehe;
         this.xAbstand = xAbstand;
         this.yAbstand = yAbstand;
+        this.tab = tab;
     }
 
-    public void erstelleTurnierbaum(Spielsystem spielsystem, Canvas canvas) {
+    public void erstelleTurnierbaum(Spielsystem spielsystem) {
+        this.spielsystem=spielsystem;
+        spielsystem.setVisualisierung(this);
         ArrayList<ZeitplanRunde> runden = spielsystem.getRunden();
         int gesamtHoehe =runden.get(0).size()*(hoehe+yAbstand)+yObenLinks+2-yAbstand;
         int gesamtBreite = runden.size()*(breite+xAbstand)+xObenLinks+2-xAbstand;
-
-        this.canvas = canvas;
+        int yObenLinks = this.yObenLinks;
+        this.canvas = new Canvas(gesamtBreite, gesamtHoehe);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        canvas.setHeight(gesamtHoehe);
-        canvas.setWidth(gesamtBreite);
+        ScrollPane scrollPane = new ScrollPane();
+        tab.setContent(scrollPane);
+        scrollPane.setContent(canvas);
 
         ArrayList<TurnierbaumSpiel> letzteRunde = new ArrayList<>();
         for(int j=0; j<runden.get(0).size();j++){
@@ -91,11 +79,32 @@ public class Turnierbaum implements Visualisierung {
 
     @Override
     public void update() {
-
+        erstelleTurnierbaum(spielsystem);
     }
 
     @Override
     public void drucken() {
+
+        /*PrintJob pjob = getToolkit().getPrintJob(new Frame(), "Print TimeGraph", null);
+        if(pjob !=null) {
+            Graphics pg = pjob.getGraphics();
+            if (pg != null) {
+                canvas.printAll(pg);
+                pg.dispose();   // flush page
+            }
+            pjob.end();
+        }
+
+
+       /* Printer printer = Printer.getDefaultPrinter();
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        /*if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getStagesdict().get("Main"))){
+            boolean success = printerJob.printPage(pageLayout, canvas);
+            if (success) {
+                printerJob.endJob();
+            }
+        }*/
 
     }
 }

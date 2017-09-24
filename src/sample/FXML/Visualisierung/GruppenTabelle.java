@@ -26,6 +26,7 @@ public class GruppenTabelle implements Visualisierung {
     private int zellenHoehe = 50;
     private int xObenLinks = xObenLinksLeereZelle+zellenBreite; //Startpunkt
     private int yObenLinks = 20;
+    private GraphicsContext graphicsContext;
 
     public GruppenTabelle(Spielsystem spielsystem, Tab tab) {
         this.spielsystem = spielsystem;
@@ -243,6 +244,7 @@ public class GruppenTabelle implements Visualisierung {
                 spielsystem,
                 gc);
         yObenLinks-=zellenHoehe;
+        this.graphicsContext = gc;
     }
 
 
