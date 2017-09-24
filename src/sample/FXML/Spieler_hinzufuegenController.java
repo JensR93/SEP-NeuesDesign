@@ -413,251 +413,6 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 auswahlklasse.setSpieler_hinzufuegenController(this);
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_vorname");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_vn.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_nachname");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_nn.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_gdatum");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        d_geb.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_spielerid");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_spid.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_ranglistenpunkte");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-
-
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_verein");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_geschlecht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_einzel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_re.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_doppel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_rd.setPromptText(titel);
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_doppel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_rm.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("b_neuerVerein");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        b_neuerVerein.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("b_abbrechen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        b_abbrechen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("b_spielerspeichern");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        b_spielerspeichern.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_spielersuche");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_suchleistespielerhinzu.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("r_m");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        r_m.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("r_w");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        r_w.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_sphin");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_sphin.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_spbea");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_spbea.setText(titel);
-
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_vorname");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_vorname.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_nachname");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_nachname.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_verein");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_verein.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_SpielerID");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_SpielerID.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_geschlecht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_geschlecht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_geburtstag");
-            tabelle_spielerliste_geburtstag.setText(titel);
-
-            titel = bundle.getString("btn_MeldefImport");
-            btn_MeldefImport.setText(titel);
-
-            titel = bundle.getString("Label_Geschlecht");
-            Label_Geschlecht.setText(titel);
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
 
 
 
@@ -1106,4 +861,252 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         }
     }
 
+    public void SpracheLaden() {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_vorname");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_vn.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_nachname");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_nn.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_gdatum");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        d_geb.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_spielerid");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_spid.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_ranglistenpunkte");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_verein");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_geschlecht");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_einzel");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_re.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_doppel");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_rd.setPromptText(titel);
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_doppel");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_rm.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("b_neuerVerein");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        b_neuerVerein.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("b_abbrechen");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        b_abbrechen.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("b_spielerspeichern");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        b_spielerspeichern.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("t_spielersuche");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        t_suchleistespielerhinzu.setPromptText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("r_m");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        r_m.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("r_w");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        r_w.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tab_sphin");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tab_sphin.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tab_spbea");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tab_spbea.setText(titel);
+
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_vorname");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tabelle_spielerliste_vorname.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_nachname");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tabelle_spielerliste_nachname.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_verein");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tabelle_spielerliste_verein.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_SpielerID");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tabelle_spielerliste_SpielerID.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_geschlecht");
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        tabelle_spielerliste_geschlecht.setText(titel);
+
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("tabelle_spielerliste_geburtstag");
+            tabelle_spielerliste_geburtstag.setText(titel);
+
+            titel = bundle.getString("btn_MeldefImport");
+            btn_MeldefImport.setText(titel);
+
+            titel = bundle.getString("Label_Geschlecht");
+            Label_Geschlecht.setText(titel);
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+    }
 }
