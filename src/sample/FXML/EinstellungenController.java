@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -91,6 +92,12 @@ public class EinstellungenController implements Initializable {
     void exit(ActionEvent event) {
 
     }
+
+    public void SpracheLaden()
+    {
+        auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+    }
+
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
     {
@@ -327,9 +334,11 @@ public class EinstellungenController implements Initializable {
 
             if(!Sprache.equals("de"))
             {
+                Locale.setDefault( new Locale("de", "de") );
                 System.out.println("Sprache=Deutsch");
                 Sprache="de";
                 Einstellungen_schreiben();
+                SpracheLaden();
             }
         });
         rdEnglisch.setOnAction(e ->
@@ -338,9 +347,12 @@ public class EinstellungenController implements Initializable {
 
             if(!Sprache.equals("en"))
             {
+                Locale.setDefault( new Locale("en", "en") );
                 System.out.println("Sprache=Englisch");
                 Sprache="en";
                 Einstellungen_schreiben();
+                SpracheLaden();
+
             }
         });
         toggle_schiri.setOnAction(e ->

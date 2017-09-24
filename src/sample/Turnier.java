@@ -3,15 +3,19 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sample.Maxdate;
 
 public class Turnier {
-	private int matchDauer;
+
+    private int matchDauer;
 	private int gesamtSpiele;
 	private LocalDate datum = LocalDate.now();
 	private String name;
@@ -34,9 +38,28 @@ public class Turnier {
 	private static ObservableList<Integer> obs_spielklassen_auswahl = FXCollections.observableArrayList();
 	private static ObservableList<Spielklasse> obs_spielklassen = FXCollections.observableArrayList();
 
+	public Turnier(String text, LocalDateTime lde, LocalDateTime ldd, LocalDateTime ldm) {
+		this.name=text;
+		this.startzeitEinzel=lde;
+        this.startzeitDoppel=ldd;
+        this.startzeitMixed=ldm;
+	}
+
+    public Turnier(String turnierName, int turnierid, LocalDateTime localDateTime, LocalDateTime localDateTime1, LocalDateTime localDateTime2) {
+	    this.name=turnierName;
+	    this.turnierid=turnierid;
+	    this.startzeitEinzel=localDateTime;
+        this.startzeitDoppel=localDateTime1;
+        this.startzeitMixed=localDateTime2;
+        Date d1=new Date();
+        Date d2=new Date();
+        Date d3=new Date();
+
+        this.datum= LocalDate.from((TemporalAccessor) Maxdate.max(startzeitEinzel,startzeitDoppel,startzeitMixed));
+    }
 
 
-	public ObservableList<Spielklasse> getObs_spielklassen() {
+    public ObservableList<Spielklasse> getObs_spielklassen() {
 		return obs_spielklassen;
 	}
 
@@ -80,8 +103,21 @@ public class Turnier {
 		this.turnierid = turnierid;
 	}*/
 
-	public Turnier(LocalDate datum, String name, int turnierid, LocalDateTime startzeitEinzel, LocalDateTime startzeitDoppel, LocalDateTime startzeitMixed) {
+    public void setStartzeitEinzel(LocalDateTime startzeitEinzel) {
+        this.startzeitEinzel = startzeitEinzel;
+    }
+
+    public void setStartzeitDoppel(LocalDateTime startzeitDoppel) {
+        this.startzeitDoppel = startzeitDoppel;
+    }
+
+    public void setStartzeitMixed(LocalDateTime startzeitMixed) {
+        this.startzeitMixed = startzeitMixed;
+    }
+
+    public Turnier(LocalDate datum, String name, int turnierid, LocalDateTime startzeitEinzel, LocalDateTime startzeitDoppel, LocalDateTime startzeitMixed) {
 		this.datum = datum;
+
 		this.name = name;
 		this.turnierid = turnierid;
 		this.startzeitEinzel = startzeitEinzel;

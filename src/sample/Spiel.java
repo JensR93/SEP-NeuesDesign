@@ -543,6 +543,10 @@ public class Spiel {
 		this.turnier.getSpiele().put(spielID,this);
 	}
 
+	public void setAufrufZeit(LocalTime aufrufZeit) {
+		this.aufrufZeit = aufrufZeit;
+	}
+
 	public void setSetzPlatzHeim(int setzPlatzHeim) {
 		this.setzPlatzHeim = setzPlatzHeim;
 	}

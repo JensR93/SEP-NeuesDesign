@@ -27,6 +27,11 @@ public class VisualisierungController implements Initializable {
     @FXML
     JFXTabPane tabPane_spielklassen;
 
+    public void SpracheLaden()
+    {
+
+    }
+
     public void klassenTabsErstellen() {
         tabPane_spielklassen.getTabs().clear();
         for(int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size();i++){
@@ -66,9 +71,8 @@ public class VisualisierungController implements Initializable {
 
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
-        if(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size()>1) {
-            gruppenTabelle.erstelleGruppenTabelle();
-        }
+        gruppenTabelle.erstelleGruppenTabelle();
+
     }
 
     private void gruppeMitEndrundeVisualisierung(Spielsystem spielsystem, Tab tab) {

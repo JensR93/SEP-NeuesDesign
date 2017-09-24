@@ -51,11 +51,6 @@ public class Klasse_hinzufügenController implements Initializable
     @FXML
     private ChoiceBox<Niveau> combo_niveau;
 
-    @FXML
-    private Text t_zaehlweise;
-
-    @FXML
-    private ToggleGroup Zaehlweise;
 
     @FXML
     private JFXButton b_klasseSpeichern;
@@ -63,12 +58,7 @@ public class Klasse_hinzufügenController implements Initializable
     @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
 
-    @FXML
-    public JFXRadioButton radio_11mitVerl;
 
-    @FXML
-    public JFXRadioButton radio_11ohneVerl;
-    ;
     private static int index_anzahlRunden=0;
 
 
@@ -136,16 +126,6 @@ public class Klasse_hinzufügenController implements Initializable
         }
         t_niveau.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_zaehlweise");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_zaehlweise.setText(titel);
-
 
 
         try
@@ -153,12 +133,6 @@ public class Klasse_hinzufügenController implements Initializable
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
             titel = bundle.getString("b_klasseSpeichern");
             b_klasseSpeichern.setText(titel);
-
-            titel = bundle.getString("radio_11mitVerl");
-            radio_11mitVerl.setText(titel);
-
-            titel = bundle.getString("radio_11ohneVerl");
-            radio_11ohneVerl.setText(titel);
 
         }
         catch ( MissingResourceException e ) {

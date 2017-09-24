@@ -2,6 +2,7 @@ package sample.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.junit.internal.builders.JUnit4Builder;
 import sample.*;
 import sample.Spielsysteme.*;
 
@@ -22,12 +23,11 @@ public class TurnierDAOimpl implements TurnierDAO {
 
 
         String sql = "INSERT INTO Turnier("
-                + "Datum, "
                 + "startzeitEinzel, "
                 + "startzeitDoppel, "
                 + "startzeitMixed, "
                 + "Name) "
-                + "VALUES(?,?,?,?,?)";
+                + "VALUES(?,?,?,?)";
 
         try {
             Connection con = SQLConnection.getCon();
@@ -38,11 +38,10 @@ public class TurnierDAOimpl implements TurnierDAO {
             turnier.setTurnierid(turnierID);
             smtID.close();
             PreparedStatement smt = con.prepareStatement(sql);
-            smt.setObject(1, turnier.getDatum());
-            smt.setTimestamp(2,Timestamp.valueOf(turnier.getStartzeitEinzel()));
-            smt.setTimestamp(3,Timestamp.valueOf(turnier.getStartzeitDoppel()));
-            smt.setTimestamp(4,Timestamp.valueOf(turnier.getStartzeitMixed()));
-            smt.setString(5, turnier.getName());
+            smt.setTimestamp(1,Timestamp.valueOf(turnier.getStartzeitEinzel()));
+            smt.setTimestamp(2,Timestamp.valueOf(turnier.getStartzeitDoppel()));
+            smt.setTimestamp(3,Timestamp.valueOf(turnier.getStartzeitMixed()));
+            smt.setString(4, turnier.getName());
             smt.executeUpdate();
             smt.close();
 
@@ -86,7 +85,6 @@ public class TurnierDAOimpl implements TurnierDAO {
 
         String sql = "UPDATE Turnier " +
                 "SET MatchDauer = ?, " +
-                "Datum = ?, " +
                 "Name= ?, " +
                 "SpielerPausenZeit = ?, " +
                 "startzeitEinzel = ?, " +
@@ -98,14 +96,13 @@ public class TurnierDAOimpl implements TurnierDAO {
             Connection con = SQLConnection.getCon();
             PreparedStatement smt = con.prepareStatement(sql);
             smt.setInt(1, turnier.getMatchDauer());
-            smt.setObject(2, turnier.getDatum());
-            smt.setString(3, turnier.getName());
-            smt.setInt(4, turnier.getSpielerPausenZeit());
-            smt.setTimestamp(5, Timestamp.valueOf(turnier.getStartzeitEinzel()));
-            smt.setTimestamp(6, Timestamp.valueOf(turnier.getStartzeitDoppel()));
-            smt.setTimestamp(7, Timestamp.valueOf(turnier.getStartzeitMixed()));
-            smt.setInt(8, turnier.getZaehlweise());
-            smt.setInt(9, turnier.getTurnierid());
+            smt.setString(2, turnier.getName());
+            smt.setInt(3, turnier.getSpielerPausenZeit());
+            smt.setTimestamp(4, Timestamp.valueOf(turnier.getStartzeitEinzel()));
+            smt.setTimestamp(5, Timestamp.valueOf(turnier.getStartzeitDoppel()));
+            smt.setTimestamp(6, Timestamp.valueOf(turnier.getStartzeitMixed()));
+            smt.setInt(7, turnier.getZaehlweise());
+            smt.setInt(8, turnier.getTurnierid());
             smt.executeUpdate();
             smt.close();
 
@@ -208,11 +205,10 @@ public class TurnierDAOimpl implements TurnierDAO {
             while (TurnierResult.next()){
                 int turnierid  = TurnierResult.getInt("TurnierID");
                 String turnierName = TurnierResult.getString("Name");
-                Date Datum = TurnierResult.getDate("Datum");
                 Timestamp startzeitEinzel = TurnierResult.getTimestamp("startzeitEinzel");
-                Timestamp startzeitDoppel = TurnierResult.getTimestamp("startzeitEinzel");
-                Timestamp startzeitMixed = TurnierResult.getTimestamp("startzeitEinzel");
-                turniere.add(new Turnier(Datum.toLocalDate(), turnierName,turnierid, startzeitEinzel.toLocalDateTime(),startzeitDoppel.toLocalDateTime(),startzeitMixed.toLocalDateTime()));
+                Timestamp startzeitDoppel = TurnierResult.getTimestamp("startzeitDoppel");
+                Timestamp startzeitMixed = TurnierResult.getTimestamp("startzeitMixed");
+                turniere.add(new Turnier(turnierName,turnierid, startzeitEinzel.toLocalDateTime(),startzeitDoppel.toLocalDateTime(),startzeitMixed.toLocalDateTime()));
             }
             smt.close();
 
