@@ -25,7 +25,7 @@
    <children>
       <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1360.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="230.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="240.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" prefWidth="1100.0" />
          </columnConstraints>
@@ -38,7 +38,7 @@
          <children>
             <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="220.0" styleClass="side-bar" stylesheets="@../CSS/custom.css" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="50.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="200.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="10.0" vgrow="ALWAYS" />
@@ -55,7 +55,7 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#Beenden" prefHeight="39.0" prefWidth="190.0" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="10">
+                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Beenden" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="10">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -70,7 +70,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnzeitplan" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeZeitplan" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Zeitplan" textFill="#757575" GridPane.rowIndex="7">
+                  <JFXButton fx:id="btnzeitplan" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeZeitplan" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Zeitplan" textFill="#757575" GridPane.rowIndex="7">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnHome" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeHome" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Home" textFill="#757575" GridPane.rowIndex="1">
+                  <JFXButton fx:id="btnHome" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeHome" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Home" textFill="#757575" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnTurnierübersicht" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeTurnier" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="2">
+                  <JFXButton fx:id="btnTurnierübersicht" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeTurnier" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Turnierübersicht" textFill="#757575" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -115,7 +115,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnKlassen" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeKlassenuebersicht" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Klassen" textFill="#757575" GridPane.rowIndex="3">
+                  <JFXButton fx:id="btnKlassen" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeKlassenuebersicht" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Klassen" textFill="#757575" GridPane.rowIndex="3">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnStatistik" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#statistikoeffnen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Statistik" textFill="#757575" GridPane.rowIndex="8">
+                  <JFXButton fx:id="btnStatistik" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#statistikoeffnen" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Statistik" textFill="#757575" GridPane.rowIndex="8">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -145,7 +145,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="9">
+                  <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="9">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnSpieler" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeSpieler" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Spieler" textFill="#757575" GridPane.rowIndex="4">
+                  <JFXButton fx:id="btnSpieler" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeSpieler" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Spieler" textFill="#757575" GridPane.rowIndex="4">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnSpieluebersicht" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeSpieluebersicht" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="6">
+                  <JFXButton fx:id="btnSpieluebersicht" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeSpieluebersicht" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Spielübersicht" textFill="#757575" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -187,7 +187,7 @@
                         <String fx:value="fonteffect" />
                      </styleClass>
                   </JFXButton>
-                  <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="39.0" minWidth="200.0" onAction="#setNodeVisualisierung" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Auslosung" textFill="#757575" GridPane.rowIndex="5">
+                  <JFXButton fx:id="btnTurnierbaum" disable="true" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeVisualisierung" prefHeight="39.0" prefWidth="210.0" stylesheets="@../CSS/custom.css" text="Auslosung" textFill="#757575" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
