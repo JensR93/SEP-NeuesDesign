@@ -25,8 +25,6 @@ public class auswahlklasse
 
 
 
-
-
     public static Dictionary<String, Spieler> getSpielererfolgreich() {
         return spielererfolgreich;
     }

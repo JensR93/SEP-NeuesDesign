@@ -78,7 +78,7 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        SpracheLaden();
 
         auswahlklasse.setKlassenuebersichtController(this);
 

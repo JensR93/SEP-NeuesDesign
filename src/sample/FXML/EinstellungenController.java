@@ -92,10 +92,6 @@ public class EinstellungenController implements Initializable {
 
     }
 
-    public void SpracheLaden()
-    {
-
-    }
 
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
@@ -232,6 +228,10 @@ public class EinstellungenController implements Initializable {
         changeListener();
 
         SetzeEinstellungen();
+        SpracheLaden();
+    }
+
+    private void SpracheLaden() {
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -336,6 +336,10 @@ public class EinstellungenController implements Initializable {
                 System.out.println("Sprache=Deutsch");
                 Sprache="de";
                 Einstellungen_schreiben();
+
+
+                auswahlklasse.getDashboardController().SpracheLaden();
+                auswahlklasse.getKlassenuebersichtController().SpracheLaden();
             }
         });
         rdEnglisch.setOnAction(e ->
@@ -347,6 +351,8 @@ public class EinstellungenController implements Initializable {
                 System.out.println("Sprache=Englisch");
                 Sprache="en";
                 Einstellungen_schreiben();
+                auswahlklasse.getDashboardController().SpracheLaden();
+                auswahlklasse.getKlassenuebersichtController().SpracheLaden();
             }
         });
         toggle_schiri.setOnAction(e ->
