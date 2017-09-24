@@ -23,12 +23,11 @@ public class TurnierDAOimpl implements TurnierDAO {
 
 
         String sql = "INSERT INTO Turnier("
-                + "Datum, "
                 + "startzeitEinzel, "
                 + "startzeitDoppel, "
                 + "startzeitMixed, "
                 + "Name) "
-                + "VALUES(?,?,?,?,?)";
+                + "VALUES(?,?,?,?)";
 
         try {
             Connection con = SQLConnection.getCon();
@@ -39,11 +38,10 @@ public class TurnierDAOimpl implements TurnierDAO {
             turnier.setTurnierid(turnierID);
             smtID.close();
             PreparedStatement smt = con.prepareStatement(sql);
-            smt.setObject(1, turnier.getDatum());
-            smt.setTimestamp(2,Timestamp.valueOf(turnier.getStartzeitEinzel()));
-            smt.setTimestamp(3,Timestamp.valueOf(turnier.getStartzeitDoppel()));
-            smt.setTimestamp(4,Timestamp.valueOf(turnier.getStartzeitMixed()));
-            smt.setString(5, turnier.getName());
+            smt.setTimestamp(1,Timestamp.valueOf(turnier.getStartzeitEinzel()));
+            smt.setTimestamp(2,Timestamp.valueOf(turnier.getStartzeitDoppel()));
+            smt.setTimestamp(3,Timestamp.valueOf(turnier.getStartzeitMixed()));
+            smt.setString(4, turnier.getName());
             smt.executeUpdate();
             smt.close();
 
