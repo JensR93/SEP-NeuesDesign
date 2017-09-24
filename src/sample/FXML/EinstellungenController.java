@@ -33,30 +33,55 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private JFXColorPicker color_ausstehend;
+
     @FXML
     private JFXColorPicker color_zukunft;
+
     @FXML
     private JFXColorPicker color_gespielt;
+
     @FXML
     private Label Label_Spieleinstellungen;
+
     @FXML
     private Label lab_Sprache;
+
     @FXML
     private Label Label_SchiriStandVerw;
+
     @FXML
     private Label lab_VormSchiri;
+
     @FXML
     private Label lab_ausstehSpiel;
+
     @FXML
     private Label lab_aktiveSpiele;
+
     @FXML
     private Label lab_gespielSpiele;
+
+    @FXML
+    private Label Label_ZukSpiele;
+
+    @FXML
+    private JFXButton btn_StandEinstell;
+
+    @FXML
+    private Label Label_Drucker;
+
+    @FXML
+    private JFXButton btn_DruckerAendern;
+
+    @FXML
+    private JFXButton btn_TestseiteDrucken;
 
     @FXML
     private GridPane gridPane;
 
     @FXML
     private JFXRadioButton rdDeutsch;
+
     @FXML
     private JFXRadioButton rdEnglisch;
 
@@ -83,7 +108,6 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private JFXButton btnClose21111;
-
 
     @FXML
     private JFXToggleButton toggle_schiri;
@@ -257,6 +281,36 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("lab_gespielSpiele");
             lab_gespielSpiele.setText(titel);
+
+            titel = bundle.getString("Label_ZukSpiele");
+            Label_ZukSpiele.setText(titel);
+
+            titel = bundle.getString("btn_StandEinstell");
+            btn_StandEinstell.setText(titel);
+
+            titel = bundle.getString("rdDeutsch");
+            rdDeutsch.setText(titel);
+
+            titel = bundle.getString("rdEnglisch");
+            rdEnglisch.setText(titel);
+
+            titel = bundle.getString("rdGewinner");
+            rdGewinner.setText(titel);
+
+            titel = bundle.getString("rdVerlierer");
+            rdVerlierer.setText(titel);
+
+            titel = bundle.getString("rdAus");
+            rdAus.setText(titel);
+
+            titel = bundle.getString("Label_Drucker");
+            Label_Drucker.setText(titel);
+
+            titel = bundle.getString("btn_DruckerAendern");
+            btn_DruckerAendern.setText(titel);
+
+            titel = bundle.getString("btn_TestseiteDrucken");
+            btn_TestseiteDrucken.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
