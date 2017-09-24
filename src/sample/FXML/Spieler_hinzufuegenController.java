@@ -602,46 +602,12 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             System.err.println( e );
         }
         tabelle_spielerliste_vorname.setText(titel);
+        
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_nachname");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_nachname.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_verein");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_verein.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_SpielerID");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_SpielerID.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tabelle_spielerliste_geschlecht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tabelle_spielerliste_geschlecht.setText(titel);
+
 
         try
         {
@@ -654,6 +620,18 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
             titel = bundle.getString("Label_Geschlecht");
             Label_Geschlecht.setText(titel);
+
+            titel = bundle.getString("tabelle_spielerliste_geschlecht");
+            tabelle_spielerliste_geschlecht.setText(titel);
+
+            titel = bundle.getString("tabelle_spielerliste_SpielerID");
+            tabelle_spielerliste_SpielerID.setText(titel);
+
+            titel = bundle.getString("tabelle_spielerliste_verein");
+            tabelle_spielerliste_verein.setText(titel);
+
+            titel = bundle.getString("tabelle_spielerliste_nachname");
+            tabelle_spielerliste_nachname.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
