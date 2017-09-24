@@ -1,6 +1,9 @@
 package sample.FXML;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -47,10 +51,6 @@ public class EinstellungenController implements Initializable {
     private Label lab_aktiveSpiele;
     @FXML
     private Label lab_gespielSpiele;
-    @FXML
-    private Label Label_ZukSpiele;
-    @FXML
-    private JFXButton btn_StandEinstell;
 
     @FXML
     private GridPane gridPane;
@@ -59,12 +59,6 @@ public class EinstellungenController implements Initializable {
     private JFXRadioButton rdDeutsch;
     @FXML
     private JFXRadioButton rdEnglisch;
-
-    @FXML
-    private JFXButton btn_DruckerAendern;
-
-    @FXML
-    private JFXButton btn_TestseiteDrucken;
 
     @FXML
     private ToggleGroup Language;
@@ -80,9 +74,6 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private JFXRadioButton rdAus;
-
-    @FXML
-    private Label Label_Drucker;
 
     @FXML
     private JFXButton btnClose21;
@@ -102,6 +93,10 @@ public class EinstellungenController implements Initializable {
 
     }
 
+    public void SpracheLaden()
+    {
+        auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+    }
 
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
@@ -238,10 +233,6 @@ public class EinstellungenController implements Initializable {
         changeListener();
 
         SetzeEinstellungen();
-        SpracheLaden();
-    }
-
-    private void SpracheLaden() {
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -266,37 +257,6 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("lab_gespielSpiele");
             lab_gespielSpiele.setText(titel);
-
-            titel = bundle.getString("Label_ZukSpiele");
-            Label_ZukSpiele.setText(titel);
-
-            titel = bundle.getString("btn_StandEinstell");
-            btn_StandEinstell.setText(titel);
-
-            titel = bundle.getString("rdDeutsch");
-            rdDeutsch.setText(titel);
-
-            titel = bundle.getString("rdEnglisch");
-            rdEnglisch.setText(titel);
-
-            titel = bundle.getString("rdGewinner");
-            rdGewinner.setText(titel);
-
-            titel = bundle.getString("rdVerlierer");
-            rdVerlierer.setText(titel);
-
-            titel = bundle.getString("rdAus");
-            rdAus.setText(titel);
-
-            titel = bundle.getString("Label_Drucker");
-            Label_Drucker.setText(titel);
-
-            titel = bundle.getString("btn_DruckerAendern");
-            btn_DruckerAendern.setText(titel);
-
-            titel = bundle.getString("btn_TestseiteDrucken");
-            btn_TestseiteDrucken.setText(titel);
-
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
@@ -374,13 +334,11 @@ public class EinstellungenController implements Initializable {
 
             if(!Sprache.equals("de"))
             {
+                Locale.setDefault( new Locale("de", "de") );
                 System.out.println("Sprache=Deutsch");
                 Sprache="de";
                 Einstellungen_schreiben();
-
-
-                auswahlklasse.getDashboardController().SpracheLaden();
-                auswahlklasse.getKlassenuebersichtController().SpracheLaden();
+                SpracheLaden();
             }
         });
         rdEnglisch.setOnAction(e ->
@@ -389,11 +347,12 @@ public class EinstellungenController implements Initializable {
 
             if(!Sprache.equals("en"))
             {
+                Locale.setDefault( new Locale("en", "en") );
                 System.out.println("Sprache=Englisch");
                 Sprache="en";
                 Einstellungen_schreiben();
-                auswahlklasse.getDashboardController().SpracheLaden();
-                auswahlklasse.getKlassenuebersichtController().SpracheLaden();
+                SpracheLaden();
+
             }
         });
         toggle_schiri.setOnAction(e ->
