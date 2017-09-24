@@ -93,17 +93,10 @@ public class VisualisierungController implements Initializable {
 
     private void koVisualisierung(Spielsystem spielsystem, Tab tab) {
         if (spielsystem!=null) {
-            Turnierbaum turnierbaum = new Turnierbaum(20, 20, 180, 50, 100, 20);
-            if (auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size() > 1) {
-                Canvas canvas = new Canvas();
-                VBox vBox = new VBox();
-                ScrollPane scrollPane = new ScrollPane();
-                tab.setContent(scrollPane);
-                scrollPane.setContent(vBox);
-                vBox.getChildren().add(canvas);
-                turnierbaum.erstelleTurnierbaum(spielsystem, canvas);
-                //vBox.setStyle("-fx-background-color: #d8d8d8");
-            }
+            Turnierbaum turnierbaum = new Turnierbaum(20, 20, 180, 50, 100, 20, tab);
+
+            turnierbaum.erstelleTurnierbaum(spielsystem);
+            //vBox.setStyle("-fx-background-color: #d8d8d8");
         }
     }
 
