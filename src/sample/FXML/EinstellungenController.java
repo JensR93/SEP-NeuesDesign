@@ -193,7 +193,7 @@ public class EinstellungenController implements Initializable {
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
     {
-         ZukuenftigeSpieleFarbe="#ff0000" ;
+         ZukuenftigeSpieleFarbe="#000000" ;
          AusstehendeSpieleFarbe="#006400" ;
          AktiveSpieleFarbe="#00008b" ;
          GespielteSpieleFarbe = "#ff0000";
