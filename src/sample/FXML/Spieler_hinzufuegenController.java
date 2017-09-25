@@ -35,6 +35,7 @@ public class Spieler_hinzufuegenController implements Initializable{
     ContextMenu contextMenu = new ContextMenu();
     String baseName = "resources.Main";
     String titel ="";
+    DashboardController dashboardController;
 
 //region Deklaration
 
@@ -120,6 +121,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     Boolean Update=false;
     HashMap<Integer, Spieler> spielerhash = new HashMap<Integer, Spieler>();
+    private ObservableList vereine = FXCollections.observableArrayList();
 
     public static Spieler spieler_neu=null;
     public static ObservableList<Spieler> obs_spieler = auswahlklasse.getObs_spieler();
@@ -305,6 +307,10 @@ public class Spieler_hinzufuegenController implements Initializable{
 //
 //    }
 
+    public ObservableList getVereine() {
+        return vereine;
+    }
+
     public void  spielerTabelleAktualisieren()
     {
         tabelle_spielerliste.refresh();
@@ -391,6 +397,9 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
 
     }
 
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
+    }
 
     @FXML
     private void choiceclick(ActionEvent event)
@@ -405,7 +414,6 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     {
 
         System.out.println(auswahlklasse.getVereine().size());
-        ObservableList vereine = FXCollections.observableArrayList();
         Enumeration enumKeys = auswahlklasse.getVereine().keys();
         while (enumKeys.hasMoreElements()){
             int key = (int) enumKeys.nextElement();
@@ -842,15 +850,15 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
     @FXML
     public void pressBtn_neuerVerein(ActionEvent event) throws Exception {
         try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("neuerVerein.fxml"));
+            auswahlklasse.getDashboardController().setNodeNeuerVerein();
+            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Neuer_Verein.fxml"));
 
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
 
             stage.setScene(new Scene(root1));
             stage.show();
-            stage.setTitle("Neuer Verein");
+            stage.setTitle("Neuer Verein");*/
         } catch(Exception e) {
             e.printStackTrace();
         }

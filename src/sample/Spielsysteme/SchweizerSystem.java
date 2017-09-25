@@ -17,6 +17,8 @@ public class SchweizerSystem extends Spielsystem {
 
 	public SchweizerSystem(int anzahlRunden, ArrayList<Team> teamList, Spielklasse spielklasse) {
 		setSpielklasse(spielklasse);
+		this.teamList = teamList;
+		freiloseHinzufuegen(this.teamList);
 		this.anzahlTeams = teamList.size();
 		if(anzahlRunden<anzahlTeams) {
 			setAnzahlRunden(anzahlRunden);
@@ -25,12 +27,12 @@ public class SchweizerSystem extends Spielsystem {
 			setAnzahlRunden(anzahlTeams-1);
 			System.out.println("Es können bei "+anzahlTeams+" Teilnehmern maximal "+(anzahlTeams-1)+" Runden gespielt werden!");
 		}
-		this.teamList = teamList;
 		setSpielSystemArt(5);
-		freiloseHinzufuegen(this.teamList);
 		ersteRundeErstellen();
 		alleSpieleErstellen();
 		alleSpieleSchreiben();
+		freilosErgebnisSetzen();
+		teamListReset();
 	}
 
 	private void alleSpieleSchreiben() {
@@ -51,12 +53,33 @@ public class SchweizerSystem extends Spielsystem {
 		alleSpieleEinlesen(spielListe);
 		setOffeneRundenSpiele(anzahlTeams/2);
 		alleErgebnisseEinlesen(ergebnisse);
+	}
 
+	private void freilosErgebnisSetzen() {
+		if(this.getRundenArray().size()>0){
+			for(int i=0;i<getRundenArray().get(0).size();i++){
+				Spiel spiel = getRundenArray().get(0).get(i);
+				if (spiel.getHeim()!=null&&spiel.getHeim().isFreilos()){
+					spiel.setErgebnis(new Ergebnis(0, 21, 0, 21));
+				}
+				else if(spiel.getGast()!=null&&spiel.getGast().isFreilos()) {
+					spiel.setErgebnis(new Ergebnis(21, 0, 21, 0));
+				}
+			}
+		}
 	}
 
 	private void alleSpieleEinlesen(ArrayList<Spiel> spiele){
+		for (int i=0;i<getAnzahlRunden();i++){
+			getRundenArray().add(new ZeitplanRunde());
+		}
 		for (int i=0;i<spiele.size();i++){
-			spiele.get(i).setSpielsystem(this);
+			Spiel spiel =spiele.get(i);
+			spiel.setSpielsystem(this);
+			int rundennummer= spiel.getRundenNummer();
+			//if (getRundenArray().get(rundennummer)!=null){
+				getRundenArray().get(rundennummer).add(spiel);
+			//}
 		}
 		setOffeneRundenSpiele(anzahlTeams/2);
 	}
@@ -79,11 +102,6 @@ public class SchweizerSystem extends Spielsystem {
 		});
 		teamListArray.add(new ArrayList<>());
 		for (int i=0; i<nextTeamList.size();i++){
-			System.out.println((i+1)+": "+nextTeamList.get(i).getGewonneneSpiele()+", "+
-					nextTeamList.get(i).getGewonneneSaetze()+":"+
-					nextTeamList.get(i).getVerloreneSaetze()+", "+
-					nextTeamList.get(i).getGewonnnenePunkte()+":"+
-					nextTeamList.get(i).getVerlorenePunkte());
 			teamListArray.get(teamListArray.size()-1).add(nextTeamList.get(i));
 			//System.out.println("Size: "+teamListArray.get(aktuelleRunde-1).size());
 		}
@@ -231,17 +249,6 @@ public class SchweizerSystem extends Spielsystem {
 		fuelleSummenSpalte(); //setze Summe auf 0, damit Team nicht mehr ausgewählt wird
 	}
 
-
-
-	private void druckeSchema(){
-		for (int x=0; x< schema.length;x++){
-			for (int y=0;y<schema[0].length;y++){
-				System.out.print("["+schema[x][y]+"]");
-			}
-			System.out.println();
-		}
-	}
-
 	private void teamListReset(){
 		teamList.clear();
 		for (int i=0;i<teamListArray.get(teamListArray.size()-1).size();i++)
@@ -252,20 +259,30 @@ public class SchweizerSystem extends Spielsystem {
 
 	private void rundeFuellen(){
 		teamList.clear();
-		for (int i=0;i<nextTeamList.size();i++)
+		ArrayList<Team> tempTeamList = (ArrayList<Team>) nextTeamList.clone();
+		/*for (int i=0;i<nextTeamList.size();i++)
 		{
 			this.teamList.add(nextTeamList.get(i));
-		}
+		}*/
 		nextTeamList.clear();
-		while (this.teamList.size()>1){
-			Team teamEins = teamList.get(0);
-			this.teamList.remove(teamEins);
+		while (tempTeamList.size()>1){
+			Team teamEins = tempTeamList.get(0);
+			tempTeamList.remove(teamEins);
 			this.nextTeamList.add(teamEins);
-			Team teamZwei = teamList.get(0);
-			this.teamList.remove(teamZwei);
+			Team teamZwei = tempTeamList.get(0);
+			tempTeamList.remove(teamZwei);
 			this.nextTeamList.add(teamZwei);
-			getSpielklasse().getSpiele().get(spielSystemIDberechnen()).setHeim(teamEins);
-			getSpielklasse().getSpiele().get(spielSystemIDberechnen()).setGast(teamZwei);
+			Spiel spiel = getSpielklasse().getSpiele().get(spielSystemIDberechnen());
+			spiel.setHeim(teamEins);
+			spiel.setGast(teamZwei);
+			if (teamEins.isFreilos()){
+				spiel.setErgebnis(new Ergebnis(0,21,0,21));
+			}
+			else if (teamZwei.isFreilos()){
+				spiel.setErgebnis(new Ergebnis(21,0,21,0));
+			}
+			spiel.getSpielDAO().update(spiel);
+
 			erhoeheOffeneRundenSpiele();
 		}
 	}
@@ -285,7 +302,6 @@ public class SchweizerSystem extends Spielsystem {
 				erhoeheAktuelleRunde();
 				return true;
 			}
-
 		}
 		return false;
 	}
@@ -305,7 +321,7 @@ public class SchweizerSystem extends Spielsystem {
 		if ((teamList.size()/2) * 2 != teamList.size()){ // /2 *2 überprüft, ob Spieleranzahl gerade oder ungerade (int)
 			this.teamList.add(new Team("Freilos",this.getSpielklasse()));
 			System.out.println("Freilos zu schweizer hinzugefügt");
-			super.setzlisteDAO.update(teamList.size(),teamList.get(teamList.size()-1),this.getSpielklasse());
+			super.setzlisteDAO.create(teamList.size(),teamList.get(teamList.size()-1),this.getSpielklasse());
 		}
 	}
 	public ArrayList<Team> getSetzliste(){

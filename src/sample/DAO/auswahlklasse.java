@@ -71,6 +71,7 @@ public class auswahlklasse
     private static SpielsystemController spielsystemController;
     private static SpieluebersichtController spieluebersichtController;
     private static VisualisierungController visualisierungController;
+    private static Neuer_VereinController neuer_vereinController;
 
     public static VisualisierungController getVisualisierungController() {
         return visualisierungController;
@@ -195,6 +196,14 @@ public class auswahlklasse
 
     public static void setDict_doppelte_spieler(Dictionary<Spieler, ObservableList> dict_doppelte_spieler) {
         auswahlklasse.dict_doppelte_spieler = dict_doppelte_spieler;
+    }
+
+    public static Neuer_VereinController getNeuer_vereinController() {
+        return neuer_vereinController;
+    }
+
+    public static void setNeuer_vereinController(Neuer_VereinController neuer_vereinController) {
+        auswahlklasse.neuer_vereinController = neuer_vereinController;
     }
 
     private static Dictionary<Integer, Verein> vereine = new Hashtable<Integer, Verein>();

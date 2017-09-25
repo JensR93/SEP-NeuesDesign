@@ -89,7 +89,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </ChoiceBox>
-                        <JFXButton fx:id="b_neuerVerein" text="Neuer Verein">
+                        <JFXButton fx:id="b_neuerVerein" onAction="#pressBtn_neuerVerein" text="Neuer Verein">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
