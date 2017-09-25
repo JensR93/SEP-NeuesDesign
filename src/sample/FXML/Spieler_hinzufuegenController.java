@@ -951,6 +951,9 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             t_suchleistespielerhinzu.setPromptText(titel);
             t_suchleistespielerhinzu.setLabelFloat(true);
 
+            titel = bundle.getString("d_geb");
+            d_geb.setPromptText(titel);
+
             titel = bundle.getString("label_partner");
             label_partner.setText(titel);
 
