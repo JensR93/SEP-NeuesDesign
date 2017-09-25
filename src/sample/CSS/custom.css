@@ -103,15 +103,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
 
-.toggle-button
-{
-    -fx-pref-height:50px;
-    -fx-font-family:'Roboto medium';
-    -fx-font-size:14px;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 0 0 0 20;
-    -fx-effect: null;
-}
+
 
 .color-picker .color-picker-label .text
 {

@@ -34,7 +34,7 @@ public class DashboardController implements Initializable{
     String titel ="";
 
     private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen,NeuerVerein;
 
     private StackPane Turnier,home;
     private VBox Spieluebersicht;
@@ -139,7 +139,43 @@ public class DashboardController implements Initializable{
 
     public void SpracheLaden()
     {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("btnTurnierübersicht");
+            btnTurnierübersicht.setText(titel);
 
+            titel = bundle.getString("btnKlassen");
+            btnKlassen.setText(titel);
+
+            titel = bundle.getString("btnSpieler");
+            btnSpieler.setText(titel);
+
+            titel = bundle.getString("btnTurnierbaum");
+            btnTurnierbaum.setText(titel);
+
+            titel = bundle.getString("btnSpieluebersicht");
+            btnSpieluebersicht.setText(titel);
+
+            titel = bundle.getString("btnzeitplan");
+            btnzeitplan.setText(titel);
+
+            titel = bundle.getString("btnStatistik");
+            btnStatistik.setText(titel);
+
+            titel = bundle.getString("btnEinstellungen");
+            btnEinstellungen.setText(titel);
+
+            titel = bundle.getString("btnBeenden");
+            btnBeenden.setText(titel);
+
+            titel = bundle.getString("t_Btv");
+            t_Btv.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
     }
 
     public void createPages() {
@@ -147,7 +183,7 @@ public class DashboardController implements Initializable{
             home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
-
+            NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
             Klassehinzufuegen = FXMLLoader.load(getClass().getResource("Klasse_hinzufuegen_neu.fxml"));
@@ -220,6 +256,22 @@ public class DashboardController implements Initializable{
             //ExcelImport.getObs_vereine_erfolgreich().clear();
         }
     }
+
+
+    public void setNodeNeuerVerein()
+    {
+        try {
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Neuer_Verein.fxml"));
+            NeuerVerein = fxmlLoader.load();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(NeuerVerein);
+    }
+
      public void setNodeSpieluebersicht()
     {
         try {
@@ -370,43 +422,7 @@ public class DashboardController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btnTurnierübersicht");
-            btnTurnierübersicht.setText(titel);
-
-            titel = bundle.getString("btnKlassen");
-            btnKlassen.setText(titel);
-
-            titel = bundle.getString("btnSpieler");
-            btnSpieler.setText(titel);
-
-            titel = bundle.getString("btnTurnierbaum");
-            btnTurnierbaum.setText(titel);
-
-            titel = bundle.getString("btnSpieluebersicht");
-            btnSpieluebersicht.setText(titel);
-
-            titel = bundle.getString("btnzeitplan");
-            btnzeitplan.setText(titel);
-
-            titel = bundle.getString("btnStatistik");
-            btnStatistik.setText(titel);
-
-            titel = bundle.getString("btnEinstellungen");
-            btnEinstellungen.setText(titel);
-
-            titel = bundle.getString("btnBeenden");
-            btnBeenden.setText(titel);
-
-            titel = bundle.getString("t_Btv");
-            t_Btv.setText(titel);
-
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
+        SpracheLaden();
 
 
 

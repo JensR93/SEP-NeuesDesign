@@ -70,7 +70,7 @@
             </Text>
          </center>
       </JFXToolbar>
-      <JFXButton fx:id="btnClose211" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="39.0" prefWidth="300.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+      <JFXButton fx:id="btnClose211" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="300.0" styleClass="card-white" stylesheets="@../CSS/custom.css" text="Standardeinstellungen" textFill="#757575" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
