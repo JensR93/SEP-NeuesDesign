@@ -151,7 +151,7 @@ public class Turnierbaum implements Visualisierung {
     @Override
     public void drucken() {
         Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, 0,0,0,0 );
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
         PrinterJob printerJob = PrinterJob.createPrinterJob();
         if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getPrimaryStage())){
             ArrayList<Canvas> alleSeiten = erstelleTurnierbaum(spielsystem,pageLayout.getPrintableWidth(),pageLayout.getPrintableHeight());
