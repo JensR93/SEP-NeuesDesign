@@ -84,27 +84,15 @@ public class Turnierbaum implements Visualisierung {
 
     @Override
     public void drucken() {
-
-        /*PrintJob pjob = getToolkit().getPrintJob(new Frame(), "Print TimeGraph", null);
-        if(pjob !=null) {
-            Graphics pg = pjob.getGraphics();
-            if (pg != null) {
-                canvas.printAll(pg);
-                pg.dispose();   // flush page
-            }
-            pjob.end();
-        }
-
-
-       /* Printer printer = Printer.getDefaultPrinter();
+        Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
         PrinterJob printerJob = PrinterJob.createPrinterJob();
-        /*if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getStagesdict().get("Main"))){
+        if(printerJob!=null){
             boolean success = printerJob.printPage(pageLayout, canvas);
             if (success) {
                 printerJob.endJob();
             }
-        }*/
+        }
 
     }
 }
