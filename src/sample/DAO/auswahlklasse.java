@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import sample.*;
@@ -57,7 +58,7 @@ public class auswahlklasse
     public static void setObs_vereine_erfolgreich(ObservableList obs_vereine_erfolgreich) {
         auswahlklasse.obs_vereine_erfolgreich = obs_vereine_erfolgreich;
     }
-
+    private static Window primaryStage;
     private static ObservableList obs_vereine_erfolgreich=FXCollections.observableArrayList();
     private static DashboardController dashboardController;
     private static Turnier_ladenController turnier_ladenController;
@@ -109,6 +110,14 @@ public class auswahlklasse
 
     public static void setSpielsystemController(SpielsystemController spielsystemController) {
         auswahlklasse.spielsystemController = spielsystemController;
+    }
+
+    public static Window getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void setPrimaryStage(Window primaryStage) {
+        auswahlklasse.primaryStage = primaryStage;
     }
 
     private static  TurnierDAO turnierDAO = new TurnierDAOimpl();

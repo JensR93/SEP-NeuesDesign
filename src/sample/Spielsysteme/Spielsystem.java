@@ -8,11 +8,7 @@ import java.util.*;
 
 public abstract class Spielsystem {
 	protected SetzlisteDAO setzlisteDAO = new SetzlisteDAOimpl();
-	private String name;
-	private int anzahlTeilnehmer;
 	private int anzahlRunden;
-	private int anzahlSpiele;
-	private int spielsystemID;
 	private Spielklasse spielklasse;
 	private int offeneRundenSpiele=0;
 	private int aktuelleRunde=0;
@@ -131,6 +127,11 @@ public abstract class Spielsystem {
 	public void updateVisualisierung(){
 		if (visualisierung != null){
 			visualisierung.update();
+		}
+	}
+	public void druckeVisualisierung(){
+		if(visualisierung!=null){
+			visualisierung.drucken();
 		}
 	}
 
