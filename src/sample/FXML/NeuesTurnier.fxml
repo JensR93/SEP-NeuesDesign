@@ -13,76 +13,90 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="483.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
+
+<GridPane prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
    <columnConstraints>
-      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="117.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="406.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <JFXTextField fx:id="Turniername" labelFloat="true" maxWidth="500.0" promptText="Turniername" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin></JFXTextField>
-      <BigDecimalField fx:id="AnzahlFelder" maxWidth="500.0" promptText="Anzahl Felder" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="10.0" right="10.0" />
-         </GridPane.margin></BigDecimalField>
-      <HBox prefHeight="92.0" prefWidth="69.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="483.0" prefWidth="523.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="117.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="406.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <JFXButton fx:id="btn_abbrechen" onAction="#Abbrechen" text="Abbrechen">
-               <graphic>
-                  <FontAwesomeIconView glyphName="CLOSE" size="20" />
-               </graphic></JFXButton>
-            <JFXButton fx:id="btn_starten" onAction="#erstelleTurnier" text="Speichern">
-               <graphic>
-                  <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
-               </graphic></JFXButton>
+            <JFXTextField fx:id="Turniername" labelFloat="true" maxWidth="500.0" promptText="Turniername" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </JFXTextField>
+            <BigDecimalField fx:id="AnzahlFelder" maxWidth="500.0" promptText="Anzahl Felder" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </GridPane.margin>
+            </BigDecimalField>
+            <HBox prefHeight="92.0" prefWidth="69.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <JFXButton fx:id="btn_abbrechen" onAction="#Abbrechen" text="Abbrechen">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CLOSE" size="20" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btn_starten" onAction="#erstelleTurnier" text="Speichern">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <JFXDatePicker fx:id="date_doppel">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </JFXDatePicker>
+                  <JFXTimePicker fx:id="time_doppel" />
+               </children>
+            </HBox>
+            <Label text="Turniername" GridPane.rowIndex="1" />
+            <Label text="Anzahl Felder" GridPane.rowIndex="2" />
+            <Label text="Startzeit Einzel" GridPane.rowIndex="3" />
+            <Label text="Startzeit Doppel" GridPane.rowIndex="4" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <JFXDatePicker fx:id="date_einzel">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </JFXDatePicker>
+                  <JFXTimePicker fx:id="time_einzel" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <JFXDatePicker fx:id="date_mixed">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </JFXDatePicker>
+                  <JFXTimePicker fx:id="time_mixed" />
+               </children>
+            </HBox>
+            <Label text="Startzeit Mixed" GridPane.rowIndex="5" />
          </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <children>
-            <JFXDatePicker fx:id="date_doppel">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </JFXDatePicker>
-            <JFXTimePicker fx:id="time_doppel" />
-         </children>
-      </HBox>
-      <Label text="Turniername" GridPane.rowIndex="1" />
-      <Label text="Anzahl Felder" GridPane.rowIndex="2" />
-      <Label text="Startzeit Einzel" GridPane.rowIndex="3" />
-      <Label text="Startzeit Doppel" GridPane.rowIndex="4" />
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <JFXDatePicker fx:id="date_einzel">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </JFXDatePicker>
-            <JFXTimePicker fx:id="time_einzel" />
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-         <children>
-            <JFXDatePicker fx:id="date_mixed">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </JFXDatePicker>
-            <JFXTimePicker fx:id="time_mixed" />
-         </children>
-      </HBox>
-      <Label text="Startzeit Mixed" GridPane.rowIndex="5" />
+      </GridPane>
    </children>
 </GridPane>

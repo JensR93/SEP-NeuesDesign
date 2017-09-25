@@ -27,8 +27,8 @@ public class Main extends Application {
         scene.setFill(Color.rgb(216,216,216));
         primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
-        primaryStage.setMinHeight(768);
-        primaryStage.setMinWidth(1368);
+        primaryStage.setMinHeight(820);
+        primaryStage.setMinWidth(1400);
         primaryStage.show();
         auswahlklasse.setPrimaryStage(primaryStage);
 

@@ -90,9 +90,14 @@ public class Spieler_hinzufuegenController implements Initializable{
     private Label label_partner;
     //-------------------------------
 
-
     @FXML
     private JFXTabPane tabpane_spieler;
+
+
+
+
+
+
     @FXML
     private ChoiceBox<Verein> combo_verein;
     @FXML
@@ -945,6 +950,9 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             titel = bundle.getString("t_suchleistespielerhinzu");
             t_suchleistespielerhinzu.setPromptText(titel);
             t_suchleistespielerhinzu.setLabelFloat(true);
+
+            titel = bundle.getString("d_geb");
+            d_geb.setPromptText(titel);
 
             titel = bundle.getString("label_partner");
             label_partner.setText(titel);

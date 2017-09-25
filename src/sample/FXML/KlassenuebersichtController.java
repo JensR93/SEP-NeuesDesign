@@ -61,6 +61,22 @@ public class KlassenuebersichtController implements Initializable {
     public void SpracheLaden()
     {
 
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("tab_doppel");
+            tab_doppel.setText(titel);
+
+            titel = bundle.getString("tab_einzel");
+            tab_einzel.setText(titel);
+
+            titel = bundle.getString("b_neueKlasse");
+            b_neueKlasse.setText(titel);
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
     }
 
 
@@ -137,35 +153,8 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
             sortiereSpielKlasse();
         }
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("b_neueKlasse");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        b_neueKlasse.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_einzel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_einzel.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_doppel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_doppel.setText(titel);
 
 
         Spielklasse sp = null;
