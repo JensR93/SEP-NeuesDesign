@@ -21,8 +21,6 @@ public class Spiel {
 	private Spieler schiedsrichter;
 	private Spielsystem spielsystem;
 	private Turnier turnier;
-
-
 	private Feld feld;
 	private int status = 0; //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
 	private int systemSpielID;
@@ -87,6 +85,9 @@ public class Spiel {
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
+			if(getSystemSpielArt()==5){
+				return "Schweizer "+getRundenName();
+			}
 			return "ausstehend";
 		}
 
@@ -104,6 +105,9 @@ public class Spiel {
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
+			if(getSystemSpielArt()==5){
+				return "Schweizer "+getRundenName();
+			}
 			return "ausstehend";
 		}
 	}
@@ -119,6 +123,9 @@ public class Spiel {
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzHeim);
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
+			}
+			if(getSystemSpielArt()==5){
+				return "Schweizer "+getRundenName();
 			}
 			return "ausstehend";
 		}
@@ -136,6 +143,9 @@ public class Spiel {
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzGast);
 					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
+			}
+			if(getSystemSpielArt()==5){
+				return "Schweizer "+getRundenName();
 			}
 			return "ausstehend";
 		}
@@ -224,9 +234,9 @@ public class Spiel {
 		//auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().add(this);
 		//spielDAO.create(this);
 		this.status = 1;
-		if(heim.isFreilos()){
+		/*if(heim.isFreilos()){
 			setErgebnis(new Ergebnis(21,0,21,0));
-		}
+		}*/
 	}
 
 
@@ -381,8 +391,8 @@ public class Spiel {
 
 		}
 		else{ // Schweizer System
-			int rundenNummer = (systemSpielID-10000000)/1000;
-			return "Runde "+rundenNummer + 1;
+			int rundenNummer = (systemSpielID-systemSpielID/10000000*10000000)/1000;
+			return "Runde "+(rundenNummer + 1);
 		}
 		return "";
 	}
@@ -509,7 +519,7 @@ public class Spiel {
 	}
 
 	private void statistikAktualisieren() {
-		if (heim != null && gast !=null &&(!heim.isFreilos()&&!gast.isFreilos())) {
+		if (heim != null && gast !=null &&(!heim.isFreilos()&&!gast.isFreilos()) && getSystemSpielArt()!=5) {
 			int satzpunkteHeim = 0;
 			int satzpunkteGast = 0;
 

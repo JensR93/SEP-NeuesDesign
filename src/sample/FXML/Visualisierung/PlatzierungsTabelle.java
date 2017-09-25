@@ -20,6 +20,8 @@ public class PlatzierungsTabelle implements Visualisierung {
     private int xTeamSpielerBreite;
     private int xSpiele;
     private int xSpieleBreite;
+    private int xBHZ;
+    private int xBHZBreite =0;
     private int xSaetze;
     private int xSaetzeBreite;
     private int xPunkte;
@@ -45,7 +47,30 @@ public class PlatzierungsTabelle implements Visualisierung {
         spielsystem.setVisualisierung(this);
     }
 
+    public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite, int xBHZBreite, int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc) {
+        this.xObenLinks = xObenLinks;
+        this.yObenLinks = yObenLinks;
+        this.zellenHoehe = zellenHoehe;
+        this.spielsystem = spielsystem;
+        this.gc = gc;
+        this.xPlatz = xObenLinks;
+        this.xPlatzBreite = xPlatzBreite;
+        this.xTeamSpieler = xObenLinks+xPlatzBreite;
+        this.xTeamSpielerBreite = xTeamSpielerBreite;
+        this.xSpiele = xTeamSpieler+xTeamSpielerBreite;
+        this.xSpieleBreite = xSpieleBreite;
+        this.xBHZ = xSpiele+xSpieleBreite;
+        this.xBHZBreite = xBHZBreite;
+        this.xSaetze = xBHZ+xBHZBreite;
+        this.xSaetzeBreite = xSaetzeBreite;
+        this.xPunkte = xSaetze+xSaetzeBreite;
+        this.xPunkteBreite = xPunkteBreite;
+        platzierungsTabelleErstellen();
+        spielsystem.setVisualisierung(this);
+    }
+
     private void platzierungsTabelleErstellen(){
+        gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
         gc.beginPath();
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(1);
@@ -68,6 +93,12 @@ public class PlatzierungsTabelle implements Visualisierung {
         gc.lineTo(xSpiele + xSpieleBreite, yObenLinks+zellenHoehe);
         gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
         gc.fillText("Spiele", xSpiele + 5,yObenLinks+14);
+
+        gc.moveTo(xBHZ, yObenLinks);
+        gc.lineTo(xBHZ + xBHZBreite, yObenLinks);
+        gc.lineTo(xBHZ + xBHZBreite, yObenLinks+zellenHoehe);
+        gc.lineTo(xBHZ , yObenLinks+zellenHoehe);
+        gc.fillText("BHZ", xBHZ + 5,yObenLinks+14);
 
         gc.moveTo(xSaetze, yObenLinks);
         gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks);
@@ -113,6 +144,7 @@ public class PlatzierungsTabelle implements Visualisierung {
         int verlorenePunkte = team.getVerlorenePunkte();
         int gewonneneSaetze = team.getGewonneneSaetze();
         int verloreneSaetze = team.getVerloreneSaetze();
+        int bhz = team.getBHZ();
 
         gc.beginPath();
         gc.setStroke(Color.BLACK);
@@ -134,6 +166,10 @@ public class PlatzierungsTabelle implements Visualisierung {
         gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
         gc.fillText(gewonneneSpiele+":"+(gespielteSpiele-gewonneneSpiele), xSpiele+ 5,yObenLinks+14);
 
+        gc.moveTo(xBHZ + xBHZBreite, yObenLinks);
+        gc.lineTo(xBHZ + xBHZBreite, yObenLinks+zellenHoehe);
+        gc.lineTo(xBHZ , yObenLinks+zellenHoehe);
+        gc.fillText(bhz+"", xBHZ+ 5,yObenLinks+14);
 
         gc.moveTo(xSaetze +xSaetzeBreite, yObenLinks);
         gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks+zellenHoehe);
