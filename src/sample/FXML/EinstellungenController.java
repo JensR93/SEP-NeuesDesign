@@ -118,8 +118,67 @@ public class EinstellungenController implements Initializable {
     }
 
     public void SpracheLaden()
-    {
-        auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+    {     auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("Label_Spieleinstellungen");
+            Label_Spieleinstellungen.setText(titel);
+
+            titel = bundle.getString("lab_Sprache");
+            lab_Sprache.setText(titel);
+
+            titel = bundle.getString("Label_SchiriStandVerw");
+            Label_SchiriStandVerw.setText(titel);
+
+            titel = bundle.getString("lab_VormSchiri");
+            lab_VormSchiri.setText(titel);
+
+            titel = bundle.getString("lab_ausstehSpiel");
+            lab_ausstehSpiel.setText(titel);
+
+            titel = bundle.getString("lab_aktiveSpiele");
+            lab_aktiveSpiele.setText(titel);
+
+            titel = bundle.getString("lab_gespielSpiele");
+            lab_gespielSpiele.setText(titel);
+
+            titel = bundle.getString("Label_ZukSpiele");
+            Label_ZukSpiele.setText(titel);
+
+            titel = bundle.getString("btn_StandEinstell");
+            btn_StandEinstell.setText(titel);
+
+            titel = bundle.getString("rdDeutsch");
+            rdDeutsch.setText(titel);
+
+            titel = bundle.getString("rdEnglisch");
+            rdEnglisch.setText(titel);
+
+            titel = bundle.getString("rdGewinner");
+            rdGewinner.setText(titel);
+
+            titel = bundle.getString("rdVerlierer");
+            rdVerlierer.setText(titel);
+
+            titel = bundle.getString("rdAus");
+            rdAus.setText(titel);
+
+            titel = bundle.getString("Label_Drucker");
+            Label_Drucker.setText(titel);
+
+            titel = bundle.getString("btn_DruckerAendern");
+            btn_DruckerAendern.setText(titel);
+
+            titel = bundle.getString("btn_TestseiteDrucken");
+            btn_TestseiteDrucken.setText(titel);
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
+
     }
 
     @FXML
@@ -257,64 +316,7 @@ public class EinstellungenController implements Initializable {
         changeListener();
 
         SetzeEinstellungen();
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
 
-            titel = bundle.getString("Label_Spieleinstellungen");
-            Label_Spieleinstellungen.setText(titel);
-
-            titel = bundle.getString("lab_Sprache");
-            lab_Sprache.setText(titel);
-
-            titel = bundle.getString("Label_SchiriStandVerw");
-            Label_SchiriStandVerw.setText(titel);
-
-            titel = bundle.getString("lab_VormSchiri");
-            lab_VormSchiri.setText(titel);
-
-            titel = bundle.getString("lab_ausstehSpiel");
-            lab_ausstehSpiel.setText(titel);
-
-            titel = bundle.getString("lab_aktiveSpiele");
-            lab_aktiveSpiele.setText(titel);
-
-            titel = bundle.getString("lab_gespielSpiele");
-            lab_gespielSpiele.setText(titel);
-
-            titel = bundle.getString("Label_ZukSpiele");
-            Label_ZukSpiele.setText(titel);
-
-            titel = bundle.getString("btn_StandEinstell");
-            btn_StandEinstell.setText(titel);
-
-            titel = bundle.getString("rdDeutsch");
-            rdDeutsch.setText(titel);
-
-            titel = bundle.getString("rdEnglisch");
-            rdEnglisch.setText(titel);
-
-            titel = bundle.getString("rdGewinner");
-            rdGewinner.setText(titel);
-
-            titel = bundle.getString("rdVerlierer");
-            rdVerlierer.setText(titel);
-
-            titel = bundle.getString("rdAus");
-            rdAus.setText(titel);
-
-            titel = bundle.getString("Label_Drucker");
-            Label_Drucker.setText(titel);
-
-            titel = bundle.getString("btn_DruckerAendern");
-            btn_DruckerAendern.setText(titel);
-
-            titel = bundle.getString("btn_TestseiteDrucken");
-            btn_TestseiteDrucken.setText(titel);
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
     }
 
     private void changeListener() {
