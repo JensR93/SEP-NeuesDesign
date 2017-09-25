@@ -34,7 +34,7 @@ public class DashboardController implements Initializable{
     String titel ="";
 
     private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen,NeuerVerein;
 
     private StackPane Turnier,home;
     private VBox Spieluebersicht;
@@ -183,7 +183,7 @@ public class DashboardController implements Initializable{
             home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
-
+            NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
             Klassehinzufuegen = FXMLLoader.load(getClass().getResource("Klasse_hinzufuegen_neu.fxml"));
@@ -256,6 +256,22 @@ public class DashboardController implements Initializable{
             //ExcelImport.getObs_vereine_erfolgreich().clear();
         }
     }
+
+
+    public void setNodeNeuerVerein()
+    {
+        try {
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Neuer_Verein.fxml"));
+            NeuerVerein = fxmlLoader.load();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(NeuerVerein);
+    }
+
      public void setNodeSpieluebersicht()
     {
         try {
