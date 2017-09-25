@@ -90,9 +90,14 @@ public class Spieler_hinzufuegenController implements Initializable{
     private Label label_partner;
     //-------------------------------
 
-
     @FXML
     private JFXTabPane tabpane_spieler;
+
+
+
+
+
+
     @FXML
     private ChoiceBox<Verein> combo_verein;
     @FXML

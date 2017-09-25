@@ -119,6 +119,15 @@ public class EinstellungenController implements Initializable {
 
     public void SpracheLaden()
     {     auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+
+          auswahlklasse.getDashboardController().SpracheLaden();
+
+          auswahlklasse.getTurnier_ladenController().SpracheLaden();
+
+          auswahlklasse.getKlasse_hinzufügenController().SpracheLaden();
+
+          auswahlklasse.getKlassenuebersichtController().SpracheLaden();
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );

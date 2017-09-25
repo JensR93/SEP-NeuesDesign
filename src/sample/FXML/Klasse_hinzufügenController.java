@@ -36,9 +36,9 @@ import java.util.ResourceBundle;
 public class Klasse_hinzufügenController implements Initializable
 {
 
-
     String baseName = "resources.Main";
     String titel ="";
+
     @FXML
     private Text t_disziplin;
 
@@ -51,12 +51,38 @@ public class Klasse_hinzufügenController implements Initializable
     @FXML
     private ChoiceBox<Niveau> combo_niveau;
 
-
     @FXML
     private JFXButton b_klasseSpeichern;
 
     @FXML
+    private JFXButton b_Abbrechen;
+
+    @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
+
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("b_klasseSpeichern");
+            b_klasseSpeichern.setText(titel);
+
+            titel = bundle.getString("t_niveau");
+            t_niveau.setText(titel);
+
+            titel = bundle.getString("t_disziplin");
+            t_disziplin.setText(titel);
+
+            titel = bundle.getString("b_Abbrechen");
+            b_Abbrechen.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
 
 
     private static int index_anzahlRunden=0;
@@ -105,39 +131,9 @@ public class Klasse_hinzufügenController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        SpracheLaden();
+
         auswahlklasse.setKlasse_hinzufügenController(this);
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_disziplin");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_disziplin.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_niveau");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        t_niveau.setText(titel);
-
-
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("b_klasseSpeichern");
-            b_klasseSpeichern.setText(titel);
-
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
 
         try {
 

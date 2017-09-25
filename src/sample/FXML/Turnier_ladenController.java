@@ -69,7 +69,27 @@ public class Turnier_ladenController extends Application implements Initializabl
 
     public void SpracheLaden()
     {
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
+            titel = bundle.getString("TurnierNameSpalte");
+            TurnierNameSpalte.setText(titel);
+
+            titel = bundle.getString("t_TurnierLaden");
+            t_TurnierLaden.setText(titel);
+
+            titel = bundle.getString("TurnierDatumSpalte");
+            TurnierDatumSpalte.setText(titel);
+
+            titel = bundle.getString("t_turniersuche");
+            t_turniersuche.setPromptText(titel);
+
+            titel = bundle.getString("btn_neuesTurnier");
+            btn_neuesTurnier.setText(titel);
+
+        } catch (MissingResourceException e) {
+            System.err.println(e);
+        }
     }
 
     @Override
@@ -123,44 +143,10 @@ public void tabelleReload()
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         auswahlklasse.setTurnier_ladenController(this);
-
-            try {
-                ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                titel = bundle.getString("btn_neuesTurnier");
-            } catch (MissingResourceException e) {
-                System.err.println(e);
-            }
-            btn_neuesTurnier.setText(titel);
-
-            try {
-                ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                titel = bundle.getString("t_turniersuche");
-            } catch (MissingResourceException e) {
-                System.err.println(e);
-            }
-            t_turniersuche.setPromptText(titel);
-
-            try {
-                ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                titel = bundle.getString("TurnierDatumSpalte");
-            } catch (MissingResourceException e) {
-                System.err.println(e);
-            }
-            TurnierDatumSpalte.setText(titel);
-
-            try {
-                ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                titel = bundle.getString("TurnierNameSpalte");
-                TurnierNameSpalte.setText(titel);
-
-                titel = bundle.getString("t_TurnierLaden");
-                t_TurnierLaden.setText(titel);
-
-            } catch (MissingResourceException e) {
-                System.err.println(e);
-            }
-
 
         try {
             turnierlisteLaden();

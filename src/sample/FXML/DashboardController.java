@@ -139,7 +139,43 @@ public class DashboardController implements Initializable{
 
     public void SpracheLaden()
     {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            titel = bundle.getString("btnTurnierübersicht");
+            btnTurnierübersicht.setText(titel);
 
+            titel = bundle.getString("btnKlassen");
+            btnKlassen.setText(titel);
+
+            titel = bundle.getString("btnSpieler");
+            btnSpieler.setText(titel);
+
+            titel = bundle.getString("btnTurnierbaum");
+            btnTurnierbaum.setText(titel);
+
+            titel = bundle.getString("btnSpieluebersicht");
+            btnSpieluebersicht.setText(titel);
+
+            titel = bundle.getString("btnzeitplan");
+            btnzeitplan.setText(titel);
+
+            titel = bundle.getString("btnStatistik");
+            btnStatistik.setText(titel);
+
+            titel = bundle.getString("btnEinstellungen");
+            btnEinstellungen.setText(titel);
+
+            titel = bundle.getString("btnBeenden");
+            btnBeenden.setText(titel);
+
+            titel = bundle.getString("t_Btv");
+            t_Btv.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
     }
 
     public void createPages() {
@@ -370,43 +406,7 @@ public class DashboardController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btnTurnierübersicht");
-            btnTurnierübersicht.setText(titel);
-
-            titel = bundle.getString("btnKlassen");
-            btnKlassen.setText(titel);
-
-            titel = bundle.getString("btnSpieler");
-            btnSpieler.setText(titel);
-
-            titel = bundle.getString("btnTurnierbaum");
-            btnTurnierbaum.setText(titel);
-
-            titel = bundle.getString("btnSpieluebersicht");
-            btnSpieluebersicht.setText(titel);
-
-            titel = bundle.getString("btnzeitplan");
-            btnzeitplan.setText(titel);
-
-            titel = bundle.getString("btnStatistik");
-            btnStatistik.setText(titel);
-
-            titel = bundle.getString("btnEinstellungen");
-            btnEinstellungen.setText(titel);
-
-            titel = bundle.getString("btnBeenden");
-            btnBeenden.setText(titel);
-
-            titel = bundle.getString("t_Btv");
-            t_Btv.setText(titel);
-
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
+        SpracheLaden();
 
 
 
