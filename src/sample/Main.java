@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DAO.auswahlklasse;
 import sample.FXML.DashboardController;
 
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class Main extends Application {
         primaryStage.setMinHeight(768);
         primaryStage.setMinWidth(1368);
         primaryStage.show();
+        auswahlklasse.setPrimaryStage(primaryStage);
 
     }
 

@@ -30,6 +30,16 @@ public class SchweizerSystem extends Spielsystem {
 		freiloseHinzufuegen(this.teamList);
 		ersteRundeErstellen();
 		alleSpieleErstellen();
+		alleSpieleSchreiben();
+	}
+
+	private void alleSpieleSchreiben() {
+		for (int i=0; i<this.getRundenArray().size(); i++){
+			for(int j=0;j<this.getRundenArray().get(i).size();j++){
+				Spiel spiel = this.getRundenArray().get(i).get(j);
+				spiel.getSpielDAO().create(spiel);
+			}
+		}
 	}
 
 	public SchweizerSystem(ArrayList<Team> teamList, Spielklasse spielklasse, ArrayList<Spiel> spielListe, Dictionary<Integer,Ergebnis> ergebnisse) {
@@ -80,6 +90,7 @@ public class SchweizerSystem extends Spielsystem {
 	}
 
 	public void ersteRundeErstellen() {
+		getRundenArray().add(new ZeitplanRunde());
 		while (teamList.size()>1){
 			Team teamEins = getRandomTeam();
 			this.teamList.remove(teamEins);
@@ -88,6 +99,7 @@ public class SchweizerSystem extends Spielsystem {
 			this.teamList.remove(teamZwei);
 			this.nextTeamList.add(teamZwei);
 			Spiel spiel = new Spiel(teamEins,teamZwei,spielSystemIDberechnen(),this);
+			this.getRundenArray().get(0).add(spiel);
 			//spiele.add(spiel);
 			erhoeheOffeneRundenSpiele();
 		}
@@ -96,11 +108,15 @@ public class SchweizerSystem extends Spielsystem {
 	private void alleSpieleErstellen(){
 		for (int i=2;i<=getAnzahlRunden();i++){
 			resetOffeneRundenSpiele();
+			ZeitplanRunde zeitplanRunde= new ZeitplanRunde();
+
 			for (int j=0; j<anzahlTeams/2;j++){
-				new Spiel(spielSystemIDberechnen(), this);
+				Spiel spiel = new Spiel(spielSystemIDberechnen(), this);
 				erhoeheOffeneRundenSpiele();
+				zeitplanRunde.add(spiel);
 			}
 			erhoeheAktuelleRunde();
+			getRundenArray().add(zeitplanRunde);
 		}
 		resetAktuelleRunde();
 		erhoeheAktuelleRunde();
