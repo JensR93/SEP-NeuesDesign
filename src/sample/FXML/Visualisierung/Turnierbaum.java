@@ -98,12 +98,26 @@ public class Turnierbaum implements Visualisierung {
         //int gesamtBreite = runden.size()*(breite+xAbstand)+xObenLinks+2-xAbstand;
         Canvas canvas = new Canvas(papierBreite, papierHoehe);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        int xObenLinks = 20;
+
+        //papierBreite = 200;
+        //papierHoehe = 50;
+        int papierbreite = (int) papierBreite;
+        int papierhöhe = (int) papierHoehe;
+
+        int xObenLinks = papierbreite/20;
+        int yObenLinks = papierhöhe/20;
+        int breite = (papierbreite-xObenLinks)/(runden.size()*2);
+        int hoehe = (papierhöhe-yObenLinks)/(runden.get(0).size()*2);
+        int xAbstand = (papierbreite-xObenLinks)/(runden.size()*2);
+        int yAbstand = (papierhöhe-yObenLinks)/(runden.get(0).size()*2);
+
+        /*int xObenLinks = 20;
         int yObenLinks = 20;
         int breite = 200;
         int hoehe = 50;
         int xAbstand = 100;
-        int yAbstand = 20;
+        int yAbstand = 20;*/
+
 
         ArrayList<TurnierbaumSpiel> letzteRunde = new ArrayList<>();
         for(int j=0; j<runden.get(0).size();j++){
@@ -137,7 +151,7 @@ public class Turnierbaum implements Visualisierung {
     @Override
     public void drucken() {
         Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, 0,0,0,0 );
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
         PrinterJob printerJob = PrinterJob.createPrinterJob();
         if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getPrimaryStage())){
             ArrayList<Canvas> alleSeiten = erstelleTurnierbaum(spielsystem,pageLayout.getPrintableWidth(),pageLayout.getPrintableHeight());

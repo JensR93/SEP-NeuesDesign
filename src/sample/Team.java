@@ -392,26 +392,47 @@ public class Team {
         int satzdifferenzTeam = team.getGewonneneSaetze()-team.getVerloreneSaetze();
         int punktdifferenzTeam = team.getGewonnnenePunkte()-team.getVerlorenePunkte();
         if (this.gewonneneSpiele==team.getGewonneneSpiele()){
-
-            if (satzdifferenzTeam==satzdifferenzThis){
-                if(punktdifferenzTeam==punktdifferenzThis){
-                    return 0;
+            if(spielklasse.getSpielsystem() != null && spielklasse.getSpielsystem().getSpielSystemArt()==5){
+                if(team.getBHZ()==this.getBHZ()){
+                    if (satzdifferenzTeam == satzdifferenzThis) {
+                        if (punktdifferenzTeam == punktdifferenzThis) {
+                            return 0;
+                        } else {
+                            return punktdifferenzTeam - punktdifferenzThis;
+                        }
+                    } else {
+                        return satzdifferenzTeam - satzdifferenzThis;
+                    }
                 }
                 else{
-                    return punktdifferenzTeam-punktdifferenzThis;
+                    return team.getBHZ()-this.getBHZ();
                 }
             }
-            else
-            {
-                return satzdifferenzTeam-satzdifferenzThis;
+            else {
+                if (satzdifferenzTeam == satzdifferenzThis) {
+                    if (punktdifferenzTeam == punktdifferenzThis) {
+                        return 0;
+                    } else {
+                        return punktdifferenzTeam - punktdifferenzThis;
+                    }
+                } else {
+                    return satzdifferenzTeam - satzdifferenzThis;
+                }
             }
+
+
         }
         else{
             return team.getGewonneneSpiele()-this.gewonneneSpiele;
         }
-
-
     }
 
 
+    public int getBHZ() {
+        int BHZ =0;
+            for (int i=0;i< bisherigeGegner.size();i++){
+                BHZ+=bisherigeGegner.get(i).getGewonneneSpiele();
+            }
+        return BHZ;
+    }
 }
