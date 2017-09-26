@@ -107,8 +107,6 @@ public class KlassenuebersichtController implements Initializable {
             titel = bundle.getString("t_disziplin");
             t_disziplin.setText(titel);
 
-            titel = bundle.getString("b_Abbrechen");
-            b_Abbrechen.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
