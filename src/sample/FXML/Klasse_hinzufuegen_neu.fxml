@@ -2,60 +2,89 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Klasse_hinzufügenController">
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Klasse_hinzufügenController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="150.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="450.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="472.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Text fx:id="t_disziplin" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Disziplin:" GridPane.halignment="RIGHT">
+      <Text fx:id="t_disziplin" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Disziplin:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
-         </font></Text>
-      <Text fx:id="t_niveau" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         </font>
+         <GridPane.margin>
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Text>
+      <Text fx:id="t_niveau" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
-         </font></Text>
-      <ChoiceBox fx:id="combo_disziplin" prefHeight="40.0" prefWidth="250.0" GridPane.columnIndex="1">
+         </font>
          <GridPane.margin>
-            <Insets left="15.0" />
+            <Insets left="25.0" />
+         </GridPane.margin>
+      </Text>
+      <ChoiceBox fx:id="combo_disziplin" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="40.0" prefWidth="250.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets left="75.0" right="75.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <ChoiceBox fx:id="combo_niveau" prefHeight="40.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ChoiceBox fx:id="combo_niveau" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="200.0" prefHeight="40.0" prefWidth="250.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <GridPane.margin>
-            <Insets left="15.0" />
+            <Insets bottom="50.0" left="75.0" right="75.0" top="50.0" />
          </GridPane.margin>
       </ChoiceBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="246.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="226.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <JFXButton fx:id="b_Abbrechen" text="Abbrechen">
+            <JFXButton fx:id="b_Abbrechen" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="100.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Abbrechen" textFill="#757575">
                <graphic>
-                  <FontAwesomeIconView glyphName="CLOSE" size="20" />
+                  <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
                </graphic>
-               <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
+               <styleClass>
+                  <String fx:value="buttons" />
+                  <String fx:value="font" />
+                  <String fx:value="card-white" />
+               </styleClass>
+               <GridPane.margin>
+                  <Insets left="25.0" right="25.0" />
+               </GridPane.margin>
             </JFXButton>
-            <JFXButton fx:id="b_klasseSpeichern" onAction="#pressBtn_KlasseSpeichern" text="Klasse speichern">
+            <JFXButton fx:id="b_klasseSpeichern" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="39.0" minWidth="100.0" onAction="#pressBtn_KlasseSpeichern" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Klasse speichern" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                <graphic>
-                  <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" />
                </graphic>
+               <styleClass>
+                  <String fx:value="buttons" />
+                  <String fx:value="font" />
+                  <String fx:value="card-white" />
+               </styleClass>
+               <GridPane.margin>
+                  <Insets left="25.0" right="25.0" />
+               </GridPane.margin>
             </JFXButton>
          </children>
-      </HBox>
+      </GridPane>
    </children>
 </GridPane>

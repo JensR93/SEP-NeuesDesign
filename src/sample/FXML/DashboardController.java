@@ -118,11 +118,6 @@ public class DashboardController implements Initializable{
     }
 
     @FXML
-    void statistikoeffnen(ActionEvent event) {
-
-    }
-
-    @FXML
     void teamsoeffnen(ActionEvent event) {
 
     }
@@ -397,20 +392,19 @@ public class DashboardController implements Initializable{
     {
         holderPane.getChildren().clear();
         holderPane.getChildren().add(node);
-/*        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+       FadeTransition ft = new FadeTransition(Duration.millis(500));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
-        ft.play();*/
+        ft.play();
     }
 
     public void allesFreigeben(){
         btnKlassen.setDisable(false);
         btnSpieler.setDisable(false);
         btnHome.setDisable(false);
-        btnStatistik.setDisable(false);
         btnzeitplan.setDisable(false);
         btnTurnierbaum.setDisable(false);
         btnSpieluebersicht.setDisable(false);
