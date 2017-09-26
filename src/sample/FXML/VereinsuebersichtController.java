@@ -50,6 +50,34 @@ public class VereinsuebersichtController implements Initializable {
         zeigeTabelle();
         tabelleListener();
 
+
+        vereinsuche.textProperty().addListener((observable, oldValue, newValue) -> {
+            // System.out.println("textfield changed from " + oldValue + " to " + newValue);
+            //obs_spieler.clear();
+            obs_Vereine.clear();
+            //auswahlklasse.getTurniere().clear();
+
+            Enumeration enumeration = auswahlklasse.getVereine().keys();
+            while (enumeration.hasMoreElements())
+            {
+                String key = (String) enumeration.nextElement();
+                if(auswahlklasse.getVereine().get(key).toString().toUpperCase().contains(vereinsuche.getText().toUpperCase()))
+                {
+                    obs_Vereine.add((Verein) auswahlklasse.getVereine().get(key));
+                }
+
+            }
+
+            tabelle_vereine.refresh();
+
+            tabelle_vereine.setItems(obs_Vereine);
+            //auswahlklasse.setTurniere(obs_turniere_anzeige);
+
+
+
+        });
+
+
     }
 
     private void tabelleListener() {
@@ -167,5 +195,10 @@ public class VereinsuebersichtController implements Initializable {
 
         //TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier, Integer>("turnierid"));
 
+    }
+    @FXML
+    public void btn_neueklasse(ActionEvent event)
+    {
+        auswahlklasse.getDashboardController().setNodeNeuerVerein();
     }
 }

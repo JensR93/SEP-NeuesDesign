@@ -69,6 +69,11 @@ public class Neuer_VereinController implements Initializable {
     }
 
     @FXML
+    public void pressBtn_Abbrechen(ActionEvent event)
+    {
+        auswahlklasse.getDashboardController().setNodeVereinsuebersicht();
+}
+    @FXML
     public void pressBtn_speichern(){
         if(updateverein==null) {
             String verband = tf_Verband.getText();
