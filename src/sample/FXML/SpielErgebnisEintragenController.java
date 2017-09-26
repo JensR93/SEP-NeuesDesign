@@ -1,5 +1,7 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,23 +48,17 @@ public class SpielErgebnisEintragenController implements Initializable{
     private Boolean satz3LinksGeaendert = false;
 
     @FXML
-    private HBox hbox_5;
+    private JFXTextField ts1_1;
     @FXML
-    private HBox hbox_4;
+    private JFXTextField ts1_2;
     @FXML
-    private Button btn_OK;
+    private JFXTextField ts2_1;
     @FXML
-    private TextField ts1_1;
+    private JFXTextField ts2_2;
     @FXML
-    private TextField ts1_2;
+    private JFXTextField ts3_1;
     @FXML
-    private TextField ts2_1;
-    @FXML
-    private TextField ts2_2;
-    @FXML
-    private TextField ts3_1;
-    @FXML
-    private TextField ts3_2;
+    private JFXTextField ts3_2;
     @FXML
     private Label l_heim;
     @FXML
@@ -79,11 +75,10 @@ public class SpielErgebnisEintragenController implements Initializable{
     private ImageView red_cross_2;
     @FXML
     private ImageView red_cross_3;
-
-    public void SpracheLaden()
-    {
-
-    }
+    @FXML
+    private JFXButton btn_ErgebnisseSpeichern;
+    @FXML
+    private JFXButton btn_Abbrechen;
 
     Dictionary<Integer, Spiel> dictspiele = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele();
     Spiel sp = dictspiele.get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID());
@@ -128,6 +123,54 @@ public class SpielErgebnisEintragenController implements Initializable{
         return true;
     }
 
+
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("ts1_1");
+            ts1_1.setPromptText(titel);
+            ts1_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts1_2");
+            ts1_2.setPromptText(titel);
+            ts1_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_1");
+            ts2_1.setPromptText(titel);
+            ts2_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_2");
+            ts2_2.setPromptText(titel);
+            ts2_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_1");
+            ts3_1.setPromptText(titel);
+            ts3_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_2");
+            ts3_2.setPromptText(titel);
+            ts3_2.setLabelFloat(true);
+
+            titel = bundle.getString("btn_ErgebnisseSpeichern");
+            btn_ErgebnisseSpeichern.setText(titel);
+
+            titel = bundle.getString("btn_Abbrechen");
+            btn_Abbrechen.setText(titel);
+
+            titel = bundle.getString("l_heim");
+            l_heim.setText(titel);
+
+            titel = bundle.getString("l_gast");
+            l_gast.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
 
     @FXML
     void pressbtn_OK(ActionEvent event) {
