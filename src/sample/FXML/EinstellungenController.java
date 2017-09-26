@@ -128,6 +128,10 @@ public class EinstellungenController implements Initializable {
 
           auswahlklasse.getKlassenuebersichtController().SpracheLaden();
 
+          auswahlklasse.getSpielErgebnisEintragenController().SpracheLaden();
+
+          auswahlklasse.getNeuesTurnierController().SpracheLaden();
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );

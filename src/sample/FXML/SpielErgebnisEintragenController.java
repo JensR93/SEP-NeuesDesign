@@ -1,5 +1,7 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,27 +45,30 @@ public class SpielErgebnisEintragenController implements Initializable{
 
 
     @FXML
-    private TextField ts1_1;
+    private JFXTextField ts1_1;
 
     @FXML
-    private TextField ts1_2;
+    private JFXTextField ts1_2;
 
     @FXML
-    private TextField ts2_1;
+    private JFXTextField ts2_1;
 
     @FXML
-    private TextField ts2_2;
+    private JFXTextField ts2_2;
 
     @FXML
-    private TextField ts3_1;
+    private JFXTextField ts3_1;
 
     @FXML
-    private TextField ts3_2;
+    private JFXTextField ts3_2;
     @FXML
     private Label l_heim;
     @FXML
     private Label l_gast;
-
+    @FXML
+    private JFXButton btn_ErgebnisseSpeichern;
+    @FXML
+    private JFXButton btn_Abbrechen;
     @FXML
     private ImageView green_check_1;
     @FXML
@@ -77,10 +82,6 @@ public class SpielErgebnisEintragenController implements Initializable{
     @FXML
     private ImageView red_cross_3;
 
-    public void SpracheLaden()
-    {
-
-    }
 
     Dictionary<Integer, Spiel> dictspiele = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele();
 
@@ -246,8 +247,59 @@ public class SpielErgebnisEintragenController implements Initializable{
 
     }
 
+
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("ts1_1");
+            ts1_1.setPromptText(titel);
+            ts1_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts1_2");
+            ts1_2.setPromptText(titel);
+            ts1_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_1");
+            ts2_1.setPromptText(titel);
+            ts2_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_2");
+            ts2_2.setPromptText(titel);
+            ts2_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_1");
+            ts3_1.setPromptText(titel);
+            ts3_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_2");
+            ts3_2.setPromptText(titel);
+            ts3_2.setLabelFloat(true);
+
+            titel = bundle.getString("btn_ErgebnisseSpeichern");
+            btn_ErgebnisseSpeichern.setText(titel);
+
+            titel = bundle.getString("btn_Abbrechen");
+            btn_Abbrechen.setText(titel);
+
+            titel = bundle.getString("l_heim");
+            l_heim.setText(titel);
+
+            titel = bundle.getString("l_gast");
+            l_gast.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+        auswahlklasse.setSpielErgebnisEintragenController(this);
+        SpracheLaden();
 
         s11=-1;
         s12=-1;
@@ -316,125 +368,7 @@ public class SpielErgebnisEintragenController implements Initializable{
         });
 
 //
-      /*  try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_OK");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_OK.setText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_Abbbruch");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        //btn_Abbbruch.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_Zurueckziehen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        // btn_Zurueckziehen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_Verlegen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        //btn_Verlegen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_schitzzettel");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        //btn_schitzzettel.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("eins_satz");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        eins_s.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("zwei_satz");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        zwei_s.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("drei_satz");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        drei_s.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("vier_satz");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        vier_s.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("fuenf_satz");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        fuenf_s.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_heim");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        l_heim.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_gast");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        l_gast.setText(titel);*/
 
 
         if(sp!=null && sp.getStatus()==1)

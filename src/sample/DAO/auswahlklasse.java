@@ -72,6 +72,7 @@ public class auswahlklasse
     private static SpieluebersichtController spieluebersichtController;
     private static VisualisierungController visualisierungController;
     private static Neuer_VereinController neuer_vereinController;
+    private static SpielErgebnisEintragenController spielErgebnisEintragenController;
 
     public static VisualisierungController getVisualisierungController() {
         return visualisierungController;
@@ -200,6 +201,14 @@ public class auswahlklasse
 
     public static Neuer_VereinController getNeuer_vereinController() {
         return neuer_vereinController;
+    }
+
+    public static SpielErgebnisEintragenController getSpielErgebnisEintragenController() {
+        return spielErgebnisEintragenController;
+    }
+
+    public static void setSpielErgebnisEintragenController(SpielErgebnisEintragenController spielErgebnisEintragenController) {
+        auswahlklasse.spielErgebnisEintragenController = spielErgebnisEintragenController;
     }
 
     public static void setNeuer_vereinController(Neuer_VereinController neuer_vereinController) {

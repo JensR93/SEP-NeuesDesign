@@ -1,19 +1,16 @@
 package sample.FXML;
 
-import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.*;
+
 import java.math.BigDecimal;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -37,8 +34,10 @@ import java.util.ResourceBundle;
 import jfxtras.labs.scene.control.BigDecimalField;
 
 public class NeuesTurnierController implements Initializable{
+
     String baseName = "resources.Main";
     String titel ="";
+
     boolean erfolg = false;
     TurnierDAO turnierDao = new TurnierDAOimpl();
 
@@ -70,6 +69,97 @@ public class NeuesTurnierController implements Initializable{
     private Button btn_abbrechen;
     @FXML
     private Button btn_starten;
+
+    //---Sprache---
+    @FXML
+    private Label Label_Turniername;
+    @FXML
+    private Label Label_AnzahlFelder;
+    @FXML
+    private Label Label_StartEinzel;
+    @FXML
+    private JFXRadioButton Radio_DatumUhrEinzel;
+    @FXML
+    private JFXRadioButton Radio_AnschlussDisziEinzel;
+    @FXML
+    private Label Label_Disziplin_Einzel;
+    @FXML
+    private ChoiceBox Choicebox_Einzel;
+    @FXML
+    private Label Label_StartDoppel;
+    @FXML
+    private JFXRadioButton Radio_DatumUhrDoppel;
+    @FXML
+    private JFXRadioButton Radio_AnschlussDisziDoppel;
+    @FXML
+    private Label Label_Disziplin_Doppel;
+    @FXML
+    private ChoiceBox Choicebox_Doppel;
+    @FXML
+    private Label Label_StartMixed;
+    @FXML
+    private JFXRadioButton Radio_DatumUhrMixed;
+    @FXML
+    private JFXRadioButton Radio_AnschlussDisziMixed;
+    @FXML
+    private Label Label_Disziplin_Mixed;
+    @FXML
+    private ChoiceBox Choicebox_Mixed;
+
+
+    public void SpracheLaden() {
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+            titel = bundle.getString("Label_Turniername");
+            Label_Turniername.setText(titel);
+
+            titel = bundle.getString("Label_AnzahlFelder");
+            Label_AnzahlFelder.setText(titel);
+
+            titel = bundle.getString("Label_StartEinzel");
+            Label_StartEinzel.setText(titel);
+
+            titel = bundle.getString("Radio_DatumUhrEinzel");
+            Radio_DatumUhrEinzel.setText(titel);
+
+            titel = bundle.getString("Radio_AnschlussDisziEinzel");
+            Radio_AnschlussDisziEinzel.setText(titel);
+
+            titel = bundle.getString("Label_Disziplin_Einzel");
+            Label_Disziplin_Einzel.setText(titel);
+
+            titel = bundle.getString("Label_StartDoppel");
+            Label_StartDoppel.setText(titel);
+
+            titel = bundle.getString("Radio_DatumUhrDoppel");
+            Radio_DatumUhrDoppel.setText(titel);
+
+            titel = bundle.getString("Radio_AnschlussDisziDoppel");
+            Radio_AnschlussDisziDoppel.setText(titel);
+
+            titel = bundle.getString("Label_Disziplin_Doppel");
+            Label_Disziplin_Doppel.setText(titel);
+
+            titel = bundle.getString("Label_StartMixed");
+            Label_StartMixed.setText(titel);
+
+            titel = bundle.getString("Radio_DatumUhrMixed");
+            Radio_DatumUhrMixed.setText(titel);
+
+            titel = bundle.getString("Radio_AnschlussDisziMixed");
+            Label_Turniername.setText(titel);
+
+            titel = bundle.getString("Label_Disziplin_Mixed");
+            Label_Disziplin_Mixed.setText(titel);
+
+        } catch (MissingResourceException e) {
+            System.err.println(e);
+        }
+    }
+
+
+
 
     LocalDateTime startzeiteinzel;
     LocalDateTime startzeidoppel;
@@ -170,8 +260,55 @@ public class NeuesTurnierController implements Initializable{
         auswahlklasse.getDashboardController().setNodeTurnier();
     }
 
+    @FXML
+    private void radioAuswahl(){
+        if(Radio_AnschlussDisziDoppel.isSelected()){
+            Label_Disziplin_Doppel.setVisible(true);
+            Choicebox_Doppel.setVisible(true);
+            date_doppel.setVisible(false);
+            time_doppel.setVisible(false);
+        }
+        if(Radio_DatumUhrDoppel.isSelected()){
+            Label_Disziplin_Doppel.setVisible(false);
+            Choicebox_Doppel.setVisible(false);
+            date_doppel.setVisible(true);
+            time_doppel.setVisible(true);
+        }
+
+        if(Radio_AnschlussDisziEinzel.isSelected()){
+            Label_Disziplin_Einzel.setVisible(true);
+            Choicebox_Einzel.setVisible(true);
+            date_einzel.setVisible(false);
+            time_einzel.setVisible(false);
+        }
+
+        if(Radio_DatumUhrEinzel.isSelected()){
+            Label_Disziplin_Einzel.setVisible(false);
+            Choicebox_Einzel.setVisible(false);
+            date_einzel.setVisible(true);
+            time_einzel.setVisible(true);
+        }
+
+        if(Radio_AnschlussDisziMixed.isSelected()){
+            Label_Disziplin_Mixed.setVisible(true);
+            Choicebox_Mixed.setVisible(true);
+            date_mixed.setVisible(false);
+            time_mixed.setVisible(false);
+        }
+
+        if(Radio_DatumUhrMixed.isSelected()){
+            Label_Disziplin_Mixed.setVisible(false);
+            Choicebox_Mixed.setVisible(false);
+            date_mixed.setVisible(true);
+            time_mixed.setVisible(true);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         time_einzel.setIs24HourView(true);
         time_doppel.setIs24HourView(true);
         time_mixed.setIs24HourView(true);
@@ -196,55 +333,7 @@ public class NeuesTurnierController implements Initializable{
         time_mixed.setConverter(uhrzeit);
 
     auswahlklasse.setNeuesTurnierController(this);
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_turniername");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        Turniername.setPromptText(titel);
 
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_datum");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        //turnierDatum.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("t_anzahlFelder");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        AnzahlFelder.setPromptText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_abbrechen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_abbrechen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_starten");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_starten.setText(titel);
 
         BigDecimal v = new BigDecimal(1);
         AnzahlFelder.setMinValue(v);
