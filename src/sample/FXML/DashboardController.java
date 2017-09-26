@@ -33,8 +33,8 @@ public class DashboardController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
-    private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein;
+    private JFXTabPane Spieler,Spielsystem,Visualisierung, Spielereigenschaften;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Vereinsuebersicht;
 
     private StackPane Turnier,home;
     private VBox Spieluebersicht;
@@ -68,7 +68,8 @@ public class DashboardController implements Initializable{
 
     @FXML
     private JFXButton btnTurnierbaum;
-
+    @FXML
+    private JFXButton btnVerein;
     @FXML // fx:id="btnKlassen"
     private JFXButton btnKlassen; // Value injected by FXMLLoader
 
@@ -178,7 +179,7 @@ public class DashboardController implements Initializable{
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
-
+            Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
 
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
@@ -294,6 +295,15 @@ public class DashboardController implements Initializable{
         }
         setNode(SpielErgebnisEintragen);
     }
+
+    @FXML public void setNodeVereinsuebersicht(ActionEvent event)
+    {
+        setNode(Vereinsuebersicht);
+    }
+  public void setNodeVereinsuebersicht()
+    {
+        setNode(Vereinsuebersicht);
+    }
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
         setNode(Einstellungen);
@@ -331,6 +341,14 @@ public class DashboardController implements Initializable{
     public void setNodeKlassenuebersicht()
     {
         setNode(Klassenuebersicht);
+    }
+    public void setNodeSpielerEigenschaften() {
+        try {
+            Spielereigenschaften= FXMLLoader.load(getClass().getResource("SpielerEigenschaften.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(Spielereigenschaften);
     }
     public void setNodeSpielervorhanden()
     {
@@ -402,6 +420,7 @@ public class DashboardController implements Initializable{
         btnzeitplan.setDisable(false);
         btnTurnierbaum.setDisable(false);
         btnSpieluebersicht.setDisable(false);
+        btnVerein.setDisable(false);
     }
 
     @Override
@@ -429,6 +448,7 @@ public class DashboardController implements Initializable{
             e.printStackTrace();
         }
     }
+
 
 
 }

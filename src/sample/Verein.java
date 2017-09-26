@@ -58,4 +58,6 @@ public class Verein {
 	public String toString() {
 		return name;
 	}
+
+
 }
