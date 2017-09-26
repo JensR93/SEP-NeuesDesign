@@ -179,7 +179,7 @@ public class DashboardController implements Initializable{
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
 
-            Spielereigenschaften= FXMLLoader.load(getClass().getResource("SpielerEigenschaften.fxml"));
+
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
 
@@ -332,6 +332,14 @@ public class DashboardController implements Initializable{
     {
         setNode(Klassenuebersicht);
     }
+    public void setNodeSpielerEigenschaften() {
+        try {
+            Spielereigenschaften= FXMLLoader.load(getClass().getResource("SpielerEigenschaften.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(Spielereigenschaften);
+    }
     public void setNodeSpielervorhanden()
     {
 
@@ -429,6 +437,7 @@ public class DashboardController implements Initializable{
             e.printStackTrace();
         }
     }
+
 
 
 }

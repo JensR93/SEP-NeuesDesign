@@ -865,19 +865,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
     }
 
     public void spielerEigenschaftenAnzeigen() throws Exception {
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielerEigenschaften.fxml"));
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-            stage.setTitle("Spieler Eigenschaften");
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        auswahlklasse.getDashboardController().setNodeSpielerEigenschaften();
     }
 
     public void SpracheLaden() {
