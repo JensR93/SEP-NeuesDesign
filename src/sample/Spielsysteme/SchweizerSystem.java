@@ -259,30 +259,28 @@ public class SchweizerSystem extends Spielsystem {
 
 	private void rundeFuellen(){
 		teamList.clear();
-		ArrayList<Team> tempTeamList = (ArrayList<Team>) nextTeamList.clone();
 		/*for (int i=0;i<nextTeamList.size();i++)
 		{
 			this.teamList.add(nextTeamList.get(i));
 		}*/
 		nextTeamList.clear();
-		while (tempTeamList.size()>1){
-			Team teamEins = tempTeamList.get(0);
-			tempTeamList.remove(teamEins);
+		while (teamList.size()>1){
+			Team teamEins = teamList.get(0);
+			teamList.remove(teamEins);
 			this.nextTeamList.add(teamEins);
-			Team teamZwei = tempTeamList.get(0);
-			tempTeamList.remove(teamZwei);
+			Team teamZwei = teamList.get(0);
+			teamList.remove(teamZwei);
 			this.nextTeamList.add(teamZwei);
 			Spiel spiel = getSpielklasse().getSpiele().get(spielSystemIDberechnen());
 			spiel.setHeim(teamEins);
 			spiel.setGast(teamZwei);
 			if (teamEins.isFreilos()){
-				spiel.setErgebnis(new Ergebnis(0,21,0,21));
+				spiel.setErgebnis(new Ergebnis(19,21,19,21));
 			}
 			else if (teamZwei.isFreilos()){
-				spiel.setErgebnis(new Ergebnis(21,0,21,0));
+				spiel.setErgebnis(new Ergebnis(21,19,21,19));
 			}
 			spiel.getSpielDAO().update(spiel);
-
 			erhoeheOffeneRundenSpiele();
 		}
 	}

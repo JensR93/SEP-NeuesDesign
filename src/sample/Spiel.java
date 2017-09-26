@@ -519,7 +519,7 @@ public class Spiel {
 	}
 
 	private void statistikAktualisieren() {
-		if (heim != null && gast !=null &&(!heim.isFreilos()&&!gast.isFreilos()) && getSystemSpielArt()!=5) {
+		if ((getSystemSpielArt()==5 || heim != null && gast !=null &&(!heim.isFreilos()&&!gast.isFreilos()))) {
 			int satzpunkteHeim = 0;
 			int satzpunkteGast = 0;
 

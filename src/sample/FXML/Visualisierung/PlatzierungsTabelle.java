@@ -44,7 +44,6 @@ public class PlatzierungsTabelle implements Visualisierung {
         this.xPunkte = xSaetze+xSaetzeBreite;
         this.xPunkteBreite = xPunkteBreite;
         platzierungsTabelleErstellen();
-        spielsystem.setVisualisierung(this);
     }
 
     public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite, int xBHZBreite, int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc) {
