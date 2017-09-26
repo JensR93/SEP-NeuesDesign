@@ -61,9 +61,9 @@
                   <Insets bottom="70.0" top="70.0" />
                </GridPane.margin>
                <children>
-                  <JFXTabPane fx:id="tabpane_uebersicht" styleClass="font" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="120.0">
+                  <JFXTabPane fx:id="tabpane_uebersicht" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="120.0">
                      <tabs>
-                        <Tab fx:id="tab_einzel" text="Einzel">
+                        <Tab fx:id="tab_einzel" styleClass="jfxtab-pane" text="Einzel">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../CSS/custom.css">
                                  <children>
@@ -76,11 +76,11 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                        <Tab fx:id="tab_doppel" text="Doppel">
+                        <Tab fx:id="tab_doppel" styleClass="jfxtab-pane" text="Doppel">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ScrollPane prefHeight="283.0" prefWidth="600.0" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <ScrollPane prefHeight="283.0" prefWidth="600.0" styleClass="scroll-bar" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
                                           <VBox fx:id="klasssedoppel_vbox" />
                                        </content>
@@ -89,17 +89,23 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                        <Tab text="Mixed">
+                        <Tab styleClass="jfxtab-pane" text="Mixed">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ScrollPane prefHeight="277.0" prefWidth="600.0" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <VBox fx:id="klasssemixed_vbox" layoutX="10.0" layoutY="10.0" prefHeight="505.0" prefWidth="581.0" />
+                                    <ScrollPane prefHeight="435.0" prefWidth="647.0" styleClass="scroll-bar" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <content>
+                                          <VBox fx:id="klasssemixed_vbox" />
+                                       </content></ScrollPane>
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
                      </tabs>
+                     <styleClass>
+                        <String fx:value="jfxtab-pane" />
+                        <String fx:value="font" />
+                     </styleClass>
                   </JFXTabPane>
                </children>
             </GridPane>
@@ -197,7 +203,7 @@
                                        </VBox.margin>
                                        <styleClass>
                                           <String fx:value="card-white" />
-                                          <String fx:value="font2" />
+                                          <String fx:value="font" />
                                        </styleClass>
                                     </ChoiceBox>
                                  </children>
@@ -228,7 +234,7 @@
                                        </VBox.margin>
                                        <styleClass>
                                           <String fx:value="card-white" />
-                                          <String fx:value="font2" />
+                                          <String fx:value="font" />
                                        </styleClass>
                                     </ChoiceBox>
                                  </children>
