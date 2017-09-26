@@ -410,7 +410,6 @@ public class DashboardController implements Initializable{
         btnKlassen.setDisable(false);
         btnSpieler.setDisable(false);
         btnHome.setDisable(false);
-        btnStatistik.setDisable(false);
         btnzeitplan.setDisable(false);
         btnTurnierbaum.setDisable(false);
         btnSpieluebersicht.setDisable(false);
