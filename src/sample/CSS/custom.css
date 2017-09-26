@@ -17,15 +17,16 @@
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
     -fx-background-radius: 0 0 50 0;
 }
-/*.fonteffect
+
+.buttons:hover
 {
-    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-    -fx-effect: innershadow(gaussian,rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-}*/
+    -fx-background-color: rgba(255, 255, 255, .7);
+    -fx-background-radius: 50;
+}
 
 .toolbarDBE{
     -fx-pref-height:50px;
-    -fx-background-color: #4059a9;
+    -fx-background-color: #3367D6;
 }
 
 .side-bar{
@@ -35,13 +36,25 @@
     -fx-background-radius: 0 50 0 0;
 }
 .side-buttons{
-    -fx-background-color: transparent;
+    -fx-text-fill: #757575;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER_LEFT;
+
+}
+.side-buttons:hover{
+    -fx-background-color: rgba(225, 225, 225, .7);
     -fx-background-radius: 50;
     -fx-alignment: CENTER_LEFT;
 }
 
+.side-buttons:focused{
+    -fx-background-color: rgba(215, 215, 215, .7);
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
 .buttonDBE{
-    -fx-background-color: transparent;
     -fx-background-radius: 50;
     -fx-alignment: CENTER;
     -fx-border-color: #757575;
@@ -54,17 +67,12 @@
     -fx-font-weight: bold;
 }
 
-
-.fab{
-    -fx-pref-height:50px;
-    -fx-pref-width:50px;
-    -fx-background-color: #ff4081;
+.card-white
+{
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
     -fx-background-radius: 50px;
-    -fx-border-radius: 50px;
-    -fx-alignment: CENTER;
-    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
-
 
 .card-white
 {
@@ -83,16 +91,9 @@
 
 .card-blue
 {
-    -fx-background-color: #4059a9;
+    -fx-background-color: #3367D6;
     -fx-background-radius: 50px;
     -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
-}
-/*Toogle buttons for sideboard*/
-.button-raised
-{
-    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
-    1);
-    -fx-background-color: rgb(250, 250, 250);
 }
 
 .Label
@@ -103,18 +104,9 @@
     -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
 
-
-
 .color-picker .color-picker-label .text
 {
     visibility: false;
-}
-
-.jfx-tab-pane
-{
-    -fx-text-fill: red;
-    -fx-font-weight: bold;
-    -fx-background-color: #ffffff;
 }
 
 .font
@@ -122,10 +114,6 @@
     -fx-font-weight: bold;
     -fx-text-fill: #757575;
     -fx-font-size: 16px;
-}
-
-.button-pressed:pressed{
-   -fx-background-color: #399FFF;
 }
 
 .text-field {
