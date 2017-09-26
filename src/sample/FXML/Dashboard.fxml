@@ -47,11 +47,12 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Beenden" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="8">
+                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Beenden" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="9">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -106,7 +107,7 @@
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
                   </JFXButton>
-                  <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="7">
+                  <JFXButton fx:id="btnEinstellungen" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeEinstellungen" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Einstellungen" textFill="#757575" GridPane.rowIndex="8">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -149,6 +150,14 @@
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnVerein" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#setNodeVereinsuebersicht" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Vereine" textFill="#757575" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="GEARS" size="20" wrappingWidth="40.0" />
+                     </graphic>
                   </JFXButton>
                </children>
                <GridPane.margin>
