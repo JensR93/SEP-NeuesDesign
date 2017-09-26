@@ -365,7 +365,7 @@ public class ExcelImport implements Initializable{
 
                     Enumeration e = auswahlklasse.getVereine().keys();
                     while(e.hasMoreElements()) {
-                        int id= (int)e.nextElement();
+                        String id= (String) e.nextElement();
                         if (verein == null) {
                             {
                                 Verein tempverein = auswahlklasse.getVereine().get(id);

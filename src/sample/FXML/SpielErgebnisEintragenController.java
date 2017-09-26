@@ -258,6 +258,7 @@ public class SpielErgebnisEintragenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+        auswahlklasse.setSpielErgebnisEintragenController(this);
         ts3_1.setDisable(true);
         ts3_2.setDisable(true);
 

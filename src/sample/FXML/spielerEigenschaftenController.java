@@ -84,6 +84,7 @@ public class spielerEigenschaftenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        auswahlklasse.setSpielerEigenschaftenController(this);
         try {
             ladeVereine();
         } catch (Exception e) {
@@ -326,13 +327,13 @@ public class spielerEigenschaftenController implements Initializable{
 //GridPane_NeueKlasse.add(label2,1,0);
     }
 
-    private void ladeVereine() throws Exception
+    public void ladeVereine() throws Exception
     {
 
         ObservableList vereine = FXCollections.observableArrayList();
         Enumeration enumKeys = auswahlklasse.getVereine().keys();
         while (enumKeys.hasMoreElements()){
-            int key = (int) enumKeys.nextElement();
+            String key = (String) enumKeys.nextElement();
             vereine.add(auswahlklasse.getVereine().get(key));
 
         }

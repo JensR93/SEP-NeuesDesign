@@ -180,7 +180,6 @@ public class DashboardController implements Initializable{
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
             Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
-
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
 
@@ -298,6 +297,17 @@ public class DashboardController implements Initializable{
 
     @FXML public void setNodeVereinsuebersicht(ActionEvent event)
     {
+        try {
+            if(auswahlklasse.getVereinsuebersichtController()!=null)
+            {
+                auswahlklasse.getVereinsuebersichtController().fulleObsVereine();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setNode(Vereinsuebersicht);
     }
   public void setNodeVereinsuebersicht()

@@ -455,7 +455,7 @@ public class TurnierDAOimpl implements TurnierDAO {
             ResultSet vereinResult = smt.executeQuery();
             while (vereinResult.next()){
                 int vereinsid = vereinResult.getInt("VereinsID");
-                auswahlklasse.getVereine().put(vereinsid,new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
+                auswahlklasse.getVereine().put(vereinResult.getString("ExtVereinsID"),new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
             }
             smt.close();
 
@@ -499,7 +499,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("NName"),
                         gdatum,
                         spielerID,spielerResult.getBoolean("Geschlecht"),
-                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getInt("VereinsID")),
+                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getString("extVereinsID")),
                         spielerResult.getFloat("Meldegebuehren"),
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,
