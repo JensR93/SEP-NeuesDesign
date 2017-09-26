@@ -83,6 +83,7 @@ public class Turnier_ladenController extends Application implements Initializabl
 
             titel = bundle.getString("t_turniersuche");
             t_turniersuche.setPromptText(titel);
+            t_turniersuche.setLabelFloat(true);
 
             titel = bundle.getString("btn_neuesTurnier");
             btn_neuesTurnier.setText(titel);

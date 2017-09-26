@@ -108,19 +108,38 @@ public class SpieluebersichtController implements Initializable {
     public void printSpielTable() throws Exception {
         tabelle_spiele.getColumns().clear();
         if (auswahlklasse.getAktuelleTurnierAuswahl() != null) {
-            TableColumn<Spiel, String> spielNummerSpalte = tableColoumnsetCellFactory("#", "SpielNummer");
-            TableColumn<Spiel, String> spielFeldSpalte = tableColoumnsetCellFactory("Feld", "FeldNr");
-            TableColumn<Spiel, String> spielHeimSpalte = tableColoumnsetCellFactory("Heim", "HeimStringKomplett");
-            TableColumn<Spiel, String> spielGastSpalte = tableColoumnsetCellFactory("Gast", "GastStringKomplett");
-            TableColumn<Spiel, String> spielErgebnisSpalte = tableColoumnsetCellFactory("Ergebnis", "ErgebnisString");
-            TableColumn<Spiel, String> spielSpielklasseSpalte = tableColoumnsetCellFactory("Spielklasse", "SpielklasseString");
-            TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory("Runde", "RundenName");
 
-            tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
+            try {
+                ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                String feld = bundle.getString("feld");
+                String heim = bundle.getString("heim");
+                String gast = bundle.getString("gast");
+                String ergebnis = bundle.getString("ergebnis");
+                String spielklasse = bundle.getString("spielklasse");
+                String runde = bundle.getString("runde");
+
+
+                TableColumn<Spiel, String> spielNummerSpalte = tableColoumnsetCellFactory("#", "SpielNummer");
+                TableColumn<Spiel, String> spielFeldSpalte = tableColoumnsetCellFactory(feld, "FeldNr");
+                TableColumn<Spiel, String> spielHeimSpalte = tableColoumnsetCellFactory(heim, "HeimStringKomplett");
+                TableColumn<Spiel, String> spielGastSpalte = tableColoumnsetCellFactory(gast, "GastStringKomplett");
+                TableColumn<Spiel, String> spielErgebnisSpalte = tableColoumnsetCellFactory(ergebnis, "ErgebnisString");
+                TableColumn<Spiel, String> spielSpielklasseSpalte = tableColoumnsetCellFactory(spielklasse, "SpielklasseString");
+                TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory(runde, "RundenName");
+
+                tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
+            }
+            catch ( MissingResourceException e ) {
+                System.err.println( e );
+            }
         } else {
             System.out.println("kann Turnier nicht laden");
         }
     }
+
+
+
+
 
     private TableColumn<Spiel, String> tableColoumnsetCellFactory(String tabellenspaltentext, String getFunktion) {
         TableColumn<Spiel, String> spalte = new TableColumn(tabellenspaltentext);
