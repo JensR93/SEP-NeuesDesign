@@ -50,6 +50,7 @@ public class ZeitplanController implements Initializable{
     private GridPane grid_zeitplan;
     @FXML
     private TableView<ZeitplanRunde> tableview_runden;
+    @FXML
     private Canvas canvas_zeitplantabelle;
 
     @FXML

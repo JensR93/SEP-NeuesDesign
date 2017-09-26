@@ -57,7 +57,7 @@ public class Neuer_VereinController implements Initializable {
         Verein verein = new Verein(vereinsid,name,verband);
 
         auswahlklasse.getSpieler_hinzufuegenController().getVereine().add(verein);
-
+        auswahlklasse.getSpieler_hinzufuegenController().neuenVereinauswaehlen();
         //hier
         auswahlklasse.getDashboardController().setNodeSpieler();
     }

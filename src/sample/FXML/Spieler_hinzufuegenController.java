@@ -972,4 +972,8 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         }
 
     }
+
+    public void neuenVereinauswaehlen() {
+        combo_verein.getSelectionModel().selectLast();
+    }
 }

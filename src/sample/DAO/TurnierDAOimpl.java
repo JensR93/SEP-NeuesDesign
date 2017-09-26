@@ -307,9 +307,8 @@ public class TurnierDAOimpl implements TurnierDAO {
                 spielsystem = new GruppeMitEndrunde(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
             } else if (spiele.get(0).getSystemSpielID() < 40000000) {
                 spielsystem = new KO(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
-            } else if (spiele.get(0).getSystemSpielID() < 50000000) {
-                spielsystem = new KOmitTrostrunde(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
-            } else if (spiele.get(0).getSystemSpielID() < 60000000) {
+            }
+            else if (spiele.get(0).getSystemSpielID() < 60000000) {
                 spielsystem = new SchweizerSystem(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
             }
         }

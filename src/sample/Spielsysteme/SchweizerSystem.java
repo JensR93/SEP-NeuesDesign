@@ -11,6 +11,7 @@ public class SchweizerSystem extends Spielsystem {
 	private int anzahlTeams;
 	private boolean beendet;
 	private int[][] schema;
+	private ArrayList<Team> setzliste;
 	private ArrayList<Team> teamList;
 	private ArrayList<Team> nextTeamList = new ArrayList<Team>();
 	private ArrayList<ArrayList<Team>> teamListArray =new ArrayList<ArrayList<Team>>();
@@ -18,6 +19,7 @@ public class SchweizerSystem extends Spielsystem {
 	public SchweizerSystem(int anzahlRunden, ArrayList<Team> teamList, Spielklasse spielklasse) {
 		setSpielklasse(spielklasse);
 		this.teamList = teamList;
+		this.setzliste = (ArrayList<Team>)this.teamList.clone();
 		freiloseHinzufuegen(this.teamList);
 		this.anzahlTeams = teamList.size();
 		if(anzahlRunden<anzahlTeams) {
@@ -32,7 +34,7 @@ public class SchweizerSystem extends Spielsystem {
 		alleSpieleErstellen();
 		alleSpieleSchreiben();
 		freilosErgebnisSetzen();
-		teamListReset();
+		//teamListReset();
 	}
 
 	private void alleSpieleSchreiben() {
@@ -49,6 +51,7 @@ public class SchweizerSystem extends Spielsystem {
 		this.anzahlTeams = teamList.size();
 		setAnzahlRunden(spielListe.size()/(teamList.size()/2));
 		this.teamList = teamList;
+		this.setzliste = (ArrayList<Team>)this.teamList.clone();
 		setSpielSystemArt(5);
 		alleSpieleEinlesen(spielListe);
 		setOffeneRundenSpiele(anzahlTeams/2);
@@ -56,14 +59,14 @@ public class SchweizerSystem extends Spielsystem {
 	}
 
 	private void freilosErgebnisSetzen() {
-		if(this.getRundenArray().size()>0){
-			for(int i=0;i<getRundenArray().get(0).size();i++){
-				Spiel spiel = getRundenArray().get(0).get(i);
+		if(this.getRundenArray().size()>getAktuelleRunde()-1){
+			for(int i=0;i<getRundenArray().get(getAktuelleRunde()-1).size();i++){
+				Spiel spiel = getRundenArray().get(getAktuelleRunde()-1).get(i);
 				if (spiel.getHeim()!=null&&spiel.getHeim().isFreilos()){
-					spiel.setErgebnis(new Ergebnis(0, 21, 0, 21));
+					spiel.setErgebnis(new Ergebnis(19, 21, 19, 21));
 				}
 				else if(spiel.getGast()!=null&&spiel.getGast().isFreilos()) {
-					spiel.setErgebnis(new Ergebnis(21, 0, 21, 0));
+					spiel.setErgebnis(new Ergebnis(21, 19, 21, 19));
 				}
 			}
 		}
@@ -259,10 +262,10 @@ public class SchweizerSystem extends Spielsystem {
 
 	private void rundeFuellen(){
 		teamList.clear();
-		/*for (int i=0;i<nextTeamList.size();i++)
+		for (int i=0;i<nextTeamList.size();i++)
 		{
 			this.teamList.add(nextTeamList.get(i));
-		}*/
+		}
 		nextTeamList.clear();
 		while (teamList.size()>1){
 			Team teamEins = teamList.get(0);
@@ -274,15 +277,10 @@ public class SchweizerSystem extends Spielsystem {
 			Spiel spiel = getSpielklasse().getSpiele().get(spielSystemIDberechnen());
 			spiel.setHeim(teamEins);
 			spiel.setGast(teamZwei);
-			if (teamEins.isFreilos()){
-				spiel.setErgebnis(new Ergebnis(19,21,19,21));
-			}
-			else if (teamZwei.isFreilos()){
-				spiel.setErgebnis(new Ergebnis(21,19,21,19));
-			}
 			spiel.getSpielDAO().update(spiel);
 			erhoeheOffeneRundenSpiele();
 		}
+
 	}
 
 	public Team getRandomTeam(){
@@ -298,6 +296,7 @@ public class SchweizerSystem extends Spielsystem {
 			if(getAktuelleRunde()<getAnzahlRunden()){
 				rundeErstellen();
 				erhoeheAktuelleRunde();
+				freilosErgebnisSetzen();
 				return true;
 			}
 		}
@@ -323,6 +322,6 @@ public class SchweizerSystem extends Spielsystem {
 		}
 	}
 	public ArrayList<Team> getSetzliste(){
-		return teamList;
+		return setzliste;
 	}
 }
