@@ -53,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <JFXTextField fx:id="t_turniersuche" />
+                  <JFXTextField fx:id="t_turniersuche" styleClass="font" stylesheets="@../CSS/custom.css" />
                </children>
             </HBox>
          </children>

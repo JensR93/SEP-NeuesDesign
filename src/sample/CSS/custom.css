@@ -1,58 +1,73 @@
-.Root{
+/* Base Dashboard */
+
+.Root
+{
     -fx-background-color: #ffffff;
 }
 
-.toolbar{
+/* Styling Header Main Dashboard */
+
+.toolbar
+{
     -fx-pref-height:70px;
     -fx-min-height: 70px;
     -fx-background-color: #4059a9;
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: dropshadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
     -fx-background-radius: 0 0 0 50;
 }
 
-.toolbar2 {
+/* Styling Header Secondary Dashboard */
+
+.toolbar2
+{
     -fx-background-color: #4059a9;
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: dropshadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
     -fx-background-radius: 0 0 50 0;
 }
 
-.buttons:hover
-{
-    -fx-background-color: rgba(255, 255, 255, .7);
-    -fx-background-radius: 50;
+/* Styling Sidebar Dashboard */
+
+.side-bar{
+    -fx-background-color: #ffffff;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-effect: dropshadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 0 50 0 0;
 }
+
+/* Styling Buttons Sidebar Dashboard */
+
+.side-buttons
+{
+    -fx-text-fill: #757575;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER_LEFT;
+
+}
+
+.side-buttons:hover
+{
+    -fx-background-color: rgba(225, 225, 225, .7);
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.side-buttons:focused
+{
+    -fx-background-color: rgba(215, 215, 215, .7);
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Styling Header Database */
 
 .toolbarDBE{
     -fx-pref-height:50px;
     -fx-background-color: #3367D6;
 }
 
-.side-bar{
-    -fx-background-color: #ffffff;
-    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
-    -fx-background-radius: 0 50 0 0;
-}
-.side-buttons{
-    -fx-text-fill: #757575;
-    -fx-background-radius: 50;
-    -fx-alignment: CENTER_LEFT;
-
-}
-.side-buttons:hover{
-    -fx-background-color: rgba(225, 225, 225, .7);
-    -fx-background-radius: 50;
-    -fx-alignment: CENTER_LEFT;
-}
-
-.side-buttons:focused{
-    -fx-background-color: rgba(215, 215, 215, .7);
-    -fx-background-radius: 50;
-    -fx-alignment: CENTER_LEFT;
-}
-
+/* Styling Buttons Database */
 
 .buttonDBE{
     -fx-background-radius: 50;
@@ -61,25 +76,25 @@
     -fx-border-radius: 50px;
 }
 
-.menu-bar{
-    -fx-font-size: 16px;
-    -fx-text-fill: #757575;
-    -fx-font-weight: bold;
-}
+/*Styling for Windows and Buttons*/
 
 .card-white
 {
     -fx-background-color: rgb(255.0, 255.0, 255.0);
     -fx-background-radius: 50px;
     -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
 }
 
-.card-white
+/* Styling Buttons when hovered*/
+
+.buttons:hover
 {
-    -fx-background-color: rgb(255.0, 255.0, 255.0);
-    -fx-background-radius: 50px;
-    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-background-color: rgba(255, 255, 255, .7);
+    -fx-background-radius: 50;
 }
+
+/*Loadingwindow*/
 
 .card-white-Dash
 {
@@ -89,6 +104,8 @@
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
 }
 
+/*Styling for Labels and Headers*/
+
 .card-blue
 {
     -fx-background-color: #3367D6;
@@ -96,18 +113,14 @@
     -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
 }
 
-.Label
-{
-    -fx-text-fill: #757575;
-    -fx-background-color: rgb(255.0, 255.0, 255.0);
-    -fx-background-radius: 50px;
-    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
-}
+/* Styling Color Picker */
 
 .color-picker .color-picker-label .text
 {
     visibility: false;
 }
+
+/* Styling Fonts*/
 
 .font
 {
@@ -116,8 +129,65 @@
     -fx-font-size: 16px;
 }
 
+/* Styling Text Fields */
+
 .text-field {
     -fx-prompt-text-fill: #757575;
+}
+
+/*Tab-Pane*/
+
+.jfxtab-pane .headers-region {
+    -fx-background-color: #ffffff;
+}
+.jfxtab-pane .tab-header-background {
+    -fx-background-color: #ffffff;
+}
+
+.jfxtab-pane .tab
+{
+    -fx-background-color: #3367D6;
+    -fx-background-radius: 50 50 50 50;
+    -fx-background-insets: 10 30 10 30;
+    -fx-padding: 10 33 10 35;
+    -fx-tile-alignment: center-right;
+
+}
+
+/* Scroll-Bar*/
+
+.scroll-pane
+{
+    -fx-background: #ffffff;
+    -fx-border-color: #ffffff;
+}
+
+.scroll-pane:selected
+{
+    -fx-background: #ffffff;
+    -fx-border-color: #ffffff;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: #ffffff;
+}
+
+.increment-button, .decrement-button {
+    -fx-opacity: 0;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-radius: 50px;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-color: #ffffff;
 }
 
 /*Material look tableview*/

@@ -29,7 +29,7 @@ public class SpielerDAOimpl implements SpielerDAO {
                 + "NName,"
                 + "GDatum,"
                 + "Geschlecht,"
-                + "Vereinsid,"
+                + "extVereinsid,"
                 + "RLP_Einzel, "
                 + "RLP_Doppel, "
                 + "RLP_Mixed, "
@@ -50,7 +50,7 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setObject(3, spieler.getGDatum());
             smt.setBoolean(4, spieler.getGeschlecht());
             if(spieler.getVerein()!=null){
-                smt.setInt(5, spieler.getVerein().getVereinsID());
+                smt.setString(5, spieler.getVerein().getExtVereinsID());
             }
             else{
                 smt.setNull(5, Types.INTEGER);
@@ -101,7 +101,7 @@ public class SpielerDAOimpl implements SpielerDAO {
                 "NName = ?, " +
                 "GDatum = ?, " +
                 "Geschlecht = ?, " +
-                "VereinsID = ?, " +
+                "extVereinsID = ?, " +
                 "RLP_Einzel = ?, " +
                 "RLP_Doppel = ?, " +
                 "RLP_Mixed = ?, " +
@@ -120,7 +120,7 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setObject(3, spieler.getGDatum());
             smt.setBoolean(4, spieler.getGeschlecht());
             if(spieler.getVerein()!=null){
-                smt.setInt(5, spieler.getVerein().getVereinsID());
+                smt.setString(5, spieler.getVerein().getExtVereinsID());
             }
             else{
                 smt.setNull(5, Types.INTEGER);

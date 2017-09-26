@@ -25,6 +25,18 @@ public class Verein {
 		return vereinsID;
 	}
 
+	public void setExtVereinsID(String extVereinsID) {
+		this.extVereinsID = extVereinsID;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setVerband(String verband) {
+		this.verband = verband;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -58,4 +70,6 @@ public class Verein {
 	public String toString() {
 		return name;
 	}
+
+
 }

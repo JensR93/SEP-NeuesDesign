@@ -109,6 +109,28 @@ public class Ergebnis {
         return ergebnis;
     }
 
+    public boolean pruefeErgebnis(){
+        int saetzeheim =0;
+        int saetzegast =0;
+        for (int i=0;i<heim.length;i++){
+            if (heim[i]>gast[i]){
+                saetzeheim++;
+            }
+            else if (heim[i]==gast[i]){
+                return false;
+            }
+            else{
+                saetzegast++;
+            }
+        }
+        if(Math.abs(saetzegast-saetzeheim)>2){
+            return false;
+        }
+        if(saetzegast<2&&saetzeheim<2){
+            return false;
+        }
+        return true;
+    }
 
     public ErgebnisDAO getErgebnisDAO() {
         return ergebnisDAO;

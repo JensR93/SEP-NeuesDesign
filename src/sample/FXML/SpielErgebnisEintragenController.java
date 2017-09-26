@@ -1,27 +1,30 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 import sample.DAO.auswahlklasse;
 import sample.Ergebnis;
 import sample.Spiel;
+import sample.Team;
 import sample.Turnier;
 
+import javax.xml.soap.Text;
 import java.net.URL;
 import java.util.Dictionary;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.input.KeyCode.UP;
@@ -33,37 +36,33 @@ public class SpielErgebnisEintragenController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
+    private boolean satz1FuerHeim = false;
+    private boolean satz1FuerGast = false;
+    private boolean satz2FuerHeim = false;
+    private boolean satz2FuerGast = false;
+    private Boolean satz1RechtsGeaendert = false; //Sagt aus, ob bereits der höhere Wert eingetragen wurde;
+    private Boolean satz2RechtsGeaendert = false;
+    private Boolean satz3rechtsGeaendert = false;
+    private Boolean satz1LinksGeaendert = false;
+    private Boolean satz2LinksGeaendert = false;
+    private Boolean satz3LinksGeaendert = false;
 
     @FXML
-    private HBox hbox_5;
+    private JFXTextField ts1_1;
     @FXML
-    private HBox hbox_4;
+    private JFXTextField ts1_2;
     @FXML
-    private Button btn_OK;
-
-
+    private JFXTextField ts2_1;
     @FXML
-    private TextField ts1_1;
-
+    private JFXTextField ts2_2;
     @FXML
-    private TextField ts1_2;
-
+    private JFXTextField ts3_1;
     @FXML
-    private TextField ts2_1;
-
-    @FXML
-    private TextField ts2_2;
-
-    @FXML
-    private TextField ts3_1;
-
-    @FXML
-    private TextField ts3_2;
+    private JFXTextField ts3_2;
     @FXML
     private Label l_heim;
     @FXML
     private Label l_gast;
-
     @FXML
     private ImageView green_check_1;
     @FXML
@@ -76,28 +75,19 @@ public class SpielErgebnisEintragenController implements Initializable{
     private ImageView red_cross_2;
     @FXML
     private ImageView red_cross_3;
-
-    public void SpracheLaden()
-    {
-
-    }
+    @FXML
+    private JFXButton btn_ErgebnisseSpeichern;
+    @FXML
+    private JFXButton btn_Abbrechen;
 
     Dictionary<Integer, Spiel> dictspiele = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele();
-
     Spiel sp = dictspiele.get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID());
-
-
-    Ergebnis erg;
     int s11=-1;
     int s12=-1;
     int s21=-1;
     int s22=-1;
     int s31=-1;
     int s32=-1;
-    int s41=-1;
-    int s42=-1;
-    int s51=-1;
-    int s52=-1;
 
     @FXML
     void pressbtn_Abbbruch(ActionEvent event) {
@@ -105,33 +95,28 @@ public class SpielErgebnisEintragenController implements Initializable{
         auswahlklasse.getDashboardController().setNodeSpieluebersicht();
 
     }
-    public boolean gueltigesErgebnis(int s11, int s12){
+    public boolean gueltigesErgebnis(TextField t11, TextField t12){
+        int s11 =Integer.valueOf(t11.getText());
+        int s12 =Integer.valueOf(t12.getText());
 
         if(s11<0||s12<0)
         {
-           // l_meldungergebnis.setText("Negative Ergebnisse sind ungültig");
             return false;
         }
         if (Math.abs(s11-s12)<2)
         {
             if (!((s11==29 && s12==30)||s11==30 && s12==29)){
-                //l_meldungergebnis.setText("Ein Satz muss mit 2 Punkten Differenz gewonnen werden");
-
-                System.out.println("Fehler in Satz ");
                 return false;
             }
         }
         if(s11<21&&s12<21)
         {
-            //l_meldungergebnis.setText("Ein Satz muss mindestens 21 Punkte haben");
             return false;
         }
         if (s11>30 || s12>30){
-            // l_meldungergebnis.setText("Ein Satz kann maximal bis 30 Punkte gehen");
             return false;
         }
-        if((s11>18 && s12>18) && Math.abs(s11-s12)>2 ){
-            //l_meldungergebnis.setText("Ungültiges Satzergebnis ");
+        if((s11>21 || s12>21) && Math.abs(s11-s12)>2 ){
             return false;
         }
 
@@ -139,53 +124,153 @@ public class SpielErgebnisEintragenController implements Initializable{
     }
 
 
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("ts1_1");
+            ts1_1.setPromptText(titel);
+            ts1_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts1_2");
+            ts1_2.setPromptText(titel);
+            ts1_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_1");
+            ts2_1.setPromptText(titel);
+            ts2_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts2_2");
+            ts2_2.setPromptText(titel);
+            ts2_2.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_1");
+            ts3_1.setPromptText(titel);
+            ts3_1.setLabelFloat(true);
+
+            titel = bundle.getString("ts3_2");
+            ts3_2.setPromptText(titel);
+            ts3_2.setLabelFloat(true);
+
+            titel = bundle.getString("btn_ErgebnisseSpeichern");
+            btn_ErgebnisseSpeichern.setText(titel);
+
+            titel = bundle.getString("btn_Abbrechen");
+            btn_Abbrechen.setText(titel);
+
+            titel = bundle.getString("l_heim");
+            l_heim.setText(titel);
+
+            titel = bundle.getString("l_gast");
+            l_gast.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
+
     @FXML
     void pressbtn_OK(ActionEvent event) {
-
-
         //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
-        if(sp!=null && sp.getStatus()==0)
-        {
-            System.out.println("unvollständiges Spiel");
-        }
+        Ergebnis erg = generiereErgebnis();
+        if(keinRedCrossVisible() && erg.pruefeErgebnis()) {
 
-        if(sp!=null && sp.getStatus()==2)
-        {
-
-
-            System.out.println("aktives Spiel");
-            if(erg!=null) {
-                try {
-
-                    auswahlklasse.getSpielAuswahlErgebniseintragen().setErgebnis(erg);
-                    auswahlklasse.getSpielAuswahlErgebniseintragen().setStatus(3);
-                    auswahlklasse.InfoBenachrichtigung("Erfolg","Ergebnis eingetragen");
-                    auswahlklasse.getDashboardController().setNodeSpieluebersicht();
-                    auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
-                    auswahlklasse.getSpieluebersichtController().spielInTabelleAuswaehlen(sp);
-                    auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
-                    // a.getAktuelleTurnierAuswahl().addobsGespielteSpiele(a.getSpielAuswahlErgebniseintragen());
-                    // l_meldungergebnis.setText("Ergebnis erfolgreich eingetragen");
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    // l_meldungergebnis.setText("Satz nicht ausgefüllt");
-                }
-
+            if (sp != null && sp.getStatus() == 0) {
+                System.out.println("unvollständiges Spiel");
             }
 
+            if (sp != null && sp.getStatus() == 2) {
+                System.out.println("aktives Spiel");
+                if (erg != null) {
+                    try {
+                        if(bestaetigungsFrameErstellen(erg)) {
+                            auswahlklasse.getSpielAuswahlErgebniseintragen().setErgebnis(erg);
+                            auswahlklasse.getSpielAuswahlErgebniseintragen().setStatus(3);
+                            auswahlklasse.InfoBenachrichtigung("Erfolg", "Ergebnis eingetragen");
+                            auswahlklasse.getDashboardController().setNodeSpieluebersicht();
+                            auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
+                            auswahlklasse.getSpieluebersichtController().spielInTabelleAuswaehlen(sp);
+                            auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // l_meldungergebnis.setText("Satz nicht ausgefüllt");
+                    }
+                }
+            }
+            if (sp != null && sp.getStatus() == 1) {
+                System.out.println("ausstehendes Spiel");
+            }
+            if (sp != null && sp.getStatus() == 3) {
+                System.out.println("gespieltes Spiel");
+                ts1_1.setEditable(false);
+            }
         }
-        if(sp!=null && sp.getStatus()==1)
-        {
-            System.out.println("ausstehendes Spiel");
+        else{
+            auswahlklasse.InfoBenachrichtigung("Ungültiges Ergebnis","Bitte korrigieren");
         }
-        if(sp!=null && sp.getStatus()==3)
-        {
-            System.out.println("gespieltes Spiel");
-            ts1_1.setEditable(false);
-        }
+    }
 
+    private boolean bestaetigungsFrameErstellen(Ergebnis ergebnis) {
+        Spiel spiel = auswahlklasse.getSpielAuswahlErgebniseintragen();
+        String sieger = ergebnis.getSieger(spiel).toString();
+        Alert bestaetigung = new Alert(Alert.AlertType.CONFIRMATION);
+        bestaetigung.setTitle("Ergebnis eintragen?");
+        if (ergebnis.getSieger(spiel)==spiel.getHeim()) {
+            bestaetigung.setContentText(sieger + "gewinnt mit " + ergebnis.toString());
+        }
+        else{
+            bestaetigung.setContentText(sieger + "gewinnt mit " + ergebnis.toStringUmgedreht());
+        }
+        Optional<ButtonType> auswahl = bestaetigung.showAndWait();
+        if(auswahl.get() == ButtonType.OK){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean keinRedCrossVisible() {
+        if (red_cross_1.isVisible()||red_cross_2.isVisible()||red_cross_3.isVisible()){
+            return false;
+        }
+        if(!green_check_1.isVisible()||!green_check_2.isVisible()){
+            return false;
+        }
+        return true;
+    }
+
+    private Ergebnis generiereErgebnis()
+    {
+        Ergebnis erg=null;
+        int s11 = getIntwert(ts1_1);
+        int s12 = getIntwert(ts1_2);
+        int s21 = getIntwert(ts2_1);
+        int s22 = getIntwert(ts2_2);
+        int s31 = getIntwert(ts3_1);
+        int s32 = getIntwert(ts3_2);
+        if(s11!=-1&&s12!=-1&&s21!=-1&&s22!=-1&&s31!=-1&&s32!=-1)
+        {
+            erg = new Ergebnis(s11,s12,s21,s22,s31,s32);
+        }
+        else if(s11!=-1&&s12!=-1&&s21!=-1&&s22!=-1){
+            erg = new Ergebnis(s11,s12,s21,s22);
+        }
+        return erg;
+    }
+    private int getIntwert(TextField t1){
+        int value =-1;
+        if(t1.getText().length()>0){
+            value = Integer.valueOf(t1.getText());
+        }
+        else{
+            value=-1;
+        }
+        return value;
     }
 
     private void leereSatzfelder()
@@ -199,38 +284,6 @@ public class SpielErgebnisEintragenController implements Initializable{
     }
 
 
-
-
-    private void setzeErgebnis()
-    {
-        if(s11!=-1&&s12!=-1&&s21!=-1&&s22!=-1&&s31!=-1&&s32!=-1&&s41!=-1&&s42!=-1&&s51!=-1&&s52!=-1)
-        {
-
-            erg = new Ergebnis(s11,s12,s21,s22,s31,s32,s41,s42,s51,s52);
-
-            //  l_meldungergebnis.setText("Ergebnis ist ausgefüllt!");
-
-            //a.getAktuelleTurnierAuswahl().
-        }
-        else if(s11!=-1&&s12!=-1&&s21!=-1&&s22!=-1&&s31!=-1&&s32!=-1&&s41!=-1&&s42!=-1)
-        {
-
-            erg = new Ergebnis(s11,s12,s21,s22,s31,s32,s41,s42);
-
-            //  l_meldungergebnis.setText("Ergebnis ist ausgefüllt!");
-
-            //a.getAktuelleTurnierAuswahl().
-        }
-        else if(s11!=-1&&s12!=-1&&s21!=-1&&s22!=-1&&s31!=-1&&s32!=-1)
-        {
-
-            erg = new Ergebnis(s11,s12,s21,s22,s31,s32);
-
-            //  l_meldungergebnis.setText("Ergebnis ist ausgefüllt!");
-
-            //a.getAktuelleTurnierAuswahl().
-        }
-    }
     @FXML
     void pressbtn_Verlegen(ActionEvent event) {
 
@@ -248,72 +301,258 @@ public class SpielErgebnisEintragenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
+        auswahlklasse.setSpielErgebnisEintragenController(this);
+        ts3_1.setDisable(true);
+        ts3_2.setDisable(true);
 
-        s11=-1;
-        s12=-1;
-        s21=-1;
-        s22=-1;
-        s31=-1;
-        s32=-1;
-        s41=-1;
-        s42=-1;
-        s51=-1;
-        s52=-1;
+        if(sp!=null && sp.getStatus()==1)
+        {
+            System.out.println("ausstehendes Spiel");
+        }
+        if(sp!=null && sp.getStatus()==2)
+        {
+            System.out.println("aktives Spiel");
+        }
+        if(sp!=null && sp.getStatus()==3)
+        {
+            System.out.println("gespieltes Spiel");
 
-        ts1_1.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis1();
+            int[] ergebnisArray =auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis().getErgebnisArray() ;
+            ts1_1.setText(String.valueOf(ergebnisArray[0]));
+            ts1_2.setText(String.valueOf(ergebnisArray[1]));
+            ts2_1.setText(String.valueOf(ergebnisArray[2]));
+            ts2_2.setText(String.valueOf(ergebnisArray[3]));
+            ts3_1.setText(String.valueOf(ergebnisArray[4]));
+            ts3_2.setText(String.valueOf(ergebnisArray[5]));
+        }
+
+
+        //Listener für Textboxen on change
+        if(auswahlklasse.getSpielAuswahlErgebniseintragen()!=null)
+        {
+            l_gast.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getGast().toString());
+            l_heim.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getHeim().toString());
+
+            if(auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis()!=null)
+            {
+                //             erg = auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis();
+                System.out.println("Ergebnis schon vorhanden");
+            }
+        }
+
+        ts1_1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts1_1.equals("")&&ts1_1.getText().length()>0) {
+                try {
+                    s11 = Integer.parseInt(ts1_1.getText());
+                    if(!satz1LinksGeaendert) {
+                        satz1RechtsGeaendert=true;
+                        fuelleHoeherePunktzahl(s11,ts1_2);
+                    }
+                    setzeBoolescheWerteSatz1(ts1_1,ts1_2);
+                    satz1Gueltigkeit();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    zeigeRedCross1();
+                }
+            }
+
+        });
+        ts1_2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts1_2.equals("")&&ts1_2.getText().length()>0) {
+
+                try {
+                    s12 = Integer.parseInt(ts1_1.getText());
+                    if(!satz1RechtsGeaendert) {
+                        satz1LinksGeaendert=true;
+                        fuelleHoeherePunktzahl(s12, ts1_1);
+
+                    }
+                    setzeBoolescheWerteSatz1(ts1_1,ts1_2);
+                    satz1Gueltigkeit();
+                } catch (Exception e) {
+                    zeigeRedCross1();
+                    e.printStackTrace();
+                }}
+        });
+        ts2_1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts2_1.equals("")&&ts2_1.getText().length()>0) {
+                try {
+                    s21 = Integer.parseInt(ts2_1.getText());
+                    if(!satz2LinksGeaendert) {
+                        satz2RechtsGeaendert = true;
+                        fuelleHoeherePunktzahl(s21, ts2_2);
+
+                    }
+                    setzeBoolescheWerteSatz2(ts2_1,ts2_2);
+                    satz2Gueltigkeit();
+                } catch (Exception e) {
+                    zeigeRedCross2();
+                    e.printStackTrace();
+                }
+            }
+
+        });
+        ts2_2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts2_2.equals("")&&ts2_2.getText().length()>0) {
+                try {
+                    s22 = Integer.parseInt(ts2_2.getText());
+                    if(!satz2RechtsGeaendert) {
+                        satz2LinksGeaendert=true;
+                        fuelleHoeherePunktzahl(s22, ts2_1);
+
+                    }
+                    setzeBoolescheWerteSatz2(ts2_1,ts2_2);
+                    satz2Gueltigkeit();
+                } catch (Exception e) {
+                    zeigeRedCross2();
+                    e.printStackTrace();
                 }
             }
         });
-        ts1_2.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis1();
+        ts3_1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts3_1.equals("")&&ts3_1.getText().length()>0) {
+                try {
+                    s31 = Integer.parseInt(ts3_1.getText());
+                    if(!satz3LinksGeaendert) {
+                        satz3rechtsGeaendert=true;
+                        fuelleHoeherePunktzahl(s31, ts3_2);
+
+                    }
+                    satz3Gueltigkeit();
+                } catch (Exception e) {
+                    zeigeRedCross3();
+                    e.printStackTrace();
                 }
             }
         });
-        ts2_1.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis2();
+        ts3_2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!ts3_2.equals("")&&ts3_2.getText().length()>0) {
+                try {
+                    s32 = Integer.parseInt(ts3_2.getText());
+                    if(!satz3rechtsGeaendert) {
+                        satz3LinksGeaendert=true;
+                        fuelleHoeherePunktzahl(s32, ts3_1);
+
+                    }
+                    satz3Gueltigkeit();
+
+                } catch (Exception e) {
+                    zeigeRedCross3();
+                    e.printStackTrace();
                 }
             }
         });
-        ts2_2.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis2();
-                }
+
+    }
+
+    private void setzeBoolescheWerteSatz1(TextField t1, TextField t2) {
+        int satzHeim = Integer.valueOf(t1.getText());
+        int satzGast = Integer.valueOf(t2.getText());
+        satz1FuerHeim = satzHeim>satzGast;
+        satz1FuerGast = satzGast>satzHeim;
+        aktiviereSatz3();
+
+    }
+    private void setzeBoolescheWerteSatz2(TextField t1, TextField t2) {
+        int satzHeim = Integer.valueOf(t1.getText());
+        int satzGast = Integer.valueOf(t2.getText());
+        satz2FuerHeim = satzHeim>satzGast;
+        satz2FuerGast = satzGast>satzHeim;
+        aktiviereSatz3();
+    }
+
+    private void aktiviereSatz3() {
+        if((satz1FuerGast&&satz2FuerHeim) ||(satz2FuerGast&&satz1FuerHeim)){
+            ts3_1.setDisable(false);
+            ts3_2.setDisable(false);
+        }
+    }
+
+    private void satz3Gueltigkeit() {
+        if(ts3_2.getText().length()>0&&ts3_1.getText().length()>0)
+        {
+            if(!gueltigesErgebnis(ts3_2,ts3_1))
+            {
+                zeigeRedCross3();
+
             }
-        });
-        ts3_1.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis3();
-                }
+            else
+            {
+                zeigeGreenCheck3();
             }
-        });
-        ts3_2.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if((event.getCode() ==KeyCode.TAB))
-                {
-                    pruefekleinesergebnis3();
-                }
+        }
+    }
+
+    private void satz1Gueltigkeit() {
+        if(ts1_1.getText().length()>0&&ts1_2.getText().length()>0)
+        {
+            if(!gueltigesErgebnis(ts1_1,ts1_2))
+            {
+                zeigeRedCross1();
             }
-        });
+            else
+            {
+                zeigeGreenCheck1();
+            }
+        }
+    }
+
+    private void fuelleHoeherePunktzahl(int eingabe, TextField zweitesTextField){
+        if (eingabe < 20) {
+            zweitesTextField.setText("21");
+        } else if (eingabe < 29) {
+            zweitesTextField.setText((eingabe + 2) + "");
+        } else if (eingabe == 29) {
+            zweitesTextField.setText("30");
+        }
+    }
+
+    private void satz2Gueltigkeit() {
+        if(ts2_2.getText().length()>0&&ts2_1.getText().length()>0)
+        {
+            if(!gueltigesErgebnis(ts2_2,ts2_1))
+            {
+                zeigeRedCross2();
+            }
+            else
+            {
+                zeigeGreenCheck2();
+            }
+        }
+    }
+
+    private void zeigeGreenCheck1() {
+        red_cross_1.setVisible(false);
+        green_check_1.setVisible(true);
+    }
+
+    private void zeigeRedCross1() {
+        red_cross_1.setVisible(true);
+        green_check_1.setVisible(false);
+    }
+    private void zeigeGreenCheck2() {
+        red_cross_2.setVisible(false);
+        green_check_2.setVisible(true);
+    }
+
+    private void zeigeRedCross2() {
+        red_cross_2.setVisible(true);
+        green_check_2.setVisible(false);
+    }
+    private void zeigeGreenCheck3() {
+        red_cross_3.setVisible(false);
+        green_check_3.setVisible(true);
+    }
+
+    private void zeigeRedCross3() {
+        red_cross_3.setVisible(true);
+        green_check_3.setVisible(false);
+    }
+}
+
+
+
 
 //
       /*  try
@@ -436,272 +675,3 @@ public class SpielErgebnisEintragenController implements Initializable{
         }
         l_gast.setText(titel);*/
 
-
-        if(sp!=null && sp.getStatus()==1)
-        {
-            System.out.println("ausstehendes Spiel");
-        }
-        if(sp!=null && sp.getStatus()==2)
-        {
-            System.out.println("aktives Spiel");
-        }
-        if(sp!=null && sp.getStatus()==3)
-        {
-            System.out.println("gespieltes Spiel");
-
-            int[] ergebnisArray =auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis().getErgebnisArray() ;
-            ts1_1.setText(String.valueOf(ergebnisArray[0]));
-            ts1_2.setText(String.valueOf(ergebnisArray[1]));
-            ts2_1.setText(String.valueOf(ergebnisArray[2]));
-            ts2_2.setText(String.valueOf(ergebnisArray[3]));
-            ts3_1.setText(String.valueOf(ergebnisArray[4]));
-            ts3_2.setText(String.valueOf(ergebnisArray[5]));
-        }
-
-
-
-
-        //Listener für Textboxen
-        if(auswahlklasse.getSpielAuswahlErgebniseintragen()!=null)
-        {
-            l_gast.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getGast().toString());
-            l_heim.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getHeim().toString());
-
-            if(auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis()!=null)
-            {
-                erg = auswahlklasse.getSpielAuswahlErgebniseintragen().getErgebnis();
-                System.out.println(erg);
-            }
-
-        }
-
-        ts1_1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts1_1.equals("")&&ts1_1.getText().length()>0) {
-                try {
-                    s11 = Integer.parseInt(ts1_1.getText());
-                    setzeErgebnis();
-
-
-                    satz1Gueltigkeit();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    zeigeRedCross1();
-                }
-            }
-
-        });
-        ts1_2.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts1_2.equals("")&&ts1_2.getText().length()>0) {
-
-                try {
-                    s12 = Integer.parseInt(ts1_2.getText());
-                    setzeErgebnis();
-
-                    satz1Gueltigkeit();
-                } catch (Exception e) {
-                    zeigeRedCross1();
-                    e.printStackTrace();
-                }}
-        });
-        ts2_1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts2_1.equals("")&&ts2_1.getText().length()>0) {
-                try {
-                    s21 = Integer.parseInt(ts2_1.getText());
-                    setzeErgebnis();
-
-                    satz2Gueltigkeit();
-                } catch (Exception e) {
-                    zeigeRedCross2();
-                    e.printStackTrace();
-                }
-            }
-
-        });
-        ts2_2.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts2_2.equals("")&&ts2_2.getText().length()>0) {
-                try {
-                    s22 = Integer.parseInt(ts2_2.getText());
-                    setzeErgebnis();
-
-                    satz2Gueltigkeit();
-                } catch (Exception e) {
-                    zeigeRedCross2();
-                    e.printStackTrace();
-                }
-            }
-        });
-        ts3_1.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts3_1.equals("")&&ts3_1.getText().length()>0) {
-                try {
-                    s31 = Integer.parseInt(ts3_1.getText());
-                    setzeErgebnis();
-
-                    satz3Gueltigkeit();
-                } catch (Exception e) {
-                    zeigeRedCross3();
-                    e.printStackTrace();
-                }
-            }
-        });
-        ts3_2.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!ts3_2.equals("")&&ts3_2.getText().length()>0) {
-                try {
-                    s32 = Integer.parseInt(ts3_2.getText());
-                    setzeErgebnis();
-
-                    satz3Gueltigkeit();
-
-                } catch (Exception e) {
-                    zeigeRedCross3();
-                    e.printStackTrace();
-                }
-            }
-        });
-
-    }
-
-    private void satz3Gueltigkeit() {
-        if(s32>-1&&s31>-1)
-        {
-            if(!gueltigesErgebnis(s31,s32))
-            {
-                //l_meldungergebnis.setText("Satz 3 prüfen");
-                zeigeRedCross3();
-
-            }
-            else
-            {
-                // l_meldungergebnis.setText("Satz 3 OK");
-                zeigeGreenCheck3();
-            }
-        }
-
-    }
-    void pruefekleinesergebnis1() {
-
-        if (s11 < 18&&s11>-1&&ts1_2.getText().equals("")) {
-            ts1_2.setText("21");
-        }
-        if (s12 < 18&&s12>-1&&ts1_1.getText().equals("")) {
-            ts1_1.setText("21");
-        }
-        if (s11 > 21&&s11<29&&ts1_2.getText().equals("")) {
-            ts1_2.setText(String.valueOf(Integer.parseInt(ts1_1.getText())+2));
-        }
-        if (s12 > 21&&s12<29&&ts1_1.getText().equals("")) {
-            ts1_1.setText(String.valueOf(Integer.parseInt(ts1_2.getText())+2));
-        }
-    }
-    @FXML
-    void pruefekleinesergebnis1(MouseEvent event) {
-
-        if (s11 < 18&&s11>-1&&ts1_2.getText().equals("")) {
-            ts1_2.setText("21");
-        }
-        if (s12 < 18&&s12>-1&&ts1_1.getText().equals("")) {
-            ts1_1.setText("21");
-        }
-        if (s11 > 21&&s11<29&&ts1_2.getText().equals("")) {
-            ts1_2.setText(String.valueOf(Integer.parseInt(ts1_1.getText())+2));
-        }
-        if (s12 > 21&&s12<29&&ts1_1.getText().equals("")) {
-            ts1_1.setText(String.valueOf(Integer.parseInt(ts1_2.getText())+2));
-        }
-    }
-    @FXML
-    void pruefekleinesergebnis2(MouseEvent event) {
-        if (s21 < 18&&s21>-1&&ts2_2.getText().equals("")) {
-            ts2_2.setText("21");
-        }
-        if (s22 < 18&&s22>-1&&ts2_2.getText().equals("")) {
-            ts2_1.setText("21");
-        }
-    }
-    void pruefekleinesergebnis2() {
-        if (s21 < 18&&s21>-1&&ts2_2.getText().equals("")) {
-            ts2_2.setText("21");
-        }
-        if (s22 < 18&&s22>-1&&ts2_2.getText().equals("")) {
-            ts2_1.setText("21");
-        }
-    }
-    @FXML
-    void pruefekleinesergebnis3(MouseEvent event) {
-        if (s31 < 18&&s31>-1&&ts3_2.getText().equals("")) {
-            ts3_2.setText("21");
-        }
-        if (s32 < 18&&s32>-1&&ts3_1.getText().equals("")) {
-            ts3_1.setText("21");
-        }
-    }
-    void pruefekleinesergebnis3() {
-        if (s31 < 18&&s31>-1&&ts3_2.getText().equals("")) {
-            ts3_2.setText("21");
-        }
-        if (s32 < 18&&s32>-1&&ts3_1.getText().equals("")) {
-            ts3_1.setText("21");
-        }
-    }
-    private void satz1Gueltigkeit() {
-        if(s11>-1&&s12>-1)
-        {
-            if(!gueltigesErgebnis(s11,s12))
-            {
-                //    l_meldungergebnis.setText("Satz 1 prüfen");
-                zeigeRedCross1();
-
-            }
-            else
-            {
-                //   l_meldungergebnis.setText("Satz 1 OK");
-                zeigeGreenCheck1();
-            }
-        }
-    }
-
-    private void satz2Gueltigkeit() {
-        if(s22>-1&&s21>-1)
-        {
-            if(!gueltigesErgebnis(s21,s22))
-            {
-                //   l_meldungergebnis.setText("Satz 2 prüfen");
-                zeigeRedCross2();
-
-            }
-            else
-            {
-                //   l_meldungergebnis.setText("Satz 2 OK");
-                zeigeGreenCheck2();
-            }
-        }
-    }
-
-    private void zeigeGreenCheck1() {
-        red_cross_1.setVisible(false);
-        green_check_1.setVisible(true);
-    }
-
-    private void zeigeRedCross1() {
-        red_cross_1.setVisible(true);
-        green_check_1.setVisible(false);
-    }
-    private void zeigeGreenCheck2() {
-        red_cross_2.setVisible(false);
-        green_check_2.setVisible(true);
-    }
-
-    private void zeigeRedCross2() {
-        red_cross_2.setVisible(true);
-        green_check_2.setVisible(false);
-    }
-    private void zeigeGreenCheck3() {
-        red_cross_3.setVisible(false);
-        green_check_3.setVisible(true);
-    }
-
-    private void zeigeRedCross3() {
-        red_cross_3.setVisible(true);
-        green_check_3.setVisible(false);
-    }
-}

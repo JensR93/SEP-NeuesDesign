@@ -33,8 +33,8 @@ public class DashboardController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
-    private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen,NeuerVerein;
+    private JFXTabPane Spieler,Spielsystem,Visualisierung, Spielereigenschaften;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Vereinsuebersicht;
 
     private StackPane Turnier,home;
     private VBox Spieluebersicht;
@@ -68,7 +68,8 @@ public class DashboardController implements Initializable{
 
     @FXML
     private JFXButton btnTurnierbaum;
-
+    @FXML
+    private JFXButton btnVerein;
     @FXML // fx:id="btnKlassen"
     private JFXButton btnKlassen; // Value injected by FXMLLoader
 
@@ -114,11 +115,6 @@ public class DashboardController implements Initializable{
 
     @FXML
     void spieleroeffnen(ActionEvent event) {
-
-    }
-
-    @FXML
-    void statistikoeffnen(ActionEvent event) {
 
     }
 
@@ -183,16 +179,14 @@ public class DashboardController implements Initializable{
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
-            Klassehinzufuegen = FXMLLoader.load(getClass().getResource("Klasse_hinzufuegen_neu.fxml"));
-
-
+            Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
 
 
 
 
-            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klassenuebersicht.fxml"));
+            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
 
 
         } catch (IOException ex) {
@@ -300,6 +294,26 @@ public class DashboardController implements Initializable{
         }
         setNode(SpielErgebnisEintragen);
     }
+
+    @FXML public void setNodeVereinsuebersicht(ActionEvent event)
+    {
+        try {
+            if(auswahlklasse.getVereinsuebersichtController()!=null)
+            {
+                auswahlklasse.getVereinsuebersichtController().fulleObsVereine();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        setNode(Vereinsuebersicht);
+    }
+  public void setNodeVereinsuebersicht()
+    {
+        setNode(Vereinsuebersicht);
+    }
     @FXML public void setNodeEinstellungen(ActionEvent event)
     {
         setNode(Einstellungen);
@@ -319,11 +333,6 @@ public class DashboardController implements Initializable{
     {
         setNode(Einstellungen);
     }
-    public void setNodeKlassehinzufuegen()
-    {
-
-        setNode(Klassehinzufuegen);
-    }
     @FXML public void setNodeTurnier(ActionEvent event)
     {
         setNode(Turnier);
@@ -342,6 +351,14 @@ public class DashboardController implements Initializable{
     public void setNodeKlassenuebersicht()
     {
         setNode(Klassenuebersicht);
+    }
+    public void setNodeSpielerEigenschaften() {
+        try {
+            Spielereigenschaften= FXMLLoader.load(getClass().getResource("SpielerEigenschaften.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setNode(Spielereigenschaften);
     }
     public void setNodeSpielervorhanden()
     {
@@ -397,23 +414,23 @@ public class DashboardController implements Initializable{
     {
         holderPane.getChildren().clear();
         holderPane.getChildren().add(node);
-/*        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+       FadeTransition ft = new FadeTransition(Duration.millis(500));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
-        ft.play();*/
+        ft.play();
     }
 
     public void allesFreigeben(){
         btnKlassen.setDisable(false);
         btnSpieler.setDisable(false);
         btnHome.setDisable(false);
-        btnStatistik.setDisable(false);
         btnzeitplan.setDisable(false);
         btnTurnierbaum.setDisable(false);
         btnSpieluebersicht.setDisable(false);
+        btnVerein.setDisable(false);
     }
 
     @Override
@@ -441,6 +458,7 @@ public class DashboardController implements Initializable{
             e.printStackTrace();
         }
     }
+
 
 
 }

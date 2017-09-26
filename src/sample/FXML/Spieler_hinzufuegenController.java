@@ -127,7 +127,7 @@ public class Spieler_hinzufuegenController implements Initializable{
     public static ObservableList<Spieler> obs_spieler = auswahlklasse.getObs_spieler();
 
 
-    private void printSpielerZuordnenTableNeu() throws Exception {
+    public void printSpielerZuordnenTableNeu() throws Exception {
 
         if(auswahlklasse.getAktuelleTurnierAuswahl()!=null) {
 
@@ -410,13 +410,13 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             e.printStackTrace();
         }
     }
-    private void ladeVereine() throws Exception
+    public void ladeVereine() throws Exception
     {
 
         System.out.println(auswahlklasse.getVereine().size());
         Enumeration enumKeys = auswahlklasse.getVereine().keys();
         while (enumKeys.hasMoreElements()){
-            int key = (int) enumKeys.nextElement();
+            String key = (String) enumKeys.nextElement();
             vereine.add(auswahlklasse.getVereine().get(key));
 
         }
@@ -601,7 +601,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                         @Override
                         public void handle(ActionEvent event) {
                             try {
-                                //auswahlklasse.setauswahlklasse.setSpielerzumHinzufeuegen(clickedRow);
+                                auswahlklasse.setSpielerzumHinzufeuegen(clickedRow);
                                 spielerEigenschaftenAnzeigen();
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -768,6 +768,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                 }*/
 
                 }
+                auswahlklasse.getSpieler_hinzufuegenController().ladeVereine();
             }
         }
         catch (Exception e)
@@ -865,19 +866,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
     }
 
     public void spielerEigenschaftenAnzeigen() throws Exception {
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("spielerEigenschaften.fxml"));
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            stage.setScene(new Scene(root1));
-            stage.show();
-            stage.setTitle("Spieler Eigenschaften");
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        auswahlklasse.getDashboardController().setNodeSpielerEigenschaften();
     }
 
     public void SpracheLaden() {
@@ -971,5 +960,9 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             System.err.println( e );
         }
 
+    }
+
+    public void neuenVereinauswaehlen() {
+        combo_verein.getSelectionModel().selectLast();
     }
 }

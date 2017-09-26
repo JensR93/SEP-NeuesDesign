@@ -307,9 +307,8 @@ public class TurnierDAOimpl implements TurnierDAO {
                 spielsystem = new GruppeMitEndrunde(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
             } else if (spiele.get(0).getSystemSpielID() < 40000000) {
                 spielsystem = new KO(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
-            } else if (spiele.get(0).getSystemSpielID() < 50000000) {
-                spielsystem = new KOmitTrostrunde(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
-            } else if (spiele.get(0).getSystemSpielID() < 60000000) {
+            }
+            else if (spiele.get(0).getSystemSpielID() < 60000000) {
                 spielsystem = new SchweizerSystem(spielklasse.getSetzliste(), spielklasse, spiele, ergebnisse);
             }
         }
@@ -456,7 +455,7 @@ public class TurnierDAOimpl implements TurnierDAO {
             ResultSet vereinResult = smt.executeQuery();
             while (vereinResult.next()){
                 int vereinsid = vereinResult.getInt("VereinsID");
-                auswahlklasse.getVereine().put(vereinsid,new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
+                auswahlklasse.getVereine().put(vereinResult.getString("ExtVereinsID"),new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
             }
             smt.close();
 
@@ -500,7 +499,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("NName"),
                         gdatum,
                         spielerID,spielerResult.getBoolean("Geschlecht"),
-                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getInt("VereinsID")),
+                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getString("extVereinsID")),
                         spielerResult.getFloat("Meldegebuehren"),
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,

@@ -83,6 +83,7 @@ public class Turnier_ladenController extends Application implements Initializabl
 
             titel = bundle.getString("t_turniersuche");
             t_turniersuche.setPromptText(titel);
+            t_turniersuche.setLabelFloat(true);
 
             titel = bundle.getString("btn_neuesTurnier");
             btn_neuesTurnier.setText(titel);
@@ -377,7 +378,7 @@ public void tabelleReload()
 
                 //setNode(NeuerSpieler);
 
-                FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
+                FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klasse.fxml"));
                 fxmlLoaderKlassenuebersicht.load();
 
                 auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
@@ -403,8 +404,6 @@ public void tabelleReload()
 
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
-            FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
-            fxmlLoaderNeuesTurnier.load();
 
 
 

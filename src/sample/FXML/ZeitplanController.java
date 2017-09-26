@@ -24,12 +24,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 /**
  * Created by jens on 19.09.2017.
  */
 public class ZeitplanController implements Initializable{
+
+    String baseName = "resources.Main";
+    String titel = "";
 
     private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanEinzel = FXCollections.observableArrayList();
@@ -46,6 +50,7 @@ public class ZeitplanController implements Initializable{
     private GridPane grid_zeitplan;
     @FXML
     private TableView<ZeitplanRunde> tableview_runden;
+    @FXML
     private Canvas canvas_zeitplantabelle;
 
     @FXML
@@ -296,15 +301,28 @@ public class ZeitplanController implements Initializable{
 
 
     private void tableColumnsErstellen() {
-        TableColumn<ZeitplanRunde,String> rundenName = new TableColumn("RundenName");
+
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+            String RundenName = bundle.getString("RundeName");
+            String Spiele = bundle.getString("Spiele");
+
+        TableColumn<ZeitplanRunde,String> rundenName = new TableColumn(RundenName);
         TableColumn index = new TableColumn("#");
-        TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn("Spiele");
+        TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn(Spiele);
         index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
         rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
         anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
         tableview_runden.getColumns().clear();
         tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
         tableview_runden.setItems(rundenListe);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+
     }
 }
 
