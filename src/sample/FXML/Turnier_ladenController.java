@@ -404,8 +404,6 @@ public void tabelleReload()
 
     public void pressBtn_neuesTurnier(ActionEvent event) throws Exception {
         try {
-            FXMLLoader fxmlLoaderNeuesTurnier = new FXMLLoader(getClass().getResource("NeuesTurnier.fxml"));
-            fxmlLoaderNeuesTurnier.load();
 
 
 

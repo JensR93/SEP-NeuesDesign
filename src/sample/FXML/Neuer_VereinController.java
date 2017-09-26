@@ -18,6 +18,17 @@ import java.util.ResourceBundle;
  */
 public class Neuer_VereinController implements Initializable {
 
+
+    private Verein updateverein;
+
+    public Verein getUpdateverein() {
+        return updateverein;
+    }
+
+    public void setUpdateverein(Verein updateverein) {
+        this.updateverein = updateverein;
+    }
+
     String baseName = "resources.Main";
     String titel ="";
 
