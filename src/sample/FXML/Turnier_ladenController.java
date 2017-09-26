@@ -378,7 +378,7 @@ public void tabelleReload()
 
                 //setNode(NeuerSpieler);
 
-                FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klassenuebersicht.fxml"));
+                FXMLLoader fxmlLoaderKlassenuebersicht = new FXMLLoader(getClass().getResource("Klasse.fxml"));
                 fxmlLoaderKlassenuebersicht.load();
 
                 auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();

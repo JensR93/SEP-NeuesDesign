@@ -116,10 +116,49 @@
     -fx-font-size: 16px;
 }
 
+.font2
+{
+    -fx-font-weight: bold;
+    -fx-text-fill: #757575;
+    -fx-font-size: 14px;
+}
+
 .text-field {
     -fx-prompt-text-fill: #757575;
 }
 
+.tab-pane .headers-region
+{
+    -fx-background-color: #757575;
+}
+
+.scroll-pane
+{
+    -fx-background: #ffffff;
+    -fx-border-color: #ffffff;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
 /*Material look tableview*/
 /*.table-view {
     /*     Constants used throughout the tableview. */

@@ -63,7 +63,7 @@ public class auswahlklasse
     private static DashboardController dashboardController;
     private static Turnier_ladenController turnier_ladenController;
     private static KlassenuebersichtController klassenuebersichtController;
-    private static Klasse_hinzufügenController klasse_hinzufügenController;
+    //private static Klasse_hinzufügenController klasse_hinzufügenController;
     private static EinstellungenController einstellungenController;
     private static NeuesTurnierController neuesTurnierController;
     private static Spieler_hinzufuegenController spieler_hinzufuegenController;
@@ -158,15 +158,6 @@ public class auswahlklasse
     public static void setKlassenuebersichtController(KlassenuebersichtController klassenuebersichtController) {
         auswahlklasse.klassenuebersichtController = klassenuebersichtController;
     }
-
-    public static Klasse_hinzufügenController getKlasse_hinzufügenController() {
-        return klasse_hinzufügenController;
-    }
-
-    public static void setKlasse_hinzufügenController(Klasse_hinzufügenController klasse_hinzufügenController) {
-        auswahlklasse.klasse_hinzufügenController = klasse_hinzufügenController;
-    }
-
     public static EinstellungenController getEinstellungenController() {
         return einstellungenController;
     }
