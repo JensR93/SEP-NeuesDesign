@@ -34,7 +34,7 @@ public class DashboardController implements Initializable{
     String titel ="";
 
     private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,Klassehinzufuegen,NeuerVerein;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein;
 
     private StackPane Turnier,home;
     private VBox Spieluebersicht;
@@ -178,7 +178,6 @@ public class DashboardController implements Initializable{
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
-            Klassehinzufuegen = FXMLLoader.load(getClass().getResource("Klasse_hinzufuegen_neu.fxml"));
 
 
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
@@ -187,7 +186,7 @@ public class DashboardController implements Initializable{
 
 
 
-            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klassenuebersicht.fxml"));
+            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
 
 
         } catch (IOException ex) {
@@ -313,11 +312,6 @@ public class DashboardController implements Initializable{
     public void setNodeEinstellungen()
     {
         setNode(Einstellungen);
-    }
-    public void setNodeKlassehinzufuegen()
-    {
-
-        setNode(Klassehinzufuegen);
     }
     @FXML public void setNodeTurnier(ActionEvent event)
     {

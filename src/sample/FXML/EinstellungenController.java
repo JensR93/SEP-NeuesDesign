@@ -124,8 +124,6 @@ public class EinstellungenController implements Initializable {
 
           auswahlklasse.getTurnier_ladenController().SpracheLaden();
 
-          auswahlklasse.getKlasse_hinzufügenController().SpracheLaden();
-
           auswahlklasse.getKlassenuebersichtController().SpracheLaden();
 
         try

@@ -63,7 +63,7 @@
             </Tab>
          </tabs>
       </JFXTabPane>
-      <JFXButton fx:id="b_neueKlasse" onAction="#setNodeNeueKlasse" text="Neue Klasse">
+      <JFXButton fx:id="b_neueKlasse" text="Neue Klasse">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>

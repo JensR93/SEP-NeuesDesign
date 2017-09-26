@@ -120,6 +120,11 @@
     -fx-prompt-text-fill: #757575;
 }
 
+.tab-pane .headers-region
+{
+    -fx-background-color: #757575;
+}
+
 /*Material look tableview*/
 /*.table-view {
     /*     Constants used throughout the tableview. */

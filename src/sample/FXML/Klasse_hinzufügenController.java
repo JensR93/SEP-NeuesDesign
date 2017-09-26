@@ -39,26 +39,6 @@ public class Klasse_hinzufügenController implements Initializable
     String baseName = "resources.Main";
     String titel ="";
 
-    @FXML
-    private Text t_disziplin;
-
-    @FXML
-    private ChoiceBox<Disziplin> combo_disziplin;
-
-    @FXML
-    private Text t_niveau;
-
-    @FXML
-    private ChoiceBox<Niveau> combo_niveau;
-
-    @FXML
-    private JFXButton b_klasseSpeichern;
-
-    @FXML
-    private JFXButton b_Abbrechen;
-
-    @FXML
-    public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
 
     public void SpracheLaden()
     {
@@ -66,17 +46,7 @@ public class Klasse_hinzufügenController implements Initializable
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
 
-            titel = bundle.getString("b_klasseSpeichern");
-            b_klasseSpeichern.setText(titel);
 
-            titel = bundle.getString("t_niveau");
-            t_niveau.setText(titel);
-
-            titel = bundle.getString("t_disziplin");
-            t_disziplin.setText(titel);
-
-            titel = bundle.getString("b_Abbrechen");
-            b_Abbrechen.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
@@ -85,47 +55,13 @@ public class Klasse_hinzufügenController implements Initializable
     }
 
 
-    private static int index_anzahlRunden=0;
 
 
 
-    @FXML
-    public void comboBoxFill() throws IOException {
-        try{
-            combo_niveau.setItems(FXCollections.observableArrayList(Niveau.values()));
-            combo_disziplin.setItems(FXCollections.observableArrayList(Disziplin.values()));
-
-
-            //combo_anzahlRunden.getItems().setAll("1", "2", "3");
-            combo_niveau.getSelectionModel().select(0);
-            combo_disziplin.getSelectionModel().select(0);
-            //combo_anzahlRunden.getSelectionModel().select(1);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    private void pressBtn_KlasseSpeichern(ActionEvent event) throws IOException
-    {
 
 
 
-        Spielklasse spklasse = new Spielklasse(combo_disziplin.getValue(),Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        spklasse.getSpielklasseDAO().create(spklasse);
-        auswahlklasse.getAktuelleTurnierAuswahl().addObs_spielklassen(spklasse);
-        auswahlklasse.getAktuelleTurnierAuswahl().getSpielklassen().put(spklasse.getSpielklasseID(),spklasse);
-        //a.getAktuelleTurnierAuswahl().addObs_spielklassen(spklasse);
-        System.out.println("------------------Größe = "+auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size());
 
-
-        auswahlklasse.InfoBenachrichtigung("erf","klasse erstellt");
-        auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
-        auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
-
-    }
 
 
     @Override
@@ -133,16 +69,9 @@ public class Klasse_hinzufügenController implements Initializable
 
         SpracheLaden();
 
-        auswahlklasse.setKlasse_hinzufügenController(this);
+        //auswahlklasse.setKlasse_hinzufügenController(this);
 
-        try {
 
-            comboBoxFill();
-            combo_niveau.getSelectionModel().select(0);
-            combo_disziplin.getSelectionModel().select(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 

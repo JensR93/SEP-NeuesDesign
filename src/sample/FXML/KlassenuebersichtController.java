@@ -17,6 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import sample.DAO.auswahlklasse;
+import sample.Enums.AnzahlRunden;
+import sample.Enums.Disziplin;
+import sample.Enums.Niveau;
 import sample.Spielklasse;
 
 import java.io.IOException;
@@ -30,7 +33,7 @@ public class KlassenuebersichtController implements Initializable {
     ObservableList<Spielklasse> obs_spielklasse= FXCollections.observableArrayList();
     ContextMenu context_spielklasse = new ContextMenu();
     ContextMenu contextMenu_all = new ContextMenu();
-
+    private static int index_anzahlRunden=0;
 
 
 
@@ -58,6 +61,27 @@ public class KlassenuebersichtController implements Initializable {
     @FXML
     private JFXButton b_neueKlasse;
 
+    @FXML
+    private Text t_disziplin;
+
+    @FXML
+    private ChoiceBox<Disziplin> combo_disziplin;
+
+    @FXML
+    private Text t_niveau;
+
+    @FXML
+    private ChoiceBox<Niveau> combo_niveau;
+
+    @FXML
+    private JFXButton b_klasseSpeichern;
+
+    @FXML
+    private JFXButton b_Abbrechen;
+
+    @FXML
+    public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
+
     public void SpracheLaden()
     {
 
@@ -71,8 +95,20 @@ public class KlassenuebersichtController implements Initializable {
             titel = bundle.getString("tab_einzel");
             tab_einzel.setText(titel);
 
-            titel = bundle.getString("b_neueKlasse");
-            b_neueKlasse.setText(titel);
+            /*titel = bundle.getString("b_neueKlasse");
+            b_neueKlasse.setText(titel);*/
+
+            titel = bundle.getString("b_klasseSpeichern");
+            b_klasseSpeichern.setText(titel);
+
+            titel = bundle.getString("t_niveau");
+            t_niveau.setText(titel);
+
+            titel = bundle.getString("t_disziplin");
+            t_disziplin.setText(titel);
+
+            titel = bundle.getString("b_Abbrechen");
+            b_Abbrechen.setText(titel);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
@@ -81,15 +117,45 @@ public class KlassenuebersichtController implements Initializable {
 
 
     @FXML
-    void setNodeNeueKlasse(ActionEvent event) {
+    public void comboBoxFill() throws IOException {
+        try{
+            combo_niveau.setItems(FXCollections.observableArrayList(Niveau.values()));
+            combo_disziplin.setItems(FXCollections.observableArrayList(Disziplin.values()));
 
 
-        auswahlklasse.getDashboardController().setNodeKlassehinzufuegen();
+            //combo_anzahlRunden.getItems().setAll("1", "2", "3");
+            combo_niveau.getSelectionModel().select(0);
+            combo_disziplin.getSelectionModel().select(0);
+            //combo_anzahlRunden.getSelectionModel().select(1);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void pressBtn_KlasseSpeichern(ActionEvent event) throws IOException
+    {
+
+
+
+        Spielklasse spklasse = new Spielklasse(combo_disziplin.getValue(),Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
+        spklasse.getSpielklasseDAO().create(spklasse);
+        auswahlklasse.getAktuelleTurnierAuswahl().addObs_spielklassen(spklasse);
+        auswahlklasse.getAktuelleTurnierAuswahl().getSpielklassen().put(spklasse.getSpielklasseID(),spklasse);
+        //a.getAktuelleTurnierAuswahl().addObs_spielklassen(spklasse);
+
+
+        auswahlklasse.InfoBenachrichtigung("erf","klasse erstellt");
+        auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
+        //auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
+
     }
 
     public void pressBtn_Spielsystem(Spielklasse spielklasse) throws Exception {
         auswahlklasse.setAktuelleSpielklassenAuswahl(spielklasse);
-auswahlklasse.getDashboardController().setNodeSpielsystem();
+        auswahlklasse.getDashboardController().setNodeSpielsystem();
     }
 
     @Override
@@ -99,6 +165,14 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
         auswahlklasse.setKlassenuebersichtController(this);
 
         SpielklassenHinzufuegen();
+        try {
+
+            comboBoxFill();
+            combo_niveau.getSelectionModel().select(0);
+            combo_disziplin.getSelectionModel().select(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         //lbs[i]=new Label(s);//initializing labels
@@ -227,7 +301,7 @@ auswahlklasse.getDashboardController().setNodeSpielsystem();
                             @Override
                             public void handle(ActionEvent event) {
                                 try {
-                                    auswahlklasse.getDashboardController().setNodeKlassehinzufuegen();
+                                    auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
