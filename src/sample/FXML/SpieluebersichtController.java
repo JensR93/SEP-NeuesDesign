@@ -830,7 +830,7 @@ public class SpieluebersichtController implements Initializable {
                                 }
                             }
                         }
-                        contextMenu.getItems().addAll(item3, item4);
+                        contextMenu.getItems().addAll(item3);
                     }
                     if (clickedRow.getStatus() == 2) {   //aktiv
                         contextMenu.getItems().addAll(item1, item2, item5, item6, item7);

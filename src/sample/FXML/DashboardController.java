@@ -33,7 +33,7 @@ public class DashboardController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
-    private JFXTabPane Spieler,Spielsystem,Visualisierung;
+    private JFXTabPane Spieler,Spielsystem,Visualisierung, Spielereigenschaften;
     private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein;
 
     private StackPane Turnier,home;
@@ -179,7 +179,7 @@ public class DashboardController implements Initializable{
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
 
-
+            Spielereigenschaften= FXMLLoader.load(getClass().getResource("SpielerEigenschaften.fxml"));
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
 
 

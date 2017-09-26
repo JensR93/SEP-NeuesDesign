@@ -601,7 +601,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                         @Override
                         public void handle(ActionEvent event) {
                             try {
-                                //auswahlklasse.setauswahlklasse.setSpielerzumHinzufeuegen(clickedRow);
+                                auswahlklasse.setSpielerzumHinzufeuegen(clickedRow);
                                 spielerEigenschaftenAnzeigen();
                             } catch (Exception e) {
                                 e.printStackTrace();
