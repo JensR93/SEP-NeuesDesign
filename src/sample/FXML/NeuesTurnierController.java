@@ -148,7 +148,7 @@ public class NeuesTurnierController implements Initializable{
             Radio_DatumUhrMixed.setText(titel);
 
             titel = bundle.getString("Radio_AnschlussDisziMixed");
-            Label_Turniername.setText(titel);
+            Radio_AnschlussDisziMixed.setText(titel);
 
             titel = bundle.getString("Label_Disziplin_Mixed");
             Label_Disziplin_Mixed.setText(titel);

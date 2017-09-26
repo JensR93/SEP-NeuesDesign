@@ -75,7 +75,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
-            <JFXButton fx:id="btn_OK" onAction="#pressbtn_OK" text="Ergebnisse speichern">
+            <JFXButton fx:id="btn_ErgebnisseSpeichern" onAction="#pressbtn_OK" text="Ergebnisse speichern">
                <graphic>
                   <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
                </graphic>

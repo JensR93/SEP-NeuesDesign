@@ -118,18 +118,25 @@ public class EinstellungenController implements Initializable {
     }
 
     public void SpracheLaden()
-    {     auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
-
-          auswahlklasse.getDashboardController().SpracheLaden();
-
-          auswahlklasse.getTurnier_ladenController().SpracheLaden();
-
-          auswahlklasse.getKlassenuebersichtController().SpracheLaden();
-
-          auswahlklasse.getSpielErgebnisEintragenController().SpracheLaden();
-
-          auswahlklasse.getNeuesTurnierController().SpracheLaden();
-
+    {
+        if(auswahlklasse.getSpieler_hinzufuegenController() != null) {
+            auswahlklasse.getSpieler_hinzufuegenController().SpracheLaden();
+        }
+        if(auswahlklasse.getDashboardController() != null) {
+            auswahlklasse.getDashboardController().SpracheLaden();
+        }
+        if (auswahlklasse.getTurnier_ladenController() !=null) {
+            auswahlklasse.getTurnier_ladenController().SpracheLaden();
+        }
+        if (auswahlklasse.getKlassenuebersichtController() !=null) {
+            auswahlklasse.getKlassenuebersichtController().SpracheLaden();
+        }
+        if (auswahlklasse.getSpielErgebnisEintragenController() !=null) {
+            auswahlklasse.getSpielErgebnisEintragenController().SpracheLaden();
+        }
+        if(auswahlklasse.getNeuesTurnierController() !=null) {
+            auswahlklasse.getNeuesTurnierController().SpracheLaden();
+        }
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -195,14 +202,14 @@ public class EinstellungenController implements Initializable {
     @FXML
     public void pressbtn_Standardeinstellungen(ActionEvent event)
     {
-         ZukuenftigeSpieleFarbe="#000000" ;
-         AusstehendeSpieleFarbe="#006400" ;
-         AktiveSpieleFarbe="#00008b" ;
-         GespielteSpieleFarbe = "#ff0000";
+        ZukuenftigeSpieleFarbe="#000000" ;
+        AusstehendeSpieleFarbe="#006400" ;
+        AktiveSpieleFarbe="#00008b" ;
+        GespielteSpieleFarbe = "#ff0000";
 
-         Sprache = "de";
-         SchiedsrichterStandard=true;
-         VormerkungSchiedsrichter="Gewinner";
+        Sprache = "de";
+        SchiedsrichterStandard=true;
+        VormerkungSchiedsrichter="Gewinner";
         Einstellungen_schreiben();
         SetzeEinstellungen();
         try {
@@ -305,11 +312,11 @@ public class EinstellungenController implements Initializable {
 
 
 
-            try {
-                saveProps.storeToXML(new FileOutputStream("Einstellungen.xml"), "Badminton Turnierverwaltung Settings");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            saveProps.storeToXML(new FileOutputStream("Einstellungen.xml"), "Badminton Turnierverwaltung Settings");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -426,8 +433,8 @@ public class EinstellungenController implements Initializable {
         {
             //System.out.println(color_ausstehend.getValue());
 
-                SchiedsrichterStandard= Boolean.valueOf(toggle_schiri.isSelected());
-                Einstellungen_schreiben();
+            SchiedsrichterStandard= Boolean.valueOf(toggle_schiri.isSelected());
+            Einstellungen_schreiben();
 
         });
         rdGewinner.setOnAction(e ->
