@@ -35,7 +35,9 @@ public class GruppenTabelle implements Visualisierung {
     }
 
     public void update(){
-        erstelleGruppenTabelle();
+        if (spielsystem.getSetzliste()!=null && spielsystem.getSetzliste().size()>0) {
+            erstelleGruppenTabelle();
+        }
     }
 
     public void drucken(){
