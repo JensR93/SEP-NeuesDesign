@@ -548,6 +548,8 @@ public class SpielErgebnisEintragenController implements Initializable{
         red_cross_1.setVisible(false);
         red_cross_2.setVisible(false);
         red_cross_3.setVisible(false);
+        l_heim.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getHeim().toString());
+        l_gast.setText(auswahlklasse.getSpielAuswahlErgebniseintragen().getGast().toString());
     }
 
     private void fuelleHoeherePunktzahl(int eingabe, TextField zweitesTextField){

@@ -18,6 +18,7 @@ import java.util.List;
 public class Team {
     private TeamDAO teamDAO = new TeamDAOimpl();
     private int teamid;
+    private int platzierung;
     private Spieler spielerEins;
     private Spieler spielerZwei;
     private Spielklasse spielklasse;
@@ -309,6 +310,14 @@ public class Team {
         this.gewonnnenePunkte = this.gewonnnenePunkte + gewonnnenePunkte;
         this.verlorenePunkte = this.verlorenePunkte + verlorenePunkte;
         //teamDAO.update(this);
+    }
+
+    public int getPlatzierung() {
+        return platzierung;
+    }
+
+    public void setPlatzierung(int platzierung) {
+        this.platzierung = platzierung;
     }
 
     public int getTeamid() {

@@ -2,6 +2,7 @@ package sample.FXML.Visualisierung;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.VPos;
 import javafx.print.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,8 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import sample.*;
 import sample.DAO.auswahlklasse;
+import sample.Spielsysteme.KO;
 import sample.Spielsysteme.Spielsystem;
 
 import java.util.ArrayList;
@@ -31,6 +35,7 @@ public class Turnierbaum implements Visualisierung {
     private Spielsystem spielsystem;
     private Canvas canvas;
     private Tab tab;
+    private Spiel spielUmPlatz3;
 
     public Turnierbaum(int xObenLinks, int yObenLinks, int breite, int hoehe, int xAbstand, int yAbstand, Tab tab) {
         this.xObenLinks = xObenLinks;
@@ -44,8 +49,13 @@ public class Turnierbaum implements Visualisierung {
 
     public void erstelleTurnierbaum(Spielsystem spielsystem) {
         this.spielsystem=spielsystem;
+        KO kosystem = (KO) spielsystem;
         spielsystem.setVisualisierung(this);
         ArrayList<ZeitplanRunde> runden = spielsystem.getRunden();
+        if (kosystem.getSpielUm3()!=null){
+            spielUmPlatz3 = kosystem.getSpielUm3();
+            runden.get(runden.size()-1).remove(spielUmPlatz3);
+        }
         int gesamtHoehe =runden.get(0).size()*(hoehe+yAbstand)+yObenLinks+2-yAbstand;
         int gesamtBreite = runden.size()*(breite+xAbstand)+xObenLinks+2-xAbstand;
         int yObenLinks = this.yObenLinks;
@@ -88,6 +98,19 @@ public class Turnierbaum implements Visualisierung {
             else{
                 letzteRunde.get(i).linieZuNaechstemSpiel(letzteRunde.get(i),letzteRunde.get(letzteRunde.size()-1),gc);
             }
+        }
+        if(spielUmPlatz3!=null){
+            int rundenAnzahl = runden.size()-1;
+            int xObenLinksSU3 = xObenLinks+rundenAnzahl*breite+rundenAnzahl*xAbstand;
+            int yObenLinksSU3 = (gesamtHoehe/4)*3;
+            TurnierbaumSpiel spielUmDrei = new TurnierbaumSpiel(xObenLinksSU3,yObenLinksSU3,breite,hoehe,spielUmPlatz3,xAbstand,yAbstand);
+            spielUmDrei.draw(gc);
+            gc.setTextBaseline(VPos.BOTTOM);
+            Font schriftArt = new Font("Calibri",12);
+            Text text = new Text("Spiel um Platz 3");
+            text.setFont(schriftArt);
+            double textbreite = text.getLayoutBounds().getWidth();
+            gc.fillText("Spiel um Platz 3",xObenLinksSU3+(breite-textbreite)/2,yObenLinksSU3-5);
         }
     }
 

@@ -349,6 +349,15 @@ public class Spiel {
 		Integer nr = zeitplanNummer;
 		return nr.toString();
 	}
+	public Team getVerlierer(){
+		if (heim==getSieger()){
+			return gast;
+		}
+		else if(gast==getSieger()){
+			return heim;
+		}
+		return null;
+	}
 	public String getRundenName(){
 		if (systemSpielID<20000000 ||(systemSpielID<30000000&&getVorrundenNummer()!=0)){ //Gruppe und Gruppenphase bei Gruppe mit Endrunde
 			return "Runde "+(getRundenNummer() + 1);
@@ -366,10 +375,12 @@ public class Spiel {
 				}
 			}
 			if(rundenNummer==0 && getVorrundenNummer()==0){
-				return "Finale";
-			}
-			else if(rundenNummer==0 && getVorrundenNummer()==1){
-				return "Spiel um 3";
+				if (getSpielNummerInRunde()==0){
+					return "Finale";
+				}
+				if(getSpielNummerInRunde()==1){
+					return "Spiel um 3";
+				}
 			}
 			else if(rundenNummer==1){
 				return "Halbfinale";

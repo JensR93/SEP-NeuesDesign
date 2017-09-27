@@ -181,7 +181,6 @@ public class GruppeMitEndrunde extends Spielsystem{
 			else if(hochzaehlen){
 				zaehler++;
 				wurdeschongetauscht=false;
-				System.out.println(zaehler);
 			}
 			else{
 				wurdeschongetauscht=false;
