@@ -131,13 +131,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
         if(auswahlklasse.getAktuelleTurnierAuswahl()!=null) {
 
-            obs_spieler.clear();
-            Enumeration enumSpielerIDs = auswahlklasse.getSpieler().keys();
-            while (enumSpielerIDs.hasMoreElements()){
-                int key = (int)enumSpielerIDs.nextElement();
-                obs_spieler.add(auswahlklasse.getSpieler().get(key));
-                spielerhash.put(auswahlklasse.getSpieler().get(key).getSpielerID(),auswahlklasse.getSpieler().get(key));
-            }
+            fulleObsSpieler();
 
             //region PropertyValueFactory
             tabelle_spielerliste_vorname.setCellValueFactory(new PropertyValueFactory<Spieler,String>("vName"));
@@ -160,6 +154,17 @@ public class Spieler_hinzufuegenController implements Initializable{
         }
 
     }
+
+    public void fulleObsSpieler() {
+        obs_spieler.clear();
+        Enumeration enumSpielerIDs = auswahlklasse.getSpieler().keys();
+        while (enumSpielerIDs.hasMoreElements()){
+            int key = (int)enumSpielerIDs.nextElement();
+            obs_spieler.add(auswahlklasse.getSpieler().get(key));
+            spielerhash.put(auswahlklasse.getSpieler().get(key).getSpielerID(),auswahlklasse.getSpieler().get(key));
+        }
+    }
+
     @FXML
     public void UpdateAbbrechen(ActionEvent event)
     {

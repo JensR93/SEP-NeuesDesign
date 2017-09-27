@@ -1,8 +1,6 @@
 package sample.FXML;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -43,6 +42,8 @@ public class spielerEigenschaftenController implements Initializable{
     @FXML
     private Tab tab_allgemein;
 
+    @FXML
+    private TextArea t_notiz;
     @FXML
     private JFXTextField t_vorname;
 
@@ -81,6 +82,49 @@ public class spielerEigenschaftenController implements Initializable{
 
     @FXML
     private Tab tab_notizen;
+    @FXML
+    private JFXToggleButton t_offenegebuehr;
+
+    @FXML
+    private JFXTextField t_gesamtgebuehr;
+
+
+    @FXML
+    private JFXButton btn_abbrechen;
+
+    @FXML
+    private JFXButton btn_Speichern;
+
+    @FXML
+    void pressbtn_Abbrechen(ActionEvent event) {
+    auswahlklasse.setSpielerzumHinzufeuegen(null);
+    auswahlklasse.getDashboardController().setNodeSpieler();
+    }
+
+    @FXML
+    void pressbtn_speichern(ActionEvent event) {
+
+        auswahlklasse.getSpielerzumHinzufeuegen().setgDatum(d_geburtsdatum.getValue());
+        auswahlklasse.getSpielerzumHinzufeuegen().setvName(t_vorname.getText());
+        auswahlklasse.getSpielerzumHinzufeuegen().setnName(t_nachname.getText());
+        auswahlklasse.getSpielerzumHinzufeuegen().setExtSpielerID(t_spielerid.getText());
+        auswahlklasse.getSpielerzumHinzufeuegen().setVerein(choice_verein.getSelectionModel().getSelectedItem());
+        if(r_m.isSelected())
+        {
+            auswahlklasse.getSpielerzumHinzufeuegen().setGeschlecht(true);
+        }
+        if(r_w.isSelected())
+        {
+            auswahlklasse.getSpielerzumHinzufeuegen().setGeschlecht(false);
+        }
+        auswahlklasse.getSpielerzumHinzufeuegen().setOffenerBetrag(t_offenegebuehr.isSelected());
+        auswahlklasse.getSpielerzumHinzufeuegen().setNotiz(t_notiz.getText());
+        auswahlklasse.getSpielerzumHinzufeuegen().getSpielerDAO().update( auswahlklasse.getSpielerzumHinzufeuegen());
+        auswahlklasse.setSpielerzumHinzufeuegen(null);
+        auswahlklasse.getSpieler_hinzufuegenController().fulleObsSpieler();
+        auswahlklasse.getDashboardController().setNodeSpieler();
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -100,11 +144,42 @@ public class spielerEigenschaftenController implements Initializable{
             }
             spielklassenTab();
 
+            t_offenegebuehr.setSelected(auswahlklasse.getSpielerzumHinzufeuegen().isOffenerBetrag());
+             rechneGebuehren();
 
         }
 
-
+        t_notiz.textProperty().addListener((obs, oldText, newText) ->
+        {
+            if(newText.length()<255)
+            {
+                newText = newText;
+            }
+            else
+            {
+                t_notiz.setText(oldText);
+            }
+        });
     }
+
+    private void rechneGebuehren() {
+       float einzel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrEinzel();
+        float doppel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrDoppel();
+        float summe = 0;
+        for(int i=0;i<obs_spielklasse.size();i++)
+        {
+            if(obs_spielklasse.get(i).toString().toUpperCase().contains("EINZEL"))
+            {
+                summe+=einzel;
+            }
+            else
+            {
+                summe+=doppel;
+            }
+        }
+        t_gesamtgebuehr.setText(String.valueOf(summe));
+    }
+
 
     private void spielklassenTab() {
 
@@ -349,7 +424,7 @@ public class spielerEigenschaftenController implements Initializable{
         if(clickedRow!=null)
         {
 
-
+        t_notiz.setText(clickedRow.getNotiz());
         t_vorname.setText(clickedRow.getVName());
         t_nachname.setText(clickedRow.getNName());
         d_geburtsdatum.setValue(clickedRow.getGDatum());

@@ -10,9 +10,18 @@ import sample.DAO.*;
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
 	private String vName;
-	private float OffenerBetrag;
+	private boolean OffenerBetrag;
 
 
+	private String Notiz;
+
+	public String getNotiz() {
+		return Notiz;
+	}
+
+	public void setNotiz(String notiz) {
+		Notiz = notiz;
+	}
 
 	private String nName;
 	private LocalDate gDatum;
@@ -27,8 +36,55 @@ public class Spieler {
 	private String extSpielerID;
 	private Spiel aktuellesSpiel;
 
+	public void setSpielerDAO(SpielerDAO spielerDAO) {
+		this.spielerDAO = spielerDAO;
+	}
+
+	public String getvName() {
+		return vName;
+	}
+
+	public boolean isOffenerBetrag() {
+		return OffenerBetrag;
+	}
+
+	public void setOffenerBetrag(boolean offenerBetrag) {
+		OffenerBetrag = offenerBetrag;
+	}
+
+	public String getnName() {
+		return nName;
+	}
+
+	public LocalDate getgDatum() {
+		return gDatum;
+	}
+
+	public boolean isGeschlecht() {
+		return geschlecht;
+	}
+
 	//Einlesen neu
-	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, float offenerBetrag) {
+	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
+		this.vName = vName;
+		this.nName = nName;
+		this.gDatum = gDatum;
+		this.spielerID = spielerID;
+		this.geschlecht = geschlecht;
+		this.rPunkte = rPunkte;
+		this.verein = verein;
+		this.meldeGebuehren = meldeGebuehren;
+		this.Nationalitaet = nationalitaet;
+		this.verfuegbar = verfuegbar;
+
+		this.mattenSpiele = mattenSpiele;
+		this.extSpielerID = extSpielerID;
+		this.aktuellesSpiel = aktuellesSpiel;
+
+	}
+
+	public Spieler(String notiz, LocalDate gDatum, String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, boolean offenerBetrag) {
+		this.Notiz=notiz;
 		this.vName = vName;
 		this.nName = nName;
 		this.gDatum = gDatum;
@@ -42,17 +98,8 @@ public class Spieler {
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
-		this.OffenerBetrag = offenerBetrag;
+		this.OffenerBetrag=offenerBetrag;
 	}
-
-	public float getOffenerBetrag() {
-		return OffenerBetrag;
-	}
-
-	public void setOffenerBetrag(float offenerBetrag) {
-		OffenerBetrag = offenerBetrag;
-	}
-
 
 
 	public void setvName(String vName) {
@@ -204,13 +251,13 @@ public class Spieler {
 			if(!vorhandenspielklassen.contains(spielklasse)) {
 
 				if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins() != null) {
-					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().equals(spieler)) {
+					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().toString().equals(spieler.toString())) {
 
 						vorhandenspielklassen.add(spielklasse);
 					}
 				}
 				if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei() != null) {
-					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei().equals(spieler)) {
+					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei().toString().equals(spieler.toString())) {
 						vorhandenspielklassen.add(spielklasse);
 					}
 				}
