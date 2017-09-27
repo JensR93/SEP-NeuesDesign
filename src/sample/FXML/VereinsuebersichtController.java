@@ -1,5 +1,6 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import sample.Verein;
 import java.net.URL;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
@@ -28,6 +30,9 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
  * Created by jens on 26.09.2017.
  */
 public class VereinsuebersichtController implements Initializable {
+
+    String baseName = "resources.Main";
+    String titel ="";
 
     ContextMenu contextMenu=new ContextMenu();
 
@@ -41,10 +46,44 @@ public class VereinsuebersichtController implements Initializable {
     public TableColumn Vereinsverband;
     @FXML
     public TableColumn Vereinsextvereinsid;
+    @FXML
+    private JFXButton Btn_NeuerVerein;
+
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("Vereinsname");
+            Vereinsname.setText(titel);
+
+            titel = bundle.getString("Vereinsverband");
+            Vereinsverband.setText(titel);
+
+            titel = bundle.getString("Vereinsextvereinsid");
+            Vereinsextvereinsid.setText(titel);
+
+            titel = bundle.getString("Btn_NeuerVerein");
+            Btn_NeuerVerein.setText(titel);
+
+            titel = bundle.getString("vereinsuche");
+            vereinsuche.setPromptText(titel);
+            vereinsuche.setLabelFloat(true);
+
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
 
     ObservableList <Verein> obs_Vereine  = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         auswahlklasse.setVereinsuebersichtController(this);
         fulleObsVereine();
         zeigeTabelle();
