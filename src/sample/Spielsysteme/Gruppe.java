@@ -59,6 +59,35 @@ public class Gruppe extends Spielsystem {
 		setzPlaetzeFuerEndrundeBerechnen();
 	}
 
+	public Gruppe(int anzahlTeams, GruppeMitEndrunde spielsystem,Spielklasse spielklasse){ //Constructer für Gruppe als Endrunde
+		this.setSpielSystemArt(2);
+		this.spielsystem = spielsystem;
+		this.setSpielklasse(spielklasse);
+		if(anzahlTeams/2*2!=anzahlTeams){
+			anzahlTeams++;
+		}
+		this.anzahlTeams=anzahlTeams;
+		//freiloseHinzufuegen(teamList);
+		setAnzahlRunden(anzahlTeams-1);
+		alleSpieleErstellen();
+		schablone = new int[anzahlTeams][anzahlTeams];
+		schabloneBauen();
+
+		alleSpieleSchreiben();
+		setOffeneRundenSpiele(anzahlTeams/2);
+		resetAktuelleRunde();
+		//rundeStarten(0);
+	}
+	public void endrundeStarten(ArrayList<Team> setzliste){
+		this.teamList=setzliste;
+		freiloseHinzufuegen(teamList);
+		for (int i=0;i<getAnzahlRunden();i++){
+			rundeErstellen();
+			resetOffeneRundenSpiele();
+		}
+		rundeStarten(0);
+	}
+
 	private void setzPlaetzeFuerEndrundeBerechnen() {
 		GruppeMitEndrunde hauptsystem = (GruppeMitEndrunde) spielsystem;
 		int anzahlGruppen = hauptsystem.getAnzahlGruppen();
