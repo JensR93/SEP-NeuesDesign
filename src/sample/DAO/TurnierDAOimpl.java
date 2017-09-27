@@ -499,7 +499,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("NName"),
                         gdatum,
                         spielerID,spielerResult.getBoolean("Geschlecht"),
-                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getString("extVereinsID")),
+                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getString("VereinsID")),
                         spielerResult.getFloat("Meldegebuehren"),
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,

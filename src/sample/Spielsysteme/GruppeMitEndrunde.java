@@ -125,7 +125,6 @@ public class GruppeMitEndrunde extends Spielsystem{
 			Team tempTeam = templist.get(0);
 			templist.remove(tempTeam);
 			alleSetzListen.get(zaehler).add(tempTeam);
-
 		}
 	}
 
@@ -167,33 +166,58 @@ public class GruppeMitEndrunde extends Spielsystem{
 		}
 		allePlatzierungslisten.add(platzierungsliste);
 		if (allePlatzierungslisten.size()==alleGruppen.size()){
-			int wildcards = anzahlWeiterkommender%anzahlGruppen;
-			int platzierungFuerWildcard = (int) Math.ceil((double)anzahlWeiterkommender/anzahlGruppen);
-			ArrayList<Team> platzierteTeams = new ArrayList<>();
-			Dictionary<Integer,Team> wildCardTeams = new Hashtable<>(); //Dictionary mit Setzplatz;
-			for (int i=0;i<allePlatzierungslisten.size();i++){
-				platzierteTeams.add(allePlatzierungslisten.get(i).get(platzierungFuerWildcard-1)); //füge alle Teams mit der gesuchten Platzierung hinzu
-			}
-			sortList(platzierteTeams);
-			int setzplatz = (platzierungFuerWildcard-1)*anzahlGruppen +1;
-			for (int i=0;i<wildcards;i++){
-				wildCardTeams.put(setzplatz,platzierteTeams.get(i));
-				setzplatz++;
-			}
-			for (int i=0;i<endrunde.getRunden().get(0).size();i++){
-				Spiel spiel = endrunde.getRunden().get(0).get(i);
-				int setzplatzheim = spiel.getSetzPlatzHeim();
-				int setzplatzgast = spiel.getSetzPlatzGast();
-				if (wildCardTeams.get(setzplatzheim)!=null){
-					spiel.setHeim(wildCardTeams.get(setzplatzheim));
-					spiel.setFreilosErgebnis();
-					spiel.getSpielDAO().update(spiel);
+			if(endrunde instanceof KO) {
+				int wildcards = anzahlWeiterkommender % anzahlGruppen;
+				int platzierungFuerWildcard = (int) Math.ceil((double) anzahlWeiterkommender / anzahlGruppen);
+				ArrayList<Team> platzierteTeams = new ArrayList<>();
+				Dictionary<Integer, Team> wildCardTeams = new Hashtable<>(); //Dictionary mit Setzplatz;
+				for (int i = 0; i < allePlatzierungslisten.size(); i++) {
+					platzierteTeams.add(allePlatzierungslisten.get(i).get(platzierungFuerWildcard - 1)); //füge alle Teams mit der gesuchten Platzierung hinzu
 				}
-				if (wildCardTeams.get(setzplatzgast)!=null){
-					spiel.setGast(wildCardTeams.get(setzplatzgast));
-					spiel.setFreilosErgebnis();
-					spiel.getSpielDAO().update(spiel);
+				sortList(platzierteTeams);
+				int setzplatz = (platzierungFuerWildcard - 1) * anzahlGruppen + 1;
+				for (int i = 0; i < wildcards; i++) {
+					wildCardTeams.put(setzplatz, platzierteTeams.get(i));
+					setzplatz++;
 				}
+				for (int i = 0; i < endrunde.getRunden().get(0).size(); i++) {
+					Spiel spiel = endrunde.getRunden().get(0).get(i);
+					int setzplatzheim = spiel.getSetzPlatzHeim();
+					int setzplatzgast = spiel.getSetzPlatzGast();
+					if (wildCardTeams.get(setzplatzheim) != null) {
+						spiel.setHeim(wildCardTeams.get(setzplatzheim));
+						spiel.setFreilosErgebnis();
+						spiel.getSpielDAO().update(spiel);
+					}
+					if (wildCardTeams.get(setzplatzgast) != null) {
+						spiel.setGast(wildCardTeams.get(setzplatzgast));
+						spiel.setFreilosErgebnis();
+						spiel.getSpielDAO().update(spiel);
+					}
+				}
+			}
+			else if(endrunde instanceof Gruppe){
+				Gruppe endrunde = (Gruppe)this.endrunde;
+				ArrayList<Team> setzliste = new ArrayList<>();
+				int anzahlweiterkommenderJeGruppe = anzahlWeiterkommender/anzahlGruppen;
+				for(int i=0;i<allePlatzierungslisten.size();i++){
+					for (int j=0;j<anzahlweiterkommenderJeGruppe;j++){
+						Team team = allePlatzierungslisten.get(i).get(j);
+						setzliste.add(team);
+					}
+				}
+				int wildcards = anzahlWeiterkommender % anzahlGruppen;
+				int platzierungFuerWildcard = (int) Math.ceil((double) anzahlWeiterkommender / anzahlGruppen);
+				ArrayList<Team> platzierteTeams = new ArrayList<>();
+				for (int i = 0; i < allePlatzierungslisten.size(); i++) {
+					platzierteTeams.add(allePlatzierungslisten.get(i).get(platzierungFuerWildcard - 1)); //füge alle Teams mit der gesuchten Platzierung hinzu
+				}
+				sortList(platzierteTeams);
+				for(int i=0;i<wildcards;i++){
+					Team team = platzierteTeams.get(i);
+					setzliste.add(team);
+				}
+				endrunde.endrundeStarten(setzliste);
 			}
 		}
 	}
