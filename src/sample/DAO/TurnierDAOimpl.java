@@ -256,6 +256,7 @@ public class TurnierDAOimpl implements TurnierDAO {
             ResultSet spielklassenResult = smt.executeQuery();
             while (spielklassenResult.next()){
                 int spielklasseid = spielklassenResult.getInt("SpielklasseID");
+
                 Spielklasse spielklasse = new Spielklasse(spielklasseid, spielklassenResult.getString("Disziplin"),spielklassenResult.getString("Niveau"),turnier);
                 spielklassen.put(spielklasseid,spielklasse);
                 turnier.getObs_spielklassen().add(spielklasse);
@@ -455,7 +456,7 @@ public class TurnierDAOimpl implements TurnierDAO {
             ResultSet vereinResult = smt.executeQuery();
             while (vereinResult.next()){
                 int vereinsid = vereinResult.getInt("VereinsID");
-                auswahlklasse.getVereine().put(vereinsid,new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
+                auswahlklasse.getVereine().put(vereinResult.getString("ExtVereinsID"),new Verein(vereinsid,vereinResult.getString("ExtVereinsID"),vereinResult.getString("Name"),vereinResult.getString("Verband")));
             }
             smt.close();
 
@@ -499,7 +500,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("NName"),
                         gdatum,
                         spielerID,spielerResult.getBoolean("Geschlecht"),
-                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getInt("VereinsID")),
+                        rPunkte,auswahlklasse.getVereine().get(spielerResult.getString("extVereinsID")),
                         spielerResult.getFloat("Meldegebuehren"),
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,

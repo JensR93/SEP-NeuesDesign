@@ -28,6 +28,7 @@ import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
  * Created by jens on 26.09.2017.
  */
 public class VereinsuebersichtController implements Initializable {
+
     ContextMenu contextMenu=new ContextMenu();
 
     @FXML
@@ -44,8 +45,42 @@ public class VereinsuebersichtController implements Initializable {
     ObservableList <Verein> obs_Vereine  = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        auswahlklasse.setVereinsuebersichtController(this);
         fulleObsVereine();
         zeigeTabelle();
+        tabelleListener();
+
+
+        vereinsuche.textProperty().addListener((observable, oldValue, newValue) -> {
+            // System.out.println("textfield changed from " + oldValue + " to " + newValue);
+            //obs_spieler.clear();
+            obs_Vereine.clear();
+            //auswahlklasse.getTurniere().clear();
+
+            Enumeration enumeration = auswahlklasse.getVereine().keys();
+            while (enumeration.hasMoreElements())
+            {
+                String key = (String) enumeration.nextElement();
+                if(auswahlklasse.getVereine().get(key).toString().toUpperCase().contains(vereinsuche.getText().toUpperCase()))
+                {
+                    obs_Vereine.add((Verein) auswahlklasse.getVereine().get(key));
+                }
+
+            }
+
+            tabelle_vereine.refresh();
+
+            tabelle_vereine.setItems(obs_Vereine);
+            //auswahlklasse.setTurniere(obs_turniere_anzeige);
+
+
+
+        });
+
+
+    }
+
+    private void tabelleListener() {
         tabelle_vereine.setRowFactory(tv -> {
             TableRow row = new TableRow();
             row.setOnMouseClicked(event -> {
@@ -53,8 +88,9 @@ public class VereinsuebersichtController implements Initializable {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
                         && event.getClickCount() == 2) {
 
-                    auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
                     auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                    auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
+                    auswahlklasse.getNeuer_vereinController().updateVerein();
                     //   a.getStagesdict().get("")
                 }
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
@@ -63,14 +99,16 @@ public class VereinsuebersichtController implements Initializable {
 
 
                     //System.out.println("R-KLICK");
-                    MenuItem item1 = new MenuItem("Verein auswählen");
+                    MenuItem item1 = new MenuItem("Verein bearbeiten");
                     item1.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent event) {
 
-                            auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
+
                             auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                            auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
+                            auswahlklasse.getNeuer_vereinController().updateVerein();
                             //tabpane_spieler.getSelectionModel().select(tab_sphin);
                         }
                     });
@@ -114,18 +152,18 @@ public class VereinsuebersichtController implements Initializable {
 
             return row;
         });
-
     }
-    private void fulleObsVereine()
+
+    public void fulleObsVereine()
     {
         obs_Vereine.clear();
         Enumeration enumeration = auswahlklasse.getVereine().keys();
         while (enumeration.hasMoreElements())
         {
-            int key = (int) enumeration.nextElement();
+            String key = (String) enumeration.nextElement();
             obs_Vereine.add((Verein) auswahlklasse.getVereine().get(key));
         }
-
+    tabelle_vereine.setItems(obs_Vereine);
     }
     @FXML
     private void zeigeTabelle() {
@@ -157,5 +195,10 @@ public class VereinsuebersichtController implements Initializable {
 
         //TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier, Integer>("turnierid"));
 
+    }
+    @FXML
+    public void btn_neueklasse(ActionEvent event)
+    {
+        auswahlklasse.getDashboardController().setNodeNeuerVerein();
     }
 }

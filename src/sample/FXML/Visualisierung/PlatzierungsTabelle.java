@@ -69,7 +69,6 @@ public class PlatzierungsTabelle implements Visualisierung {
     }
 
     private void platzierungsTabelleErstellen(){
-        gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
         gc.beginPath();
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(1);
@@ -92,13 +91,13 @@ public class PlatzierungsTabelle implements Visualisierung {
         gc.lineTo(xSpiele + xSpieleBreite, yObenLinks+zellenHoehe);
         gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
         gc.fillText("Spiele", xSpiele + 5,yObenLinks+14);
-
-        gc.moveTo(xBHZ, yObenLinks);
-        gc.lineTo(xBHZ + xBHZBreite, yObenLinks);
-        gc.lineTo(xBHZ + xBHZBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xBHZ , yObenLinks+zellenHoehe);
-        gc.fillText("BHZ", xBHZ + 5,yObenLinks+14);
-
+        if(xBHZ!=0) {
+            gc.moveTo(xBHZ, yObenLinks);
+            gc.lineTo(xBHZ + xBHZBreite, yObenLinks);
+            gc.lineTo(xBHZ + xBHZBreite, yObenLinks + zellenHoehe);
+            gc.lineTo(xBHZ, yObenLinks + zellenHoehe);
+            gc.fillText("BHZ", xBHZ + 5, yObenLinks + 14);
+        }
         gc.moveTo(xSaetze, yObenLinks);
         gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks);
         gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks+zellenHoehe);
@@ -164,12 +163,12 @@ public class PlatzierungsTabelle implements Visualisierung {
         gc.lineTo(xSpiele + xSpieleBreite, yObenLinks+zellenHoehe);
         gc.lineTo(xSpiele , yObenLinks+zellenHoehe);
         gc.fillText(gewonneneSpiele+":"+(gespielteSpiele-gewonneneSpiele), xSpiele+ 5,yObenLinks+14);
-
-        gc.moveTo(xBHZ + xBHZBreite, yObenLinks);
-        gc.lineTo(xBHZ + xBHZBreite, yObenLinks+zellenHoehe);
-        gc.lineTo(xBHZ , yObenLinks+zellenHoehe);
-        gc.fillText(bhz+"", xBHZ+ 5,yObenLinks+14);
-
+        if(xBHZ!=0) {
+            gc.moveTo(xBHZ + xBHZBreite, yObenLinks);
+            gc.lineTo(xBHZ + xBHZBreite, yObenLinks + zellenHoehe);
+            gc.lineTo(xBHZ, yObenLinks + zellenHoehe);
+            gc.fillText(bhz + "", xBHZ + 5, yObenLinks + 14);
+        }
         gc.moveTo(xSaetze +xSaetzeBreite, yObenLinks);
         gc.lineTo(xSaetze +xSaetzeBreite, yObenLinks+zellenHoehe);
         gc.lineTo(xSaetze, yObenLinks+zellenHoehe);
@@ -187,6 +186,7 @@ public class PlatzierungsTabelle implements Visualisierung {
 
     @Override
     public void update() {
+        gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
         platzierungsTabelleErstellen();
     }
 

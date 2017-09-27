@@ -117,6 +117,10 @@ public class EinstellungenController implements Initializable {
 
     }
 
+    public String getSprache() {
+        return Sprache;
+    }
+
     public void SpracheLaden()
     {
         if(auswahlklasse.getSpieler_hinzufuegenController() != null) {
@@ -334,6 +338,18 @@ public class EinstellungenController implements Initializable {
         changeListener();
 
         SetzeEinstellungen();
+        if(getSprache().equals("de"))
+        {
+            Locale.setDefault( new Locale("de", "de") );
+            System.out.println("Sprache=Deutsch");
+        }
+        if(getSprache().equals("en"))
+        {
+            Locale.setDefault( new Locale("en", "en") );
+            System.out.println("Sprache=Englisch");
+        }
+
+        SpracheLaden();
 
     }
 

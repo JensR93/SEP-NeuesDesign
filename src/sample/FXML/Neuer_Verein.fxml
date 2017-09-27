@@ -6,9 +6,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Neuer_VereinController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Neuer_VereinController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -34,13 +35,15 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </JFXTextField>
-      <JFXButton fx:id="btn_Speichern_Verein" onAction="#pressBtn_speichern" text="Speichern" GridPane.rowIndex="3">
-         <graphic>
-            <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
-         </graphic>
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </JFXButton>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.rowIndex="3">
+         <children>
+            <JFXButton fx:id="btn_Speichern_Verein" onAction="#pressBtn_speichern" text="Speichern">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton onAction="#pressBtn_Abbrechen" text="Abbrechen" />
+         </children>
+      </HBox>
    </children>
 </GridPane>

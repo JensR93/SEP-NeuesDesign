@@ -15,6 +15,7 @@ import sample.FXML.Visualisierung.PlatzierungsTabelle;
 import sample.FXML.Visualisierung.Turnierbaum;
 import sample.Spielklasse;
 import sample.Spielsysteme.GruppeMitEndrunde;
+import sample.Spielsysteme.KO;
 import sample.Spielsysteme.Spielsystem;
 
 import java.net.URL;
@@ -72,8 +73,9 @@ public class VisualisierungController implements Initializable {
 
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
-        gruppenTabelle.erstelleGruppenTabelle();
-
+        if(spielsystem.getSetzliste()!=null && spielsystem.getSetzliste().size()>0) {
+            gruppenTabelle.erstelleGruppenTabelle();
+        }
     }
 
     private void gruppeMitEndrundeVisualisierung(Spielsystem spielsystem, Tab tab) {
@@ -86,10 +88,18 @@ public class VisualisierungController implements Initializable {
             tabPane.getTabs().add(gruppe);
             gruppeVisualisierung(gruppeMitEndrunde.getAlleGruppen().get(i),gruppe);
         }
-        Tab endrunde = new Tab("Endrunde");
-        endrunde.setClosable(false);
-        tabPane.getTabs().add(endrunde);
-        koVisualisierung(gruppeMitEndrunde.getEndrunde(),endrunde);
+        if(gruppeMitEndrunde.getEndrunde() instanceof KO) {
+            Tab endrunde = new Tab("Endrunde");
+            endrunde.setClosable(false);
+            tabPane.getTabs().add(endrunde);
+            koVisualisierung(gruppeMitEndrunde.getEndrunde(), endrunde);
+        }
+        else {
+            Tab endrunde = new Tab("Endrunde");
+            endrunde.setClosable(false);
+            tabPane.getTabs().add(endrunde);
+            gruppeVisualisierung(gruppeMitEndrunde.getEndrunde(),endrunde);
+        }
     }
 
     private void koVisualisierung(Spielsystem spielsystem, Tab tab) {

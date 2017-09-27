@@ -364,11 +364,17 @@ public class SpielsystemController implements Initializable {
     private void gruppeMitEndrundeStarten() {
         try{
             int gruppenGroesse = Integer.valueOf(textField_gruppenGroesse.getText());
-            int anzahlGruppen = (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse);
+            int anzahlGruppen = (int) Math.ceil((double)ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse);
             System.out.println("Math.ceil: " + (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse));
             int anzahlWeiterkommender = Integer.valueOf(textField_anzahlWeiterkommender.getText());
-            GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse,anzahlGruppen,anzahlWeiterkommender);
-            ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+            if(rb_Gruppe.isSelected()) {
+                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender,false);
+                ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+            }
+            else{
+                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender,true);
+                ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+            }
             l_meldungsetzliste1.setText("ERFOLG");
             auswahlklasse.InfoBenachrichtigung("Spielsystem start","Das Spielsystem wurde erfolgreich gestartet");
             //TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());

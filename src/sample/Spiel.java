@@ -161,7 +161,7 @@ public class Spiel {
 	}
 	public void setHeim(Team heim) {
 		this.heim = heim;
-		if(this.gast != null && !(this.getSystemSpielArt()==1) && !(this.getSystemSpielArt()==2&&this.getVorrundenNummer()!=0)){
+		if(this.gast != null){
 			this.status = 1;
 
 		}
@@ -170,7 +170,7 @@ public class Spiel {
 
 	public void setGast(Team gast) {
 		this.gast = gast;
-		if(this.heim != null && !(this.getSystemSpielArt()==1) && !(this.getSystemSpielArt()==2&&this.getVorrundenNummer()!=0)){
+		if(this.heim != null){
 			this.status = 1;
 		/*	if (this.heim.isFreilos()){
 				this.setErgebnis(new Ergebnis(0,21,0,21));
@@ -358,6 +358,13 @@ public class Spiel {
 		}*/
 		else if(systemSpielID<40000000){ //K.O. system
 			int rundenNummer = (systemSpielID-systemSpielID/10000000*10000000)/1000;
+			if (spielsystem instanceof GruppeMitEndrunde)
+			{
+				GruppeMitEndrunde gruppeMitEndrunde = (GruppeMitEndrunde) spielsystem;
+				if(gruppeMitEndrunde.getEndrunde() instanceof Gruppe){
+					return "Endrunde "+(getRundenNummer() + 1);
+				}
+			}
 			if(rundenNummer==0 && getVorrundenNummer()==0){
 				return "Finale";
 			}

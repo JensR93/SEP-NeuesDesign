@@ -73,6 +73,33 @@ public class auswahlklasse
     private static VisualisierungController visualisierungController;
     private static Neuer_VereinController neuer_vereinController;
     private static SpielErgebnisEintragenController spielErgebnisEintragenController;
+    private static VereinsuebersichtController vereinsuebersichtController;
+
+    public static SpielErgebnisEintragenController getSpielErgebnisEintragenController() {
+        return spielErgebnisEintragenController;
+    }
+
+    public static void setSpielErgebnisEintragenController(SpielErgebnisEintragenController spielErgebnisEintragenController) {
+        auswahlklasse.spielErgebnisEintragenController = spielErgebnisEintragenController;
+    }
+
+    public static VereinsuebersichtController getVereinsuebersichtController() {
+        return vereinsuebersichtController;
+    }
+
+    public static void setVereinsuebersichtController(VereinsuebersichtController vereinsuebersichtController) {
+        auswahlklasse.vereinsuebersichtController = vereinsuebersichtController;
+    }
+
+    public static sample.FXML.spielerEigenschaftenController getSpielerEigenschaftenController() {
+        return spielerEigenschaftenController;
+    }
+
+    public static void setSpielerEigenschaftenController(sample.FXML.spielerEigenschaftenController spielerEigenschaftenController) {
+        auswahlklasse.spielerEigenschaftenController = spielerEigenschaftenController;
+    }
+
+    private static spielerEigenschaftenController spielerEigenschaftenController;
 
     public static VisualisierungController getVisualisierungController() {
         return visualisierungController;
@@ -194,19 +221,11 @@ public class auswahlklasse
         return neuer_vereinController;
     }
 
-    public static SpielErgebnisEintragenController getSpielErgebnisEintragenController() {
-        return spielErgebnisEintragenController;
-    }
-
-    public static void setSpielErgebnisEintragenController(SpielErgebnisEintragenController spielErgebnisEintragenController) {
-        auswahlklasse.spielErgebnisEintragenController = spielErgebnisEintragenController;
-    }
-
     public static void setNeuer_vereinController(Neuer_VereinController neuer_vereinController) {
         auswahlklasse.neuer_vereinController = neuer_vereinController;
     }
 
-    private static Dictionary<Integer, Verein> vereine = new Hashtable<Integer, Verein>();
+    private static Dictionary<String, Verein> vereine = new Hashtable<String, Verein>();
     private static Dictionary<Integer, Spieler> spieler = new Hashtable<Integer,Spieler>();
     private static Spielklasse aktuelleSpielklassenAuswahl = null;
     private static Turnier aktuelleTurnierAuswahl = null;
@@ -220,7 +239,7 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
     private static Notifications noteficationBuilder;
 
 
-    public static void setVereine(Dictionary<Integer, Verein> vereine) {
+    public static void setVereine(Dictionary<String, Verein> vereine) {
         auswahlklasse.vereine = vereine;
     }
 
@@ -328,11 +347,11 @@ private static ObservableList <Turnier> turniere = FXCollections.observableArray
     }
 
 
-    public static Dictionary<Integer, Verein> getVereine() {
+    public static Dictionary<String, Verein> getVereine() {
         return vereine;
     }
     public static void addVerein(Verein verein) {
-        vereine.put(verein.getVereinsID(),verein);
+        vereine.put(verein.getExtVereinsID(),verein);
     }
 
 
