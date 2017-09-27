@@ -132,8 +132,19 @@ public class GruppeMitEndrunde extends Spielsystem{
 				return true;
 			}
 		}
-		this.anzahlWeiterkommender=spieleProRunde.get(0).size()*2;
+		this.anzahlWeiterkommender=spieleProRunde.get(0).size()*2-freiloseInGruppeBerechnen(spieleProRunde.get(0));
 		return false;
+	}
+
+	private int freiloseInGruppeBerechnen(ZeitplanRunde spiele) {
+		int freilosInGruppe = 0;
+		for (int i=0;i<spiele.size();i++){
+			Spiel spiel = spiele.get(i);
+			if((spiel.getHeim()!=null && spiel.getHeim().isFreilos())||(spiel.getGast()!=null && spiel.getGast().isFreilos())){
+				freilosInGruppe++;
+			}
+		}
+		return freilosInGruppe;
 	}
 
 	private int anzahlSpieleMitFreilosen(ArrayList<Spiel> endrundenSpiele) {

@@ -68,19 +68,41 @@ public class Gruppe extends Spielsystem {
 		this.setSpielSystemArt(2);
 		this.spielsystem = spielsystem;
 		this.setSpielklasse(spielklasse);
-		if(anzahlTeams/2*2!=anzahlTeams){
-			anzahlTeams++;
-		}
 		this.anzahlTeams=anzahlTeams;
+		if(anzahlTeams/2*2!=anzahlTeams){
+			this.anzahlTeams++;
+		}
 		//freiloseHinzufuegen(teamList);
-		setAnzahlRunden(anzahlTeams-1);
+		setAnzahlRunden(this.anzahlTeams-1);
 		alleSpieleErstellen();
-		schablone = new int[anzahlTeams][anzahlTeams];
+		if(anzahlTeams!=this.anzahlTeams){
+			freilosSchreiben();
+		}
+		schablone = new int[this.anzahlTeams][this.anzahlTeams];
 		schabloneBauen();
 		alleSpieleSchreiben();
 		resetAktuelleRunde();
 		//rundeStarten(0);
 	}
+
+	private void freilosSchreiben() {
+		if(getAktuelleRunde()<=getAnzahlRunden()){
+			ArrayList<Team> tempList = new ArrayList<>();
+			for (int i=0; i<teamList.size();i++){
+				tempList.add(teamList.get(i));
+			}
+			erhoeheAktuelleRunde();
+			for(int i=0;i<getAnzahlRunden();i++){
+				Team freilos = new Team("Freilos",this.getSpielklasse());
+				if(getSpielklasse()!=null){
+					int systemSpielID = getSpielSystemArt()*10000000+i*1000;
+					Spiel spiel = getSpielklasse().getSpiele().get(systemSpielID);
+					spiel.setGast(freilos);
+				}
+			}
+		}
+	}
+
 	public void endrundeStarten(ArrayList<Team> setzliste){
 		this.teamList=setzliste;
 		freiloseHinzufuegen(teamList);
@@ -328,8 +350,11 @@ public class Gruppe extends Spielsystem {
 		setSpielklasse(spielklasse);
 		this.spielsystem=spielsystem;
 		this.anzahlTeams = anzahlTeams;
-		setAnzahlRunden(anzahlTeams-1);
-		schablone = new int[anzahlTeams][anzahlTeams];
+		if(this.anzahlTeams/2*2!=this.anzahlTeams){
+			this.anzahlTeams++;
+		}
+		setAnzahlRunden(this.anzahlTeams-1);
+		schablone = new int[this.anzahlTeams][this.anzahlTeams];
 		schabloneBauen();
 		setzlisteGenerieren(spielListe);
 		/*alleSpieleEinlesen(spielListe);

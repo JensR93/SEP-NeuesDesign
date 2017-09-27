@@ -454,15 +454,15 @@ public class ExcelImport implements Initializable{
         //System.out.println("test");
         boolean b = false;
 
-            if(!b&&auswahlklasse.getDict_doppelte_spieler().size()>0)  {
+        if(!b&&auswahlklasse.getDict_doppelte_spieler().size()>0)  {
 
-                auswahlklasse.getDashboardController().setNodeSpielervorhanden();
-            }
-            else
-            {
-                auswahlklasse.getDashboardController().meldeformularImport();
-            }
+            auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         }
+        else
+        {
+            auswahlklasse.getDashboardController().meldeformularImport();
+        }
+    }
 
 
 

@@ -44,6 +44,8 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     //---Sprache---
     @FXML
+    private ChoiceBox choice_nationalitaet;
+    @FXML
     private Tab tab_sphin;
     @FXML
     private JFXTextField t_vn;
@@ -83,6 +85,9 @@ public class Spieler_hinzufuegenController implements Initializable{
     private TableColumn tabelle_spielerliste_SpielerID;
     @FXML
     private TableColumn tabelle_spielerliste_geschlecht;
+    @FXML
+    private TableColumn tabelle_spielerliste_nationalitaet;
+
     @FXML
     private TableColumn tabelle_spielerliste_geburtstag;
     @FXML
@@ -131,18 +136,14 @@ public class Spieler_hinzufuegenController implements Initializable{
 
         if(auswahlklasse.getAktuelleTurnierAuswahl()!=null) {
 
-            obs_spieler.clear();
-            Enumeration enumSpielerIDs = auswahlklasse.getSpieler().keys();
-            while (enumSpielerIDs.hasMoreElements()){
-                int key = (int)enumSpielerIDs.nextElement();
-                obs_spieler.add(auswahlklasse.getSpieler().get(key));
-                spielerhash.put(auswahlklasse.getSpieler().get(key).getSpielerID(),auswahlklasse.getSpieler().get(key));
-            }
+            fulleObsSpieler();
 
             //region PropertyValueFactory
             tabelle_spielerliste_vorname.setCellValueFactory(new PropertyValueFactory<Spieler,String>("vName"));
             tabelle_spielerliste_geschlecht.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iGeschlecht"));
 
+
+            tabelle_spielerliste_nationalitaet.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iNationalitaet"));
             tabelle_spielerliste_SpielerID.setCellValueFactory(new PropertyValueFactory<Spieler,String>("ExtSpielerID"));
 
 
@@ -160,6 +161,17 @@ public class Spieler_hinzufuegenController implements Initializable{
         }
 
     }
+
+    public void fulleObsSpieler() {
+        obs_spieler.clear();
+        Enumeration enumSpielerIDs = auswahlklasse.getSpieler().keys();
+        while (enumSpielerIDs.hasMoreElements()){
+            int key = (int)enumSpielerIDs.nextElement();
+            obs_spieler.add(auswahlklasse.getSpieler().get(key));
+            spielerhash.put(auswahlklasse.getSpieler().get(key).getSpielerID(),auswahlklasse.getSpieler().get(key));
+        }
+    }
+
     @FXML
     public void UpdateAbbrechen(ActionEvent event)
     {
@@ -230,7 +242,7 @@ public class Spieler_hinzufuegenController implements Initializable{
                 Verein verein = combo_verein.getSelectionModel().getSelectedItem();
                 System.out.println(auswahlklasse.getSpieler().size());
 
-                spieler_neu= new Spieler(t_vn.getText(),t_nn.getText(),d_geb.getValue(),geschlecht,rpunkte,verein,t_spid.getText(),"");
+                spieler_neu= new Spieler(t_vn.getText(),t_nn.getText(),d_geb.getValue(),geschlecht,rpunkte,verein,t_spid.getText(),choice_nationalitaet.getSelectionModel().getSelectedItem(),"");
 
                 //endregion
 
@@ -370,6 +382,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         spieler_neu.setrPunkte(rpunkte);
         spieler_neu.setGeschlecht(geschlecht);
         spieler_neu.setVerein(v);
+        spieler_neu.setNationalitaet(choice_nationalitaet.getSelectionModel().getSelectedItem().toString());
 
         boolean erfolg = spieler_neu.getSpielerDAO().update(spieler_neu);
 
@@ -435,6 +448,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
         SpracheLaden();
 
+        fuellechoiceNationalitaet();
 
         //region Tabelle Spielerliste RowFactory
         tabelle_spielerliste.setRowFactory(tv -> {
@@ -685,6 +699,13 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
     }
 
+    private void fuellechoiceNationalitaet() {
+        ObservableList obsnationalitaet = FXCollections.observableArrayList();
+        obsnationalitaet.addAll("Deutschland","Dänemark","Frankreich","Luxemburg","Niederlande","Schweiz","Spanien","Sonstiges");
+        choice_nationalitaet.setItems(obsnationalitaet);
+        choice_nationalitaet.getSelectionModel().select(0);
+    }
+
     @FXML
     public void pressBtn_ExcelImport (ActionEvent event) throws Exception {
         try {
@@ -795,6 +816,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         t_rd.setText(String.valueOf(clickedRow.getrPunkte()[1]));
         t_rm.setText(String.valueOf(clickedRow.getrPunkte()[2]));
         combo_verein.getSelectionModel().select(clickedRow.getVerein());
+        choice_nationalitaet.getSelectionModel().select(clickedRow.getNationalitaet());
         if(clickedRow.getGeschlecht())
         {
             r_m.setSelected(true);

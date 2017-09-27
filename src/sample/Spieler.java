@@ -10,9 +10,22 @@ import sample.DAO.*;
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
 	private String vName;
-	private float OffenerBetrag;
+	private boolean OffenerBetrag;
 
 
+	private String Notiz;
+
+	public Spieler() {
+
+	}
+
+	public String getNotiz() {
+		return Notiz;
+	}
+
+	public void setNotiz(String notiz) {
+		Notiz = notiz;
+	}
 
 	private String nName;
 	private LocalDate gDatum;
@@ -27,8 +40,55 @@ public class Spieler {
 	private String extSpielerID;
 	private Spiel aktuellesSpiel;
 
+	public void setSpielerDAO(SpielerDAO spielerDAO) {
+		this.spielerDAO = spielerDAO;
+	}
+
+	public String getvName() {
+		return vName;
+	}
+
+	public boolean isOffenerBetrag() {
+		return OffenerBetrag;
+	}
+
+	public void setOffenerBetrag(boolean offenerBetrag) {
+		OffenerBetrag = offenerBetrag;
+	}
+
+	public String getnName() {
+		return nName;
+	}
+
+	public LocalDate getgDatum() {
+		return gDatum;
+	}
+
+	public boolean isGeschlecht() {
+		return geschlecht;
+	}
+
 	//Einlesen neu
-	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, float offenerBetrag) {
+	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
+		this.vName = vName;
+		this.nName = nName;
+		this.gDatum = gDatum;
+		this.spielerID = spielerID;
+		this.geschlecht = geschlecht;
+		this.rPunkte = rPunkte;
+		this.verein = verein;
+		this.meldeGebuehren = meldeGebuehren;
+		this.Nationalitaet = nationalitaet;
+		this.verfuegbar = verfuegbar;
+
+		this.mattenSpiele = mattenSpiele;
+		this.extSpielerID = extSpielerID;
+		this.aktuellesSpiel = aktuellesSpiel;
+
+	}
+
+	public Spieler(String notiz, LocalDate gDatum, String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, boolean offenerBetrag) {
+		this.Notiz=notiz;
 		this.vName = vName;
 		this.nName = nName;
 		this.gDatum = gDatum;
@@ -42,17 +102,8 @@ public class Spieler {
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
-		this.OffenerBetrag = offenerBetrag;
+		this.OffenerBetrag=offenerBetrag;
 	}
-
-	public float getOffenerBetrag() {
-		return OffenerBetrag;
-	}
-
-	public void setOffenerBetrag(float offenerBetrag) {
-		OffenerBetrag = offenerBetrag;
-	}
-
 
 
 	public void setvName(String vName) {
@@ -95,17 +146,18 @@ public class Spieler {
 	//Spieler erstellen (Prüfung)
 	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein,String extSpielerID, String s)
 	{
-		this.vName = vName;
-		this.nName = nName;
-		this.gDatum = gDatum;
-		this.geschlecht = geschlecht;
-		this.rPunkte = rPunkte;
-		this.verein = verein;
-		this.extSpielerID = extSpielerID;
+
 
 	}
-	public Spieler(){
-
+	public Spieler(String text, String t_nnText, LocalDate value, boolean geschlecht, int[] rpunkte, Verein verein, String t_spidText, Object selectedItem, String s){
+		this.vName = text;
+		this.nName = t_nnText;
+		this.gDatum = value;
+		this.geschlecht = geschlecht;
+		this.rPunkte = rpunkte;
+		this.verein = verein;
+		this.extSpielerID = t_spidText;
+		this.Nationalitaet= (String) selectedItem;
 	}
 	public void einzelPunkteUpdate(int einzelPunkte){
 		rPunkte[0] = einzelPunkte;
@@ -204,13 +256,13 @@ public class Spieler {
 			if(!vorhandenspielklassen.contains(spielklasse)) {
 
 				if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins() != null) {
-					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().equals(spieler)) {
+					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerEins().toString().equals(spieler.toString())) {
 
 						vorhandenspielklassen.add(spielklasse);
 					}
 				}
 				if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei() != null) {
-					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei().equals(spieler)) {
+					if (auswahlklasse.getAktuelleTurnierAuswahl().getTeams().get(key).getSpielerZwei().toString().equals(spieler.toString())) {
 						vorhandenspielklassen.add(spielklasse);
 					}
 				}
@@ -276,6 +328,53 @@ public class Spieler {
 		}
 		else {
 			Image imgfemale = new Image("sample/Images/icon/user_female.png",24,24,true,true);
+			ImageView imageView2 = new ImageView(imgfemale);
+			return imageView2;
+		}
+	}
+	public ImageView getINationalitaet() {
+		if(Nationalitaet.equals("Deutschland")){
+			Image imgmale = new Image("sample/Images/Flaggen/deutschland.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Frankreich")){
+			Image imgmale = new Image("sample/Images/Flaggen/frankreich.jpg",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Dänemark")){
+			Image imgmale = new Image("sample/Images/Flaggen/daenemark.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Luxemburg")){
+			Image imgmale = new Image("sample/Images/Flaggen/luxemburg.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Niederlande")){
+			Image imgmale = new Image("sample/Images/Flaggen/niederlande.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Schweiz")){
+			Image imgmale = new Image("sample/Images/Flaggen/schweiz.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Spanien")){
+			Image imgmale = new Image("sample/Images/Flaggen/spanien.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Finnland")){
+			Image imgmale = new Image("sample/Images/Flaggen/finnland.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else {
+			Image imgfemale = new Image("sample/Images/Flaggen/keinLand.png",24,24,true,true);
 			ImageView imageView2 = new ImageView(imgfemale);
 			return imageView2;
 		}

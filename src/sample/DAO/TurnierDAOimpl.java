@@ -88,10 +88,12 @@ public class TurnierDAOimpl implements TurnierDAO {
                 "Name= ?, " +
                 "SpielerPausenZeit = ?, " +
                 "startzeitEinzel = ?, " +
-                "startzeitDoppel = ?, " +
+                "startzeitDoppel = ?, " + //index 5
                 "startzeitMixed = ?, " +
+                "MeldegebuehrEinzel = ?, " +
+                "MeldegebuehrDoppel = ?, " +
                 "Zaehlweise = ? " +
-                "WHERE Turnierid = ?";
+                "WHERE Turnierid = ?"; //index 10
         try {
             Connection con = SQLConnection.getCon();
             PreparedStatement smt = con.prepareStatement(sql);
@@ -101,8 +103,10 @@ public class TurnierDAOimpl implements TurnierDAO {
             smt.setTimestamp(4, Timestamp.valueOf(turnier.getStartzeitEinzel()));
             smt.setTimestamp(5, Timestamp.valueOf(turnier.getStartzeitDoppel()));
             smt.setTimestamp(6, Timestamp.valueOf(turnier.getStartzeitMixed()));
-            smt.setInt(7, turnier.getZaehlweise());
-            smt.setInt(8, turnier.getTurnierid());
+            smt.setFloat(7,turnier.getMeldegebuehrEinzel());
+            smt.setFloat(8,turnier.getMeldegebuehrDoppel());
+            smt.setInt(9, turnier.getZaehlweise());
+            smt.setInt(10, turnier.getTurnierid());
             smt.executeUpdate();
             smt.close();
 
@@ -498,7 +502,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                 if(spielerResult.getDate("Verfuegbar")!=null) {
                     verfuegbar = spielerResult.getDate("Verfuegbar").toLocalDate();
                 }
-                auswahlklasse.getSpieler().put(spielerID,new Spieler(spielerResult.getString("VName"),
+                auswahlklasse.getSpieler().put(spielerID,new Spieler(spielerResult.getString("Notiz"),geburtstag.toLocalDate(),spielerResult.getString("VName"),
                         spielerResult.getString("NName"),
                         gdatum,
                         spielerID,spielerResult.getBoolean("Geschlecht"),
@@ -507,7 +511,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,
                         spielerResult.getInt("MattenSpiele"),
-                        spielerResult.getString("ExtSpielerID"), spielerResult.getFloat("OffenerBetrag")));
+                        spielerResult.getString("ExtSpielerID"), spielerResult.getBoolean("OffenerBetrag")));
             }
             smt.close();
 

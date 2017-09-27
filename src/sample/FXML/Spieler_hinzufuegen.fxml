@@ -27,12 +27,13 @@
         <content>
             <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="447.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="410.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -63,7 +64,7 @@
                         <Insets left="20.0" right="220.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" GridPane.rowIndex="4">
+                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" GridPane.rowIndex="5">
                      <children>
                         <JFXTextField fx:id="t_re" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" unFocusColor="#757575">
                            <HBox.margin>
@@ -82,8 +83,13 @@
                         <Insets />
                      </GridPane.margin>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                      <children>
+                        <Label text="Verein">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
                         <ChoiceBox fx:id="combo_verein" minWidth="200.0">
                            <HBox.margin>
                               <Insets left="20.0" />
@@ -99,7 +105,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
                         <Label fx:id="Label_Geschlecht" text="Geschlecht">
                            <HBox.margin>
@@ -116,7 +122,7 @@
                         <JFXRadioButton fx:id="r_w" text="Weiblich" toggleGroup="$Geschlecht" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
                      <children>
                         <JFXButton fx:id="btn_MeldefImport" onAction="#pressBtn_ExcelImport" text="Meldeformular importieren">
                            <HBox.margin>
@@ -140,6 +146,15 @@
                            </graphic>
                         </JFXButton>
                      </children>
+                  </HBox>
+                  <HBox spacing="30.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="Nationalität" />
+                        <ChoiceBox fx:id="choice_nationalitaet" prefWidth="150.0" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                   </HBox>
                </children>
                <padding>
@@ -166,6 +181,7 @@
                      <columns>
                         <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="100.0" prefWidth="75.0" text="Vorname" />
                         <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="100.0" prefWidth="75.0" text="Nachname" />
+                        <TableColumn fx:id="tabelle_spielerliste_nationalitaet" prefWidth="75.0" text="Nationalität" />
                         <TableColumn fx:id="tabelle_spielerliste_verein" minWidth="100.0" prefWidth="75.0" text="Verein" />
                         <TableColumn fx:id="tabelle_spielerliste_SpielerID" minWidth="100.0" prefWidth="75.0" text="Spieler ID" />
                         <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="100.0" prefWidth="75.0" text="Geschlecht" />
