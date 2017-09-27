@@ -48,7 +48,7 @@ public class GruppenTabelle implements Visualisierung {
     public void erstelleGruppenTabelle(boolean endrunde) {
         this.endrunde = endrunde;
         ArrayList<Team> teams = (ArrayList<Team>) spielsystem.getSetzliste().clone();
-        for (int i = 0; i < teams.size(); i++) {
+        for (int i=teams.size()-1; i>=0;i--){
             Team team = teams.get(i);
             if (team.isFreilos()) {
                 teams.remove(team);

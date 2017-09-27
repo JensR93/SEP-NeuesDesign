@@ -120,7 +120,7 @@ public class PlatzierungsTabelle implements Visualisierung {
 
 
         ArrayList<Team> platzierungsliste = spielsystem.getSetzliste();
-        for (int i=0; i<platzierungsliste.size();i++){
+        for (int i=platzierungsliste.size()-1; i>=0;i--){
             Team team = platzierungsliste.get(i);
             if(team.isFreilos()){
                 platzierungsliste.remove(team);
