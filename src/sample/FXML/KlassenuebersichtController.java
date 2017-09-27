@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -38,7 +39,8 @@ public class KlassenuebersichtController implements Initializable {
 
     String baseName = "resources.Main";
     String titel ="";
-
+    @FXML
+    private GridPane gridpane_uebersicht;
     @FXML
     private JFXTabPane tabpane_uebersicht;
 
@@ -203,7 +205,7 @@ public class KlassenuebersichtController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         SpracheLaden();
-
+        tabWidthAnpassen();
         auswahlklasse.setKlassenuebersichtController(this);
 
         SpielklassenHinzufuegen();
@@ -238,6 +240,11 @@ public class KlassenuebersichtController implements Initializable {
 //A label with the text element and graphical icon
 //GridPane_NeueKlasse.add(label2,1,0);
 
+    }
+
+    private void tabWidthAnpassen() {
+        tabpane_uebersicht.tabMinWidthProperty().bind(tabpane_uebersicht.widthProperty().multiply(0.32));
+        tabpane_uebersicht.tabMaxWidthProperty().bind(tabpane_uebersicht.widthProperty().multiply(0.33));
     }
 
     private void sortiereSpielKlasse() {

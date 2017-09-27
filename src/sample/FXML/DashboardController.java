@@ -36,7 +36,7 @@ public class DashboardController implements Initializable{
     private JFXTabPane Spieler,Spielsystem,Visualisierung;
     private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Vereinsuebersicht,Spielereigenschaften;
 
-    private StackPane Turnier,home;
+    private GridPane Turnier,home;
     private VBox Spieluebersicht;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -46,7 +46,7 @@ public class DashboardController implements Initializable{
     private URL location;
 
     @FXML // fx:id="stackPane"
-    private StackPane stackPane; // Value injected by FXMLLoader
+    private GridPane stackPane; // Value injected by FXMLLoader
 
     @FXML // fx:id="toolBar"
     private JFXToolbar toolBar; // Value injected by FXMLLoader
