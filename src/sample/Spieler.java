@@ -10,18 +10,9 @@ import sample.DAO.*;
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
 	private String vName;
+	private float OffenerBetrag;
 
-	public void setvName(String vName) {
-		this.vName = vName;
-	}
 
-	public void setnName(String nName) {
-		this.nName = nName;
-	}
-
-	public void setSpielerID(int spielerID) {
-		this.spielerID = spielerID;
-	}
 
 	private String nName;
 	private LocalDate gDatum;
@@ -36,7 +27,45 @@ public class Spieler {
 	private String extSpielerID;
 	private Spiel aktuellesSpiel;
 
+	//Einlesen neu
+	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, float offenerBetrag) {
+		this.vName = vName;
+		this.nName = nName;
+		this.gDatum = gDatum;
+		this.spielerID = spielerID;
+		this.geschlecht = geschlecht;
+		this.rPunkte = rPunkte;
+		this.verein = verein;
+		this.meldeGebuehren = meldeGebuehren;
+		this.Nationalitaet = nationalitaet;
+		this.verfuegbar = verfuegbar;
+		this.mattenSpiele = mattenSpiele;
+		this.extSpielerID = extSpielerID;
+		this.aktuellesSpiel = aktuellesSpiel;
+		this.OffenerBetrag = offenerBetrag;
+	}
 
+	public float getOffenerBetrag() {
+		return OffenerBetrag;
+	}
+
+	public void setOffenerBetrag(float offenerBetrag) {
+		OffenerBetrag = offenerBetrag;
+	}
+
+
+
+	public void setvName(String vName) {
+		this.vName = vName;
+	}
+
+	public void setnName(String nName) {
+		this.nName = nName;
+	}
+
+	public void setSpielerID(int spielerID) {
+		this.spielerID = spielerID;
+	}
 
 	public Spieler(String vName, String nName){
 		this.vName = vName;
@@ -74,22 +103,6 @@ public class Spieler {
 		this.verein = verein;
 		this.extSpielerID = extSpielerID;
 
-	}
-	//EINLESEN
-	public Spieler(String vName, String nName, LocalDate gDatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldeGebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
-		this.vName = vName;
-		this.nName = nName;
-		this.gDatum = gDatum;
-		this.spielerID = spielerID;
-		this.geschlecht = geschlecht;
-		this.rPunkte = rPunkte;
-		this.verein = verein;
-		this.meldeGebuehren = meldeGebuehren;
-		this.Nationalitaet = nationalitaet;
-		this.verfuegbar = verfuegbar;
-		this.mattenSpiele = mattenSpiele;
-		this.extSpielerID = extSpielerID;
-		this.aktuellesSpiel = aktuellesSpiel;
 	}
 	public Spieler(){
 

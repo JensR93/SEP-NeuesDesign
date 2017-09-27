@@ -129,6 +129,8 @@ public class TurnierDAOimpl implements TurnierDAO {
             turnierEingabe.setMatchDauer(turnierResult.getInt("MatchDauer"));
             turnierEingabe.setSpielerPausenZeit(turnierResult.getInt("SpielerPausenZeit"));
             turnierEingabe.setZaehlweise(turnierResult.getInt("Zaehlweise"));
+            turnierEingabe.setMeldegebuehrEinzel(turnierResult.getFloat("MeldegebuehrEinzel"));
+            turnierEingabe.setMeldegebuehrDoppel(turnierResult.getFloat("MeldegebuehrDoppel"));
             turnierEingabe.setFelder(readFelder(turnierEingabe));
             turnierEingabe.setSpielklassen(readSpielklassen(turnierEingabe));
             turnierEingabe.setTeams(readTeams(turnierEingabe));
@@ -505,7 +507,7 @@ public class TurnierDAOimpl implements TurnierDAO {
                         spielerResult.getString("Nationalitaet"),
                         verfuegbar,
                         spielerResult.getInt("MattenSpiele"),
-                        spielerResult.getString("ExtSpielerID")));
+                        spielerResult.getString("ExtSpielerID"), spielerResult.getFloat("OffenerBetrag")));
             }
             smt.close();
 
