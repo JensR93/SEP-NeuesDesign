@@ -27,6 +27,7 @@ public class GruppenTabelle implements Visualisierung {
     private int xObenLinks = xObenLinksLeereZelle+zellenBreite; //Startpunkt
     private int yObenLinks = 20;
     private GraphicsContext graphicsContext;
+    private boolean endrunde = false;
 
     public GruppenTabelle(Spielsystem spielsystem, Tab tab) {
         this.spielsystem = spielsystem;
@@ -36,7 +37,7 @@ public class GruppenTabelle implements Visualisierung {
 
     public void update(){
         if (spielsystem.getSetzliste()!=null && spielsystem.getSetzliste().size()>0) {
-            erstelleGruppenTabelle();
+            erstelleGruppenTabelle(endrunde);
         }
     }
 
@@ -44,8 +45,8 @@ public class GruppenTabelle implements Visualisierung {
 
     }
 
-    public void erstelleGruppenTabelle() {
-
+    public void erstelleGruppenTabelle(boolean endrunde) {
+        this.endrunde = endrunde;
         ArrayList<Team> teams = (ArrayList<Team>) spielsystem.getSetzliste().clone();
         for (int i = 0; i < teams.size(); i++) {
             Team team = teams.get(i);
@@ -244,7 +245,7 @@ public class GruppenTabelle implements Visualisierung {
                 xSaetzeBreite,
                 xPunkteBreite,
                 spielsystem,
-                gc);
+                gc,endrunde);
         yObenLinks-=zellenHoehe;
         this.graphicsContext = gc;
     }

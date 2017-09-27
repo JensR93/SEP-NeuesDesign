@@ -47,7 +47,7 @@ public class VisualisierungController implements Initializable {
     }
     private void klassenVisualisierung(Spielsystem spielsystem, Tab tab) {
         if (spielsystem.getSpielSystemArt()==1){
-            gruppeVisualisierung(spielsystem, tab);
+            gruppeVisualisierung(spielsystem, tab, false);
         }
         else if(spielsystem.getSpielSystemArt()==2){
             gruppeMitEndrundeVisualisierung(spielsystem, tab);
@@ -68,13 +68,13 @@ public class VisualisierungController implements Initializable {
         Canvas canvas = new Canvas(600,spielsystem.getSetzliste().size()*zellenHoehe+100);
         scrollPane.setContent(canvas);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(20,20,zellenHoehe,15,200,45,30,45,45, spielsystem,gc);
+        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(20,20,zellenHoehe,15,200,45,30,45,45, spielsystem,gc,false);
     }
 
-    private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
+    private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab, boolean endrunde) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
         if(spielsystem.getSetzliste()!=null && spielsystem.getSetzliste().size()>0) {
-            gruppenTabelle.erstelleGruppenTabelle();
+            gruppenTabelle.erstelleGruppenTabelle(endrunde);
         }
     }
 
@@ -86,7 +86,7 @@ public class VisualisierungController implements Initializable {
             Tab gruppe = new Tab("Gruppe "+(i+1));
             gruppe.setClosable(false);
             tabPane.getTabs().add(gruppe);
-            gruppeVisualisierung(gruppeMitEndrunde.getAlleGruppen().get(i),gruppe);
+            gruppeVisualisierung(gruppeMitEndrunde.getAlleGruppen().get(i),gruppe, false);
         }
         if(gruppeMitEndrunde.getEndrunde() instanceof KO) {
             Tab endrunde = new Tab("Endrunde");
@@ -98,7 +98,7 @@ public class VisualisierungController implements Initializable {
             Tab endrunde = new Tab("Endrunde");
             endrunde.setClosable(false);
             tabPane.getTabs().add(endrunde);
-            gruppeVisualisierung(gruppeMitEndrunde.getEndrunde(),endrunde);
+            gruppeVisualisierung(gruppeMitEndrunde.getEndrunde(),endrunde, true);
         }
     }
 

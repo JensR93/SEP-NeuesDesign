@@ -124,6 +124,7 @@ public class VereinsuebersichtController implements Initializable {
                         if(erfolg)
                         {
                             auswahlklasse.InfoBenachrichtigung("Löschen erf","erf");
+                            obs_Vereine.remove(clickedRow);
                         }
                         else
                         {

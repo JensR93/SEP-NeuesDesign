@@ -2,6 +2,7 @@ package sample.FXML.Visualisierung;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import sample.Spiel;
 import sample.Spielsysteme.Spielsystem;
 import sample.Team;
 
@@ -26,8 +27,9 @@ public class PlatzierungsTabelle implements Visualisierung {
     private int xSaetzeBreite;
     private int xPunkte;
     private int xPunkteBreite;
+    private boolean endrunde;
 
-    public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite,int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc) {
+    public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite,int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc, boolean endrunde) {
         this.xObenLinks = xObenLinks;
         this.yObenLinks = yObenLinks;
         this.zellenHoehe = zellenHoehe;
@@ -43,10 +45,11 @@ public class PlatzierungsTabelle implements Visualisierung {
         this.xSaetzeBreite = xSaetzeBreite;
         this.xPunkte = xSaetze+xSaetzeBreite;
         this.xPunkteBreite = xPunkteBreite;
-        platzierungsTabelleErstellen();
+        this.endrunde = endrunde;
+        platzierungsTabelleErstellen(endrunde);
     }
 
-    public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite, int xBHZBreite, int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc) {
+    public PlatzierungsTabelle(int xObenLinks, int yObenLinks, int zellenHoehe,int xPlatzBreite,int xTeamSpielerBreite, int xSpieleBreite, int xBHZBreite, int xSaetzeBreite,int xPunkteBreite, Spielsystem spielsystem, GraphicsContext gc,boolean endrunde) {
         this.xObenLinks = xObenLinks;
         this.yObenLinks = yObenLinks;
         this.zellenHoehe = zellenHoehe;
@@ -64,11 +67,12 @@ public class PlatzierungsTabelle implements Visualisierung {
         this.xSaetzeBreite = xSaetzeBreite;
         this.xPunkte = xSaetze+xSaetzeBreite;
         this.xPunkteBreite = xPunkteBreite;
-        platzierungsTabelleErstellen();
+        this.endrunde = endrunde;
+        platzierungsTabelleErstellen(endrunde);
         spielsystem.setVisualisierung(this);
     }
 
-    private void platzierungsTabelleErstellen(){
+    private void platzierungsTabelleErstellen(boolean endrunde){
         gc.beginPath();
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(1);
@@ -129,12 +133,12 @@ public class PlatzierungsTabelle implements Visualisierung {
             }
         });
         for (int i=0;i<platzierungsliste.size();i++){
-            teamZeileErstellen(yObenLinks+(i+1)*zellenHoehe,platzierungsliste.get(i), i+1);
+            teamZeileErstellen(yObenLinks+(i+1)*zellenHoehe,platzierungsliste.get(i), i+1, endrunde);
         }
 
 
     }
-    private void teamZeileErstellen(int yObenLinks,Team team, int platzierung)
+    private void teamZeileErstellen(int yObenLinks,Team team, int platzierung, boolean endrunde)
     {
         int gespielteSpiele = team.getBisherigeGegner().size();
         int gewonneneSpiele = team.getGewonneneSpiele();
@@ -143,6 +147,12 @@ public class PlatzierungsTabelle implements Visualisierung {
         int gewonneneSaetze = team.getGewonneneSaetze();
         int verloreneSaetze = team.getVerloreneSaetze();
         int bhz = team.getBHZ();
+        if(endrunde){
+            for(int i=0;i<team.getGespielteSpiele().size();i++){
+                Spiel spiel = team.getGespielteSpiele().get(i);
+
+            }
+        }
 
         gc.beginPath();
         gc.setStroke(Color.BLACK);
@@ -187,7 +197,7 @@ public class PlatzierungsTabelle implements Visualisierung {
     @Override
     public void update() {
         gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
-        platzierungsTabelleErstellen();
+        platzierungsTabelleErstellen(endrunde);
     }
 
     @Override
