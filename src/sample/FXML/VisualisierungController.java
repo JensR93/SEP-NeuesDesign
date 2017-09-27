@@ -73,7 +73,6 @@ public class VisualisierungController implements Initializable {
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab) {
         GruppenTabelle gruppenTabelle = new GruppenTabelle(spielsystem, tab);
         gruppenTabelle.erstelleGruppenTabelle();
-
     }
 
     private void gruppeMitEndrundeVisualisierung(Spielsystem spielsystem, Tab tab) {
