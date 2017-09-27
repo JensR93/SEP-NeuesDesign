@@ -363,6 +363,13 @@ public class GruppeMitEndrunde extends Spielsystem{
 		}
 		return false;
 	}
+	@Override
+	public void updateVisualisierung(){
+		for (int i=0;i<alleGruppen.size();i++){
+			alleGruppen.get(i).updateVisualisierung();
+		}
+		endrunde.updateVisualisierung();
+	}
 
 	public int getAnzahlWeiterkommender() {
 		return anzahlWeiterkommender;
