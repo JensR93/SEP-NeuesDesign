@@ -695,14 +695,14 @@ public class SpieluebersichtController implements Initializable {
                 }
                 if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
                     Spiel clickedRow = (Spiel) row.getItem();
-                    MenuItem item1 = new MenuItem("Spieldetails anzeigen");
+                    /*MenuItem item1 = new MenuItem("Spieldetails anzeigen");
                     item1.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent event) {
                             //tabpane_spieler.getSelectionModel().select(tab_sphin);
                         }
-                    });
+                    });*/
                     MenuItem item2 = new MenuItem("Ergebnisse eintragen");
                     item2.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -766,7 +766,10 @@ public class SpieluebersichtController implements Initializable {
                         @Override
                         public void handle(ActionEvent event) {
 
-
+                            auswahlklasse.setSpielAuswahlErgebniseintragen(clickedRow);
+                            auswahlklasse.getSpielErgebnisEintragenController().setSpiel_update(clickedRow);
+                            auswahlklasse.getSpielErgebnisEintragenController().fuelleUpdateSpiel();
+                            auswahlklasse.getDashboardController().setNodeSpielergebnis();
                         }
                     });
 
@@ -833,11 +836,11 @@ public class SpieluebersichtController implements Initializable {
                         contextMenu.getItems().addAll(item3);
                     }
                     if (clickedRow.getStatus() == 2) {   //aktiv
-                        contextMenu.getItems().addAll(item1, item2, item5, item6, item7);
+                        contextMenu.getItems().addAll(item2, item5, item6, item7);
                     }
                     if (clickedRow.getStatus() == 3) {
                         //gespielt
-                        contextMenu.getItems().addAll(item1, item8);
+                        contextMenu.getItems().addAll(item8);
                     }
 
                     // Add MenuItem to ContextMenu

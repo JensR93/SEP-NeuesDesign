@@ -3,6 +3,7 @@ package sample.Enums;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import sample.DAO.auswahlklasse;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,6 +11,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 public enum Disziplin implements ObservableList<Disziplin> {
+
+
+
+
 	Herreneinzel, 
 	Herrendoppel, 
 	Dameneinzel, 

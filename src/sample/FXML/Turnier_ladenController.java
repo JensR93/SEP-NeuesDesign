@@ -314,27 +314,8 @@ public void tabelleReload()
 
                 return row;
             });
-            t_turniersuche.textProperty().addListener((observable, oldValue, newValue) -> {
-                // System.out.println("textfield changed from " + oldValue + " to " + newValue);
-                //obs_spieler.clear();
-                obs_turniere_anzeige.clear();
-                ObservableList<Turnier> obs_turniere = auswahlklasse.getTurniere();
-                //auswahlklasse.getTurniere().clear();
-
-                TurnierlisteTabelle.refresh();
-                for(int i=0;i<auswahlklasse.getTurniere().size();i++)
-                {
-                    if (obs_turniere.get(i).getName().toUpperCase().contains(t_turniersuche.getText().toUpperCase())) {
-                        obs_turniere_anzeige.add(obs_turniere.get(i));
-                    }
-
-                }
-                TurnierlisteTabelle.setItems(obs_turniere_anzeige);
-                //auswahlklasse.setTurniere(obs_turniere_anzeige);
 
 
-
-            });
 
 
             TurnierlisteTabelle.getSelectionModel().select(0);
