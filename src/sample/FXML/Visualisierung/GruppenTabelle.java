@@ -230,7 +230,7 @@ public class GruppenTabelle implements Visualisierung {
         }
         int xObenLinksPlatzierungsTabelle = xObenLinksLeereZelle;
         int yObenLinksPlatzierungsTabelle = yObenLinksLeereZelle+zellenHoehe*2+anzahlTeilnehmer*zellenHoehe;
-        int xPlatzBreite = 20;
+        int xPlatzBreite = 25;
         int xTeamSpielerBreite = 200;
         int xSpieleBreite = 45;
         int xSaetzeBreite = 45;

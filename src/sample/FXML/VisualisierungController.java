@@ -68,7 +68,7 @@ public class VisualisierungController implements Initializable {
         Canvas canvas = new Canvas(600,spielsystem.getSetzliste().size()*zellenHoehe+100);
         scrollPane.setContent(canvas);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(20,20,zellenHoehe,15,200,45,30,45,45, spielsystem,gc,false);
+        PlatzierungsTabelle platzierungsTabelle = new PlatzierungsTabelle(20,20,zellenHoehe,25,200,45,30,45,45, spielsystem,gc,false);
     }
 
     private void gruppeVisualisierung(Spielsystem spielsystem, Tab tab, boolean endrunde) {
