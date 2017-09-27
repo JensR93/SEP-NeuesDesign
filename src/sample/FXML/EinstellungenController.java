@@ -141,9 +141,10 @@ public class EinstellungenController implements Initializable {
         if(auswahlklasse.getNeuesTurnierController() !=null) {
             auswahlklasse.getNeuesTurnierController().SpracheLaden();
         }
-        if(auswahlklasse.getZeitplanController() != null) {
-            auswahlklasse.getZeitplanController().SpracheLaden();
+        if(auswahlklasse.getVereinsuebersichtController() != null) {
+            auswahlklasse.getVereinsuebersichtController().SpracheLaden();
         }
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );

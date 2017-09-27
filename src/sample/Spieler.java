@@ -15,6 +15,10 @@ public class Spieler {
 
 	private String Notiz;
 
+	public Spieler() {
+
+	}
+
 	public String getNotiz() {
 		return Notiz;
 	}
@@ -142,17 +146,18 @@ public class Spieler {
 	//Spieler erstellen (Prüfung)
 	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein,String extSpielerID, String s)
 	{
-		this.vName = vName;
-		this.nName = nName;
-		this.gDatum = gDatum;
-		this.geschlecht = geschlecht;
-		this.rPunkte = rPunkte;
-		this.verein = verein;
-		this.extSpielerID = extSpielerID;
+
 
 	}
-	public Spieler(){
-
+	public Spieler(String text, String t_nnText, LocalDate value, boolean geschlecht, int[] rpunkte, Verein verein, String t_spidText, Object selectedItem, String s){
+		this.vName = text;
+		this.nName = t_nnText;
+		this.gDatum = value;
+		this.geschlecht = geschlecht;
+		this.rPunkte = rpunkte;
+		this.verein = verein;
+		this.extSpielerID = t_spidText;
+		this.Nationalitaet= (String) selectedItem;
 	}
 	public void einzelPunkteUpdate(int einzelPunkte){
 		rPunkte[0] = einzelPunkte;
@@ -328,8 +333,43 @@ public class Spieler {
 		}
 	}
 	public ImageView getINationalitaet() {
-		if(Nationalitaet.equals("Deutsch")){
+		if(Nationalitaet.equals("Deutschland")){
 			Image imgmale = new Image("sample/Images/Flaggen/deutschland.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Frankreich")){
+			Image imgmale = new Image("sample/Images/Flaggen/frankreich.jpg",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Dänemark")){
+			Image imgmale = new Image("sample/Images/Flaggen/daenemark.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Luxemburg")){
+			Image imgmale = new Image("sample/Images/Flaggen/luxemburg.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Niederlande")){
+			Image imgmale = new Image("sample/Images/Flaggen/niederlande.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Schweiz")){
+			Image imgmale = new Image("sample/Images/Flaggen/schweiz.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Spanien")){
+			Image imgmale = new Image("sample/Images/Flaggen/spanien.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else if(Nationalitaet.equals("Finnland")){
+			Image imgmale = new Image("sample/Images/Flaggen/finnland.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}

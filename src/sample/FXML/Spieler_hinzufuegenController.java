@@ -44,6 +44,8 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     //---Sprache---
     @FXML
+    private ChoiceBox choice_nationalitaet;
+    @FXML
     private Tab tab_sphin;
     @FXML
     private JFXTextField t_vn;
@@ -240,7 +242,7 @@ public class Spieler_hinzufuegenController implements Initializable{
                 Verein verein = combo_verein.getSelectionModel().getSelectedItem();
                 System.out.println(auswahlklasse.getSpieler().size());
 
-                spieler_neu= new Spieler(t_vn.getText(),t_nn.getText(),d_geb.getValue(),geschlecht,rpunkte,verein,t_spid.getText(),"");
+                spieler_neu= new Spieler(t_vn.getText(),t_nn.getText(),d_geb.getValue(),geschlecht,rpunkte,verein,t_spid.getText(),choice_nationalitaet.getSelectionModel().getSelectedItem(),"");
 
                 //endregion
 
@@ -380,6 +382,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         spieler_neu.setrPunkte(rpunkte);
         spieler_neu.setGeschlecht(geschlecht);
         spieler_neu.setVerein(v);
+        spieler_neu.setNationalitaet(choice_nationalitaet.getSelectionModel().getSelectedItem().toString());
 
         boolean erfolg = spieler_neu.getSpielerDAO().update(spieler_neu);
 
@@ -445,6 +448,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
         SpracheLaden();
 
+        fuellechoiceNationalitaet();
 
         //region Tabelle Spielerliste RowFactory
         tabelle_spielerliste.setRowFactory(tv -> {
@@ -695,6 +699,13 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
 
     }
 
+    private void fuellechoiceNationalitaet() {
+        ObservableList obsnationalitaet = FXCollections.observableArrayList();
+        obsnationalitaet.addAll("Deutschland","Dänemark","Frankreich","Luxemburg","Niederlande","Schweiz","Spanien","Sonstiges");
+        choice_nationalitaet.setItems(obsnationalitaet);
+        choice_nationalitaet.getSelectionModel().select(0);
+    }
+
     @FXML
     public void pressBtn_ExcelImport (ActionEvent event) throws Exception {
         try {
@@ -805,6 +816,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         t_rd.setText(String.valueOf(clickedRow.getrPunkte()[1]));
         t_rm.setText(String.valueOf(clickedRow.getrPunkte()[2]));
         combo_verein.getSelectionModel().select(clickedRow.getVerein());
+        choice_nationalitaet.getSelectionModel().select(clickedRow.getNationalitaet());
         if(clickedRow.getGeschlecht())
         {
             r_m.setSelected(true);
