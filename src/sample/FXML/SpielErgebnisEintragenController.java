@@ -202,7 +202,7 @@ public class SpielErgebnisEintragenController implements Initializable{
                 System.out.println("unvollständiges Spiel");
             }
 
-            if (sp != null && sp.getStatus() == 2) {
+            else if (sp != null && sp.getStatus() == 2) {
                 System.out.println("aktives Spiel");
                 if (erg != null) {
                     try {
@@ -221,13 +221,14 @@ public class SpielErgebnisEintragenController implements Initializable{
                     }
                 }
             }
-            if (sp != null && sp.getStatus() == 1) {
+            else if (sp != null && sp.getStatus() == 1) {
                 System.out.println("ausstehendes Spiel");
             }
-            if (sp != null && sp.getStatus() == 3) {
+            else if (sp != null && sp.getStatus() == 3) {
                 if (erg != null) {
                     try {
                         if(bestaetigungsFrameErstellen(erg)) {
+
                             auswahlklasse.getSpielAuswahlErgebniseintragen().setErgebnis(erg);
                             auswahlklasse.InfoBenachrichtigung("Erfolg", "Ergebnis akutalisiert");
                             auswahlklasse.getDashboardController().setNodeSpieluebersicht();

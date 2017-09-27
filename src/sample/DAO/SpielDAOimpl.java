@@ -41,12 +41,16 @@ public class SpielDAOimpl implements SpielDAO {
             spiel.setSpielID(spielID);
             smtID.close();
             PreparedStatement smt = con.prepareStatement(sql);
-            if(spiel.getHeim()!=null&&spiel.getGast()!=null) {
+            if(spiel.getHeim()!=null) {
                 smt.setInt(1, spiel.getHeim().getTeamid());
-                smt.setInt(2, spiel.getGast().getTeamid());
             }
             else{
                 smt.setNull(1, Types.INTEGER);
+            }
+            if(spiel.getGast()!=null){
+                smt.setInt(2, spiel.getGast().getTeamid());
+            }
+            else{
                 smt.setNull(2, Types.INTEGER);
             }
             if (spiel.getSchiedsrichter()!=null){
