@@ -308,16 +308,15 @@ public class ZeitplanController implements Initializable{
             String RundenName = bundle.getString("RundeName");
             String Spiele = bundle.getString("Spiele");
 
-        TableColumn<ZeitplanRunde,String> rundenName = new TableColumn(RundenName);
-        TableColumn index = new TableColumn("#");
-        TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn(Spiele);
-        index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
-        rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
-        anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
-        tableview_runden.getColumns().clear();
-        tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
-        tableview_runden.setItems(rundenListe);
-
+            TableColumn<ZeitplanRunde,String> rundenName = new TableColumn(RundenName);
+            TableColumn index = new TableColumn("#");
+            TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn(Spiele);
+            index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
+            rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
+            anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
+            tableview_runden.getColumns().clear();
+            tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
+            tableview_runden.setItems(rundenListe);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
