@@ -79,6 +79,12 @@ public class KlassenuebersichtController implements Initializable {
     private JFXButton b_Abbrechen;
 
     @FXML
+    private Label Label_Klassenübersicht;
+
+    @FXML
+    private Label Label_Klassehinzufügen;
+
+    @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
 
     public void SpracheLaden()
@@ -93,6 +99,13 @@ public class KlassenuebersichtController implements Initializable {
 
             titel = bundle.getString("tab_einzel");
             tab_einzel.setText(titel);
+
+            titel = bundle.getString("Label_Klassenübersicht");
+            Label_Klassenübersicht.setText(titel);
+
+            titel = bundle.getString("Label_Klassehinzufügen");
+            Label_Klassehinzufügen.setText(titel);
+
 
             /*titel = bundle.getString("b_neueKlasse");
             b_neueKlasse.setText(titel);*/

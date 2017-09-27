@@ -1,9 +1,6 @@
 package sample.FXML;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXRadioButton;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -113,6 +110,9 @@ public class EinstellungenController implements Initializable {
     private JFXToggleButton toggle_schiri;
 
     @FXML
+    private JFXTextField tf_aktuellerDrucker;
+
+    @FXML
     void exit(ActionEvent event) {
 
     }
@@ -140,6 +140,9 @@ public class EinstellungenController implements Initializable {
         }
         if(auswahlklasse.getNeuesTurnierController() !=null) {
             auswahlklasse.getNeuesTurnierController().SpracheLaden();
+        }
+        if(auswahlklasse.getZeitplanController() != null) {
+            auswahlklasse.getZeitplanController().SpracheLaden();
         }
         try
         {
@@ -195,6 +198,12 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("btn_TestseiteDrucken");
             btn_TestseiteDrucken.setText(titel);
+
+            titel = bundle.getString("tf_aktuellerDrucker");
+            tf_aktuellerDrucker.setPromptText(titel);
+            tf_aktuellerDrucker.setLabelFloat(true);
+
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );

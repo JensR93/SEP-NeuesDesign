@@ -1,5 +1,6 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,6 +53,25 @@ public class ZeitplanController implements Initializable{
     private TableView<ZeitplanRunde> tableview_runden;
     @FXML
     private Canvas canvas_zeitplantabelle;
+    @FXML
+    private JFXButton btn_OptiPlan;
+    @FXML
+    private JFXButton btn_Speichern_Zeitplan;
+
+    public void SpracheLaden() {
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+            titel = bundle.getString("btn_OptiPlan");
+            btn_OptiPlan.setText(titel);
+
+            titel = bundle.getString("btn_Speichern_Zeitplan");
+            btn_Speichern_Zeitplan.setText(titel);
+        }
+                 catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        }
 
     @FXML
     public void pressBtn_speichern(){
@@ -261,6 +281,9 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         //Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());
         /*if (Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(),"EINZEL")!=null) {
 

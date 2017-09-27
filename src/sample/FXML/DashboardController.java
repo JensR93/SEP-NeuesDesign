@@ -165,6 +165,11 @@ public class DashboardController implements Initializable{
             titel = bundle.getString("t_Btv");
             t_Btv.setText(titel);
 
+            titel = bundle.getString("btnVerein");
+            btnVerein.setText(titel);
+
+
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
