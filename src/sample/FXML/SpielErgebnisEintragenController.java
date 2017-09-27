@@ -225,8 +225,22 @@ public class SpielErgebnisEintragenController implements Initializable{
                 System.out.println("ausstehendes Spiel");
             }
             if (sp != null && sp.getStatus() == 3) {
-                System.out.println("gespieltes Spiel");
-                ts1_1.setEditable(false);
+                if (erg != null) {
+                    try {
+                        if(bestaetigungsFrameErstellen(erg)) {
+                            auswahlklasse.getSpielAuswahlErgebniseintragen().setErgebnis(erg);
+                            auswahlklasse.InfoBenachrichtigung("Erfolg", "Ergebnis akutalisiert");
+                            auswahlklasse.getDashboardController().setNodeSpieluebersicht();
+                            auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
+                            auswahlklasse.getSpieluebersichtController().spielInTabelleAuswaehlen(sp);
+                            auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // l_meldungergebnis.setText("Satz nicht ausgefüllt");
+                    }
+                }
+
             }
         }
         else{
@@ -599,23 +613,23 @@ public class SpielErgebnisEintragenController implements Initializable{
             }
             if(spiel_update.getErgebnis().getErgebnisArray()[1]>0)
             {
-                ts1_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+                ts1_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[1]));
             }
             if(spiel_update.getErgebnis().getErgebnisArray()[2]>0)
             {
-                ts2_1.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+                ts2_1.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[2]));
             }
             if(spiel_update.getErgebnis().getErgebnisArray()[3]>0)
             {
-                ts2_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+                ts2_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[3]));
             }
-            if(spiel_update.getErgebnis().getErgebnisArray()[4]>0)
-            {
-                ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
-            }
-            if(spiel_update.getErgebnis().getErgebnisArray()[5]>0)
-            {
-                ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            if(spiel_update.getErgebnis().getErgebnisArray().length>4) {
+                if (spiel_update.getErgebnis().getErgebnisArray()[4] > 0) {
+                    ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[4]));
+                }
+                if (spiel_update.getErgebnis().getErgebnisArray()[5] > 0) {
+                    ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[5]));
+                }
             }
             //ts1_1.setText();
         }

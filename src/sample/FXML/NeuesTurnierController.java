@@ -105,7 +105,11 @@ public class NeuesTurnierController implements Initializable{
     private Label Label_Disziplin_Mixed;
     @FXML
     private ChoiceBox Choicebox_Mixed;
+    @FXML
+    private JFXTextField meldegebuehr_einzel;
 
+    @FXML
+    private JFXTextField meldegebuehr_doppel;
 
     public void SpracheLaden() {
         try {
@@ -182,78 +186,93 @@ public class NeuesTurnierController implements Initializable{
         LocalTime timedoppel= time_doppel.getValue();
         LocalTime timemixed= time_mixed.getValue();
 
-        TurnierDAO t = new TurnierDAOimpl();
-        FeldDAO feldDAO = new FeldDAOimpl();
-        int anzahlfelder = Integer.parseInt(AnzahlFelder.getText());
-        if (auswahlklasse.getTurnierzumupdaten() == null) {
-            Turnier turnier = new Turnier(Turniername.getText(),LocalDateTime.of(dateeinzel,timeeinzel),LocalDateTime.of(datedoppel,timedoppel),LocalDateTime.of(datemixed,timemixed));
-            erfolg=t.create(turnier);
-            for (int i = 0; i < anzahlfelder; i++) {
-                new Feld(turnier);
+
+        try{
+            meldegebuehr_einzel.setText(meldegebuehr_einzel.getText().replace(',', '.'));
+            meldegebuehr_doppel.setText(meldegebuehr_doppel.getText().replace(',', '.'));
+            Float meldegebuehreinzel= Float.parseFloat(meldegebuehr_einzel.getText());
+            Float meldegebuehrdoppel= Float.parseFloat(meldegebuehr_doppel.getText());
+            TurnierDAO t = new TurnierDAOimpl();
+            FeldDAO feldDAO = new FeldDAOimpl();
+            int anzahlfelder = Integer.parseInt(AnzahlFelder.getText());
+            if (auswahlklasse.getTurnierzumupdaten() == null) {
+                Turnier turnier = new Turnier(Turniername.getText(),LocalDateTime.of(dateeinzel,timeeinzel),LocalDateTime.of(datedoppel,timedoppel),LocalDateTime.of(datemixed,timemixed),meldegebuehreinzel,meldegebuehrdoppel);
+                erfolg=t.create(turnier);
+                for (int i = 0; i < anzahlfelder; i++) {
+                    new Feld(turnier);
+                }
+
+
+                if(erfolg) {
+                    auswahlklasse.InfoBenachrichtigung("Turnier erstellt", turnier.getName() + " wurde erstellt.");
+                    auswahlklasse.getTurniere().add(turnier);
+                }
+
+                else
+                    auswahlklasse.WarnungBenachrichtigung("Turnier nicht erstellt", turnier.getName() + " wurde nicht erstellt.");
+                System.out.println("Erfolg");
+
+                try {
+                    auswahlklasse.getDashboardController().setNodeTurnier();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+            else {
+                int anzahlturnierfelderalt = auswahlklasse.getTurnierzumupdaten().getFelder().size();
+                if (anzahlfelder > anzahlturnierfelderalt) {
+                    for (int i = anzahlturnierfelderalt; i < anzahlfelder; i++) {
+                        new Feld(auswahlklasse.getTurnierzumupdaten());
 
+                    }
+                    auswahlklasse.InfoBenachrichtigung("Felder erstellt", String.valueOf(anzahlfelder - anzahlturnierfelderalt)+" Felder wurden erstellt");
+                }
+                if (anzahlfelder < anzahlturnierfelderalt)
+                {
+                    boolean erfolg = false;
+                    for (int i = anzahlfelder; i < anzahlturnierfelderalt; i++) {
 
-            if(erfolg) {
-                auswahlklasse.InfoBenachrichtigung("Turnier erstellt", turnier.getName() + " wurde erstellt.");
-                auswahlklasse.getTurniere().add(turnier);
-            }
+                        System.out.println("Lösche Feld");
+                        erfolg = feldDAO.deleteFeld(auswahlklasse.getTurnierzumupdaten().getFelder().get(i));
 
-            else
-                auswahlklasse.WarnungBenachrichtigung("Turnier nicht erstellt", turnier.getName() + " wurde nicht erstellt.");
-            System.out.println("Erfolg");
-
-            try {
-                auswahlklasse.getDashboardController().setNodeTurnier();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            int anzahlturnierfelderalt = auswahlklasse.getTurnierzumupdaten().getFelder().size();
-            if (anzahlfelder > anzahlturnierfelderalt) {
-                for (int i = anzahlturnierfelderalt; i < anzahlfelder; i++) {
-                    new Feld(auswahlklasse.getTurnierzumupdaten());
+                        if(!erfolg)
+                            break;
+                    }
+                    if(erfolg)
+                        auswahlklasse.InfoBenachrichtigung("Felder gelöscht",String.valueOf(anzahlturnierfelderalt-anzahlfelder)+" Felder wurden gelöscht");
+                    if (!erfolg)
+                        auswahlklasse.WarnungBenachrichtigung("Feld fehler", "nicht löschbar");
 
                 }
-                auswahlklasse.InfoBenachrichtigung("Felder erstellt", String.valueOf(anzahlfelder - anzahlturnierfelderalt)+" Felder wurden erstellt");
-            }
-            if (anzahlfelder < anzahlturnierfelderalt)
-            {
-                boolean erfolg = false;
-                for (int i = anzahlfelder; i < anzahlturnierfelderalt; i++) {
-
-                    System.out.println("Lösche Feld");
-                    erfolg = feldDAO.deleteFeld(auswahlklasse.getTurnierzumupdaten().getFelder().get(i));
-
-                    if(!erfolg)
-                        break;
-                }
+                auswahlklasse.getTurnierzumupdaten().setName(Turniername.getText());
+                auswahlklasse.getTurnierzumupdaten().setStartzeitEinzel(LocalDateTime.of(dateeinzel,timeeinzel));
+                auswahlklasse.getTurnierzumupdaten().setStartzeitDoppel(LocalDateTime.of(datedoppel,timedoppel));
+                auswahlklasse.getTurnierzumupdaten().setStartzeitMixed(LocalDateTime.of(datemixed,timemixed));
+                auswahlklasse.getTurnierzumupdaten().setMeldegebuehrEinzel(meldegebuehreinzel);
+                auswahlklasse.getTurnierzumupdaten().setMeldegebuehrDoppel(meldegebuehrdoppel);
+                erfolg=turnierDao.update(auswahlklasse.getTurnierzumupdaten());
                 if(erfolg)
-                    auswahlklasse.InfoBenachrichtigung("Felder gelöscht",String.valueOf(anzahlturnierfelderalt-anzahlfelder)+" Felder wurden gelöscht");
+                    auswahlklasse.InfoBenachrichtigung("Turnier Update",auswahlklasse.getTurnierzumupdaten().getName()+" wurde geupdatet");
                 if (!erfolg)
                     auswahlklasse.WarnungBenachrichtigung("Feld fehler", "nicht löschbar");
 
+
+
+                auswahlklasse.setTurnierzumupdaten(null);
+
+                ladeTurnierladen();
+
+
             }
-            auswahlklasse.getTurnierzumupdaten().setName(Turniername.getText());
-            auswahlklasse.getTurnierzumupdaten().setStartzeitEinzel(LocalDateTime.of(dateeinzel,timeeinzel));
-            auswahlklasse.getTurnierzumupdaten().setStartzeitDoppel(LocalDateTime.of(datedoppel,timedoppel));
-            auswahlklasse.getTurnierzumupdaten().setStartzeitMixed(LocalDateTime.of(datemixed,timemixed));
-            erfolg=turnierDao.update(auswahlklasse.getTurnierzumupdaten());
-            if(erfolg)
-                auswahlklasse.InfoBenachrichtigung("Turnier Update",auswahlklasse.getTurnierzumupdaten().getName()+" wurde geupdatet");
-            if (!erfolg)
-                auswahlklasse.WarnungBenachrichtigung("Feld fehler", "nicht löschbar");
-
-
-
-            auswahlklasse.setTurnierzumupdaten(null);
-
-            ladeTurnierladen();
-
-
         }
-    }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("Gebühr hat falsches format","f");
+        }
+
+}
 
     private void ladeTurnierladen() {
         auswahlklasse.getTurnier_ladenController().tabelleReload();
@@ -364,6 +383,8 @@ public class NeuesTurnierController implements Initializable{
              startzeiteinzel = auswahlklasse.getTurnierzumupdaten().getStartzeitEinzel();
              startzeidoppel = auswahlklasse.getTurnierzumupdaten().getStartzeitDoppel();
              startzeitmixed = auswahlklasse.getTurnierzumupdaten().getStartzeitMixed();
+             meldegebuehr_einzel.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getMeldegebuehrEinzel()));
+            meldegebuehr_doppel.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getMeldegebuehrDoppel()));
             date_einzel.setValue(startzeiteinzel.toLocalDate());
             time_einzel.setValue(startzeiteinzel.toLocalTime());
 
