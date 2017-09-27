@@ -15,7 +15,7 @@ public class GruppeMitEndrunde extends Spielsystem{
 	private Spielsystem endrunde;
 	private Dictionary<Integer,Integer[]> setzPlatze = new Hashtable<>();
 
-	public GruppeMitEndrunde(Spielklasse spielklasse, int anzahlGruppen, int anzahlWeiterkommender) {
+	public GruppeMitEndrunde(Spielklasse spielklasse, int anzahlGruppen, int anzahlWeiterkommender,boolean ko) {
 		this.setSpielSystemArt(2);
 		this.setzliste = spielklasse.getSetzliste();
 		this.anzahlGruppen = anzahlGruppen;
@@ -23,7 +23,7 @@ public class GruppeMitEndrunde extends Spielsystem{
 		setSpielklasse(spielklasse);
 		setzListeAufteilen();
 		gruppenErstellen();
-		endRundeErstellen();
+		endRundeErstellen(ko);
 		rundenArrayErstellen();
 	}
 
@@ -143,8 +143,14 @@ public class GruppeMitEndrunde extends Spielsystem{
 	}
 
 
-	private void endRundeErstellen(){
-		endrunde= new KO(anzahlWeiterkommender,this, this.getSpielklasse(),false);
+	private void endRundeErstellen(boolean ko){
+		if(true) {
+			endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), false);
+		}
+		else{
+			endrunde = new Gruppe(anzahlWeiterkommender,this,this.getSpielklasse());
+		}
+
 	}
 
 
