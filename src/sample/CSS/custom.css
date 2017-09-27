@@ -222,16 +222,12 @@
     -fx-text-fill: #757575;
     -fx-text-alignment: center;
     -fx-font-weight: bold;
-
     -fx-alignment: CENTER;
-    /* The rest is from caspian.css */
-
     -fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
     -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
-
     -fx-background-color: transparent;
     -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
-    -fx-border-width: 0.183333em; /* 1 */
+    -fx-border-width: 5px; /* 1 */
     -fx-cell-size: 2.0em; /* 24 */
 }
 
@@ -249,9 +245,6 @@
     -fx-text-alignment: center;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color darkred;
-}
 
 
 /*Material look tableview*/
