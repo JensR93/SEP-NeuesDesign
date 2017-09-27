@@ -81,13 +81,33 @@ public class SpielErgebnisEintragenController implements Initializable{
     private JFXButton btn_Abbrechen;
 
     Dictionary<Integer, Spiel> dictspiele = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele();
-    Spiel sp = dictspiele.get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID());
+    Spiel sp ;
+
+    public Spiel getSpiel_update() {
+        return spiel_update;
+    }
+
+    public void setSpiel_update(Spiel spiel_update) {
+        this.spiel_update = spiel_update;
+    }
+
+    Spiel spiel_update;
+    public Spiel getSp() {
+        return sp;
+    }
+
+    public void setSp(Spiel sp) {
+        this.sp = sp;
+    }
+
+
     int s11=-1;
     int s12=-1;
     int s21=-1;
     int s22=-1;
     int s31=-1;
     int s32=-1;
+
 
     @FXML
     void pressbtn_Abbbruch(ActionEvent event) {
@@ -548,6 +568,40 @@ public class SpielErgebnisEintragenController implements Initializable{
     private void zeigeRedCross3() {
         red_cross_3.setVisible(true);
         green_check_3.setVisible(false);
+    }
+
+    public void fuelleUpdateSpiel() {
+        if(spiel_update!=null)
+        {
+            spiel_update.getErgebnis().getErgebnisArray();
+
+
+            if(spiel_update.getErgebnis().getErgebnisArray()[0]>0)
+            {
+                ts1_1.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            if(spiel_update.getErgebnis().getErgebnisArray()[1]>0)
+            {
+                ts1_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            if(spiel_update.getErgebnis().getErgebnisArray()[2]>0)
+            {
+                ts2_1.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            if(spiel_update.getErgebnis().getErgebnisArray()[3]>0)
+            {
+                ts2_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            if(spiel_update.getErgebnis().getErgebnisArray()[4]>0)
+            {
+                ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            if(spiel_update.getErgebnis().getErgebnisArray()[5]>0)
+            {
+                ts3_2.setText(String.valueOf(spiel_update.getErgebnis().getErgebnisArray()[0]));
+            }
+            //ts1_1.setText();
+        }
     }
 }
 
