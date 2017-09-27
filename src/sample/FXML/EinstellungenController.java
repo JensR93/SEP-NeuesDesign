@@ -117,6 +117,10 @@ public class EinstellungenController implements Initializable {
 
     }
 
+    public String getSprache() {
+        return Sprache;
+    }
+
     public void SpracheLaden()
     {
         if(auswahlklasse.getSpieler_hinzufuegenController() != null) {
@@ -334,6 +338,7 @@ public class EinstellungenController implements Initializable {
         changeListener();
 
         SetzeEinstellungen();
+        SpracheLaden();
 
     }
 

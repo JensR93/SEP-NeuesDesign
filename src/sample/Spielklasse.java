@@ -25,7 +25,22 @@ public class Spielklasse {
 	private boolean setzliste_gesperrt= false;
 	private Dictionary<Team,Integer> setzlistedict = new Hashtable<>();
 
-	public Dictionary<Team,Integer> getSetzlistedict()
+    public Spielklasse(Object value, Niveau niveau, Turnier aktuelleTurnierAuswahl) {
+		System.out.println("neue Spielklasse mit Enums1 und gesetzter SpielklasseID");
+		this.spielklasseID=spielklasseID;
+		this.disziplin = value.toString();
+		this.niveau = niveau.toString();
+		this.turnier = aktuelleTurnierAuswahl;
+		System.out.println("Disziplin = "+disziplin.toString());
+		if(disziplin.toString().toUpperCase().contains("EINZEL"))
+		{
+			System.out.println("Erfolg");
+			einzel=true;
+		}
+
+    }
+
+    public Dictionary<Team,Integer> getSetzlistedict()
 	{
 		if(setzlistedict.size()<1)
 		{
