@@ -1,5 +1,6 @@
 package sample.FXML;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,6 +53,25 @@ public class ZeitplanController implements Initializable{
     private TableView<ZeitplanRunde> tableview_runden;
     @FXML
     private Canvas canvas_zeitplantabelle;
+    @FXML
+    private JFXButton btn_OptiPlan;
+    @FXML
+    private JFXButton btn_Speichern_Zeitplan;
+
+    public void SpracheLaden() {
+        try {
+            ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+
+            titel = bundle.getString("btn_OptiPlan");
+            btn_OptiPlan.setText(titel);
+
+            titel = bundle.getString("btn_Speichern_Zeitplan");
+            btn_Speichern_Zeitplan.setText(titel);
+        }
+                 catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+        }
 
     @FXML
     public void pressBtn_speichern(){
@@ -261,6 +281,9 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         //Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());
         /*if (Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(),"EINZEL")!=null) {
 
@@ -308,16 +331,15 @@ public class ZeitplanController implements Initializable{
             String RundenName = bundle.getString("RundeName");
             String Spiele = bundle.getString("Spiele");
 
-        TableColumn<ZeitplanRunde,String> rundenName = new TableColumn(RundenName);
-        TableColumn index = new TableColumn("#");
-        TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn(Spiele);
-        index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
-        rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
-        anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
-        tableview_runden.getColumns().clear();
-        tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
-        tableview_runden.setItems(rundenListe);
-
+            TableColumn<ZeitplanRunde,String> rundenName = new TableColumn(RundenName);
+            TableColumn index = new TableColumn("#");
+            TableColumn<ZeitplanRunde,Integer> anzahlSpiele = new TableColumn(Spiele);
+            index.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenNummer"));
+            rundenName.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,String>("rundenName"));
+            anzahlSpiele.setCellValueFactory(new PropertyValueFactory<ZeitplanRunde,Integer>("anzahlSpiele"));
+            tableview_runden.getColumns().clear();
+            tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
+            tableview_runden.setItems(rundenListe);
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );

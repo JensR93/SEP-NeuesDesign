@@ -532,6 +532,23 @@ public class SpielErgebnisEintragenController implements Initializable{
         }
     }
 
+    public void allesZuruecksetzen(){
+        ts1_1.setText("");
+        ts1_2.setText("");
+        ts2_1.setText("");
+        ts2_2.setText("");
+        ts3_1.setText("");
+        ts3_2.setText("");
+        ts3_1.setDisable(true);
+        ts3_2.setDisable(true);
+        green_check_1.setVisible(false);
+        green_check_2.setVisible(false);
+        green_check_3.setVisible(false);
+        red_cross_1.setVisible(false);
+        red_cross_2.setVisible(false);
+        red_cross_3.setVisible(false);
+    }
+
     private void fuelleHoeherePunktzahl(int eingabe, TextField zweitesTextField){
         if (eingabe < 20) {
             zweitesTextField.setText("21");

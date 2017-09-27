@@ -507,6 +507,10 @@ public class Spiel {
 		spielDAO.update(this);
 		heim.getTeamDAO().update(heim);
 		gast.getTeamDAO().update(gast);
+		if(!heim.isFreilos()&&!gast.isFreilos()) {
+			heim.getGespielteSpiele().add(this);
+			gast.getGespielteSpiele().add(this);
+		}
 		ergebnis.getErgebnisDAO().create(this);
 /*		this.getSpielsystem().getSpielklasse().getTurnier().getObs_aktiveSpiele().remove(this);
 		this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);*/
@@ -520,6 +524,10 @@ public class Spiel {
 		this.ergebnis = ergebnis;
 		statistikAktualisieren();
 		status=3;
+		if(!heim.isFreilos()&&!gast.isFreilos()) {
+			heim.getGespielteSpiele().add(this);
+			gast.getGespielteSpiele().add(this);
+		}
 		if (spielsystem.getSpielSystemArt()!=2 && this.getVorrundenNummer()!=0) {
 			this.spielsystem.beendeMatch(this, einlesen);
 		}

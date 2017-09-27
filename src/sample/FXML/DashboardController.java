@@ -165,6 +165,11 @@ public class DashboardController implements Initializable{
             titel = bundle.getString("t_Btv");
             t_Btv.setText(titel);
 
+            titel = bundle.getString("btnVerein");
+            btnVerein.setText(titel);
+
+
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
@@ -288,6 +293,7 @@ public class DashboardController implements Initializable{
     public void setNodeSpielergebnis()
     {
         auswahlklasse.getSpielErgebnisEintragenController().setSp(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID()));
+        auswahlklasse.getSpielErgebnisEintragenController().allesZuruecksetzen();
         setNode(SpielErgebnisEintragen);
     }
 
