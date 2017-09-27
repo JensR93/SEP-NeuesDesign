@@ -31,6 +31,7 @@ public class Team {
     private boolean freilos = false;
     private List<Team> bisherigeGegner = new ArrayList<Team>();
     private int setzplatz;
+    private ArrayList<Spiel> gespielteSpiele = new ArrayList<>();
 
 
 
@@ -227,6 +228,10 @@ public class Team {
             }
         }*/
         return setzplatz;
+    }
+
+    public ArrayList<Spiel> getGespielteSpiele() {
+        return gespielteSpiele;
     }
 
     public Spieler getSpielerEins() {

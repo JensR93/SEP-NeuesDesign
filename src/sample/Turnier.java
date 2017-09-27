@@ -26,6 +26,35 @@ public class Turnier {
 	private LocalDateTime startzeitEinzel;
 	private LocalDateTime startzeitDoppel;
 	private LocalDateTime startzeitMixed;
+	private float MeldegebuehrEinzel,MeldegebuehrDoppel;
+
+	public Turnier(String text, LocalDateTime LocalDateTime, LocalDateTime localDateTime1, LocalDateTime localDateTime2, Float meldegebuehreinzel, Float meldegebuehrdoppel) {
+		this.name=text;
+		this.turnierid=turnierid;
+		this.startzeitEinzel=LocalDateTime;
+		this.startzeitDoppel=localDateTime1;
+		this.startzeitMixed=localDateTime2;
+		this.MeldegebuehrEinzel=meldegebuehreinzel;
+		this.MeldegebuehrDoppel=meldegebuehrdoppel;
+
+		this.datum= LocalDate.from((TemporalAccessor) Maxdate.max(startzeitEinzel,startzeitDoppel,startzeitMixed));
+	}
+
+	public float getMeldegebuehrEinzel() {
+		return MeldegebuehrEinzel;
+	}
+
+	public void setMeldegebuehrEinzel(float meldegebuehrEinzel) {
+		MeldegebuehrEinzel = meldegebuehrEinzel;
+	}
+
+	public float getMeldegebuehrDoppel() {
+		return MeldegebuehrDoppel;
+	}
+
+	public void setMeldegebuehrDoppel(float meldegebuehrDoppel) {
+		MeldegebuehrDoppel = meldegebuehrDoppel;
+	}
 
 	private  Dictionary<Integer, Spielklasse> spielklassen = new Hashtable<Integer,Spielklasse>();
 	private  ArrayList<Feld> felder = new ArrayList<>();

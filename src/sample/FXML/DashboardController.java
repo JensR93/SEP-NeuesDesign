@@ -293,6 +293,7 @@ public class DashboardController implements Initializable{
     public void setNodeSpielergebnis()
     {
         auswahlklasse.getSpielErgebnisEintragenController().setSp(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielID()));
+        auswahlklasse.getSpielErgebnisEintragenController().allesZuruecksetzen();
         setNode(SpielErgebnisEintragen);
     }
 
