@@ -29,9 +29,9 @@ public class Gruppe extends Spielsystem {
 				rundeErstellen(false);
 				resetOffeneRundenSpiele();
 			}
-			alleSpieleSchreiben();
 			setOffeneRundenSpiele(anzahlTeams/2);
 			resetAktuelleRunde();
+			alleSpieleSchreiben();
 		/*	for (int i=0;i<getAnzahlRunden();i++) {
 				rundeStarten(0);
 			}*/
@@ -55,9 +55,9 @@ public class Gruppe extends Spielsystem {
 			rundeErstellen(false);
 			resetOffeneRundenSpiele();
 		}
-		alleSpieleSchreiben();
 		setOffeneRundenSpiele(anzahlTeams/2);
 		resetAktuelleRunde();
+		alleSpieleSchreiben();
 	/*	for (int i=0;i<getAnzahlRunden();i++) {
 			rundeStarten(0);
 		}*/
@@ -80,8 +80,9 @@ public class Gruppe extends Spielsystem {
 		}
 		schablone = new int[this.anzahlTeams][this.anzahlTeams];
 		schabloneBauen();
-		alleSpieleSchreiben();
+		setOffeneRundenSpiele(this.anzahlTeams/2);
 		resetAktuelleRunde();
+		alleSpieleSchreiben();
 		//rundeStarten(0);
 	}
 
@@ -110,10 +111,13 @@ public class Gruppe extends Spielsystem {
 			resetOffeneRundenSpiele();
 			rundeErstellen(true);
 		}
+		for(int i=0;i<getRundenArray().size();i++){
+			for(int j=0;j<getRundenArray().get(i).size();j++){
+				Spiel spiel = getRundenArray().get(i).get(j);
+				spiel.setFreilosErgebnis();
+			}
+		}
 		resetOffeneRundenSpiele();
-/*		for (int i=0;i<getAnzahlRunden();i++) {
-			rundeStarten(0);
-		}*/
 	}
 
 	private void setzPlaetzeFuerEndrundeBerechnen() {
@@ -248,7 +252,7 @@ public class Gruppe extends Spielsystem {
 		if ((teamList.size()/2) * 2 != teamList.size()){ // /2 *2 überprüft, ob Spieleranzahl gerade oder ungerade (int)
 			this.teamList.add(new Team("Freilos",this.getSpielklasse()));
 			System.out.println("Freilos zu Gruppe hinzugefügt");
-			super.setzlisteDAO.create(teamList.size(),teamList.get(teamList.size()-1),this.getSpielklasse());
+			super.setzlisteDAO.create(spielsystem.getSetzliste().size(),teamList.get(teamList.size()-1),this.getSpielklasse());
 		}
 	}
 

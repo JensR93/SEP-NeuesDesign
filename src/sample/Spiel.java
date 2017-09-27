@@ -495,8 +495,6 @@ public class Spiel {
 /*			this.getSpielsystem().getSpielklasse().getTurnier().getObs_zukuenftigeSpiele().remove(this);
 			this.getSpielsystem().getSpielklasse().getTurnier().getObs_gespielteSpiele().add(this);*/
 		}
-
-
 	}
 
 	public void setErgebnis(Ergebnis ergebnis) {
@@ -517,7 +515,6 @@ public class Spiel {
 		if (this.feld != null){
 			this.feld.spielBeenden();
 		}
-
 	}
 
 	public void setErgebnis(Ergebnis ergebnis, String einlesen) {
