@@ -364,7 +364,7 @@ public class SpielsystemController implements Initializable {
     private void gruppeMitEndrundeStarten() {
         try{
             int gruppenGroesse = Integer.valueOf(textField_gruppenGroesse.getText());
-            int anzahlGruppen = (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse);
+            int anzahlGruppen = (int) Math.ceil((double)ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse);
             System.out.println("Math.ceil: " + (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse));
             int anzahlWeiterkommender = Integer.valueOf(textField_anzahlWeiterkommender.getText());
             if(rb_Gruppe.isSelected()) {
