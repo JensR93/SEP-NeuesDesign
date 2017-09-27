@@ -327,6 +327,18 @@ public class Spieler {
 			return imageView2;
 		}
 	}
+	public ImageView getINationalitaet() {
+		if(Nationalitaet.equals("Deutsch")){
+			Image imgmale = new Image("sample/Images/Flaggen/deutschland.png",24,24,true,true);
+			ImageView imageView = new ImageView(imgmale);
+			return imageView;
+		}
+		else {
+			Image imgfemale = new Image("sample/Images/Flaggen/keinLand.png",24,24,true,true);
+			ImageView imageView2 = new ImageView(imgfemale);
+			return imageView2;
+		}
+	}
 	public Verein getVerein() {
 		return verein;
 	}

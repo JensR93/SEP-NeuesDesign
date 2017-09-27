@@ -147,6 +147,7 @@ public class spielerEigenschaftenController implements Initializable{
             t_offenegebuehr.setSelected(auswahlklasse.getSpielerzumHinzufeuegen().isOffenerBetrag());
              rechneGebuehren();
 
+
         }
 
         t_notiz.textProperty().addListener((obs, oldText, newText) ->

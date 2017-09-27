@@ -84,6 +84,9 @@ public class Spieler_hinzufuegenController implements Initializable{
     @FXML
     private TableColumn tabelle_spielerliste_geschlecht;
     @FXML
+    private TableColumn tabelle_spielerliste_nationalitaet;
+
+    @FXML
     private TableColumn tabelle_spielerliste_geburtstag;
     @FXML
     private JFXTextField t_suchleistespielerhinzu;
@@ -137,6 +140,8 @@ public class Spieler_hinzufuegenController implements Initializable{
             tabelle_spielerliste_vorname.setCellValueFactory(new PropertyValueFactory<Spieler,String>("vName"));
             tabelle_spielerliste_geschlecht.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iGeschlecht"));
 
+
+            tabelle_spielerliste_nationalitaet.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iNationalitaet"));
             tabelle_spielerliste_SpielerID.setCellValueFactory(new PropertyValueFactory<Spieler,String>("ExtSpielerID"));
 
 
