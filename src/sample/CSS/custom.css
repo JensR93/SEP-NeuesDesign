@@ -148,10 +148,9 @@
 {
     -fx-background-color: #3367D6;
     -fx-background-radius: 50 50 50 50;
-    -fx-background-insets: 10 30 10 30;
-    -fx-padding: 10 33 10 35;
+    -fx-padding: 10 0 10 0;
+    -fx-background-insets: 10 35 10 35;
     -fx-tile-alignment: center-right;
-
 }
 
 /* Scroll-Bar*/
@@ -189,6 +188,71 @@
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
     -fx-background-color: #ffffff;
 }
+
+.table-view{
+    -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#a1c2fa 25%, #3367D6 75%);
+    -fx-background-radius: 50 50 0 0;
+
+
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+
+
+.table-view .table-column {
+    -fx-alignment: center;
+}
+.table-view .table-cell{
+    -fx-text-fill: #757575;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+
+    -fx-alignment: CENTER;
+    /* The rest is from caspian.css */
+
+    -fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
+    -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
+
+    -fx-background-color: transparent;
+    -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
+    -fx-border-width: 0.183333em; /* 1 */
+    -fx-cell-size: 2.0em; /* 24 */
+}
+
+.table-cell{
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color:transparent;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, white;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-alignment: center;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color darkred;
+}
+
 
 /*Material look tableview*/
 /*.table-view {

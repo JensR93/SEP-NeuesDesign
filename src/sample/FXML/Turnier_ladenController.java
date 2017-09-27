@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
@@ -50,9 +51,7 @@ public class Turnier_ladenController extends Application implements Initializabl
     @FXML
     public TableColumn TurnierNameSpalte;
     @FXML
-    public TableColumn TurnierIDSpalte;
-    @FXML
-    private Text t_TurnierLaden;
+    private Label l_TurnierLaden;
     @FXML
     private StackPane holderPane;
     @FXML
@@ -76,7 +75,7 @@ public class Turnier_ladenController extends Application implements Initializabl
             TurnierNameSpalte.setText(titel);
 
             titel = bundle.getString("t_TurnierLaden");
-            t_TurnierLaden.setText(titel);
+            l_TurnierLaden.setText(titel);
 
             titel = bundle.getString("TurnierDatumSpalte");
             TurnierDatumSpalte.setText(titel);
@@ -103,15 +102,15 @@ public class Turnier_ladenController extends Application implements Initializabl
         primaryStage.setTitle(refresh);
     }
 
-public void tabelleReload()
-{
-    try {
-        turnierlisteLaden();
-    } catch (Exception e) {
-        e.printStackTrace();
+    public void tabelleReload()
+    {
+        try {
+            turnierlisteLaden();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        TurnierlisteTabelle.refresh();
     }
-    TurnierlisteTabelle.refresh();
-}
 
     @FXML
     private void zeigeTabelle() {
@@ -129,9 +128,8 @@ public void tabelleReload()
         {
 
         }
-        TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier,Integer>("turnierid"));
+//        TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier,Integer>("turnierid"));
 
-        //TurnierIDSpalte.setCellFactory(integerCellFactory);
         TurnierDatumSpalte.setCellValueFactory(new PropertyValueFactory<Turnier,Date>("datum"));
         TurnierNameSpalte.setCellValueFactory(new PropertyValueFactory<Turnier,String>("name"));
 
@@ -144,7 +142,7 @@ public void tabelleReload()
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        columnsAnpassen();
         SpracheLaden();
 
         auswahlklasse.setTurnier_ladenController(this);
@@ -156,173 +154,186 @@ public void tabelleReload()
         }
 
         TurnierlisteTabelle.setRowFactory(tv -> {
-                TableRow row = new TableRow();
-                row.setOnMouseClicked(event -> {
-                    if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
-                            && event.getClickCount() == 2) {
-                        Turnier clickedRow = (Turnier) row.getItem();
-                        auswahlSpeichern(clickedRow);
-                        //   a.getStagesdict().get("")
-                    }
-                    if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-                        contextMenu.hide();
-                    } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
-                        Turnier clickedRow = (Turnier) row.getItem();
+            TableRow row = new TableRow();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+                    Turnier clickedRow = (Turnier) row.getItem();
+                    auswahlSpeichern(clickedRow);
+                    //   a.getStagesdict().get("")
+                }
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.hide();
+                } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
+                    Turnier clickedRow = (Turnier) row.getItem();
 
-                        //System.out.println("R-KLICK");
-                        MenuItem item1 = new MenuItem("Turnier auswählen");
-                        item1.setOnAction(new EventHandler<ActionEvent>() {
+                    //System.out.println("R-KLICK");
+                    MenuItem item1 = new MenuItem("Turnier auswählen");
+                    item1.setOnAction(new EventHandler<ActionEvent>() {
 
-                            @Override
-                            public void handle(ActionEvent event) {
-                                Turnier clickedRow = (Turnier) row.getItem();
-                                auswahlSpeichern(clickedRow);
+                        @Override
+                        public void handle(ActionEvent event) {
+                            Turnier clickedRow = (Turnier) row.getItem();
+                            auswahlSpeichern(clickedRow);
 
-                                //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                        }
+                    });
+                    MenuItem item2 = new MenuItem("Turnier bearbeiten");
+                    item2.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                            auswahlklasse.setTurnierzumupdaten(clickedRow);
+                            try {
+                                pressBtn_neuesTurnier(event);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        });
-                        MenuItem item2 = new MenuItem("Turnier bearbeiten");
-                        item2.setOnAction(new EventHandler<ActionEvent>() {
+                        }
+                    });
+                    MenuItem item3 = new MenuItem("Turnier löschen");
+                    item3.setOnAction(new EventHandler<ActionEvent>() {
 
-                            @Override
-                            public void handle(ActionEvent event) {
-                                //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                                auswahlklasse.setTurnierzumupdaten(clickedRow);
-                                try {
-                                    pressBtn_neuesTurnier(event);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            auswahlklasse.setTurnierzumupdaten(clickedRow);
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                            // t.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
+                            t.read(getTurnierzumupdaten());
+                            int anzahlturnierfelderalt = getTurnierzumupdaten().getFelder().size();
+                            boolean erfolg = false;
+                            FeldDAO feldDAO = new FeldDAOimpl();
+                            for (int i = 0; i < anzahlturnierfelderalt; i++) {
+
+                                //System.out.println("Lösche Feld");
+                                erfolg = feldDAO.deleteFeld(getTurnierzumupdaten().getFelder().get(i));
+
+                                if (!erfolg)
+                                    break;
+                            }
+                            if (!erfolg)
+                                auswahlklasse.WarnungBenachrichtigung("fehler", "fehler");
+
+
+                            //Spielklasse löschen
+                            int anzahlspielklassen = getTurnierzumupdaten().getSpielklassen().size();
+                            erfolg = false;
+                            SpielklasseDAO spielklasseDAO = new SpielklasseDAOimpl();
+                            ;
+
+
+                            Enumeration eSpielklassekeys = getTurnierzumupdaten().getSpielklassen().keys();
+                            boolean setzlisteloeschen = false;
+                            SetzlisteDAO setzlisteDAO = new SetzlisteDAOimpl();
+                            TeamDAO teamDAO = new TeamDAOimpl();
+                            while (eSpielklassekeys.hasMoreElements()) {
+
+                                int key = (int) eSpielklassekeys.nextElement();
+
+                                for (int i = 0; i < getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size(); i++) {
+                                    if (getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size() > 0) {
+                                        int id = getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().get(i).getTeamid();
+                                        Team team = auswahlklasse.getTurnierzumupdaten().getTeams().get(id);
+                                        //System.out.println(team);
+                                        setzlisteloeschen = setzlisteDAO.delete(
+                                                getTurnierzumupdaten().getSpielklassen().get(key).getSpielklasseID());
+
+
+                                        Enumeration eSpiele = getTurnierzumupdaten().getSpiele().keys();
+                                        while (eSpiele.hasMoreElements()) {
+
+                                            int key2 = (int) eSpiele.nextElement();
+                                            Spiel spiel = getTurnierzumupdaten().getSpiele().get(key2);
+                                            spiel.getSpielDAO().delete(spiel);
+                                        }
+                                        teamDAO.delete(team);
+                                    }
+
                                 }
-                            }
-                        });
-                        MenuItem item3 = new MenuItem("Turnier löschen");
-                        item3.setOnAction(new EventHandler<ActionEvent>() {
 
+                                if (!setzlisteloeschen)
+                                    auswahlklasse.WarnungBenachrichtigung("Setzliste fehler", "fehler");
+                                //System.out.println("Lösche Spielklasse");
 
-                            @Override
-                            public void handle(ActionEvent event) {
-                                auswahlklasse.setTurnierzumupdaten(clickedRow);
-                                //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                                // t.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
-                                t.read(getTurnierzumupdaten());
-                                int anzahlturnierfelderalt = getTurnierzumupdaten().getFelder().size();
-                                boolean erfolg = false;
-                                FeldDAO feldDAO = new FeldDAOimpl();
-                                for (int i = 0; i < anzahlturnierfelderalt; i++) {
+                                erfolg = spielklasseDAO.delete(getTurnierzumupdaten().getSpielklassen().get(key));
+                                if (!erfolg && getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size() > 0) {
+                                    auswahlklasse.WarnungBenachrichtigung(" Spielklassenfehler", "fehler");
 
-                                    //System.out.println("Lösche Feld");
-                                    erfolg = feldDAO.deleteFeld(getTurnierzumupdaten().getFelder().get(i));
-
-                                    if (!erfolg)
-                                        break;
                                 }
                                 if (!erfolg)
-                                    auswahlklasse.WarnungBenachrichtigung("fehler", "fehler");
-
-
-                                //Spielklasse löschen
-                                int anzahlspielklassen = getTurnierzumupdaten().getSpielklassen().size();
-                                erfolg = false;
-                                SpielklasseDAO spielklasseDAO = new SpielklasseDAOimpl();
-                                ;
-
-
-                                Enumeration eSpielklassekeys = getTurnierzumupdaten().getSpielklassen().keys();
-                                boolean setzlisteloeschen = false;
-                                SetzlisteDAO setzlisteDAO = new SetzlisteDAOimpl();
-                                TeamDAO teamDAO = new TeamDAOimpl();
-                                while (eSpielklassekeys.hasMoreElements()) {
-
-                                    int key = (int) eSpielklassekeys.nextElement();
-
-                                    for (int i = 0; i < getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size(); i++) {
-                                        if (getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size() > 0) {
-                                            int id = getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().get(i).getTeamid();
-                                            Team team = auswahlklasse.getTurnierzumupdaten().getTeams().get(id);
-                                            //System.out.println(team);
-                                            setzlisteloeschen = setzlisteDAO.delete(
-                                                    getTurnierzumupdaten().getSpielklassen().get(key).getSpielklasseID());
-
-
-                                            Enumeration eSpiele = getTurnierzumupdaten().getSpiele().keys();
-                                            while (eSpiele.hasMoreElements()) {
-
-                                                int key2 = (int) eSpiele.nextElement();
-                                                Spiel spiel = getTurnierzumupdaten().getSpiele().get(key2);
-                                                spiel.getSpielDAO().delete(spiel);
-                                            }
-                                            teamDAO.delete(team);
-                                        }
-
-                                    }
-
-                                    if (!setzlisteloeschen)
-                                        auswahlklasse.WarnungBenachrichtigung("Setzliste fehler", "fehler");
-                                    //System.out.println("Lösche Spielklasse");
-
-                                    erfolg = spielklasseDAO.delete(getTurnierzumupdaten().getSpielklassen().get(key));
-                                    if (!erfolg && getTurnierzumupdaten().getSpielklassen().get(key).getSetzliste().size() > 0) {
-                                        auswahlklasse.WarnungBenachrichtigung(" Spielklassenfehler", "fehler");
-
-                                    }
-                                    if (!erfolg)
-                                        break;
-
-                                }
-
-
-                                //Turnier löschen
-                                boolean erfolg2 = t.delete(clickedRow);
-                                if (erfolg2) {
-                                    ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-                                    String titel1 = bundle.getString("Label_Spieleinstellungen");
-                                    String titel2 = bundle.getString("Label_Spieleinstellungen");
-                                    auswahlklasse.InfoBenachrichtigung("Titel löschen", "Das Turnier "+ clickedRow.getName()+" wurde gelöscht");
-
-                                    auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
-
-                                    if(obs_turniere_anzeige.size()>0)
-                                    {
-                                        obs_turniere_anzeige.remove(getTurnierzumupdaten());
-                                    }
-
-                                } else {
-                                    auswahlklasse.WarnungBenachrichtigung("Turnier Löschen nicht erfolgreich", clickedRow.getName() + " konnte nicht gelöscht werden!");
-                                }
-                                auswahlklasse.setTurnierzumupdaten(null);
-                                zeigeTabelle();
+                                    break;
 
                             }
-                        });
-                        if (!contextMenu.isShowing()) {
-                            contextMenu.getItems().clear();
-                            contextMenu.getItems().addAll(item1, item2, item3);
+
+
+                            //Turnier löschen
+                            boolean erfolg2 = t.delete(clickedRow);
+                            if (erfolg2) {
+                                ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+                                String titel1 = bundle.getString("Label_Spieleinstellungen");
+                                String titel2 = bundle.getString("Label_Spieleinstellungen");
+                                auswahlklasse.InfoBenachrichtigung("Titel löschen", "Das Turnier "+ clickedRow.getName()+" wurde gelöscht");
+
+                                auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
+
+                                if(obs_turniere_anzeige.size()>0)
+                                {
+                                    obs_turniere_anzeige.remove(getTurnierzumupdaten());
+                                }
+
+                            } else {
+                                auswahlklasse.WarnungBenachrichtigung("Turnier Löschen nicht erfolgreich", clickedRow.getName() + " konnte nicht gelöscht werden!");
+                            }
+                            auswahlklasse.setTurnierzumupdaten(null);
+                            zeigeTabelle();
+
                         }
-                        TurnierlisteTabelle.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-
-                            @Override
-                            public void handle(ContextMenuEvent event) {
-
-                                if (!contextMenu.isShowing()) {
-                                    contextMenu.show(TurnierlisteTabelle, event.getScreenX(), event.getScreenY());
-                                }
-
-                            }
-                        });
+                    });
+                    if (!contextMenu.isShowing()) {
+                        contextMenu.getItems().clear();
+                        contextMenu.getItems().addAll(item1, item2, item3);
                     }
-                });
+                    TurnierlisteTabelle.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 
-                return row;
+                        @Override
+                        public void handle(ContextMenuEvent event) {
+
+                            if (!contextMenu.isShowing()) {
+                                contextMenu.show(TurnierlisteTabelle, event.getScreenX(), event.getScreenY());
+                            }
+
+                        }
+                    });
+                }
             });
 
+            return row;
+        });
 
 
 
-            TurnierlisteTabelle.getSelectionModel().select(0);
+
+        TurnierlisteTabelle.getSelectionModel().select(0);
 
 
     }
 
+    private void columnsAnpassen() {
+       /* TurnierDatumSpalte.minWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.49));
+        TurnierNameSpalte.minWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.49));
+*/
+        TurnierDatumSpalte.prefWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.4983));
+        TurnierNameSpalte.prefWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.4983));
+        TurnierNameSpalte.setSortable(false);
+        TurnierDatumSpalte.setSortable(false);
+
+
+     /*   TurnierNameSpalte.maxWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.49));
+        TurnierDatumSpalte.maxWidthProperty().bind(TurnierlisteTabelle.widthProperty().multiply(0.49));*/
+        }
 
 
     private void turnierlisteLaden() throws Exception {
