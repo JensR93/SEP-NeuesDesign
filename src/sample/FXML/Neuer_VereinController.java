@@ -46,6 +46,9 @@ public class Neuer_VereinController implements Initializable {
     @FXML
     private JFXButton btn_Speichern_Verein;
 
+    @FXML
+    private JFXButton btn_abbrechen_NeuerVerein;
+
 
     public void updateVerein()
     {
@@ -118,6 +121,9 @@ public class Neuer_VereinController implements Initializable {
             titel = bundle.getString("tf_Name");
             tf_Name.setPromptText(titel);
             tf_Name.setLabelFloat(true);
+
+            titel = bundle.getString("btn_abbrechen_NeuerVerein");
+            btn_abbrechen_NeuerVerein.setText(titel);
 
             titel = bundle.getString("tf_Verband");
             tf_Verband.setPromptText(titel);
