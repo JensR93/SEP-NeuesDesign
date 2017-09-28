@@ -6,29 +6,17 @@ import java.math.BigDecimal;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import sample.DAO.*;
-import sample.ExcelImport;
 import sample.Feld;
 import sample.Turnier;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Dictionary;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import jfxtras.labs.scene.control.BigDecimalField;
@@ -72,7 +60,7 @@ public class NeuesTurnierController implements Initializable{
 
     //---Sprache---
     @FXML
-    private Label Label_Turniername;
+    private Label Label_Turniername_NeuesTurnier;
     @FXML
     private Label Label_AnzahlFelder;
     @FXML
@@ -107,7 +95,6 @@ public class NeuesTurnierController implements Initializable{
     private ChoiceBox Choicebox_Mixed;
     @FXML
     private JFXTextField meldegebuehr_einzel;
-
     @FXML
     private JFXTextField meldegebuehr_doppel;
 
@@ -116,7 +103,7 @@ public class NeuesTurnierController implements Initializable{
             ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
             titel = bundle.getString("Label_Turniername");
-            Label_Turniername.setText(titel);
+            Label_Turniername_NeuesTurnier.setText(titel);
 
             titel = bundle.getString("Label_AnzahlFelder");
             Label_AnzahlFelder.setText(titel);
@@ -354,36 +341,33 @@ public class NeuesTurnierController implements Initializable{
     auswahlklasse.setNeuesTurnierController(this);
 
 
+
         BigDecimal v = new BigDecimal(1);
         AnzahlFelder.setMinValue(v);
         v=new BigDecimal(30);
         AnzahlFelder.setMaxValue(v);
-        AnzahlFelder.setText(String.valueOf(1));
+        AnzahlFelder.setText(String.valueOf(9));
+        AnzahlFelder.setPrefHeight(0);
+        AnzahlFelder.setMaxHeight(10);
+        AnzahlFelder.setPrefWidth(0);
+        AnzahlFelder.setMaxWidth(80);
         //turnierDatum.setValue(LocalDate.now());
-        if(auswahlklasse.getTurnierzumupdaten()!=null)
-        {
+        if(auswahlklasse.getTurnierzumupdaten()!=null) {
             turnierDao.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
             btn_starten.setText("Update");
-
-            //System.out.println(turnierzumupdaten.getFelder());
-
-            if(auswahlklasse.getTurnierzumupdaten().getFelder().size()>30)
-            {
+            if (auswahlklasse.getTurnierzumupdaten().getFelder().size() > 30) {
                 AnzahlFelder.setText(String.valueOf(30));
             }
-            if(auswahlklasse.getTurnierzumupdaten().getFelder().size()<1)
-            {
+            if (auswahlklasse.getTurnierzumupdaten().getFelder().size() < 1) {
                 AnzahlFelder.setText(String.valueOf(1));
-            }
-            else
-            {
+            } else {
                 AnzahlFelder.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getFelder().size()));
             }
 
-             startzeiteinzel = auswahlklasse.getTurnierzumupdaten().getStartzeitEinzel();
-             startzeidoppel = auswahlklasse.getTurnierzumupdaten().getStartzeitDoppel();
-             startzeitmixed = auswahlklasse.getTurnierzumupdaten().getStartzeitMixed();
-             meldegebuehr_einzel.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getMeldegebuehrEinzel()));
+            startzeiteinzel = auswahlklasse.getTurnierzumupdaten().getStartzeitEinzel();
+            startzeidoppel = auswahlklasse.getTurnierzumupdaten().getStartzeitDoppel();
+            startzeitmixed = auswahlklasse.getTurnierzumupdaten().getStartzeitMixed();
+            meldegebuehr_einzel.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getMeldegebuehrEinzel()));
             meldegebuehr_doppel.setText(String.valueOf(auswahlklasse.getTurnierzumupdaten().getMeldegebuehrDoppel()));
             date_einzel.setValue(startzeiteinzel.toLocalDate());
             time_einzel.setValue(startzeiteinzel.toLocalTime());
