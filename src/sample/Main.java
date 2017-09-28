@@ -51,7 +51,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        File f = new File("Einstellungen.xml");
+/*        File f = new File("Einstellungen.xml");
         if(f.exists() && !f.isDirectory()) {
             Properties loadProps = new Properties();
             try {
@@ -76,7 +76,7 @@ public class Main extends Application {
             }
 
 
-        }
+        }*/
 
         launch(args);
     }
