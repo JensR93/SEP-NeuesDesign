@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 import sample.DAO.*;
 import sample.Feld;
@@ -104,6 +105,18 @@ public class NeuesTurnierController implements Initializable{
     private JFXTextField meldegebuehr_doppel;
     @FXML
     private Label Label_Meldegebuehr;
+    @FXML
+    private AnchorPane Ap_mixed_datetime;
+    @FXML
+    private AnchorPane Ap_doppel_datetime;
+    @FXML
+    private AnchorPane Ap_einzel_datetime;
+    @FXML
+    private AnchorPane Ap_mixed_Choice;
+    @FXML
+    private AnchorPane Ap_doppel_Choice;
+    @FXML
+    private AnchorPane Ap_einzel_Choice;
 
     public void SpracheLaden() {
         try {
@@ -167,6 +180,11 @@ public class NeuesTurnierController implements Initializable{
 
             titel = bundle.getString("btn_Speichern_NeuesTurnier");
             btn_Speichern_NeuesTurnier.setText(titel);
+
+            einzel = bundle.getString("einzel");
+            doppel = bundle.getString("doppel");
+            mixed = bundle.getString("mixed");
+            keineAuswahl = bundle.getString("keineStartZeitFestgelegt");
 
         } catch (MissingResourceException e) {
             System.err.println(e);
@@ -346,43 +364,43 @@ public class NeuesTurnierController implements Initializable{
     private void radioAuswahl(){
         if(Radio_AnschlussDisziDoppel.isSelected()){
             Label_Disziplin_Doppel.setVisible(true);
-            Choicebox_Doppel.setVisible(true);
-            date_doppel.setVisible(false);
-            time_doppel.setVisible(false);
+            Ap_doppel_Choice.setVisible(true);
+            Ap_doppel_Choice.toFront();
+            Ap_doppel_datetime.setVisible(false);
         }
         if(Radio_DatumUhrDoppel.isSelected()){
             Label_Disziplin_Doppel.setVisible(false);
-            Choicebox_Doppel.setVisible(false);
-            date_doppel.setVisible(true);
-            time_doppel.setVisible(true);
+            Ap_doppel_Choice.setVisible(false);
+            Ap_doppel_datetime.toFront();
+            Ap_doppel_datetime.setVisible(true);
         }
 
         if(Radio_AnschlussDisziEinzel.isSelected()){
             Label_Disziplin_Einzel.setVisible(true);
-            Choicebox_Einzel.setVisible(true);
-            date_einzel.setVisible(false);
-            time_einzel.setVisible(false);
+            Ap_einzel_Choice.setVisible(true);
+            Ap_einzel_Choice.toFront();
+            Ap_einzel_datetime.setVisible(false);
         }
 
         if(Radio_DatumUhrEinzel.isSelected()){
             Label_Disziplin_Einzel.setVisible(false);
-            Choicebox_Einzel.setVisible(false);
-            date_einzel.setVisible(true);
-            time_einzel.setVisible(true);
+            Ap_einzel_Choice.setVisible(false);
+            Ap_einzel_datetime.toFront();
+            Ap_einzel_datetime.setVisible(true);
         }
 
         if(Radio_AnschlussDisziMixed.isSelected()){
             Label_Disziplin_Mixed.setVisible(true);
-            Choicebox_Mixed.setVisible(true);
-            date_mixed.setVisible(false);
-            time_mixed.setVisible(false);
+            Ap_mixed_Choice.setVisible(true);
+            Ap_mixed_Choice.toFront();
+            Ap_mixed_datetime.setVisible(false);
         }
 
         if(Radio_DatumUhrMixed.isSelected()){
             Label_Disziplin_Mixed.setVisible(false);
-            Choicebox_Mixed.setVisible(false);
-            date_mixed.setVisible(true);
-            time_mixed.setVisible(true);
+            Ap_mixed_Choice.setVisible(false);
+            Ap_mixed_datetime.toFront();
+            Ap_mixed_datetime.setVisible(true);
         }
     }
 
