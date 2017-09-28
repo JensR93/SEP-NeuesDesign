@@ -9,8 +9,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -35,7 +40,7 @@ public class ZeitplanController implements Initializable{
 
     String baseName = "resources.Main";
     String titel = "";
-
+    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
     private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanEinzel = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanDoppel = FXCollections.observableArrayList();
@@ -281,9 +286,8 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         SpracheLaden();
-
+        dragNdropInitialisieren();
         //Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());
         /*if (Zeitplan.getAlleRunden(auswahlklasse.getAktuelleTurnierAuswahl(),"EINZEL")!=null) {
 
@@ -305,9 +309,9 @@ public class ZeitplanController implements Initializable{
         zeitplanEinzel=Zeitplan.getZeitplan("EINZEL");
         zeitplanDoppel=Zeitplan.getZeitplan("DOPPEL");
         zeitplanMixed =Zeitplan.getZeitplan("MIXED");*/
-        alleRundenHolen();
+        /*alleRundenHolen();
         uebersichtZeichnen();
-        tableColumnsErstellen();
+        tableColumnsErstellen();*/
         System.out.println(startZeitEinzel);
         System.out.println(startZeitDoppel);
         System.out.println(startZeitMixed);
@@ -344,6 +348,61 @@ public class ZeitplanController implements Initializable{
         catch ( MissingResourceException e ) {
             System.err.println( e );
         }
+
+    }
+
+    private void dragNdropInitialisieren(){
+        tableview_runden.setRowFactory(tv -> {
+            TableRow<ZeitplanRunde> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        event.consume();
+                    }
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    ZeitplanRunde draggedPerson = tableview_runden.getItems().remove(draggedIndex);
+
+                    int dropIndex ;
+
+                    if (row.isEmpty()) {
+                        dropIndex = tableview_runden.getItems().size() ;
+                    } else {
+                        dropIndex = row.getIndex();
+                    }
+
+                    tableview_runden.getItems().add(dropIndex, draggedPerson);
+
+                    event.setDropCompleted(true);
+                    tableview_runden.getSelectionModel().select(dropIndex);
+                    event.consume();
+                    tabelleZeichnen();
+                }
+            });
+
+            return row ;
+        });
 
     }
 }

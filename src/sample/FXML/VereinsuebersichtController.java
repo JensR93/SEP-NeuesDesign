@@ -12,11 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
+import sample.*;
 import sample.DAO.*;
-import sample.Spiel;
-import sample.Team;
-import sample.Turnier;
-import sample.Verein;
 
 import java.net.URL;
 import java.util.Date;
@@ -164,6 +161,14 @@ public class VereinsuebersichtController implements Initializable {
                         {
                             auswahlklasse.InfoBenachrichtigung("Löschen erf","erf");
                             obs_Vereine.remove(clickedRow);
+                            tabelle_vereine.getItems().remove(clickedRow);
+                            auswahlklasse.getVereine().remove(clickedRow.getExtVereinsID());
+                            for (int i=0;i<auswahlklasse.getObs_spieler().size();i++){
+                                Spieler spieler = auswahlklasse.getObs_spieler().get(i);
+                                if (spieler.getVerein()==clickedRow){
+                                    spieler.setVerein(null);
+                                }
+                            }
                         }
                         else
                         {
