@@ -444,10 +444,9 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-auswahlklasse.setSpieler_hinzufuegenController(this);
-
+        auswahlklasse.setSpieler_hinzufuegenController(this);
+        setzeBearbeitenNachVorne();
         SpracheLaden();
-
         fuellechoiceNationalitaet();
 
         //region Tabelle Spielerliste RowFactory
@@ -660,12 +659,8 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
             e.printStackTrace();
         }
 
-
-
-
         if(Update)
         {
-
             tab_spbea.setDisable(true);
             tabpane_spieler.getSelectionModel().select(tab_sphin);
             FuelleFelder(auswahlklasse.getUpdateSpieler());
@@ -674,9 +669,7 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
         t_suchleistespielerhinzu.textProperty().addListener((observable, oldValue, newValue) -> {
             // System.out.println("textfield changed from " + oldValue + " to " + newValue);
             //obs_spieler.clear();
-
             obs_spieler.clear();
-
             tabelle_spielerliste.refresh();
             Enumeration e = auswahlklasse.getSpieler().keys();
             while (e.hasMoreElements()){
@@ -693,10 +686,20 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                 }
                 ;
             }
-
-
         });
+    }
 
+    public void setzeBearbeitenNachVorne() {
+        if(auswahlklasse.getObs_spieler().size()>0){
+            tabpane_spieler.getTabs().remove(tab_spbea);
+            tabpane_spieler.getTabs().add(0,tab_spbea);
+            tabpane_spieler.getSelectionModel().select(tab_spbea);
+        }
+        else{
+            tabpane_spieler.getTabs().remove(tab_sphin);
+            tabpane_spieler.getTabs().add(0,tab_sphin);
+            tabpane_spieler.getSelectionModel().select(tab_sphin);
+        }
     }
 
     private void fuellechoiceNationalitaet() {
@@ -736,7 +739,6 @@ auswahlklasse.setSpieler_hinzufuegenController(this);
                                 s+=" --- ";
                             }
                         }
-
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Spielerimport - Neue Spieler");
                         alert.setHeaderText("Spieler erfolgreich eingelesen! ");

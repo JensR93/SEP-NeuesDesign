@@ -285,6 +285,10 @@ public class DashboardController implements Initializable{
     @FXML public void setNodeSpieler(ActionEvent event)
     {
         setNode(Spieler);
+        if(auswahlklasse.getSpieler_hinzufuegenController()!=null){
+            auswahlklasse.getSpieler_hinzufuegenController().setzeBearbeitenNachVorne();
+        }
+
     }
     public void setNodeSpieler()
     {

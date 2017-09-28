@@ -26,6 +26,11 @@ public class NeuesTurnierController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
+    String keineAuswahl = "Noch keine Startzeit festgelegt";
+    String einzel = "Einzel";
+    String doppel = "Doppel";
+    String mixed = "Mixed";
+
     boolean erfolg = false;
     TurnierDAO turnierDao = new TurnierDAOimpl();
 
@@ -54,9 +59,9 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     private BigDecimalField AnzahlFelder;
     @FXML
-    private Button btn_abbrechen;
+    private Button btn_abbrechen_NeuesTurnier;
     @FXML
-    private Button btn_starten;
+    private Button btn_Speichern_NeuesTurnier;
 
     //---Sprache---
     @FXML
@@ -97,12 +102,14 @@ public class NeuesTurnierController implements Initializable{
     private JFXTextField meldegebuehr_einzel;
     @FXML
     private JFXTextField meldegebuehr_doppel;
+    @FXML
+    private Label Label_Meldegebuehr;
 
     public void SpracheLaden() {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
-            titel = bundle.getString("Label_Turniername");
+            titel = bundle.getString("Label_Turniername_NeuesTurnier");
             Label_Turniername_NeuesTurnier.setText(titel);
 
             titel = bundle.getString("Label_AnzahlFelder");
@@ -144,6 +151,23 @@ public class NeuesTurnierController implements Initializable{
             titel = bundle.getString("Label_Disziplin_Mixed");
             Label_Disziplin_Mixed.setText(titel);
 
+            titel = bundle.getString("Label_Meldegebuehr");
+            Label_Meldegebuehr.setText(titel);
+
+            titel = bundle.getString("meldegebuehr_einzel");
+            meldegebuehr_einzel.setPromptText(titel);
+            meldegebuehr_einzel.setLabelFloat(true);
+
+            titel = bundle.getString("meldegebuehr_doppel");
+            meldegebuehr_doppel.setPromptText(titel);
+            meldegebuehr_doppel.setLabelFloat(true);
+
+            titel = bundle.getString("btn_abbrechen_NeuesTurnier");
+            btn_abbrechen_NeuesTurnier.setText(titel);
+
+            titel = bundle.getString("btn_Speichern_NeuesTurnier");
+            btn_Speichern_NeuesTurnier.setText(titel);
+
         } catch (MissingResourceException e) {
             System.err.println(e);
         }
@@ -165,13 +189,63 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     public void erstelleTurnier(ActionEvent event) throws Exception {
 
-        LocalDate dateeinzel= date_einzel.getValue();
-        LocalDate datedoppel= date_doppel.getValue();
-        LocalDate datemixed= date_mixed.getValue();
-
-        LocalTime timeeinzel= time_einzel.getValue();
-        LocalTime timedoppel= time_doppel.getValue();
-        LocalTime timemixed= time_mixed.getValue();
+        LocalDate dateeinzel = LocalDate.now();
+        LocalTime timeeinzel = LocalTime.now();
+        LocalDate datedoppel = LocalDate.now();
+        LocalTime timedoppel = LocalTime.now();
+        LocalDate datemixed = LocalDate.now();
+        LocalTime timemixed = LocalTime.now();
+        if (Radio_DatumUhrEinzel.isSelected()) {
+            dateeinzel = date_einzel.getValue();
+            timeeinzel= time_einzel.getValue();
+        }
+        if(Radio_DatumUhrDoppel.isSelected()) {
+            datedoppel = date_doppel.getValue();
+            timedoppel = time_doppel.getValue();
+        }
+        if(Radio_DatumUhrMixed.isSelected()) {
+            datemixed = date_mixed.getValue();
+            timemixed= time_mixed.getValue();
+        }
+        if(!Radio_DatumUhrEinzel.isSelected()){
+            if (Choicebox_Einzel.getSelectionModel().getSelectedItem()==keineAuswahl){
+                auswahlklasse.WarnungBenachrichtigung("Disziplin auswählen","Bei Startzeit nach anderer Disziplin muss eine Disziplin ausgewählt werden!");
+            }
+            else if(Choicebox_Einzel.getSelectionModel().getSelectedItem()==doppel){
+                dateeinzel = datedoppel;
+                timeeinzel = timedoppel.plusMinutes(1);
+            }
+            else if(Choicebox_Einzel.getSelectionModel().getSelectedItem()==mixed){
+                dateeinzel = datemixed;
+                timeeinzel = timemixed.plusMinutes(1);
+            }
+        }
+        if(!Radio_DatumUhrDoppel.isSelected()){
+            if (Choicebox_Doppel.getSelectionModel().getSelectedItem()==keineAuswahl){
+                auswahlklasse.WarnungBenachrichtigung("Disziplin auswählen","Bei Startzeit nach anderer Disziplin muss eine Disziplin ausgewählt werden!");
+            }
+            else if(Choicebox_Doppel.getSelectionModel().getSelectedItem()==einzel){
+                datedoppel = dateeinzel;
+                timedoppel = timeeinzel.plusMinutes(1);
+            }
+            else if(Choicebox_Doppel.getSelectionModel().getSelectedItem()==mixed){
+                datedoppel = datemixed;
+                timedoppel = timemixed.plusMinutes(1);
+            }
+        }
+        if(!Radio_DatumUhrMixed.isSelected()){
+            if (Choicebox_Mixed.getSelectionModel().getSelectedItem()==keineAuswahl){
+                auswahlklasse.WarnungBenachrichtigung("Disziplin auswählen","Bei Startzeit nach anderer Disziplin muss eine Disziplin ausgewählt werden!");
+            }
+            else if(Choicebox_Mixed.getSelectionModel().getSelectedItem()==doppel){
+                datemixed = datedoppel;
+                timemixed = timedoppel.plusMinutes(1);
+            }
+            else if(Choicebox_Mixed.getSelectionModel().getSelectedItem()==einzel){
+                datemixed = dateeinzel;
+                timemixed = timeeinzel.plusMinutes(1);
+            }
+        }
 
 
         try{
@@ -183,7 +257,10 @@ public class NeuesTurnierController implements Initializable{
             FeldDAO feldDAO = new FeldDAOimpl();
             int anzahlfelder = Integer.parseInt(AnzahlFelder.getText());
             if (auswahlklasse.getTurnierzumupdaten() == null) {
-                Turnier turnier = new Turnier(Turniername.getText(),LocalDateTime.of(dateeinzel,timeeinzel),LocalDateTime.of(datedoppel,timedoppel),LocalDateTime.of(datemixed,timemixed),meldegebuehreinzel,meldegebuehrdoppel);
+                startzeiteinzel = LocalDateTime.of(dateeinzel,timeeinzel);
+                startzeidoppel = LocalDateTime.of(datedoppel,timedoppel);
+                startzeiteinzel = LocalDateTime.of(datemixed,timemixed);
+                Turnier turnier = new Turnier(Turniername.getText(),startzeiteinzel,startzeidoppel,LocalDateTime.of(datemixed,timemixed),meldegebuehreinzel,meldegebuehrdoppel);
                 erfolg=t.create(turnier);
                 for (int i = 0; i < anzahlfelder; i++) {
                     new Feld(turnier);
@@ -230,7 +307,6 @@ public class NeuesTurnierController implements Initializable{
                         auswahlklasse.InfoBenachrichtigung("Felder gelöscht",String.valueOf(anzahlturnierfelderalt-anzahlfelder)+" Felder wurden gelöscht");
                     if (!erfolg)
                         auswahlklasse.WarnungBenachrichtigung("Feld fehler", "nicht löschbar");
-
                 }
                 auswahlklasse.getTurnierzumupdaten().setName(Turniername.getText());
                 auswahlklasse.getTurnierzumupdaten().setStartzeitEinzel(LocalDateTime.of(dateeinzel,timeeinzel));
@@ -310,15 +386,67 @@ public class NeuesTurnierController implements Initializable{
         }
     }
 
+    @FXML
+    private void choiceBoxFuellen(){
+        String selectionEinzel = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
+        Choicebox_Einzel.getItems().add(keineAuswahl);
+        String selectionDoppel = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
+        Choicebox_Doppel.getItems().add(keineAuswahl);
+        String selectionMixed = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
+        Choicebox_Mixed.getItems().add(keineAuswahl);
+
+
+        if(time_einzel.getValue()!=null&&date_einzel.getValue()!=null){
+            Choicebox_Doppel.getItems().remove(keineAuswahl);
+            Choicebox_Doppel.getItems().add(einzel);
+            Choicebox_Mixed.getItems().remove(keineAuswahl);
+            Choicebox_Mixed.getItems().add(einzel);
+        }
+        if(time_doppel.getValue()!=null&&date_doppel.getValue()!=null){
+            Choicebox_Einzel.getItems().remove(keineAuswahl);
+            Choicebox_Einzel.getItems().add(doppel);
+            Choicebox_Mixed.getItems().remove(keineAuswahl);
+            Choicebox_Mixed.getItems().add(doppel);
+        }
+        if(time_mixed.getValue()!=null&&date_mixed.getValue()!=null){
+            Choicebox_Einzel.getItems().remove(keineAuswahl);
+            Choicebox_Einzel.getItems().add(mixed);
+            Choicebox_Doppel.getItems().remove(keineAuswahl);
+            Choicebox_Doppel.getItems().add(mixed);
+        }
+        if (selectionEinzel!=null && !selectionEinzel.equals("")) {
+            Choicebox_Einzel.getSelectionModel().select(selectionEinzel);
+        }
+        else{
+            Choicebox_Einzel.getSelectionModel().select(keineAuswahl);
+        }
+        if (selectionDoppel!=null && !selectionDoppel.equals("")) {
+            Choicebox_Doppel.getSelectionModel().select(selectionDoppel);
+        }
+        else{
+            Choicebox_Doppel.getSelectionModel().select(keineAuswahl);
+        }
+        if (selectionMixed!=null && !selectionMixed.equals("")) {
+            Choicebox_Mixed.getSelectionModel().select(selectionMixed);
+        }
+        else{
+            Choicebox_Mixed.getSelectionModel().select(keineAuswahl);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         SpracheLaden();
-
         time_einzel.setIs24HourView(true);
         time_doppel.setIs24HourView(true);
         time_mixed.setIs24HourView(true);
-
+        choiceBoxFuellen();
+        listenerFuerTimePickerHinzufuegen(time_einzel);
+        listenerFuerTimePickerHinzufuegen(time_doppel);
+        listenerFuerTimePickerHinzufuegen(time_mixed);
+        listenerFuerDatePickerHinzufuegen(date_einzel);
+        listenerFuerDatePickerHinzufuegen(date_doppel);
+        listenerFuerDatePickerHinzufuegen(date_mixed);
 
         StringConverter <LocalTime> uhrzeit =new StringConverter<LocalTime>() {
             @Override
@@ -338,8 +466,7 @@ public class NeuesTurnierController implements Initializable{
         time_doppel.setConverter(uhrzeit);
         time_mixed.setConverter(uhrzeit);
 
-    auswahlklasse.setNeuesTurnierController(this);
-
+        auswahlklasse.setNeuesTurnierController(this);
 
 
         BigDecimal v = new BigDecimal(1);
@@ -354,7 +481,7 @@ public class NeuesTurnierController implements Initializable{
         //turnierDatum.setValue(LocalDate.now());
         if(auswahlklasse.getTurnierzumupdaten()!=null) {
             turnierDao.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
-            btn_starten.setText("Update");
+            btn_Speichern_NeuesTurnier.setText("Update");
             if (auswahlklasse.getTurnierzumupdaten().getFelder().size() > 30) {
                 AnzahlFelder.setText(String.valueOf(30));
             }
@@ -378,8 +505,30 @@ public class NeuesTurnierController implements Initializable{
             date_mixed.setValue(startzeitmixed.toLocalDate());
             time_mixed.setValue(startzeitmixed.toLocalTime());
             Turniername.setText(auswahlklasse.getTurnierzumupdaten().getName());
-
         }
+    }
+
+    private void listenerFuerTimePickerHinzufuegen(JFXTimePicker jfxTimePicker) {
+        jfxTimePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(jfxTimePicker.getValue()!=null) {
+                try {
+                    choiceBoxFuellen();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    private void listenerFuerDatePickerHinzufuegen(JFXDatePicker jfxDatePicker) {
+        jfxDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(jfxDatePicker.getValue()!=null) {
+                try {
+                    choiceBoxFuellen();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
