@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
@@ -24,6 +25,9 @@ public class EinstellungenController implements Initializable {
 
     String baseName = "resources.Main";
     String titel ="";
+
+    @FXML
+    private ChoiceBox<String> Choice_Sprache;
 
     @FXML
     private JFXColorPicker color_aktiv;
@@ -75,12 +79,6 @@ public class EinstellungenController implements Initializable {
 
     @FXML
     private GridPane gridPane;
-
-    @FXML
-    private JFXRadioButton rdDeutsch;
-
-    @FXML
-    private JFXRadioButton rdEnglisch;
 
     @FXML
     private ToggleGroup Language;
@@ -176,11 +174,19 @@ public class EinstellungenController implements Initializable {
             titel = bundle.getString("btn_StandEinstell");
             btn_StandEinstell.setText(titel);
 
-            titel = bundle.getString("rdDeutsch");
-            rdDeutsch.setText(titel);
-
-            titel = bundle.getString("rdEnglisch");
-            rdEnglisch.setText(titel);
+            Choice_Sprache.getItems().clear();
+            Choice_Sprache.getItems().add(bundle.getString("spracheDeutsch"));
+            if (Sprache.equals("de")){
+                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+            }
+            Choice_Sprache.getItems().add(bundle.getString("spracheEnglisch"));
+            if (Sprache.equals("en")){
+                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+            }
+            Choice_Sprache.getItems().add(bundle.getString("spracheSpanisch"));
+            if (Sprache.equals("es")){
+                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+            }
 
             titel = bundle.getString("rdGewinner");
             rdGewinner.setText(titel);
@@ -273,14 +279,6 @@ public class EinstellungenController implements Initializable {
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
         color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
 
-        if(Sprache.equals("de"))
-        {
-            rdDeutsch.setSelected(true);
-        }
-        if(Sprache.equals("en"))
-        {
-            rdEnglisch.setSelected(true);
-        }
         if(SchiedsrichterStandard)
         {
             toggle_schiri.setSelected(true);
@@ -428,31 +426,40 @@ public class EinstellungenController implements Initializable {
                 }
             }
         });
-        rdDeutsch.setOnAction(e ->
+        Choice_Sprache.setOnAction(e ->
         {
-            //System.out.println(color_ausstehend.getValue());
-
-            if(!Sprache.equals("de"))
-            {
-                Locale.setDefault( new Locale("de", "de") );
-                System.out.println("Sprache=Deutsch");
-                Sprache="de";
-                Einstellungen_schreiben();
-                SpracheLaden();
+            String selection = Choice_Sprache.getSelectionModel().getSelectedItem();
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+            if(selection.equals(bundle.getString("spracheDeutsch"))){
+                if(!Sprache.equals("de"))
+                {
+                    Locale.setDefault( new Locale("de", "de") );
+                    System.out.println("Sprache=Deutsch");
+                    Sprache="de";
+                    Einstellungen_schreiben();
+                    SpracheLaden();
+                }
             }
-        });
-        rdEnglisch.setOnAction(e ->
-        {
-            //System.out.println(color_ausstehend.getValue());
 
-            if(!Sprache.equals("en"))
-            {
-                Locale.setDefault( new Locale("en", "en") );
-                System.out.println("Sprache=Englisch");
-                Sprache="en";
-                Einstellungen_schreiben();
-                SpracheLaden();
-
+            if(selection.equals(bundle.getString("spracheEnglisch"))){
+                if(!Sprache.equals("en"))
+                {
+                    Locale.setDefault( new Locale("en", "en") );
+                    System.out.println("Sprache=Englisch");
+                    Sprache="en";
+                    Einstellungen_schreiben();
+                    SpracheLaden();
+                }
+            }
+            if(selection.equals(bundle.getString("spracheSpanisch"))){
+                if(!Sprache.equals("es"))
+                {
+                    Locale.setDefault( new Locale("es", "es") );
+                    System.out.println("Sprache=Spanisch");
+                    Sprache="es";
+                    Einstellungen_schreiben();
+                    SpracheLaden();
+                }
             }
         });
         toggle_schiri.setOnAction(e ->
