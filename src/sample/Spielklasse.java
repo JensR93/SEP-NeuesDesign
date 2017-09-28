@@ -1,9 +1,6 @@
 package sample;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.*;
 
 import sample.DAO.*;
 import sample.Enums.Disziplin;
@@ -304,5 +301,36 @@ public class Spielklasse {
 			}
 		}
 		return setzplatznummer;
+	}
+
+	public String getDisziplinLanguage() {
+		String baseName = "resources.Main";
+
+
+		ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+
+		String disz="";
+		if(disziplin.toString().toUpperCase().contains("HERRENEINZEL"))
+		{
+		disz=bundle.getString("Herreneinzel");
+		}
+		if(disziplin.toString().toUpperCase().contains("HERRENDOPPEL"))
+		{
+			disz=bundle.getString("Herrendoppel");
+		}
+		if(disziplin.toString().toUpperCase().contains("DAMENEINZEL"))
+		{
+			disz=bundle.getString("Dameneinzel");
+		}
+		if(disziplin.toString().toUpperCase().contains("DAMENDOPPEL"))
+		{
+			disz=bundle.getString("Damendoppel");
+		}
+		if(disziplin.toString().toUpperCase().contains("MIX"))
+		{
+			disz=bundle.getString("Mixed");
+		}
+		return disz;
 	}
 }
