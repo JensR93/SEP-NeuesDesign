@@ -10,6 +10,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import sample.DAO.auswahlklasse;
+import sample.Spiel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -142,6 +143,7 @@ public class EinstellungenController implements Initializable {
         if(auswahlklasse.getVereinsuebersichtController() != null) {
             auswahlklasse.getVereinsuebersichtController().SpracheLaden();
         }
+        Spiel.SpracheLaden();
 
         try
         {

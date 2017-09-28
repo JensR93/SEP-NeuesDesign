@@ -27,6 +27,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import sample.DAO.auswahlklasse;
+import sample.Spiel;
 
 public class DashboardController implements Initializable{
 
@@ -461,6 +462,7 @@ public class DashboardController implements Initializable{
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
+            Spiel.SpracheLaden();
 
 
         } catch (IOException e) {

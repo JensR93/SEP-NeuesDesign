@@ -6,6 +6,8 @@ import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.time.LocalTime;
 import java.util.Dictionary;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 import sample.DAO.*;
 import sample.Spielsysteme.*;
@@ -29,6 +31,51 @@ public class Spiel {
 	private int zeitplanNummer;
 	private int rundenZeitplanNummer;
 
+	private static String baseName = "resources.Main";
+	private static String rundeString;
+	private static String gruppeString;
+	private static String endrundeString;
+	private static String schweizerString;
+	private static String finaleString;
+	private static String spielUm3String;
+	private static String halbfinaleString;
+	private static String viertelfinaleString;
+	private static String achtelfinaleString;
+	private static String deKurzform;
+	private static String heKurzform;
+	private static String hdKurzform;
+	private static String ddKurzform;
+	private static String mxKurzform;
+	private static String ausstehendString;
+
+	public static void SpracheLaden(){
+		try
+		{
+			ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+			ausstehendString = bundle.getString("ausstehendString");
+			gruppeString = bundle.getString("gruppeString");
+			rundeString = bundle.getString("rundeString");
+			schweizerString = bundle.getString("schweizerString");
+			endrundeString = bundle.getString("endrundeString");
+			finaleString = bundle.getString("finaleString");
+			spielUm3String = bundle.getString("spielUm3String");
+			halbfinaleString = bundle.getString("halbfinaleString");
+			viertelfinaleString = bundle.getString("viertelfinaleString");
+			achtelfinaleString = bundle.getString("achtelfinaleString");
+			deKurzform = bundle.getString("deKurzform");
+			heKurzform = bundle.getString("heKurzform");
+			hdKurzform = bundle.getString("hdKurzform");
+			ddKurzform = bundle.getString("ddKurzform");
+			mxKurzform = bundle.getString("mxKurzform");
+
+
+
+		}
+		catch ( MissingResourceException e ) {
+			System.err.println( e );
+		}
+	}
 
 	public void setFeld(Feld feld) {
 		this.feld = feld;
@@ -82,13 +129,13 @@ public class Spiel {
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
 				if (setzplatze.get(setzPlatzHeim)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzHeim);
-					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
+					return (gruppeString+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
 			if(getSystemSpielArt()==5){
-				return "Schweizer "+getRundenName();
+				return schweizerString+" "+getRundenName();
 			}
-			return "ausstehend";
+			return ausstehendString;
 		}
 
 	}
@@ -102,13 +149,13 @@ public class Spiel {
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
 				if (setzplatze.get(setzPlatzGast)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzGast);
-					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
+					return (gruppeString+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
 			if(getSystemSpielArt()==5){
-				return "Schweizer "+getRundenName();
+				return schweizerString+" "+getRundenName();
 			}
-			return "ausstehend";
+			return ausstehendString;
 		}
 	}
 	public String getHeimStringKomplett() {
@@ -121,13 +168,13 @@ public class Spiel {
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
 				if (setzplatze.get(setzPlatzHeim)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzHeim);
-					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
+					return (gruppeString+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
 			if(getSystemSpielArt()==5){
-				return "Schweizer "+getRundenName();
+				return schweizerString+" "+getRundenName();
 			}
-			return "ausstehend";
+			return ausstehendString;
 		}
 
 	}
@@ -141,13 +188,13 @@ public class Spiel {
 				Dictionary<Integer, Integer[]> setzplatze = hauptsystem.getSetzPlatze();
 				if (setzplatze.get(setzPlatzGast)!=null && hauptsystem.getEndrunde().getRunden().get(0).contains(this)){
 					Integer[] gruppePlatzierung = setzplatze.get(setzPlatzGast);
-					return ("Gruppe"+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
+					return (gruppeString+gruppePlatzierung[0]+" #"+gruppePlatzierung[1]);
 				}
 			}
 			if(getSystemSpielArt()==5){
-				return "Schweizer "+getRundenName();
+				return schweizerString+" "+getRundenName();
 			}
-			return "ausstehend";
+			return ausstehendString;
 		}
 	}
 	public Team getGast() {
@@ -360,7 +407,7 @@ public class Spiel {
 	}
 	public String getRundenName(){
 		if (systemSpielID<20000000 ||(systemSpielID<30000000&&getVorrundenNummer()!=0)){ //Gruppe und Gruppenphase bei Gruppe mit Endrunde
-			return "Runde "+(getRundenNummer() + 1);
+			return rundeString+" "+(getRundenNummer() + 1);
 		}
 		/*else if(){ //Gruppe mit Endrunde
 			return "Runde "+(getRundenNummer()+1);
@@ -371,38 +418,38 @@ public class Spiel {
 			{
 				GruppeMitEndrunde gruppeMitEndrunde = (GruppeMitEndrunde) spielsystem;
 				if(gruppeMitEndrunde.getEndrunde() instanceof Gruppe){
-					return "Endrunde "+(getRundenNummer() + 1);
+					return endrundeString + " "+(getRundenNummer() + 1);
 				}
 			}
 			if(rundenNummer==0 && getVorrundenNummer()==0){
 				if (getSpielNummerInRunde()==0){
-					return "Finale";
+					return finaleString;
 				}
 				if(getSpielNummerInRunde()==1){
-					return "Spiel um 3";
+					return spielUm3String;
 				}
 			}
 			else if(rundenNummer==1){
-				return "Halbfinale";
+				return halbfinaleString;
 			}
 			else if(rundenNummer==2){
-				return "Viertelfinale";
+				return viertelfinaleString;
 			}
 			else if(rundenNummer==3){
-				return "Achtelfinale";
+				return achtelfinaleString;
 			}
 			else if(rundenNummer==4){
-				return "1/16-Finale";
+				return "1/16-"+finaleString;
 			}
 			else if(rundenNummer==5){
-				return "1/32-Finale";
+				return "1/32-"+finaleString;
 			}
 			else if(rundenNummer==6){
-				return "1/64-Finale";
+				return "1/64-"+finaleString;
 			}
 			else{
 				rundenNummer = spielsystem.getAnzahlRunden() - rundenNummer;
-				return "Runde "+rundenNummer;
+				return rundeString+" " +rundenNummer;
 			}
 		}
 		else if(systemSpielID<50000000){ //K.O. mit TrostRunde
@@ -410,7 +457,7 @@ public class Spiel {
 		}
 		else{ // Schweizer System
 			int rundenNummer = (systemSpielID-systemSpielID/10000000*10000000)/1000;
-			return "Runde "+(rundenNummer + 1);
+			return rundeString+ " " +(rundenNummer + 1);
 		}
 		return "";
 	}
@@ -461,19 +508,19 @@ public class Spiel {
 		String disziplin = spielsystem.getSpielklasse().getDisziplin().toUpperCase();
 		String kurzform = "";
 		if(disziplin.equalsIgnoreCase("DAMENEINZEL")){
-			kurzform = "DE";
+			kurzform = deKurzform;
 		}
 		else if(disziplin.equalsIgnoreCase("HERRENEINZEL")) {
-			kurzform = "HE";
+			kurzform = heKurzform;
 		}
 		else if(disziplin.equalsIgnoreCase("HERRENDOPPEL")) {
-			kurzform = "HD";
+			kurzform = hdKurzform;
 		}
 		else if(disziplin.equalsIgnoreCase("DAMENDOPPEL")) {
-			kurzform = "DD";
+			kurzform = ddKurzform;
 		}
 		else if(disziplin.equalsIgnoreCase("MIXED")) {
-			kurzform = "MX";
+			kurzform = mxKurzform;
 		}
 		return kurzform;
 	}
