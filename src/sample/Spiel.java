@@ -52,7 +52,6 @@ public class Spiel {
 		try
 		{
 			ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-
 			ausstehendString = bundle.getString("ausstehendString");
 			gruppeString = bundle.getString("gruppeString");
 			rundeString = bundle.getString("rundeString");
@@ -68,9 +67,6 @@ public class Spiel {
 			hdKurzform = bundle.getString("hdKurzform");
 			ddKurzform = bundle.getString("ddKurzform");
 			mxKurzform = bundle.getString("mxKurzform");
-
-
-
 		}
 		catch ( MissingResourceException e ) {
 			System.err.println( e );
