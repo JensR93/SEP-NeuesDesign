@@ -152,20 +152,20 @@ public class Zeitplan {
         for(int i=0;i<alleRunden.size();i++){
             for(int j=0;j<alleRunden.get(i).size();j++){
                 Spiel spiel = alleRunden.get(i).get(j);
-                if(spiel.getHeim()==null || spiel.getGast()==null){
-                    zeitplan.add(spiel);
-                    spiel.setZeitplanNummer(spielnummer);
-                    spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
-                    spielnummer++;
-                }
-                else if (!spiel.getHeim().isFreilos() && !spiel.getGast().isFreilos()){
-                    zeitplan.add(spiel);
-                    spiel.setZeitplanNummer(spielnummer);
-                    spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
-                    spielnummer++;
-                }
-                else{
-                    spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                if(spiel!=null) {
+                    if (spiel.getHeim() == null || spiel.getGast() == null) {
+                        zeitplan.add(spiel);
+                        spiel.setZeitplanNummer(spielnummer);
+                        spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        spielnummer++;
+                    } else if (!spiel.getHeim().isFreilos() && !spiel.getGast().isFreilos()) {
+                        zeitplan.add(spiel);
+                        spiel.setZeitplanNummer(spielnummer);
+                        spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        spielnummer++;
+                    } else {
+                        spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                    }
                 }
             }
             rundenZeitPlanNummer++;

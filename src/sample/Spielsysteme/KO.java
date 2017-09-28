@@ -318,6 +318,8 @@ public class KO extends Spielsystem {
 			else{
 				spielUmDrei.setGast(verlierer);
 			}
+			spielUmDrei.setFreilosErgebnis();
+			spielUmDrei.getSpielDAO().update(spielUmDrei);
 		}
 	}
 
@@ -328,6 +330,7 @@ public class KO extends Spielsystem {
 	private void spielUmDreiErstellen() {
 		int spielUmDreiSystemSpielID =getSpielSystemArt()*10000000+1;
 		spielUm3 = new Spiel(spielUmDreiSystemSpielID,this.spielsystem);
+		platzDreiAusspielen = true;
 		spielsystem.getSpielklasse().getSpiele().put(spielUmDreiSystemSpielID,spielUm3);
 		getRundenArray().get(getRundenArray().size()-1).add(spielUm3);
 	}

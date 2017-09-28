@@ -6,9 +6,7 @@ import javafx.geometry.VPos;
 import javafx.print.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -23,6 +21,7 @@ import sample.Spielsysteme.Spielsystem;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
+import java.util.Optional;
 
 public class Turnierbaum implements Visualisierung {
 
@@ -58,6 +57,9 @@ public class Turnierbaum implements Visualisierung {
         }
         int gesamtHoehe =runden.get(0).size()*(hoehe+yAbstand)+yObenLinks+2-yAbstand;
         int gesamtBreite = runden.size()*(breite+xAbstand)+xObenLinks+2-xAbstand;
+        if(runden.size()<3){
+            gesamtHoehe +=hoehe;
+        }
         int yObenLinks = this.yObenLinks;
         this.canvas = new Canvas(gesamtBreite, gesamtHoehe);
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -103,6 +105,9 @@ public class Turnierbaum implements Visualisierung {
             int rundenAnzahl = runden.size()-1;
             int xObenLinksSU3 = xObenLinks+rundenAnzahl*breite+rundenAnzahl*xAbstand;
             int yObenLinksSU3 = (gesamtHoehe/4)*3;
+            if(rundenAnzahl<2){
+                yObenLinksSU3 = gesamtHoehe-hoehe-2;
+            }
             TurnierbaumSpiel spielUmDrei = new TurnierbaumSpiel(xObenLinksSU3,yObenLinksSU3,breite,hoehe,spielUmPlatz3,xAbstand,yAbstand);
             spielUmDrei.draw(gc);
             gc.setTextBaseline(VPos.BOTTOM);
@@ -176,7 +181,19 @@ public class Turnierbaum implements Visualisierung {
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 0,0,0,0 );
         PrinterJob printerJob = PrinterJob.createPrinterJob();
-        if(printerJob!=null && printerJob.showPrintDialog(auswahlklasse.getPrimaryStage())){
+        if(printerJob!=null && (auswahlklasse.isDruckerGesetzt()||printerJob.showPrintDialog(auswahlklasse.getPrimaryStage()))){
+            if (!auswahlklasse.isDruckerGesetzt()){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Drucker speichern?");
+                alert.setContentText("Soll der Drucker gespeichert werden?");
+                alert.getButtonTypes().removeAll();
+                alert.getButtonTypes().add(ButtonType.YES);
+                alert.getButtonTypes().add(ButtonType.NO);
+                Optional<ButtonType> auswahl = alert.showAndWait();
+                if(auswahl.get()==ButtonType.YES){
+                    auswahlklasse.setDruckerGesetzt(true);
+                }
+            }
             ArrayList<Canvas> alleSeiten = erstelleTurnierbaum(spielsystem,pageLayout.getPrintableWidth(),pageLayout.getPrintableHeight());
             boolean success = true;
 

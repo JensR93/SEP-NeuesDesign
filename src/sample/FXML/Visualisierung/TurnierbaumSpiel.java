@@ -56,6 +56,10 @@ public class TurnierbaumSpiel {
         /*for (int i=0;i<Font.getFontNames().size();i++){
             System.out.println(Font.getFontNames().get(i));
         }*/
+        if(spiel == null){
+            System.out.println("Spiel ist null bei Versuch, Turnierbaumspiel zu erstellen");
+            return;
+        }
         gc.setFill(Color.BLACK);
         gc.beginPath();
         gc.setStroke(Color.GREEN);
@@ -208,6 +212,10 @@ public class TurnierbaumSpiel {
     }
 
     public TurnierbaumSpiel neuesSpielerstellen(GraphicsContext gc) {
+        if(spiel == null){
+            System.out.println("Spiel ist null bei Versuch, Turnierbaumspiel zu erstellen");
+            return null;
+        }
         int neuXObenLinks = xObenLinks+breite+xAbstand;
         int neuYObenLinks = yObenLinks +(((2*hoehe+yAbstand)/2)-hoehe/2);
         int neueSystemSpielID = neueSystemSpielIDberechnen() ;
@@ -224,6 +232,10 @@ public class TurnierbaumSpiel {
     }
 
     private int neueSystemSpielIDberechnen() {
+        if(spiel == null){
+            System.out.println("Spiel ist null bei Versuch, Turnierbaumspiel zu erstellen");
+            return 0;
+        }
         int alteSystemSpielID = spiel.getSystemSpielID();
         int neueSystemSpielID = alteSystemSpielID - spiel.getSpielsystem().getSpielSystemArt()*10000000;
         int alteRundenNummer = (neueSystemSpielID/1000);

@@ -427,12 +427,24 @@ public class DashboardController implements Initializable{
 
     public void allesFreigeben(){
         btnKlassen.setDisable(false);
-        btnSpieler.setDisable(false);
         btnHome.setDisable(false);
         btnzeitplan.setDisable(false);
-        btnTurnierbaum.setDisable(false);
         btnSpieluebersicht.setDisable(false);
-        btnVerein.setDisable(false);
+        turnierbaumFreigeben();
+    }
+
+    public void turnierbaumFreigeben(){
+        for(int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().size();i++){
+            if(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().get(i).getSpielsystem()!=null){
+                btnTurnierbaum.setDisable(false);
+                return;
+            }
+        }
+        btnTurnierbaum.setDisable(true);
+    }
+
+    public void turnierbaumAktivieren(){
+        btnTurnierbaum.setDisable(false);
     }
 
     @Override

@@ -353,10 +353,10 @@ public class Turnier_ladenController extends Application implements Initializabl
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().clear();
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen_auswahl().clear();
             auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
-
             t.read(auswahlklasse.getAktuelleTurnierAuswahl());
             //System.out.println(a.getAktuelleTurnierAuswahl().getName());
             auswahlklasse.turnierAuswahlSpeichern(auswahlklasse.getAktuelleTurnierAuswahl());
+            auswahlklasse.getDashboardController().turnierbaumFreigeben();
             //System.out.println("Das aktuelle Turnier lautet"+a.getAktuelleTurnierAuswahl().toString());
             //Main.getInstance().updateTitle("Badminton Turnierverwaltung - Turnier: "+a.getAktuelleTurnierAuswahl().getName());
             //a.setAktuelleTurnierAuswahl
