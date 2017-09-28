@@ -446,12 +446,7 @@ public class DashboardController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         SpracheLaden();
-
-
-
-
         auswahlklasse.setDashboardController(this);
         System.out.println(auswahlklasse.getDashboardController());
         createTurnierLadenPage();
@@ -462,10 +457,10 @@ public class DashboardController implements Initializable{
         try {
             Einstellungen =  FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
-            Turnier=fxmlLoaderTurnier.load();
+            Turnier = fxmlLoaderTurnier.load();
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
-            Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
+            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
 
 
         } catch (IOException e) {

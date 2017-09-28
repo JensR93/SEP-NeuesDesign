@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
+<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
    <tabs>
       <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
         <content>
@@ -191,7 +191,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
                         <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="250.0" prefHeight="25.0" prefWidth="180.0" promptText="Spielersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" />
-                        <Label fx:id="label_partner" textFill="RED">
+                        <Label fx:id="label_partner" textFill="RED" visible="false">
                            <font>
                               <Font size="16.0" />
                            </font>

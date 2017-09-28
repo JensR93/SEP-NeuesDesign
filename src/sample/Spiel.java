@@ -460,19 +460,19 @@ public class Spiel {
 	private String disziplinKurzform(){
 		String disziplin = spielsystem.getSpielklasse().getDisziplin().toUpperCase();
 		String kurzform = "";
-		if(disziplin.contains("DAMENEINZEL")){
+		if(disziplin.equalsIgnoreCase("DAMENEINZEL")){
 			kurzform = "DE";
 		}
-		else if(disziplin.contains("HERRENEINZEL")) {
+		else if(disziplin.equalsIgnoreCase("HERRENEINZEL")) {
 			kurzform = "HE";
 		}
-		else if(disziplin.contains("HERRENDOPPEL")) {
+		else if(disziplin.equalsIgnoreCase("HERRENDOPPEL")) {
 			kurzform = "HD";
 		}
-		else if(disziplin.contains("DAMENDOPPEL")) {
+		else if(disziplin.equalsIgnoreCase("DAMENDOPPEL")) {
 			kurzform = "DD";
 		}
-		else if(disziplin.contains("MIXED")) {
+		else if(disziplin.equalsIgnoreCase("MIXED")) {
 			kurzform = "MX";
 		}
 		return kurzform;

@@ -138,7 +138,7 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     public void printSpielerZuordnenTableNeu() throws Exception {
 
-        if(auswahlklasse.getAktuelleTurnierAuswahl()!=null) {
+        //if(auswahlklasse.getAktuelleTurnierAuswahl()!=null) {
 
             fulleObsSpieler();
 
@@ -159,10 +159,10 @@ public class Spieler_hinzufuegenController implements Initializable{
             tabelle_spielerliste.setItems(obs_spieler);
             //endregion
 
-        }
-        else{
+
+   /*     else{
             System.out.println("kann Turnier nicht laden");
-        }
+        }*/
 
     }
 
@@ -545,6 +545,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
                                         if(label_partner.getText().equals(""))
                                         {
                                             label_partner.setText(clickedRow.toString());
+                                            label_partner.setVisible(true);
                                             doppelpartner1=clickedRow;
                                             doppelspielklasse=auswahlklasse.getAktuelleTurnierAuswahl().getSpielklassen().get(key);
                                         }
@@ -557,6 +558,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
                                                 auswahlklasse.InfoBenachrichtigung("Erf",team.toString()+" wurde "+auswahlklasse.getAktuelleTurnierAuswahl().getSpielklassen().get(key).toString()+" hinzugefügt");
 
                                                 label_partner.setText("");
+                                                label_partner.setVisible(false);
                                                 doppelpartner1=null;
                                                 doppelspielklasse=null;
                                             }
