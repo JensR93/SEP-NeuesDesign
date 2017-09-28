@@ -179,12 +179,12 @@
                <children>
                   <TableView fx:id="tabelle_spielerliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="100.0" prefWidth="75.0" text="Vorname" />
-                        <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="100.0" prefWidth="75.0" text="Nachname" />
-                        <TableColumn fx:id="tabelle_spielerliste_nationalitaet" prefWidth="75.0" text="Nationalität" />
-                        <TableColumn fx:id="tabelle_spielerliste_verein" minWidth="100.0" prefWidth="75.0" text="Verein" />
-                        <TableColumn fx:id="tabelle_spielerliste_SpielerID" minWidth="100.0" prefWidth="75.0" text="Spieler ID" />
-                        <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="100.0" prefWidth="75.0" text="Geschlecht" />
+                        <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="-Infinity" prefWidth="100.0" text="Vorname" />
+                        <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="-Infinity" prefWidth="100.0" text="Nachname" />
+                        <TableColumn fx:id="tabelle_spielerliste_nationalitaet" minWidth="-Infinity" prefWidth="100.0" text="Nationalität" />
+                        <TableColumn fx:id="tabelle_spielerliste_verein" minWidth="-Infinity" prefWidth="100.0" text="Verein" />
+                        <TableColumn fx:id="tabelle_spielerliste_SpielerID" minWidth="-Infinity" prefWidth="100.0" text="Spieler ID" />
+                        <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="-Infinity" prefWidth="100.0" text="Geschlecht" />
                         <TableColumn fx:id="tabelle_spielerliste_geburtstag" minWidth="100.0" prefWidth="75.0" text="Geburtsdatum" />
                      </columns>
                   </TableView>
