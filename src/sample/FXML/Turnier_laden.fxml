@@ -92,12 +92,17 @@
                               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                            </GridPane.margin>
                            <children>
-                              <TableView fx:id="TurnierlisteTabelle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="TurnierlisteTabelle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
-                                    <TableColumn fx:id="TurnierDatumSpalte" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" resizable="false" text="Datum" />
+                                    <TableColumn fx:id="TurnierDatumSpalte" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" resizable="false" styleClass="tltable-row-cell" text="Datum" />
                                     <TableColumn fx:id="TurnierNameSpalte" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="400.0" resizable="false" text="Turniername" />
                                     <TableColumn maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="300.0" resizable="false" text="Turniername" visible="false" />
                                  </columns>
+                                 <styleClass>
+                                    <String fx:value="tltable-view" />
+                                    <String fx:value="tltable-cell" />
+                                    <String fx:value="tltable-row-cell" />
+                                 </styleClass>
                               </TableView>
                            </children>
                         </AnchorPane>

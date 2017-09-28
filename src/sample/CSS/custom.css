@@ -198,7 +198,8 @@
 }
 
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#a1c2fa 25%, #3367D6 75%);
+    -fx-background-color: linear-gradient(#4473D7 25%, #3D6CD0 75%);
+    -fx-opacity: 0.9;
     -fx-background-radius: 50 50 0 0;
 
 
@@ -213,8 +214,6 @@
     -fx-background-color: transparent;
 }
 
-
-
 .table-view .table-column {
     -fx-alignment: center;
 }
@@ -227,7 +226,7 @@
     -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
     -fx-background-color: transparent;
     -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
-    -fx-border-width: 5px; /* 1 */
+    -fx-border-width: 0.08999em; /* 1 */
     -fx-cell-size: 2.0em; /* 24 */
 }
 
@@ -240,6 +239,14 @@
 
 .table-row-cell{
     -fx-background-color: -fx-table-cell-border-color, white;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-text-alignment: center;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3367D6;
+    -fx-text-fill: white;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
     -fx-text-alignment: center;
