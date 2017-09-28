@@ -10,7 +10,7 @@ import sample.DAO.*;
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
 	private String vName;
-	private boolean OffenerBetrag;
+	private boolean gebuehrenbezahlt;
 
 
 	private String Notiz;
@@ -33,7 +33,6 @@ public class Spieler {
 	private boolean geschlecht;
 	private int[] rPunkte = new int[3]; //[0]=Einzel-, [1]=Doppel-, [2]=Mixed-Ranglistenpunkte
 	private Verein verein;
-	private float meldeGebuehren;
 	private int Nationalitaet = 0;
 	private LocalDate verfuegbar = LocalDate.now();
 	private int mattenSpiele = 0;
@@ -48,12 +47,12 @@ public class Spieler {
 		return vName;
 	}
 
-	public boolean isOffenerBetrag() {
-		return OffenerBetrag;
+	public boolean isGebuehrenbezahlt() {
+		return gebuehrenbezahlt;
 	}
 
-	public void setOffenerBetrag(boolean offenerBetrag) {
-		OffenerBetrag = offenerBetrag;
+	public void setGebuehrenbezahlt(boolean gebuehrenbezahlt) {
+		this.gebuehrenbezahlt = gebuehrenbezahlt;
 	}
 
 	public String getnName() {
@@ -77,7 +76,6 @@ public class Spieler {
 		this.geschlecht = geschlecht;
 		this.rPunkte = rPunkte;
 		this.verein = verein;
-		this.meldeGebuehren = meldeGebuehren;
 		this.Nationalitaet = nationalitaet;
 		this.verfuegbar = verfuegbar;
 
@@ -96,13 +94,13 @@ public class Spieler {
 		this.geschlecht = geschlecht;
 		this.rPunkte = rPunkte;
 		this.verein = verein;
-		this.meldeGebuehren = meldeGebuehren;
+
 		this.Nationalitaet = nationalitaet;
 		this.verfuegbar = verfuegbar;
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
-		this.OffenerBetrag=offenerBetrag;
+		this.gebuehrenbezahlt =offenerBetrag;
 	}
 
 
@@ -208,10 +206,7 @@ public class Spieler {
 		//spielerDAO.update(this);
 	}
 
-	public void setMeldeGebuehren(float meldeGebuehren) {
-		this.meldeGebuehren = meldeGebuehren;
-		//spielerDAO.update(this);
-	}
+
 
 	public SpielerDAO getSpielerDAO() {
 		return spielerDAO;
@@ -383,9 +378,7 @@ public class Spieler {
 		return verein;
 	}
 
-	public float getMeldeGebuehren() {
-		return meldeGebuehren;
-	}
+
 
 	public LocalDate getVerfuegbar() {
 		return verfuegbar;

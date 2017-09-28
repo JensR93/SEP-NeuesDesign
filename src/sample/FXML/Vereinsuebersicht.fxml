@@ -6,6 +6,7 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<JFXTabPane xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
+<JFXTabPane fx:id="tabpane_verein" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
    <tabs>
-      <Tab fx:id="tab_Vereinsuebersicht" text="Vereinsübersicht">
+      <Tab fx:id="tab_verein" onSelectionChanged="#Vereinsuebersichtauswahl" text="Vereinsübersicht">
          <content>
             <GridPane>
                <columnConstraints>
@@ -51,7 +52,7 @@
             </GridPane>
          </content>
       </Tab>
-      <Tab fx:id="tab_Startgeldliste" text="Startgeldliste">
+      <Tab fx:id="tab_startgeld" disable="true" text="Startgeldliste">
         <content>
         </content>
          <content>
@@ -61,17 +62,20 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="10.0" prefWidth="449.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Anzahl Spieler" />
                   <Label text="Gesamtgebühren" GridPane.rowIndex="1" />
-                  <Label text="Offene Gebühren" GridPane.rowIndex="2" />
+                  <Label text="Nicht bezahlt" GridPane.rowIndex="3" />
                   <JFXTextField fx:id="t_anzahlspieler" editable="false" text="0" GridPane.columnIndex="1" />
                   <JFXTextField fx:id="t_gesamtgebuehren" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="t_offenegebuehren" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ListView fx:id="list_nichtbezahlt" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Offene Gebühren" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="t_offenegebuehren" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </content>
