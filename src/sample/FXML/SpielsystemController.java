@@ -289,6 +289,72 @@ public class SpielsystemController implements Initializable {
         return false;
     }
     @FXML
+    void erstelleSetzlisteZufall(ActionEvent event) {
+        t_suchleistesetzliste.setText("");
+
+        SetzlisteDAO setzlisteDAO = new SetzlisteDAOimpl();
+        boolean erfolg=false;
+        ArrayList <Team> teamsohnesetzplatz=new ArrayList<>();
+        ArrayList <Team> teamsohnesetzplatz_random=new ArrayList<>();
+        int index=1;
+
+        for(int i=0;i<obs_setzliste.size();i++)
+        {
+            System.out.println(i);
+
+            if (obs_setzliste.get(i).getSetzplatz() > 0) {
+/*                erfolg = setzlisteDAO.create(obs_setzliste.get(i).getSetzplatz(), obs_setzliste.get(i), obs_setzliste.get(i).getSpielklasse());
+                auswahlklasse.getAktuelleSpielklassenAuswahl().getSetzlistedict().put(obs_setzliste.get(i), i + 1);
+                auswahlklasse.getAktuelleSpielklassenAuswahl().getSetzliste().add(obs_setzliste.get(i));*/
+                index++;
+            }
+            if (obs_setzliste.get(i).getSetzplatz() == 0) {
+                teamsohnesetzplatz.add(obs_setzliste.get(i));
+
+                //erfolg= setzlisteDAO.create(i+1,obs_setzliste.get(i),obs_setzliste.get(i).getSpielklasse());
+            }
+        }
+
+
+        teamsohnesetzplatz.sort(new Comparator<Team>() {
+            @Override
+            public int compare(Team z1, Team z2) {
+                if (z1.getRLPanzeigen() > z2.getRLPanzeigen())
+                    return -1;
+                if (z1.getRLPanzeigen() < z2.getRLPanzeigen())
+                    return 1;
+                return 0;
+            }
+        });
+
+        Collections.shuffle(teamsohnesetzplatz);
+        for(int i=0;i<teamsohnesetzplatz.size();i++)
+        {
+/*            erfolg=setzlisteDAO.create(index,teamsohnesetzplatz.get(i),teamsohnesetzplatz.get(i).getSpielklasse());
+            auswahlklasse.getAktuelleSpielklassenAuswahl().getSetzlistedict().put(teamsohnesetzplatz.get(i),index);
+            auswahlklasse.getAktuelleSpielklassenAuswahl().getSetzliste().add(teamsohnesetzplatz.get(i));*/
+            teamsohnesetzplatz.get(i).setSetzplatz(index);
+            teamsohnesetzplatz.get(i).getTeamDAO().update(teamsohnesetzplatz.get(i));
+            index++;
+        }
+
+
+/*        if(erfolg)
+        {
+            auswahlklasse.InfoBenachrichtigung("Erfolg","Erfolg");
+            auswahlklasse.getAktuelleSpielklassenAuswahl().setSetzliste_gesperrt(true);
+            // pruefeSperrungSetzliste();
+        }
+        if(!erfolg)
+        {
+            auswahlklasse.WarnungBenachrichtigung("Fehler","Fehler");
+        }*/
+        fuelleobs_setzliste();
+        sortiereTabelleSetzliste();
+        pruefeSperrungSetzliste();
+    }
+
+    @FXML
     private void pressbtn_spielklasseStarten(ActionEvent event){
         if(ausgewaehlte_spielklasse.getSetzlistedict().size()==0)
         {
