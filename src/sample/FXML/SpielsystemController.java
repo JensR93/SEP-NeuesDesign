@@ -480,7 +480,7 @@ public class SpielsystemController implements Initializable {
     }
 
     @FXML
-    void erstelleSetzlisteZufall(ActionEvent event) {
+    void erstelleSetzlistell(ActionEvent event) {
         t_suchleistesetzliste.setText("");
 
         SetzlisteDAO setzlisteDAO = new SetzlisteDAOimpl();
