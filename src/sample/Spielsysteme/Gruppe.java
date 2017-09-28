@@ -17,6 +17,7 @@ public class Gruppe extends Spielsystem {
 	public Gruppe(ArrayList<Team> setzliste, Spielklasse spielklasse) {
 		try {
 			this.setSpielSystemArt(1);
+			this.spielsystem=this;
 			setSpielklasse(spielklasse);
 			this.teamList = setzliste;
 			freiloseHinzufuegen(teamList);

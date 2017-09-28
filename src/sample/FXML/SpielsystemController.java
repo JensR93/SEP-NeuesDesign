@@ -155,10 +155,6 @@ public class SpielsystemController implements Initializable {
     private JFXTextField textField_anzahlRundenSchweizer;
 
 
-
-    @FXML
-    private ArrayList<Team> team_setzliste = new ArrayList<>();
-
     Dictionary<Integer,Spielklasse> turnierauswahlspielklassendict = null;
     Spielklasse ausgewaehlte_spielklasse=  auswahlklasse.getAktuelleSpielklassenAuswahl();
     Spieler spieler_m1=null;
@@ -185,7 +181,6 @@ public class SpielsystemController implements Initializable {
                 if (team.toString().toUpperCase().contains(t_suchleistesetzliste.getText().toUpperCase())) {
                     obs_setzliste.add(team);
                 }
-
             }
         }
         pruefeAnzahlRLPItems();
@@ -297,6 +292,7 @@ public class SpielsystemController implements Initializable {
     private void pressbtn_spielklasseStarten(ActionEvent event){
         if(ausgewaehlte_spielklasse.getSetzlistedict().size()==0)
         {
+            erstelleSetzlisteZufall(event);
             System.out.println("Spielklasse_Setzliste wird erstellt");
             for(int i=0;i<obs_setzliste.size();i++)
             {
@@ -1550,6 +1546,14 @@ public class SpielsystemController implements Initializable {
 
         if(erfolg)
         {
+            ausgewaehlte_spielklasse.getSpiele().clear();
+            ausgewaehlte_spielklasse.getSetzliste().clear();
+            ausgewaehlte_spielklasse.clearSetzlisteDic();
+            ausgewaehlte_spielklasse.setSpielsystem(null);
+            auswahlklasse.getVisualisierungController().klassenTabsErstellen();
+            ausgewaehlte_spielklasse.setSetzliste_gesperrt(false);
+            pruefeSperrungSetzliste();
+            auswahlklasse.getDashboardController().setNodeSpielsystem();
             auswahlklasse.InfoBenachrichtigung("Stop","stop erfolgreich");
         }
     }
@@ -1578,11 +1582,15 @@ public class SpielsystemController implements Initializable {
         }
         else
         {
+            pfeil_links.setVisible(true);
+            pfeil_rechts.setVisible(true);
+            tabsperst.setDisable(false);
             btn_stoppen.setVisible(false);
             label_spieler.setVisible(false);
             label_spiele.setVisible(false);
             vbox_info.setDisable(true);
             vbox_info.setVisible(false);
+            spielsystem_spielerliste_alleSpieler.setVisible(true);
 
         }
 

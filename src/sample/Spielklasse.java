@@ -176,6 +176,9 @@ public class Spielklasse {
 			einzel=true;
 		}
 	}
+	public void clearSetzlisteDic(){
+		setzlistedict = new Hashtable<>();
+	}
 
 
 
