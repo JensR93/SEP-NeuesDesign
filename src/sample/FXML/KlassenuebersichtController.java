@@ -120,7 +120,11 @@ public class KlassenuebersichtController implements Initializable {
 
             titel = bundle.getString("t_disziplin");
             t_disziplin.setText(titel);
-
+            try {
+                comboBoxFill();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
@@ -132,18 +136,14 @@ public class KlassenuebersichtController implements Initializable {
     public void comboBoxFill() throws IOException {
         try{
             combo_niveau.setItems(FXCollections.observableArrayList(Niveau.values()));
+            ObservableList disziplin = FXCollections.observableArrayList();
 
-            if(auswahlklasse.getEinstellungenController().getSprache().equals("de"))
-            {
-                combo_disziplin.setItems(FXCollections.observableArrayList(Disziplin.values()));
-            }
-            else
-            {
-                ObservableList disziplin_en = FXCollections.observableArrayList();
-                disziplin_en.addAll("Men's Single", "Men's Double","Women's Single","Women's Double","Mixed");
-                //combo_disziplin.setItems(FXCollections.observableArrayList(Disziplin_en.values()));
-                combo_disziplin.setItems(disziplin_en);
-            }
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            disziplin.addAll(bundle.getString("Herreneinzel"),bundle.getString("Herrendoppel"),
+                    bundle.getString("Dameneinzel"),bundle.getString("Damendoppel"),
+                    bundle.getString("Mixed"));
+            combo_disziplin.setItems(disziplin);
 
 
 
@@ -162,26 +162,10 @@ public class KlassenuebersichtController implements Initializable {
     private void pressBtn_KlasseSpeichern(ActionEvent event) throws IOException
     {
         Spielklasse spklasse;
-        if(combo_disziplin.getValue().equals("Men's Single"))
-        {
-            spklasse = new Spielklasse( "Herreneinzel",Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        }
-        else if(combo_disziplin.getValue().equals("Men's Double"))
-        {
-            spklasse = new Spielklasse( "Herrendoppel",Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        }
-        else if(combo_disziplin.getValue().equals("Women's Single"))
-        {
-            spklasse = new Spielklasse( "Dameneinzel",Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        }
-        else if(combo_disziplin.getValue().equals("Women's Double"))
-        {
-            spklasse = new Spielklasse( "Damendoppel",Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        }
-        else
-        {
-            spklasse = new Spielklasse( combo_disziplin.getValue(),Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
-        }
+
+
+        spklasse = new Spielklasse( disziplinWertLanguage(),Niveau.valueOf(String.valueOf(combo_niveau.getValue())), auswahlklasse.getAktuelleTurnierAuswahl());
+
 
 
 
@@ -195,6 +179,30 @@ public class KlassenuebersichtController implements Initializable {
         auswahlklasse.getKlassenuebersichtController().SpielklassenHinzufuegen();
         //auswahlklasse.getDashboardController().setNodeKlassenuebersicht();
 
+    }
+
+    private Disziplin disziplinWertLanguage() {
+        if(combo_disziplin.getSelectionModel().getSelectedIndex()==0)
+        {
+            return Disziplin.Herreneinzel;
+        }
+        if(combo_disziplin.getSelectionModel().getSelectedIndex()==1)
+        {
+            return Disziplin.Herrendoppel;
+        }
+        if(combo_disziplin.getSelectionModel().getSelectedIndex()==2)
+        {
+            return Disziplin.Dameneinzel;
+        }
+        if(combo_disziplin.getSelectionModel().getSelectedIndex()==3)
+        {
+            return Disziplin.Damendoppel;
+        }
+        if(combo_disziplin.getSelectionModel().getSelectedIndex()==4)
+        {
+            return Disziplin.Mixed;
+        }
+        return Disziplin.Herreneinzel;
     }
 
     public void pressBtn_Spielsystem(Spielklasse spielklasse) throws Exception {
@@ -301,104 +309,30 @@ public class KlassenuebersichtController implements Initializable {
                 sp= obs_spielklasse.get(i);
                 if(sp.getSetzliste()!=null&&sp.getSetzliste().size()>0)
                 {
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("de"))
-                    {
-                        hp = new Hyperlink(sp.getDisziplin() + "-" + sp.getNiveau() + " Spieler:" + (sp.getSetzliste().size() * 2));
-                    }
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("en"))
-                    {
-                        String disziplintext = "";
-                        if(sp.toString().contains("Herreneinzel"))
-                        {
-                            disziplintext="Men's Single";
-                        }
-                        if(sp.toString().contains("Herrendoppel"))
-                        {
-                            disziplintext="Men's Double";
-                        }
-                        if(sp.toString().contains("Dameneinzel"))
-                        {
-                            disziplintext="Women's Single";
-                        }
-                        if(sp.toString().contains("Damendoppel"))
-                        {
-                            disziplintext="Women's Double";
-                        }
-                        if(sp.toString().contains("Mixed"))
-                        {
-                            disziplintext="Mixed";
-                        }
-                        hp = new Hyperlink(disziplintext + "-" + sp.getNiveau() + " Player:" + (sp.getSetzliste().size() * 2));
-                    }
+
+                        hp = new Hyperlink(sp.getDisziplinLanguage() + "-" + sp.getNiveau() + " Spieler:" + (sp.getSetzliste().size() * 2));
+
 
                     //System.out.println(hp+"----------1");
                 }
                 if(sp.getSpiele()!=null&&sp.getSetzliste()!=null&&sp.getSpiele().size()>0)
                 {
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("de")) {
+
                         sp.setSetzliste_gesperrt(true);
                         //System.out.println(sp.isSetzliste_gesperrt());
-                        hp = new Hyperlink(sp.getDisziplin() + "-" + sp.getNiveau() + " Spieler:" + (sp.getSetzliste().size() * 2) + " Spiele:" + sp.getSpiele().size());
+                        hp = new Hyperlink(sp.getDisziplinLanguage() + "-" + sp.getNiveau() + " Spieler:" + (sp.getSetzliste().size() * 2) + " Spiele:" + sp.getSpiele().size());
                         //System.out.println(hp+"----------2");
-                    }
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("en"))
-                    {
-                        String disziplintext = "";
-                        if(sp.toString().contains("Herreneinzel"))
-                        {
-                            disziplintext="Men's Single";
-                        }
-                        if(sp.toString().contains("Herrendoppel"))
-                        {
-                            disziplintext="Men's Double";
-                        }
-                        if(sp.toString().contains("Dameneinzel"))
-                        {
-                            disziplintext="Women's Single";
-                        }
-                        if(sp.toString().contains("Damendoppel"))
-                        {
-                            disziplintext="Women's Double";
-                        }
-                        if(sp.toString().contains("Mixed"))
-                        {
-                            disziplintext="Mixed";
-                        }
-                        hp = new Hyperlink(disziplintext + "-" + sp.getNiveau() + " Player:" + (sp.getSetzliste().size() * 2)+ " Spiele:" + sp.getSpiele().size());
-                    }
+
+
                 }
                 if(sp.getSetzliste().size()==0||sp.getSetzliste()==null)
                 {
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("de")) {
-                        sp.setSetzliste_gesperrt(false);
-                        hp = new Hyperlink(sp.getDisziplin() + "-" + sp.getNiveau());
-                    }
 
-                    if(auswahlklasse.getEinstellungenController().getSprache().equals("en"))
-                    {
-                        String disziplintext = "";
-                        if(sp.toString().contains("Herreneinzel"))
-                        {
-                            disziplintext="Men's Single";
-                        }
-                        if(sp.toString().contains("Herrendoppel"))
-                        {
-                            disziplintext="Men's Double";
-                        }
-                        if(sp.toString().contains("Dameneinzel"))
-                        {
-                            disziplintext="Women's Single";
-                        }
-                        if(sp.toString().contains("Damendoppel"))
-                        {
-                            disziplintext="Women's Double";
-                        }
-                        if(sp.toString().contains("Mixed"))
-                        {
-                            disziplintext="Mixed";
-                        }
-                        hp = new Hyperlink(disziplintext + "-" + sp.getNiveau() );
-                    }
+                        sp.setSetzliste_gesperrt(false);
+                        hp = new Hyperlink(sp.getDisziplinLanguage() + "-" + sp.getNiveau());
+
+
+
                     //System.out.println(hp+"----------3");
                 }
 

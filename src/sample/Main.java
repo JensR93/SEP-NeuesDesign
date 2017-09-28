@@ -11,7 +11,11 @@ import javafx.stage.StageStyle;
 import sample.DAO.auswahlklasse;
 import sample.FXML.DashboardController;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Locale;
+import java.util.Properties;
 
 public class Main extends Application {
 
@@ -31,6 +35,12 @@ public class Main extends Application {
 /*        Image icon = new Image(getClass().getResourceAsStream("Images/icon/Logo.ico"));
         primaryStage.getIcons().add(icon);*/
 
+
+
+
+
+
+
         primaryStage.setMinHeight(820);
         primaryStage.setMinWidth(1400);
         primaryStage.show();
@@ -41,6 +51,33 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+/*        File f = new File("Einstellungen.xml");
+        if(f.exists() && !f.isDirectory()) {
+            Properties loadProps = new Properties();
+            try {
+                loadProps.loadFromXML(new FileInputStream("Einstellungen.xml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            String  Sprache = loadProps.getProperty("Sprache");
+            if(Sprache.equals("de"))
+            {
+                Locale.setDefault( new Locale("de", "DE") );
+            }
+            if(Sprache.equals("en"))
+            {
+                Locale.setDefault( new Locale("en", "UK") );
+            }
+            if(Sprache.equals("es"))
+            {
+                Locale.setDefault( new Locale("es", "ES") );
+            }
+
+
+        }*/
+
         launch(args);
     }
 

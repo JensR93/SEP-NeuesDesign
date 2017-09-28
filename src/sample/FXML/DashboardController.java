@@ -34,8 +34,8 @@ public class DashboardController implements Initializable{
     String baseName = "resources.Main";
     String titel ="";
 
-    private JFXTabPane Spieler,Spielsystem,Visualisierung;
-    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Vereinsuebersicht,Spielereigenschaften;
+    private JFXTabPane Spieler,Spielsystem,Visualisierung,Vereinsuebersicht;
+    private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Spielereigenschaften;
 
     private GridPane Turnier,home;
     private VBox Spieluebersicht;

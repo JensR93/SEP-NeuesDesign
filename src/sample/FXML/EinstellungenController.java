@@ -179,15 +179,19 @@ public class EinstellungenController implements Initializable {
             Choice_Sprache.getItems().clear();
             Choice_Sprache.getItems().add(bundle.getString("spracheDeutsch"));
             if (Sprache.equals("de")){
-                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+                Choice_Sprache.getSelectionModel().select(0);
             }
             Choice_Sprache.getItems().add(bundle.getString("spracheEnglisch"));
             if (Sprache.equals("en")){
-                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+                Choice_Sprache.getSelectionModel().select(1);
             }
             Choice_Sprache.getItems().add(bundle.getString("spracheSpanisch"));
             if (Sprache.equals("es")){
-                Choice_Sprache.getSelectionModel().select(Choice_Sprache.getItems().size()-1);
+                Choice_Sprache.getSelectionModel().select(2);
+            }
+            Choice_Sprache.getItems().add(bundle.getString("spracheTuerkisch"));
+            if (Sprache.equals("tk")){
+                Choice_Sprache.getSelectionModel().select(3);
             }
 
             titel = bundle.getString("rdGewinner");
@@ -358,6 +362,16 @@ public class EinstellungenController implements Initializable {
             Locale.setDefault( new Locale("en", "en") );
             System.out.println("Sprache=Englisch");
         }
+        if(getSprache().equals("es"))
+        {
+            Locale.setDefault( new Locale("es", "es") );
+            System.out.println("Sprache=Spanisch");
+        }
+        if(getSprache().equals("tk"))
+        {
+            Locale.setDefault( new Locale("tk", "tk") );
+            System.out.println("Sprache=Türkisch");
+        }
 
         SpracheLaden();
 
@@ -459,6 +473,16 @@ public class EinstellungenController implements Initializable {
                     Locale.setDefault( new Locale("es", "es") );
                     System.out.println("Sprache=Spanisch");
                     Sprache="es";
+                    Einstellungen_schreiben();
+                    SpracheLaden();
+                }
+            }
+            if(selection.equals(bundle.getString("spracheTuerkisch"))){
+                if(!Sprache.equals("tk"))
+                {
+                    Locale.setDefault( new Locale("tk", "tk") );
+                    System.out.println("Sprache=Türkisch");
+                    Sprache="tk";
                     Einstellungen_schreiben();
                     SpracheLaden();
                 }
