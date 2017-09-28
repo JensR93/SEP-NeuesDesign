@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Neuer_VereinController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Neuer_VereinController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -42,7 +42,10 @@
                   <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
                </graphic>
             </JFXButton>
-            <JFXButton onAction="#pressBtn_Abbrechen" text="Abbrechen" />
+            <JFXButton fx:id="btn_abbrechen_NeuerVerein" onAction="#pressBtn_Abbrechen" text="Abbrechen">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" size="20" />
+               </graphic></JFXButton>
          </children>
       </HBox>
    </children>
