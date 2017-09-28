@@ -54,7 +54,7 @@
                      <children>
                         <Label fx:id="Label_Spieleinstellungen" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Spieleinstellungen" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
                      </children>
@@ -221,7 +221,7 @@
                      <children>
                         <Label fx:id="Label_Drucker" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" text="Drucker" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
                      </children>

@@ -37,7 +37,7 @@
                <children>
                   <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <Label fx:id="l_TurnierLaden" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" text="Turnier laden" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <Label fx:id="l_TurnierLaden" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" styleClass="font-head" stylesheets="@../CSS/custom.css" text="Turnier laden" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -50,7 +50,7 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="264.0" minHeight="50.0" prefHeight="135.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="417.0" minHeight="50.0" prefHeight="405.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="50.0" prefHeight="450.0" />
                     </rowConstraints>
                      <children>
                         <GridPane>
@@ -87,25 +87,16 @@
                               </JFXTextField>
                            </children>
                         </GridPane>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="600.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <TableView fx:id="TurnierlisteTabelle" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="TurnierDatumSpalte" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" resizable="false" styleClass="tltable-row-cell" text="Datum" />
+                              <TableColumn fx:id="TurnierNameSpalte" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="400.0" resizable="false" text="Turniername" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="300.0" resizable="false" text="Turniername" visible="false" />
+                           </columns>
                            <GridPane.margin>
-                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                              <Insets bottom="25.0" left="30.0" right="30.0" />
                            </GridPane.margin>
-                           <children>
-                              <TableView fx:id="TurnierlisteTabelle" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <columns>
-                                    <TableColumn fx:id="TurnierDatumSpalte" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="400.0" resizable="false" styleClass="tltable-row-cell" text="Datum" />
-                                    <TableColumn fx:id="TurnierNameSpalte" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="400.0" resizable="false" text="Turniername" />
-                                    <TableColumn maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="300.0" resizable="false" text="Turniername" visible="false" />
-                                 </columns>
-                                 <styleClass>
-                                    <String fx:value="tltable-view" />
-                                    <String fx:value="tltable-cell" />
-                                    <String fx:value="tltable-row-cell" />
-                                 </styleClass>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
+                        </TableView>
                      </children>
                   </GridPane>
                </children>

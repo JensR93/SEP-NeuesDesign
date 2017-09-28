@@ -129,6 +129,12 @@
     -fx-font-size: 16px;
 }
 
+.font-head
+{
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+}
 /* Styling Text Fields */
 
 .text-field {
@@ -163,24 +169,36 @@
 
 .scroll-pane:selected
 {
-    -fx-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-background: #ffffff ;
     -fx-border-color: #ffffff;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
+.scroll-bar:horizontal:selected, .scroll-bar:vertical:selected
+{
     -fx-background-color: #ffffff;
+    -fx-border-radius: 50 50 50 50;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical
+{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50px;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+
 }
 
 .increment-button, .decrement-button {
-    -fx-opacity: 0;
+  -fx-text-fill: #757575;
+    -fx-font-weight: bold;
 }
 
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
+
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
@@ -189,45 +207,56 @@
     -fx-background-color: #ffffff;
 }
 
+
+}
+
 .table-view{
     -fx-background-color: transparent;
+    -fx-padding: 0 2 0 2;
+
 }
 
 .table-view:focused{
     -fx-background-color: transparent;
+
+
 }
 
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#4473D7 25%, #3D6CD0 75%);
+    -fx-background-color: #3367D6;
+    -fx-background-radius: 50 50 50 50;
     -fx-opacity: 0.9;
-    -fx-background-radius: 50 50 0 0;
-
-
+    -fx-padding: 0 50 0 50;
 }
 
 .table-view .column-header-background .label{
-    -fx-background-color: transparent;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 22px;
+
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
+
 }
 
-.table-view .table-column {
-    -fx-alignment: center;
-}
 .table-view .table-cell{
-    -fx-text-fill: #757575;
-    -fx-text-alignment: center;
+    -fx-alignment: center;
     -fx-font-weight: bold;
-    -fx-alignment: CENTER;
-    -fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
-    -fx-padding: 0.166667em; /* 2px, plus border adds 1px */
-    -fx-background-color: transparent;
-    -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
-    -fx-border-width: 0.08999em; /* 1 */
-    -fx-cell-size: 2.0em; /* 24 */
+    -fx-padding: 0 50 0 50;
+
+}
+
+.table-view .table-cell{
+-fx-text-alignment: center;
+-fx-font-weight: bold;
+-fx-alignment: CENTER;
+-fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
+-fx-background-color: transparent;
+-fx-border-color: transparent -fx-table-cell-border-color transparent;
+
+
 }
 
 .table-cell{
@@ -235,23 +264,70 @@
     -fx-table-cell-border-color:transparent;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
+
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, white;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-    -fx-text-alignment: center;
+    -fx-background-color: -fx-table-cell-border-color, transparent;
+    -fx-background-insets: 50 50 50 50;
+    -fx-dark-text-color: #757575;
+    -fx-mid-text-color: #757575;
+    -fx-light-text-color: #757575;
+
 }
+
 
 .table-row-cell:selected {
-    -fx-background-color: #3367D6;
-    -fx-text-fill: white;
+    -fx-font-size: 20px;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
+    -fx-background-color: #ffffff;
     -fx-text-alignment: center;
+    -fx-max-width: 600px;
+    -fx-dark-text-color: #757575;
+    -fx-mid-text-color: #757575;
+    -fx-light-text-color: #757575;
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 50 50 50 50;
+    -fx-opacity: 0.9;
+
+}
+.table-cell{
+-fx-padding: 0 2 0 2;
 }
 
+/*.table-view .column-header-background{*/
+    /*-fx-background-color: #4473D7;*/
+    /**/
+    /*-fx-background-radius: 10 10 0 0;*/
+
+
+/*}*/
+
+
+
+
+
+
+
+
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow,
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
 
 
 /*Material look tableview*/

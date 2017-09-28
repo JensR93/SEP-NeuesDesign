@@ -128,6 +128,15 @@ public class SpieluebersichtController implements Initializable {
                 TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory(runde, "RundenName");
 
                 tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
+
+                spielNummerSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielFeldSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielHeimSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielGastSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielErgebnisSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielSpielklasseSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+                spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().divide(7));
+
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -544,6 +553,7 @@ public class SpieluebersichtController implements Initializable {
 
 
     }
+
 
     private void checkComboBoxFuellen() {
         try {
