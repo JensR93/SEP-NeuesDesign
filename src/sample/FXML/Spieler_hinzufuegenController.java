@@ -159,6 +159,14 @@ public class Spieler_hinzufuegenController implements Initializable{
             tabelle_spielerliste.setItems(obs_spieler);
             //endregion
 
+        tabelle_spielerliste_vorname.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.1928));
+        tabelle_spielerliste_geschlecht.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.0428));
+        tabelle_spielerliste_nationalitaet.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.0428));
+        tabelle_spielerliste_SpielerID.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.1428));
+        tabelle_spielerliste_nachname.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.1928));
+        tabelle_spielerliste_verein.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.1928));
+        tabelle_spielerliste_geburtstag.prefWidthProperty().bind(tabelle_spielerliste.widthProperty().multiply(0.1928));
+
 
    /*     else{
             System.out.println("kann Turnier nicht laden");

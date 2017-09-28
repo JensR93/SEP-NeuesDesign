@@ -208,8 +208,6 @@
 }
 
 
-}
-
 .table-view{
     -fx-background-color: transparent;
     -fx-padding: 0 2 0 2;
@@ -241,17 +239,26 @@
 
 }
 
-.table-view .table-cell{
-    -fx-alignment: center;
-    -fx-font-weight: bold;
-    -fx-padding: 0 50 0 50;
+/*.table-view .table-column .label{*/
+    /*-fx-alignment: center-left;*/
+/*}*/
 
+.table-viewLeftAlignColumn .label{
+    -fx-alignment: center-left;
+}
+
+.table-viewCenterAlignColumn .label{
+    -fx-alignment: center;
+}
+
+.table-viewRightAlignColumn .label{
+    -fx-alignment: center-right;
 }
 
 .table-view .table-cell{
 -fx-text-alignment: center;
 -fx-font-weight: bold;
--fx-alignment: CENTER;
+/*-fx-alignment: CENTER;*/
 -fx-skin: "com.sun.javafx.scene.control.skin.TableCellSkin";
 -fx-background-color: transparent;
 -fx-border-color: transparent -fx-table-cell-border-color transparent;
@@ -304,14 +311,6 @@
 
 /*}*/
 
-
-
-
-
-
-
-
-
 .table-view *.scroll-bar:horizontal *.increment-button,
 .table-view *.scroll-bar:horizontal *.decrement-button {
     -fx-background-color: null;
@@ -329,6 +328,121 @@
     -fx-shape: null;
 }
 
+/*comboxcheckbox*/
+/*{*/
+    /*-fx-background-color: red;*/
+/*}*/
+.check-combo-box > .combo-box {
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+    -fx-background-radius: 50px;
+    -fx-text-fill: #757575;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+}
+
+/*.combo-box .list-cell*/
+/*{*/
+    /*-fx-background: white;*/
+    /*-fx-background-color: transparent;*/
+    /*-fx-text-fill: -fx-text-base-color;*/
+    /*-fx-padding: 3 0 2 7;*/
+    /*-fx-cell-size: 1.66667em;*/
+/*}*/
+
+/*.combo-box-popup .list-view*/
+/*{*/
+    /*-fx-background-color: white, white;*/
+    /*-fx-background-insets: 0, 1;*/
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+/*}*/
+
+/*.combo-box-popup .list-view .list-cell*/
+/*{*/
+    /*-fx-padding: 4 0 4 5;*/
+
+    /*!* No alternate highlighting *!*/
+    /*-fx-background-color: white;*/
+/*}*/
+
+/*.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover*/
+/*{*/
+    /*-fx-background: -fx-accent;*/
+    /*-fx-background-color: -fx-selection-bar;*/
+    /*-fx-text-fill: -fx-selection-bar-text;*/
+/*}*/
+
+/*.combo-box-popup .list-view .list-cell:filled:hover*/
+/*{*/
+    /*-fx-background-color: white;*/
+    /*-fx-text-fill: -fx-text-inner-color;*/
+/*}*/
+
+/*.combo-box-base*/
+/*{*/
+    /*-fx-background-color: white*/
+    /*-fx-background-radius: 50 50 50 50;*/
+    /*-fx-padding: 0;*/
+/*}*/
+
+/*.combo-box-base:hover*/
+/*{*/
+    /*-fx-color: white;*/
+/*}*/
+
+/*.combo-box-base:showing*/
+/*{*/
+    /*-fx-color: -fx-pressed-base, red;*/
+/*}*/
+
+/*.combo-box-base:focused {*/
+    /*-fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+    /*-fx-background-radius: 6.4, 4, 5, 3;*/
+    /*-fx-background-insets: -1.4, 0, 1, 2;*/
+/*}*/
+
+/*.combo-box-base:disabled {*/
+    /*-fx-opacity: .4;*/
+/*}*/
+
+.check-box .box{
+
+    -fx-background-radius: 50px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-color: white;
+    -fx-fill: #757575;
+
+}
+
+.check > .box{
+
+    -fx-background-radius: 50px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-color: white;
+    -fx-fill: #757575;
+
+}
+
+.check-box .text{
+
+    -fx-font-weight: bold;
+    -fx-fill: #757575;
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+    -fx-background-color: #28a3f4;
+}
 
 /*Material look tableview*/
 /*.table-view {

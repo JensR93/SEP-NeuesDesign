@@ -284,7 +284,13 @@ public class EinstellungenController implements Initializable {
         color_aktiv.setValue(Color.valueOf(AktiveSpieleFarbe));
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
         color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
-
+        if (auswahlklasse.getSpieluebersichtController()!=null) {
+            try {
+                auswahlklasse.getSpieluebersichtController().printSpielTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         if(SchiedsrichterStandard)
         {
             toggle_schiri.setSelected(true);

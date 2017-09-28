@@ -177,7 +177,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="tabelle_spielerliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tabelle_spielerliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Vorname" />
                         <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Nachname" />
