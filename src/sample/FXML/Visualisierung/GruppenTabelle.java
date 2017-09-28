@@ -70,8 +70,8 @@ public class GruppenTabelle implements Visualisierung {
 
         //Leere Zelle oben links erstellen
         gc.beginPath();
-        gc.setStroke(Color.GREEN);
-        gc.setLineWidth(1);
+        gc.setStroke(Color.rgb(78, 106, 156, 1));
+        gc.setLineWidth(2);
         gc.beginPath();
         gc.moveTo(xObenLinksLeereZelle, yObenLinksLeereZelle);
         gc.lineTo(xObenLinksLeereZelle + zellenBreite, yObenLinksLeereZelle);
@@ -90,8 +90,8 @@ public class GruppenTabelle implements Visualisierung {
             Team aktuellesTeam = teams.get(i);
             if (!aktuellesTeam.isFreilos()) {
                 gc.beginPath();
-                gc.setStroke(Color.GREEN);
-                gc.setLineWidth(1);
+                gc.setStroke(Color.rgb(78, 106, 156, 1));
+                gc.setLineWidth(2);
                 gc.moveTo(xObenLinks + i * zellenBreite, yObenLinks - i * zellenHoehe);
                 gc.lineTo(xObenLinks + i * zellenBreite + zellenBreite, yObenLinks - i * zellenHoehe);
                 gc.lineTo(xObenLinks + i * zellenBreite + zellenBreite, yObenLinks - i * zellenHoehe + zellenHoehe);
@@ -133,8 +133,8 @@ public class GruppenTabelle implements Visualisierung {
 
 
                 gc.beginPath();
-                gc.setStroke(Color.GREEN);
-                gc.setLineWidth(1);
+                gc.setStroke(Color.rgb(78, 106, 156, 1));
+                gc.setLineWidth(2);
                 //gc.moveTo(xObenLinks - zellenBreite, yObenLinks + zellenHoehe);
                 gc.moveTo(xObenLinks, yObenLinks + zellenHoehe);
                 gc.lineTo(xObenLinks, yObenLinks + zellenHoehe + zellenHoehe);
@@ -190,8 +190,8 @@ public class GruppenTabelle implements Visualisierung {
                 Team aktuellesTeamZwei = teams.get(spalte);
                 if (!aktuellesTeamEins.isFreilos() && !aktuellesTeamZwei.isFreilos()) {
                     gc.beginPath();
-                    gc.setStroke(Color.GREEN);
-                    gc.setLineWidth(1);
+                    gc.setStroke(Color.rgb(78, 106, 156, 1));
+                    gc.setLineWidth(2);
                     gc.moveTo(xObenLinks + spalte * zellenBreite, yObenLinks + zellenHoehe + zeile * zellenHoehe);
                     gc.lineTo(xObenLinks + spalte * zellenBreite + zellenBreite, yObenLinks + zellenHoehe + zeile * zellenHoehe);
                     gc.lineTo(xObenLinks + spalte * zellenBreite + zellenBreite, yObenLinks + zeile * zellenHoehe);

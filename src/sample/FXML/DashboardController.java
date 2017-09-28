@@ -179,18 +179,11 @@ public class DashboardController implements Initializable{
     public void createPages() {
         try {
             home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
-            Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
-            NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
-            Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
             SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
-
-
-
-
             Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
 
 
@@ -470,6 +463,9 @@ public class DashboardController implements Initializable{
             Einstellungen =  FXMLLoader.load(getClass().getResource("Einstellungen.fxml"));
             FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
             Turnier=fxmlLoaderTurnier.load();
+            Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
+            NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
+            Vereinsuebersicht=FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
 
 
         } catch (IOException e) {

@@ -239,7 +239,7 @@ public class EinstellungenController implements Initializable {
         }
     }
 
-    String ZukuenftigeSpieleFarbe="#ff0000" ;
+    String ZukuenftigeSpieleFarbe="#000000" ;
     String AusstehendeSpieleFarbe="#006400" ;
     String AktiveSpieleFarbe="#00008b" ;
     String GespielteSpieleFarbe = "#ff0000";
