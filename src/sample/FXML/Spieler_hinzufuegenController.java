@@ -1008,6 +1008,10 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("Label_Nationalitaet");
             Label_Nationalitaet.setText(titel);
 
+            titel = bundle.getString("tabelle_spielerliste_nationalitaet");
+            tabelle_spielerliste_nationalitaet.setText(titel);
+
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
