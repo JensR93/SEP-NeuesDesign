@@ -25,7 +25,7 @@ public class auswahlklasse
 {
 
 
-
+    public static boolean druckerGesetzt = false;
     public static Dictionary<String, Spieler> getSpielererfolgreich() {
         return spielererfolgreich;
     }
@@ -159,8 +159,13 @@ public class auswahlklasse
         auswahlklasse.neuesTurnierController = neuesTurnierController;
     }
 
+    public static boolean isDruckerGesetzt() {
+        return druckerGesetzt;
+    }
 
-
+    public static void setDruckerGesetzt(boolean druckerGesetzt) {
+        auswahlklasse.druckerGesetzt = druckerGesetzt;
+    }
 
     public static DashboardController getDashboardController() {
         return dashboardController;

@@ -101,16 +101,10 @@ public class SpielsystemController implements Initializable {
     private JFXRadioButton radio_schweizer;
 
     @FXML
-    private JFXRadioButton radio_trostJa;
-
-    @FXML
     private FontAwesomeIconView pfeil_links;
 
     @FXML
     private FontAwesomeIconView pfeil_rechts;
-
-    @FXML
-    private JFXRadioButton radio_trostNein;
 
     @FXML
     private AnchorPane gruppe;
@@ -123,12 +117,6 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private AnchorPane schweizerSystem;
-
-    @FXML
-    private AnchorPane koTrostRundeJa;
-
-    @FXML
-    private AnchorPane koTrostRundeNein;
 
     @FXML
     private JFXRadioButton radio_platzDreiAusspielen;
@@ -147,9 +135,6 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private RadioButton rb_ko;
-
-    @FXML
-    private Text t_Trostrunde;
 
     @FXML
     private Tab tab_Setzliste;
@@ -326,17 +311,33 @@ public class SpielsystemController implements Initializable {
 
             if(radio_gruppe.isSelected()){
                 gruppenSystemStarten();
+                spielsystemErstellungAbschliessen();
             }
             if(radio_ko.isSelected()){
                 koSystemStarten();
+                spielsystemErstellungAbschliessen();
             }
             if (radio_gruppeMitE.isSelected()){
-                gruppeMitEndrundeStarten();
+                try{
+                    if(Integer.valueOf(textField_gruppenGroesse.getText())>2) {
+                        gruppeMitEndrundeStarten();
+                        spielsystemErstellungAbschliessen();
+                    }
+                    else{
+                        auswahlklasse.WarnungBenachrichtigung("Spielsystem starten nicht möglich","Gruppengröße muss mindestens 3 sein");
+                    }
+                } catch (NumberFormatException e){
+                    System.out.println("Bitte nur zahlen eintragen");
+                }
             }
             if(radio_schweizer.isSelected()){
                 schweizerSystemStarten();
+                spielsystemErstellungAbschliessen();
             }
         }
+    }
+
+    private void spielsystemErstellungAbschliessen() {
         auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
         auswahlklasse.getDashboardController().setNodeSpieluebersicht();
         auswahlklasse.getVisualisierungController().klassenTabsErstellen();
@@ -365,18 +366,20 @@ public class SpielsystemController implements Initializable {
         try{
             int gruppenGroesse = Integer.valueOf(textField_gruppenGroesse.getText());
             int anzahlGruppen = (int) Math.ceil((double)ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse);
-            System.out.println("Math.ceil: " + (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size()/gruppenGroesse));
+
+
+            System.out.println("Math.ceil: " + (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size() / gruppenGroesse));
             int anzahlWeiterkommender = Integer.valueOf(textField_anzahlWeiterkommender.getText());
-            if(rb_Gruppe.isSelected()) {
-                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender,false);
+            if (rb_Gruppe.isSelected()) {
+                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, false);
                 ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
-            }
-            else{
-                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender,true);
+            } else {
+                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, true);
                 ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
             }
             l_meldungsetzliste1.setText("ERFOLG");
-            auswahlklasse.InfoBenachrichtigung("Spielsystem start","Das Spielsystem wurde erfolgreich gestartet");
+            auswahlklasse.InfoBenachrichtigung("Spielsystem start", "Das Spielsystem wurde erfolgreich gestartet");
+
             //TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
         }
         catch (NumberFormatException e){
@@ -419,7 +422,7 @@ public class SpielsystemController implements Initializable {
 
             l_meldungsetzliste1.setText("ERFOLG");
             auswahlklasse.InfoBenachrichtigung("Spielsystem start","Das Spielsystem wurde erfolgreich gestartet");
-           // TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
+            // TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
 
 
             //a.getStages().get(0).close();
@@ -430,18 +433,6 @@ public class SpielsystemController implements Initializable {
             l_meldungsetzliste1.setText("Fehlschlag");
             auswahlklasse.InfoBenachrichtigung("Fehler","Das Spielsystem konnte nicht erfolgreich gestartet werden");
             e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void trostSwitch(ActionEvent event) throws IOException {
-        if(radio_trostNein.isSelected()){
-            koTrostRundeNein.setVisible(true);
-            koTrostRundeJa.setVisible(false);
-        }
-        else{
-            koTrostRundeNein.setVisible(false);
-            koTrostRundeJa.setVisible(true);
         }
     }
 
@@ -1112,8 +1103,8 @@ public class SpielsystemController implements Initializable {
             titel = bundle.getString("rb_ko");
             rb_ko.setText(titel);
 
-            titel = bundle.getString("t_Trostrunde");
-            t_Trostrunde.setText(titel);
+            /*titel = bundle.getString("t_Trostrunde");
+            t_Trostrunde.setText(titel);*/
 
             titel = bundle.getString("tab_Setzliste");
             tab_Setzliste.setText(titel);
@@ -1123,12 +1114,6 @@ public class SpielsystemController implements Initializable {
 
             titel = bundle.getString("t_Endrunde");
             t_Endrunde.setText(titel);
-
-            titel = bundle.getString("radio_trostJa");
-            radio_trostJa.setText(titel);
-
-            titel = bundle.getString("radio_trostNein");
-            radio_trostNein.setText(titel);
 
             titel = bundle.getString("radio_platzDreiAusspielen");
             radio_platzDreiAusspielen.setText(titel);
@@ -1374,16 +1359,16 @@ public class SpielsystemController implements Initializable {
                         {
                             item4.setOnAction(new EventHandler<ActionEvent>() {
 
-                            @Override
-                            public void handle(ActionEvent event) {
+                                @Override
+                                public void handle(ActionEvent event) {
 
-                                //System.out.println(spielsystem_spielerliste_alleSpieler.getSelectionModel().getSelectedItems());
-                                markierteSpielerzurSetzliste();
-                                //addSpieler(clickedRow);
+                                    //System.out.println(spielsystem_spielerliste_alleSpieler.getSelectionModel().getSelectedItems());
+                                    markierteSpielerzurSetzliste();
+                                    //addSpieler(clickedRow);
 
 
-                            }
-                        });
+                                }
+                            });
                             contextMenu.getItems().add(item4);
                         }
                         contextMenu.getItems().addAll(item1, item2, item3);

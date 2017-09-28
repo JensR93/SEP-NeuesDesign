@@ -66,13 +66,13 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     private BigDecimalField AnzahlFelder;
     @FXML
-    private Button btn_abbrechen_NeuesTurnier;
+    private Button btn_abbrechen;
     @FXML
-    private Button btn_Speichern_NeuesTurnier;
+    private Button btn_starten;
 
     //---Sprache---
     @FXML
-    private Label Label_Turniername_NeuesTurnier;
+    private Label Label_Turniername;
     @FXML
     private Label Label_AnzahlFelder;
     @FXML
@@ -107,17 +107,16 @@ public class NeuesTurnierController implements Initializable{
     private ChoiceBox Choicebox_Mixed;
     @FXML
     private JFXTextField meldegebuehr_einzel;
+
     @FXML
     private JFXTextField meldegebuehr_doppel;
-    @FXML
-    private Label Label_Meldegebuehr;
 
     public void SpracheLaden() {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle(baseName);
 
-            titel = bundle.getString("Label_Turniername_NeuesTurnier");
-            Label_Turniername_NeuesTurnier.setText(titel);
+            titel = bundle.getString("Label_Turniername");
+            Label_Turniername.setText(titel);
 
             titel = bundle.getString("Label_AnzahlFelder");
             Label_AnzahlFelder.setText(titel);
@@ -157,23 +156,6 @@ public class NeuesTurnierController implements Initializable{
 
             titel = bundle.getString("Label_Disziplin_Mixed");
             Label_Disziplin_Mixed.setText(titel);
-
-            titel = bundle.getString("Label_Meldegebuehr");
-            Label_Meldegebuehr.setText(titel);
-
-            titel = bundle.getString("meldegebuehr_einzel");
-            meldegebuehr_einzel.setPromptText(titel);
-            meldegebuehr_einzel.setLabelFloat(true);
-
-            titel = bundle.getString("meldegebuehr_doppel");
-            meldegebuehr_doppel.setPromptText(titel);
-            meldegebuehr_doppel.setLabelFloat(true);
-
-            titel = bundle.getString("btn_abbrechen_NeuesTurnier");
-            btn_abbrechen_NeuesTurnier.setText(titel);
-
-            titel = bundle.getString("btn_Speichern_NeuesTurnier");
-            btn_Speichern_NeuesTurnier.setText(titel);
 
         } catch (MissingResourceException e) {
             System.err.println(e);
@@ -381,7 +363,7 @@ public class NeuesTurnierController implements Initializable{
         if(auswahlklasse.getTurnierzumupdaten()!=null)
         {
             turnierDao.readFelder_Neu(auswahlklasse.getTurnierzumupdaten());
-            btn_Speichern_NeuesTurnier.setText("Update");
+            btn_starten.setText("Update");
 
             //System.out.println(turnierzumupdaten.getFelder());
 

@@ -42,8 +42,10 @@ public class VisualisierungController implements Initializable {
                 tab.setClosable(false);
                 tabPane_spielklassen.getTabs().add(tab);
                 klassenVisualisierung(spielklasse.getSpielsystem(),tab);
+                auswahlklasse.getDashboardController().turnierbaumAktivieren();
             }
         }
+
     }
     private void klassenVisualisierung(Spielsystem spielsystem, Tab tab) {
         if (spielsystem.getSpielSystemArt()==1){

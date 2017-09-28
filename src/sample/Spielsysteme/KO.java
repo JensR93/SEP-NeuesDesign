@@ -13,6 +13,7 @@ public class KO extends Spielsystem {
 	private Spielsystem spielsystem;
 	private ArrayList<Team> setzliste;
 	private int anzahlFreilose = 0;
+	private Spiel spielUm3;
 
 	public KO(ArrayList<Team> setzliste, Spielklasse spielklasse,boolean platzDreiAusspielen){
 		this.setSpielklasse(spielklasse);
@@ -120,17 +121,27 @@ public class KO extends Spielsystem {
 		Dictionary<Integer,Spiel> dicSpiele = new Hashtable<>();
 		for (int i=0;i<spiele.size();i++){
 			Spiel spiel = spiele.get(i);
-			int key = spiel.getSystemSpielID();
 			spiel.setSpielsystem(this.spielsystem);
-			dicSpiele.put(key,spiel);
+			int key = spiel.getSystemSpielID();
+			if (key ==getSpielSystemArt()*10000000 +1){
+				spielUm3 = spiel;
+				platzDreiAusspielen = true;
+			}
+			else{
+				dicSpiele.put(key,spiel);
+			}
+
 		}
-		teilnehmerzahl=spiele.size()+1;
+		teilnehmerzahl=dicSpiele.size()+1;
 		int anzahlRunden = rundenBerechnen();
 		int hoechsterSetzplatz;
 		SpielTree aktuellerKnoten = finale;
 		finale.setSpiel(dicSpiele.get(getSpielSystemArt()*10000000));
 		this.getRundenArray().add(new ZeitplanRunde());
 		this.getRundenArray().get(0).add(finale.getSpiel());
+		if (spielUm3!=null){
+			this.getRundenArray().get(0).add(spielUm3);
+		}
 
 		for (int i=0; i<anzahlRunden-1; i++){ //erstelle für jeder Runde Spiele
 			aktuellerKnoten = finale.getSpielTree(spielSystemIDberechnen(),finale);
@@ -260,9 +271,22 @@ public class KO extends Spielsystem {
 	@Override
 	public boolean beendeMatch(Spiel spiel) {
 
+		if (spiel==spielUm3){
+			spiel.getSieger().setPlatzierung(3);
+			spiel.getVerlierer().setPlatzierung(4);
+			return true;
+		}
+		if(spiel==finale.getSpiel()){
+			finale.getSpiel().getSieger().setPlatzierung(1);
+			finale.getSpiel().getVerlierer().setPlatzierung(2);
+			return true;
+		}
 		if(spiel.getRundenNummer()>0) {
 			if (spiel.getRundenNummer()==1&&platzDreiAusspielen){
 				verliererZuSpielUmDreiHinzufuegen(spiel);
+			}
+			if(spiel.getRundenNummer()>1) {
+				spiel.getVerlierer().setPlatzierung(((int) Math.pow(spiel.getRundenNummer() , 2)) + 1);
 			}
 			SpielTree parent = finale.getSpielTree(spiel.getSystemSpielID(), finale).getParent();
 			if (parent.getLeft().getSpielID() == spiel.getSystemSpielID()) {
@@ -279,7 +303,7 @@ public class KO extends Spielsystem {
 	}
 
 	private void verliererZuSpielUmDreiHinzufuegen(Spiel spiel) {
-		Spiel spielUmDrei = getSpielklasse().getSpiele().get(getSpielSystemArt()*10000000 + 100000);
+		Spiel spielUmDrei = getSpielklasse().getSpiele().get(getSpielSystemArt()*10000000 + 1);
 		Team verlierer;
 		if(spiel.getSieger()!=null){
 			if (spiel.getSieger()==spiel.getHeim()){
@@ -294,14 +318,21 @@ public class KO extends Spielsystem {
 			else{
 				spielUmDrei.setGast(verlierer);
 			}
+			spielUmDrei.setFreilosErgebnis();
+			spielUmDrei.getSpielDAO().update(spielUmDrei);
 		}
 	}
 
+	public Spiel getSpielUm3() {
+		return spielUm3;
+	}
+
 	private void spielUmDreiErstellen() {
-		int spielUmDreiSystemSpielID =getSpielSystemArt()*10000000+100000;
-		Spiel spielUmDrei = new Spiel(spielUmDreiSystemSpielID,this.spielsystem);
-		spielsystem.getSpielklasse().getSpiele().put(spielUmDreiSystemSpielID,spielUmDrei);
-		getRundenArray().get(0).add(spielUmDrei);
+		int spielUmDreiSystemSpielID =getSpielSystemArt()*10000000+1;
+		spielUm3 = new Spiel(spielUmDreiSystemSpielID,this.spielsystem);
+		platzDreiAusspielen = true;
+		spielsystem.getSpielklasse().getSpiele().put(spielUmDreiSystemSpielID,spielUm3);
+		getRundenArray().get(getRundenArray().size()-1).add(spielUm3);
 	}
 
 	@Override

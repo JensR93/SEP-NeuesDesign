@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
+<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
    <tabs>
       <Tab fx:id="tab_Setzliste" text="Setzliste">
         <content>
@@ -205,8 +205,11 @@
                                           <Text fx:id="t_Endrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <JFXRadioButton fx:id="rb_Gruppe" text="Gruppe" />
-                                                <JFXRadioButton fx:id="rb_ko" text="K.O." />
+                                                <JFXRadioButton fx:id="rb_ko" selected="true" text="K.O.">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="group_endrunde" />
+                                                   </toggleGroup></JFXRadioButton>
+                                                <JFXRadioButton fx:id="rb_Gruppe" text="Gruppe" toggleGroup="$group_endrunde" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -229,28 +232,17 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Text fx:id="t_Trostrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Trostrunde:" GridPane.halignment="RIGHT" />
-                                                <AnchorPane fx:id="koTrostRundeNein" GridPane.columnIndex="1">
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                         <children>
-                                                            <JFXRadioButton fx:id="radio_trostJa" onAction="#trostSwitch" text="Ja">
-                                                               <toggleGroup>
-                                                                  <ToggleGroup fx:id="Trostrunde" />
-                                                               </toggleGroup>
-                                                            </JFXRadioButton>
-                                                            <JFXRadioButton fx:id="radio_trostNein" text="Nein" toggleGroup="$Trostrunde" />
-                                                         </children>
-                                                      </HBox>
-                                                   </children>
-                                                </AnchorPane>
-                                                <Text fx:id="t_Platz3" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <children>
-                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielen" text="Ja" />
-                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielenNein" text="Nein" />
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielen" selected="true" text="Ja">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="group_platz3ausspielenko" />
+                                                         </toggleGroup>
+                                                      </JFXRadioButton>
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielenNein" text="Nein" toggleGroup="$group_platz3ausspielenko" />
                                                    </children>
                                                 </HBox>
+                                                <Text fx:id="t_Platz3" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" />
                                              </children>
                                           </GridPane>
                                        </children>
