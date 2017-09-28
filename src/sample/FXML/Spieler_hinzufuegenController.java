@@ -94,6 +94,10 @@ public class Spieler_hinzufuegenController implements Initializable{
     private JFXTextField t_suchleistespielerhinzu;
     @FXML
     private Label label_partner;
+    @FXML
+    private Label Label_Verein;
+    @FXML
+    private Label Label_Nationalitaet;
     //-------------------------------
 
     @FXML
@@ -978,6 +982,11 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("label_partner");
             label_partner.setText(titel);
 
+            titel = bundle.getString("Label_Verein");
+            Label_Verein.setText(titel);
+
+            titel = bundle.getString("Label_Nationalitaet");
+            Label_Nationalitaet.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
