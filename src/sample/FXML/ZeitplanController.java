@@ -311,7 +311,8 @@ public class ZeitplanController implements Initializable{
         zeitplanMixed =Zeitplan.getZeitplan("MIXED");*/
         /*alleRundenHolen();
         uebersichtZeichnen();
-        tableColumnsErstellen();*/
+        */
+        tableColumnsErstellen();
         System.out.println(startZeitEinzel);
         System.out.println(startZeitDoppel);
         System.out.println(startZeitMixed);
