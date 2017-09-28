@@ -169,6 +169,9 @@ public class DashboardController implements Initializable{
             titel = bundle.getString("btnVerein");
             btnVerein.setText(titel);
 
+            titel = bundle.getString("btnHome");
+            btnHome.setText(titel);
+
 
 
         }
