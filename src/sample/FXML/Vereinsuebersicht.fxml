@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<JFXTabPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
+<JFXTabPane xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
    <tabs>
-      <Tab text="Vereinsübersicht">
+      <Tab fx:id="tab_Vereinsuebersicht" text="Vereinsübersicht">
          <content>
             <GridPane>
                <columnConstraints>
@@ -51,7 +51,7 @@
             </GridPane>
          </content>
       </Tab>
-      <Tab text="Startgeldliste">
+      <Tab fx:id="tab_Startgeldliste" text="Startgeldliste">
         <content>
         </content>
          <content>

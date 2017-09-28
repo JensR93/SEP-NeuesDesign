@@ -68,10 +68,7 @@ public class SpielsystemController implements Initializable {
     //Tab1
     @FXML
     private VBox vbox_info;
-    @FXML
-    private TextField t_suchleistespieler;
-    @FXML
-    private TextField t_suchleistesetzliste;
+
     @FXML
     private Label l_meldungsetzliste1;
 
@@ -153,6 +150,21 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private JFXTextField textField_anzahlRundenSchweizer;
+
+    @FXML
+    private Menu menu_setzlisteErstellen;
+
+    @FXML
+    private Menu menu_spieler;
+
+    @FXML
+    private Menu menu_hilfe;
+
+    @FXML
+    private JFXTextField t_suchleistesetzliste;
+
+    @FXML
+    private JFXTextField t_suchleistespieler;
 
 
     Dictionary<Integer,Spielklasse> turnierauswahlspielklassendict = null;
@@ -1188,6 +1200,23 @@ public class SpielsystemController implements Initializable {
 
             titel = bundle.getString("t_AnzahlRunden");
             t_AnzahlRunden.setText(titel);
+
+            titel = bundle.getString("menu_setzlisteErstellen");
+            menu_setzlisteErstellen.setText(titel);
+
+            titel = bundle.getString("menu_spieler");
+            menu_spieler.setText(titel);
+
+            titel = bundle.getString("menu_hilfe");
+            menu_hilfe.setText(titel);
+
+            titel = bundle.getString("t_suchleistesetzliste");
+            t_suchleistesetzliste.setPromptText(titel);
+            t_suchleistesetzliste.setLabelFloat(true);
+
+            titel = bundle.getString("t_suchleistespieler");
+            t_suchleistespieler.setPromptText(titel);
+            t_suchleistespieler.setLabelFloat(true);
 
         }
         catch ( MissingResourceException e ) {

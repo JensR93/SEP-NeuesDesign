@@ -45,6 +45,10 @@ public class VereinsuebersichtController implements Initializable {
     public TableColumn Vereinsextvereinsid;
     @FXML
     private JFXButton Btn_NeuerVerein;
+    @FXML
+    private Tab tab_Vereinsuebersicht;
+    @FXML
+    private Tab tab_Startgeldliste;
 
     public void SpracheLaden()
     {
@@ -68,6 +72,11 @@ public class VereinsuebersichtController implements Initializable {
             vereinsuche.setPromptText(titel);
             vereinsuche.setLabelFloat(true);
 
+            titel = bundle.getString("tab_Vereinsuebersicht");
+            tab_Vereinsuebersicht.setText(titel);
+
+            titel = bundle.getString("tab_Startgeldliste");
+            tab_Startgeldliste.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
