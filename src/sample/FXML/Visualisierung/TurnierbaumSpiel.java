@@ -62,7 +62,7 @@ public class TurnierbaumSpiel {
         }
         gc.setFill(Color.BLACK);
         gc.beginPath();
-        gc.setStroke(Color.GREEN);
+        gc.setStroke(Color.rgb(64,89,169));
         gc.setLineWidth(2);
         gc.moveTo(xObenLinks, yObenLinks);
         gc.lineTo(xObenLinks+breite, yObenLinks);
@@ -72,7 +72,7 @@ public class TurnierbaumSpiel {
         gc.stroke();
         gc.closePath();
         gc.beginPath();
-        gc.setStroke(Color.GREEN);
+        gc.setStroke(Color.rgb(64,89,169));
         gc.setLineWidth(1);
         gc.moveTo(xObenLinks,yObenLinks+ hoehe*0.5);
         gc.lineTo(xObenLinks+breite,yObenLinks+hoehe*0.5);
