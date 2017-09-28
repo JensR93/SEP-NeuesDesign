@@ -6,19 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import sample.DAO.auswahlklasse;
 import sample.Spieler;
 import sample.Spielklasse;
@@ -117,7 +112,7 @@ public class spielerEigenschaftenController implements Initializable{
         {
             auswahlklasse.getSpielerzumHinzufeuegen().setGeschlecht(false);
         }
-        auswahlklasse.getSpielerzumHinzufeuegen().setOffenerBetrag(t_offenegebuehr.isSelected());
+        auswahlklasse.getSpielerzumHinzufeuegen().setGebuehrenbezahlt(t_offenegebuehr.isSelected());
         auswahlklasse.getSpielerzumHinzufeuegen().setNotiz(t_notiz.getText());
         auswahlklasse.getSpielerzumHinzufeuegen().getSpielerDAO().update( auswahlklasse.getSpielerzumHinzufeuegen());
         auswahlklasse.setSpielerzumHinzufeuegen(null);
@@ -144,7 +139,7 @@ public class spielerEigenschaftenController implements Initializable{
             }
             spielklassenTab();
 
-            t_offenegebuehr.setSelected(auswahlklasse.getSpielerzumHinzufeuegen().isOffenerBetrag());
+            t_offenegebuehr.setSelected(auswahlklasse.getSpielerzumHinzufeuegen().isGebuehrenbezahlt());
              rechneGebuehren();
 
 
@@ -164,6 +159,7 @@ public class spielerEigenschaftenController implements Initializable{
     }
 
     private void rechneGebuehren() {
+
        float einzel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrEinzel();
         float doppel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrDoppel();
         float summe = 0;

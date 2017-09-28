@@ -39,7 +39,10 @@ public class DashboardController implements Initializable{
 
     private GridPane Turnier,home;
     private VBox Spieluebersicht;
+    @FXML
+    void Vereinsuebersichtauswahl(ActionEvent event) {
 
+    }
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -186,7 +189,7 @@ public class DashboardController implements Initializable{
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
             SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
             Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
-
+            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -301,6 +304,7 @@ public class DashboardController implements Initializable{
             if(auswahlklasse.getVereinsuebersichtController()!=null)
             {
                 auswahlklasse.getVereinsuebersichtController().fulleObsVereine();
+                auswahlklasse.getVereinsuebersichtController().tab1Auswahl();
             }
 
 
@@ -312,6 +316,17 @@ public class DashboardController implements Initializable{
     }
   public void setNodeVereinsuebersicht()
     {
+        try {
+            if(auswahlklasse.getVereinsuebersichtController()!=null)
+            {
+                auswahlklasse.getVereinsuebersichtController().fulleObsVereine();
+                auswahlklasse.getVereinsuebersichtController().tab1Auswahl();
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setNode(Vereinsuebersicht);
     }
     @FXML public void setNodeEinstellungen(ActionEvent event)
@@ -461,7 +476,7 @@ public class DashboardController implements Initializable{
             Turnier = fxmlLoaderTurnier.load();
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
-            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
+
             Spiel.SpracheLaden();
 
 

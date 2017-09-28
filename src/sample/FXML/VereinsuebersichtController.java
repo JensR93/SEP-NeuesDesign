@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,16 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import sample.*;
 import sample.DAO.*;
 
 import java.net.URL;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import static sample.DAO.auswahlklasse.getTurnierzumupdaten;
 
 /**
  * Created by jens on 26.09.2017.
@@ -34,9 +34,24 @@ public class VereinsuebersichtController implements Initializable {
     ContextMenu contextMenu=new ContextMenu();
 
     @FXML
+    private Tab tab_startgeld;
+    @FXML
+    private JFXTextField t_anzahlspieler;
+    @FXML
+    private TabPane tabpane_verein;
+    @FXML
+    private JFXTextField t_gesamtgebuehren;
+
+    @FXML
+    private ListView<Spieler> list_nichtbezahlt;
+    @FXML private Tab    tab_verein;
+    @FXML
     private TableView tabelle_vereine;
     @FXML
+    private JFXTextField t_offenegebuehren;
+    @FXML
     private JFXTextField vereinsuche;
+
     @FXML
     public TableColumn Vereinsname;
     @FXML
@@ -87,6 +102,15 @@ public class VereinsuebersichtController implements Initializable {
         tabelleListener();
 
 
+        VereinssucheListener();
+
+        final ContextMenu randomListContextMenu = new ContextMenu();
+
+
+        ListenerNichtbezahlteSpieler(randomListContextMenu);
+    }
+
+    private void VereinssucheListener() {
         vereinsuche.textProperty().addListener((observable, oldValue, newValue) -> {
             // System.out.println("textfield changed from " + oldValue + " to " + newValue);
             //obs_spieler.clear();
@@ -112,10 +136,51 @@ public class VereinsuebersichtController implements Initializable {
 
 
         });
-
-
     }
 
+    private void ListenerNichtbezahlteSpieler(ContextMenu randomListContextMenu) {
+        list_nichtbezahlt.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                randomListContextMenu.getItems().clear();
+                Spieler clickedrow= list_nichtbezahlt.getSelectionModel().getSelectedItem();
+                MenuItem item1 = new MenuItem("Spielereigenschaften anzeigen");
+                item1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        auswahlklasse.setSpielerzumHinzufeuegen(clickedrow);
+                        auswahlklasse.getDashboardController().setNodeSpielerEigenschaften();
+                        //replaceRandomCard();
+                    }
+                });
+                MenuItem item2 = new MenuItem("als bezahlt markieren");
+                item2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                        clickedrow.setGebuehrenbezahlt(true);
+                        list_nichtbezahlt.getItems().remove(clickedrow);
+                    }
+                });
+
+                randomListContextMenu.getItems().addAll(item1,item2);
+                if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                    randomListContextMenu.show(list_nichtbezahlt, event.getScreenX(), event.getScreenY());
+                }
+                if (event.getButton().equals(MouseButton.SECONDARY)) {
+                    randomListContextMenu.show(list_nichtbezahlt, event.getScreenX(), event.getScreenY());
+                }
+
+            }
+        });
+    }
+
+    public void tab1Auswahl()
+    {
+        tab_startgeld.setDisable(true);
+        tabpane_verein.getSelectionModel().select(tab_verein);
+    }
     private void tabelleListener() {
         tabelle_vereine.setRowFactory(tv -> {
             TableRow row = new TableRow();
@@ -145,6 +210,27 @@ public class VereinsuebersichtController implements Initializable {
                             auswahlklasse.getDashboardController().setNodeNeuerVerein();
                             auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
                             auswahlklasse.getNeuer_vereinController().updateVerein();
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                        }
+                    });
+                    MenuItem item2 = new MenuItem("Startgeldliste anzeigen");
+                    item2.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+
+
+                        tabpane_verein.getSelectionModel().select(tab_startgeld);
+                           ObservableList Vereinsspieler= berechneAnzahlSpieler(clickedRow);
+                        t_anzahlspieler.setText(String.valueOf(Vereinsspieler.size()));
+                        //t_offenegebuehren.setText(String.valueOf(berechneVereinOffeneGebuehren(Vereinsspieler)));
+                            berechneVereinGesamtGebuehren(Vereinsspieler);
+
+
+
+                        listNichtBezahltFuellen(Vereinsspieler);
+                            tab_startgeld.setDisable(false);
+
                             //tabpane_spieler.getSelectionModel().select(tab_sphin);
                         }
                     });
@@ -179,7 +265,7 @@ public class VereinsuebersichtController implements Initializable {
                     });
                     if (!contextMenu.isShowing()) {
                         contextMenu.getItems().clear();
-                        contextMenu.getItems().addAll(item1, item3);
+                        contextMenu.getItems().addAll(item1,item2, item3);
                     }
                     tabelle_vereine.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 
@@ -197,6 +283,91 @@ public class VereinsuebersichtController implements Initializable {
 
             return row;
         });
+    }
+
+
+
+    private void listNichtBezahltFuellen(ObservableList <Spieler> vereinsspieler) {
+
+        list_nichtbezahlt.getItems().clear();
+        for(int i=0; i<vereinsspieler.size();i++)
+        {
+            if(!vereinsspieler.get(i).isGebuehrenbezahlt())
+            {
+                list_nichtbezahlt.getItems().add(vereinsspieler.get(i));
+            }
+        }
+
+    }
+
+    private void berechneVereinGesamtGebuehren(ObservableList<Spieler> vereinsspieler) {
+
+        float gebuehr=0;
+        float bezahlt=0;
+        for(int i=0;i<vereinsspieler.size();i++)
+        {
+
+
+                ArrayList<Spielklasse> a = vereinsspieler.get(i).checkeSetzlisteMitglied(vereinsspieler.get(i));
+                float einzel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrEinzel();
+                float doppel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrDoppel();
+                float summe = 0;
+                for(int j=0;j<a.size();j++)
+                {
+                    if(a.get(j).toString().toUpperCase().contains("EINZEL"))
+                    {
+                        summe+=einzel;
+                        if(vereinsspieler.get(i).isGebuehrenbezahlt())
+                        {
+                            bezahlt+=einzel;
+                        }
+                    }
+                    else
+                    {
+                        summe+=doppel;
+                        if(vereinsspieler.get(i).isGebuehrenbezahlt())
+                        {
+                            bezahlt+=doppel;
+                        }
+                    }
+                }
+
+
+                gebuehr+=summe;
+
+        }
+        t_gesamtgebuehren.setText(String.valueOf(gebuehr));
+        t_offenegebuehren.setText(String.valueOf(gebuehr-bezahlt));
+    }
+
+    @FXML
+    void sperreStartgeldliste(ActionEvent event) {
+
+    }
+    private boolean berechneVereinOffeneGebuehren(ObservableList <Spieler> vereinsspieler) {
+        boolean offen=false;
+        for(int i=0;i<vereinsspieler.size();i++)
+        {
+           if(vereinsspieler.get(i).isGebuehrenbezahlt())
+            {
+                offen=true;
+            }
+        }
+        return offen;
+    }
+
+    private ObservableList berechneAnzahlSpieler(Verein verein) {
+        ObservableList spieler = FXCollections.observableArrayList();
+       Enumeration enumeration= auswahlklasse.getSpieler().keys();
+       while (enumeration.hasMoreElements())
+       {
+           int spielerid= (int) enumeration.nextElement();
+           if(auswahlklasse.getSpieler().get(spielerid).getVerein().equals(verein))
+           {
+               spieler.add(auswahlklasse.getSpieler().get(spielerid));
+           }
+       }
+       return spieler;
     }
 
     public void fulleObsVereine()
@@ -245,5 +416,14 @@ public class VereinsuebersichtController implements Initializable {
     public void btn_neueklasse(ActionEvent event)
     {
         auswahlklasse.getDashboardController().setNodeNeuerVerein();
+    }
+
+    @FXML
+    public void Vereinsuebersichtauswahl(Event event) {
+        if(tab_startgeld!=null)
+        {
+            tab_startgeld.setDisable(true);
+        }
+
     }
 }

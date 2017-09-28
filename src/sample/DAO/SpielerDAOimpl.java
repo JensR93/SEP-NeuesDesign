@@ -1,13 +1,8 @@
 package sample.DAO;
 
 import sample.*;
-import sample.Spielsysteme.*;
-import sample.Enums.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
 import java.sql.*;
 
 /**
@@ -105,13 +100,12 @@ public class SpielerDAOimpl implements SpielerDAO {
                 "RLP_Einzel = ?, " +
                 "RLP_Doppel = ?, " +
                 "RLP_Mixed = ?, " +
-                "Meldegebuehren = ?, " +
-                "Nationalitaet = ?, " + //10
+                "Nationalitaet = ?, " + //9
                 "Verfuegbar = ?, " +
                 "MattenSpiele = ?, " +
                 "ExtSpielerID = ?, " +
                 "OffenerBetrag = ?, " +
-                "Notiz = ?, " + //15
+                "Notiz = ?, " + //14
                 "AktuellesSpiel = ? " +
                 "WHERE spielerID = ?";
         try {
@@ -130,29 +124,28 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setInt(6, spieler.getrPunkte()[0]);
             smt.setInt(7, spieler.getrPunkte()[1]);
             smt.setInt(8, spieler.getrPunkte()[2]);
-            smt.setFloat(9, spieler.getMeldeGebuehren());
-            smt.setInt(10, spieler.getNationalitaet());
-            smt.setObject(11, spieler.getVerfuegbar());
-            smt.setInt(12, spieler.getMattenSpiele());
-            smt.setString(13, spieler.getExtSpielerID());
-            smt.setBoolean(14,spieler.isOffenerBetrag());
+            smt.setInt(9, spieler.getNationalitaet());
+            smt.setObject(10, spieler.getVerfuegbar());
+            smt.setInt(11, spieler.getMattenSpiele());
+            smt.setString(12, spieler.getExtSpielerID());
+            smt.setBoolean(13,spieler.isGebuehrenbezahlt());
             if(spieler.getNotiz()!=null)
             {
-                smt.setString(15,spieler.getNotiz());
+                smt.setString(14,spieler.getNotiz());
             }
             else
             {
-                smt.setNull(15,Types.VARCHAR);
+                smt.setNull(14,Types.VARCHAR);
             }
 
             if(spieler.getAktuellesSpiel()!=null){
-                smt.setInt(16, spieler.getAktuellesSpiel().getSpielID());
+                smt.setInt(15, spieler.getAktuellesSpiel().getSpielID());
             }
             else {
-                smt.setNull(16,Types.INTEGER);
+                smt.setNull(15,Types.INTEGER);
             }
 
-            smt.setInt(17, spieler.getSpielerID());
+            smt.setInt(16, spieler.getSpielerID());
 
             smt.executeUpdate();
             smt.close();
