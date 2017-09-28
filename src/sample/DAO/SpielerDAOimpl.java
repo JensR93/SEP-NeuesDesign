@@ -58,7 +58,7 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setInt(6, spieler.getrPunkte()[0]);
             smt.setInt(7, spieler.getrPunkte()[1]);
             smt.setInt(8, spieler.getrPunkte()[2]);
-            smt.setString(9, spieler.getNationalitaet());
+            smt.setInt(9, spieler.getNationalitaet());
             smt.setString(10, spieler.getExtSpielerID());
             smt.executeUpdate();
             smt.close();
@@ -131,7 +131,7 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setInt(7, spieler.getrPunkte()[1]);
             smt.setInt(8, spieler.getrPunkte()[2]);
             smt.setFloat(9, spieler.getMeldeGebuehren());
-            smt.setString(10, spieler.getNationalitaet());
+            smt.setInt(10, spieler.getNationalitaet());
             smt.setObject(11, spieler.getVerfuegbar());
             smt.setInt(12, spieler.getMattenSpiele());
             smt.setString(13, spieler.getExtSpielerID());

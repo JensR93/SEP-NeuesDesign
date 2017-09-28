@@ -386,7 +386,8 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         spieler_neu.setrPunkte(rpunkte);
         spieler_neu.setGeschlecht(geschlecht);
         spieler_neu.setVerein(v);
-        spieler_neu.setNationalitaet(choice_nationalitaet.getSelectionModel().getSelectedItem().toString());
+        int national = nationalitaetNachInt();
+        spieler_neu.setNationalitaet(national);
 
         boolean erfolg = spieler_neu.getSpielerDAO().update(spieler_neu);
 
@@ -412,6 +413,15 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         beschriftungHinzu();
 
 
+    }
+
+    private int nationalitaetNachInt() {
+
+        int nationalitaet =choice_nationalitaet.getSelectionModel().getSelectedIndex();
+
+
+
+        return nationalitaet;
     }
 
     public void setDashboardController(DashboardController dashboardController) {
@@ -707,8 +717,15 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     }
 
     private void fuellechoiceNationalitaet() {
+
         ObservableList obsnationalitaet = FXCollections.observableArrayList();
-        obsnationalitaet.addAll("Deutschland","Dänemark","Frankreich","Luxemburg","Niederlande","Schweiz","Spanien","Sonstiges");
+
+        ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+        obsnationalitaet.addAll(bundle.getString("Deutschland"),bundle.getString("Frankreich"),bundle.getString("Daenemark"),
+                bundle.getString("Luxemburg"),bundle.getString("Niederlande"),bundle.getString("Schweiz"),bundle.getString("Spanien"),
+                bundle.getString("Finnland"),
+                bundle.getString("Sonstiges"));
         choice_nationalitaet.setItems(obsnationalitaet);
         choice_nationalitaet.getSelectionModel().select(0);
     }
@@ -900,6 +917,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     public void SpracheLaden() {
         try
         {
+            fuellechoiceNationalitaet();
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
 
             titel = bundle.getString("tab_sphin");

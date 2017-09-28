@@ -317,7 +317,7 @@ public class EinstellungenController implements Initializable {
         saveProps.setProperty("SchiedsrichterStandard", SchiedsrichterStandard.toString());
         saveProps.setProperty("VormerkungSchiedsrichter", VormerkungSchiedsrichter);
         //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
-        saveProps.setProperty("ZukuenftigeSpieleFarbe", "#000000");
+        saveProps.setProperty("ZukuenftigeSpieleFarbe", ZukuenftigeSpieleFarbe);
         saveProps.setProperty("AusstehendeSpieleFarbe", AusstehendeSpieleFarbe);
         saveProps.setProperty("AktiveSpieleFarbe", AktiveSpieleFarbe);
         saveProps.setProperty("GespielteSpieleFarbe", GespielteSpieleFarbe);

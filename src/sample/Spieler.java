@@ -34,7 +34,7 @@ public class Spieler {
 	private int[] rPunkte = new int[3]; //[0]=Einzel-, [1]=Doppel-, [2]=Mixed-Ranglistenpunkte
 	private Verein verein;
 	private float meldeGebuehren;
-	private String Nationalitaet = "Deutschland";
+	private int Nationalitaet = 0;
 	private LocalDate verfuegbar = LocalDate.now();
 	private int mattenSpiele = 0;
 	private String extSpielerID;
@@ -69,7 +69,7 @@ public class Spieler {
 	}
 
 	//Einlesen neu
-	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
+	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, int nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
 		this.vName = vName;
 		this.nName = nName;
 		this.gDatum = gDatum;
@@ -87,7 +87,7 @@ public class Spieler {
 
 	}
 
-	public Spieler(String notiz, LocalDate gDatum, String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, String nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, boolean offenerBetrag) {
+	public Spieler(String notiz, LocalDate gDatum, String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, int nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, boolean offenerBetrag) {
 		this.Notiz=notiz;
 		this.vName = vName;
 		this.nName = nName;
@@ -157,7 +157,7 @@ public class Spieler {
 		this.rPunkte = rpunkte;
 		this.verein = verein;
 		this.extSpielerID = t_spidText;
-		this.Nationalitaet= (String) selectedItem;
+		this.Nationalitaet= (int) selectedItem;
 	}
 	public void einzelPunkteUpdate(int einzelPunkte){
 		rPunkte[0] = einzelPunkte;
@@ -217,7 +217,7 @@ public class Spieler {
 		return spielerDAO;
 	}
 
-	public void setNationalitaet(String nationalitaet) {
+	public void setNationalitaet(int nationalitaet) {
 		Nationalitaet = nationalitaet;
 		//spielerDAO.update(this);
 	}
@@ -297,7 +297,7 @@ public class Spieler {
 
 
 	}
-	public String getNationalitaet() {
+	public int getNationalitaet() {
 		return Nationalitaet;
 	}
 
@@ -333,42 +333,42 @@ public class Spieler {
 		}
 	}
 	public ImageView getINationalitaet() {
-		if(Nationalitaet.equals("Deutschland")){
+		if(Nationalitaet==0){
 			Image imgmale = new Image("sample/Images/Flaggen/deutschland.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Frankreich")){
+		else if(Nationalitaet==1){
 			Image imgmale = new Image("sample/Images/Flaggen/frankreich.jpg",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Dänemark")){
+		else if(Nationalitaet==2){
 			Image imgmale = new Image("sample/Images/Flaggen/daenemark.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Luxemburg")){
+		else if(Nationalitaet==3){
 			Image imgmale = new Image("sample/Images/Flaggen/luxemburg.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Niederlande")){
+		else if(Nationalitaet==4){
 			Image imgmale = new Image("sample/Images/Flaggen/niederlande.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Schweiz")){
+		else if(Nationalitaet==5){
 			Image imgmale = new Image("sample/Images/Flaggen/schweiz.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Spanien")){
+		else if(Nationalitaet==6){
 			Image imgmale = new Image("sample/Images/Flaggen/spanien.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
 		}
-		else if(Nationalitaet.equals("Finnland")){
+		else if(Nationalitaet==7){
 			Image imgmale = new Image("sample/Images/Flaggen/finnland.png",24,24,true,true);
 			ImageView imageView = new ImageView(imgmale);
 			return imageView;
