@@ -8,6 +8,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.octicons.OctIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -19,185 +20,248 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<JFXTabPane fx:id="tabpane_spieler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
+<JFXTabPane fx:id="tabpane_spieler" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMinWidth="290.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.Spieler_hinzufuegenController">
    <tabs>
-      <Tab fx:id="tab_sphin" text="Spieler hinzufügen">
-        <content>
-            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="410.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <JFXTextField fx:id="t_vn" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="360.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="220.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="t_nn" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="220.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </JFXTextField>
-                  <JFXDatePicker fx:id="d_geb" defaultColor="#757575" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" promptText="Geburtsdatum" styleClass="font" stylesheets="@../CSS/custom.css" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="220.0" />
-                     </GridPane.margin>
-                  </JFXDatePicker>
-                  <JFXTextField fx:id="t_spid" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="25.0" prefWidth="360.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="220.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="600.0" GridPane.rowIndex="5">
-                     <children>
-                        <JFXTextField fx:id="t_re" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin></JFXTextField>
-                        <JFXTextField fx:id="t_rd" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin></JFXTextField>
-                        <JFXTextField fx:id="t_rm" labelFloat="true" maxWidth="1.7976931348623157E308" text="0" unFocusColor="#757575">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin></JFXTextField>
-                     </children>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
-                     <children>
-                        <Label fx:id="Label_Verein" text="Verein">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ChoiceBox fx:id="combo_verein" minWidth="200.0">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </ChoiceBox>
-                        <JFXButton fx:id="b_neuerVerein" onAction="#pressBtn_neuerVerein" text="Neuer Verein">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <MaterialDesignIconView glyphName="PLUS_CIRCLE_OUTLINE" size="20" />
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
-                     <children>
-                        <Label fx:id="Label_Geschlecht" text="Geschlecht">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin></Label>
-                        <JFXRadioButton fx:id="r_m" selected="true" text="Männlich">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Geschlecht" />
-                           </toggleGroup>
-                        </JFXRadioButton>
-                        <JFXRadioButton fx:id="r_w" text="Weiblich" toggleGroup="$Geschlecht" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
-                     <children>
-                        <JFXButton fx:id="btn_MeldefImport" onAction="#pressBtn_ExcelImport" text="Meldeformular importieren">
-                           <HBox.margin>
-                              <Insets left="10.0" right="30.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <FontAwesomeIconView glyphName="COPY" size="20" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="b_abbrechen" onAction="#UpdateAbbrechen" text="Abbrechen" visible="false">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="b_spielerspeichern" onAction="#pressBtn_SpielerSpeichern" text="Spieler speichern">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
-                           </graphic>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox spacing="30.0" GridPane.rowIndex="4">
-                     <children>
-                        <Label fx:id="Label_Nationalitaet" text="Nationalität" />
-                        <ChoiceBox fx:id="choice_nationalitaet" prefWidth="150.0" />
-                     </children>
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="50.0" left="20.0" right="20.0" />
-               </padding>
-            </GridPane>
-        </content>
+      <Tab fx:id="tab_sphin" styleClass="root" text="Spieler hinzufügen">
          <graphic>
             <MaterialDesignIconView fx:id="spielerhinzu_icon" fill="WHITE" glyphName="ACCOUNT_PLUS" size="20" />
          </graphic>
+         <content>
+            <GridPane styleClass="Root" stylesheets="@../CSS/custom.css">
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints minWidth="-Infinity" prefWidth="900.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1">
+                     <children>
+                        <JFXTextField fx:id="t_vn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="Vorname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
+                           <HBox.margin>
+                              <Insets bottom="15.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXTextField fx:id="t_nn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="360.0" promptText="Nachname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <JFXTextField fx:id="t_spid" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="SpielerID" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <VBox spacing="15.0">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="70.0" top="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label fx:id="Label_Verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Verein:" />
+                              <Label fx:id="Label_Verein1" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Verein:" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="15.0">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="5.0" top="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <ChoiceBox fx:id="combo_verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css">
+                                 <styleClass>
+                                    <String fx:value="card-white" />
+                                    <String fx:value="font" />
+                                 </styleClass>
+                              </ChoiceBox>
+                              <JFXButton fx:id="b_neuerVerein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Neuer Verein">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#757575" glyphName="PLUS" size="20" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="card-white" />
+                                    <String fx:value="font" />
+                                 </styleClass>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Label fx:id="Label_Geschlecht" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Geschlecht:">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <VBox alignment="CENTER" spacing="15.0">
+                           <children>
+                              <JFXRadioButton fx:id="r_m" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Männlich">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Geschlecht" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="r_w" styleClass="font" stylesheets="@../CSS/custom.css" text="Weiblich" toggleGroup="$Geschlecht" />
+                           </children>
+                        </VBox>
+                        <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="600.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="l_re" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
+                                    <Label fx:id="l_rd" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
+                                    <Label fx:id="l_rm" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="170.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="250.0" spacing="10.0">
+                                 <children>
+                                    <JFXTextField fx:id="t_re" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" text="0" unFocusColor="#757575" />
+                                    <JFXTextField fx:id="t_rd" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" text="0" unFocusColor="#757575" />
+                                    <JFXTextField fx:id="t_rm" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" text="0" unFocusColor="#757575" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="600.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <JFXButton fx:id="btn_MeldefImport" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_ExcelImport" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Meldeformular importieren">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="#757575" glyphName="COPY" size="20" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="card-white" />
+                              <String fx:value="font" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton fx:id="b_abbrechen" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#UpdateAbbrechen" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Abbrechen" visible="false">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="card-white" />
+                              <String fx:value="font" />
+                           </styleClass>
+                           <graphic>
+                              <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20">
+                                 <styleClass>
+                                    <String fx:value="font" />
+                                    <String fx:value="card-white" />
+                                 </styleClass>
+                              </FontAwesomeIconView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="b_spielerspeichern" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Spieler speichern">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="card-white" />
+                              <String fx:value="font" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <JFXDatePicker fx:id="d_geb" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" overLay="true" prefHeight="39.0" prefWidth="350.0" promptText="Geburtsdatum" styleClass="font" stylesheets="@../CSS/custom.css">
+                           <HBox.margin>
+                              <Insets bottom="15.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXDatePicker>
+                        <HBox spacing="5.0">
+                           <children>
+                              <Label fx:id="Label_Nationalitaet" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Nationalität:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="choice_nationalitaet" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css">
+                                 <styleClass>
+                                    <String fx:value="card-white" />
+                                    <String fx:value="font" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" top="15.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </HBox>
+               </children>
+            </GridPane>
+         </content>
       </Tab>
-      <Tab fx:id="tab_spbea" text="Spieler bearbeiten">
+      <Tab fx:id="tab_spbea" styleClass="Root" text="Spieler bearbeiten">
         <content>
-            <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="395.0" prefWidth="627.0">
+            <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="Root">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="498.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="282.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="tabelle_spielerliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tabelle_spielerliste" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="-Infinity" prefWidth="100.0" text="Vorname" />
-                        <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="-Infinity" prefWidth="100.0" text="Nachname" />
-                        <TableColumn fx:id="tabelle_spielerliste_nationalitaet" minWidth="-Infinity" prefWidth="100.0" text="Nationalität" />
-                        <TableColumn fx:id="tabelle_spielerliste_verein" minWidth="-Infinity" prefWidth="100.0" text="Verein" />
-                        <TableColumn fx:id="tabelle_spielerliste_SpielerID" minWidth="-Infinity" prefWidth="100.0" text="Spieler ID" />
-                        <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="-Infinity" prefWidth="100.0" text="Geschlecht" />
-                        <TableColumn fx:id="tabelle_spielerliste_geburtstag" minWidth="100.0" prefWidth="75.0" text="Geburtsdatum" />
+                        <TableColumn fx:id="tabelle_spielerliste_vorname" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Vorname" />
+                        <TableColumn fx:id="tabelle_spielerliste_nachname" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Nachname" />
+                        <TableColumn fx:id="tabelle_spielerliste_nationalitaet" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Nationalität" />
+                        <TableColumn fx:id="tabelle_spielerliste_verein" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Verein" />
+                        <TableColumn fx:id="tabelle_spielerliste_SpielerID" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Spieler ID" />
+                        <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Geschlecht" />
+                        <TableColumn fx:id="tabelle_spielerliste_geburtstag" minWidth="100.0" prefWidth="75.0" resizable="false" text="Geburtsdatum" />
                      </columns>
                   </TableView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="250.0" prefHeight="25.0" prefWidth="180.0" promptText="Spielersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" />
-                        <Label fx:id="label_partner" textFill="RED" visible="false">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
+                        <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Spielersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
+                        <Label fx:id="label_partner" text="Label" />
                      </children>
-                  </HBox>
+                  </GridPane>
                </children>
             </GridPane>
         </content>
@@ -206,7 +270,4 @@
          </graphic>
       </Tab>
    </tabs>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
 </JFXTabPane>

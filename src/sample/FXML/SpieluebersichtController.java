@@ -20,6 +20,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
@@ -73,6 +74,12 @@ public class SpieluebersichtController implements Initializable {
 
     private HBox hBox =new HBox();
 
+    private VBox vbox_main = new VBox();
+
+    private GridPane grid_pane1 = new GridPane();
+
+    private GridPane grid_pane2 = new GridPane();
+
     public void SpracheLaden()
     {
 
@@ -119,6 +126,15 @@ public class SpieluebersichtController implements Initializable {
                 String runde = bundle.getString("runde");
 
 
+                check_aktiveSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
+                check_ausstehendeSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAusstehendeSpieleFarbe()));
+                check_gespielteSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
+                check_zukuenftigeSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getZukuenftigeSpieleFarbe()));
+                toggleCheckbox(check_aktiveSpiele);
+                toggleCheckbox(check_ausstehendeSpiele);
+                toggleCheckbox(check_gespielteSpiele);
+                toggleCheckbox(check_zukuenftigeSpiele);
+
                 TableColumn<Spiel, String> spielNummerSpalte = tableColoumnsetCellFactory("#", "SpielNummer");
                 TableColumn<Spiel, String> spielFeldSpalte = tableColoumnsetCellFactory(feld, "FeldNr");
                 TableColumn<Spiel, String> spielHeimSpalte = tableColoumnsetCellFactory(heim, "HeimStringKomplett");
@@ -128,6 +144,29 @@ public class SpieluebersichtController implements Initializable {
                 TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory(runde, "RundenName");
 
                 tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
+
+                spielNummerSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.0400));
+                spielNummerSpalte.getStyleClass().add("table-viewRightAlignColumn");
+                spielNummerSpalte.setSortable(false);
+                spielFeldSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.0528));
+                spielFeldSpalte.getStyleClass().add("table-viewLeftAlignColumn");
+                spielFeldSpalte.setSortable(false);
+                spielHeimSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.2528));
+                spielHeimSpalte.getStyleClass().add("table-viewRightAlignColumn");
+                spielHeimSpalte.setSortable(false);
+                spielGastSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.2528));
+                spielGastSpalte.getStyleClass().add("table-viewLeftAlignColumn");
+                spielGastSpalte.setSortable(false);
+                spielErgebnisSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1128));
+                spielErgebnisSpalte.getStyleClass().add("table-viewLeftAlignColumn");
+                spielErgebnisSpalte.setSortable(false);
+                spielSpielklasseSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
+                spielSpielklasseSpalte.getStyleClass().add("table-viewLeftAlignColumn");
+                spielSpielklasseSpalte.setSortable(false);
+                spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
+                spielRundeSpalte.getStyleClass().add("table-viewLeftAlignColumn");
+                spielRundeSpalte.setSortable(false);
+
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -137,8 +176,16 @@ public class SpieluebersichtController implements Initializable {
         }
     }
 
-
-
+    private void toggleCheckbox(JFXCheckBox checkbox) {
+        if(checkbox.isSelected()){
+            checkbox.setSelected(false);
+            checkbox.setSelected(true);
+        }
+        else{
+            checkbox.setSelected(true);
+            checkbox.setSelected(false);
+        }
+    }
 
 
     private TableColumn<Spiel, String> tableColoumnsetCellFactory(String tabellenspaltentext, String getFunktion) {
@@ -154,9 +201,11 @@ public class SpieluebersichtController implements Initializable {
                         setText(null);
                         setStyle("");
                     } else {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
                         setText(item);
                         Spiel spiel = getTableView().getItems().get(getIndex());
-                        if (tabellenspaltentext.equals("Heim") || tabellenspaltentext.equals("#")) {
+                        String heim = bundle.getString("heim");
+                        if (tabellenspaltentext.equals(heim) || tabellenspaltentext.equals("#")) {
                             setAlignment(Pos.CENTER_RIGHT);
                         }
                         if (spiel.getStatus() == 3) {
@@ -528,12 +577,15 @@ public class SpieluebersichtController implements Initializable {
         klassenTabsErstellen();
         tabelleSpieleContextMenu();
         checkComboBoxListener();
+        checkComboBox.getStyleClass().add("check-combo-box");
         layoutErstellen();
         suchleisteListener();
         checkboxListener(check_aktiveSpiele);
+        check_aktiveSpiele.setId("check-box");
         checkboxListener(check_ausstehendeSpiele);
         checkboxListener(check_gespielteSpiele);
         checkboxListener(check_zukuenftigeSpiele);
+        check_zukuenftigeSpiele.getStyleClass().add("check");
 
 
 
@@ -544,6 +596,7 @@ public class SpieluebersichtController implements Initializable {
 
 
     }
+
 
     private void checkComboBoxFuellen() {
         try {
@@ -603,36 +656,47 @@ public class SpieluebersichtController implements Initializable {
             tspielsuche = new JFXTextField("");
             tspielsuche.setLabelFloat(true);
             tspielsuche.setPromptText(Spielsuche);
-            gridPane_main.getChildren().add(tspielsuche);
+            tspielsuche.getStyleClass().add("text-field");
+            gridPane_main.getChildren().add(grid_pane1);
+            grid_pane1.getChildren().add(tspielsuche);
             hBox.getChildren().addAll(lspielklassen,checkComboBox);
             hBox.setSpacing(150);
             GridPane.setColumnIndex(tspielsuche, 0);
             GridPane.setRowIndex(tspielsuche, 0);
 
 
-            gridPane_main.getChildren().add(checkComboBox);
-            GridPane.setColumnIndex(checkComboBox, 5);
-            GridPane.setRowIndex(checkComboBox, 0);
-            gridPane_main.getChildren().add(check_aktiveSpiele);
-            GridPane.setColumnIndex(check_aktiveSpiele, 1);
-            GridPane.setRowIndex(check_aktiveSpiele, 0);
-            gridPane_main.getChildren().add(check_ausstehendeSpiele);
-            GridPane.setColumnIndex(check_ausstehendeSpiele, 2);
-            GridPane.setRowIndex(check_ausstehendeSpiele, 0);
-            gridPane_main.getChildren().add(check_gespielteSpiele);
-            GridPane.setColumnIndex(check_gespielteSpiele, 3);
-            GridPane.setRowIndex(check_gespielteSpiele, 0);
-            gridPane_main.getChildren().add(check_zukuenftigeSpiele);
-            GridPane.setColumnIndex(check_zukuenftigeSpiele, 4);
-            GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
+            gridPane_main.getChildren().add(grid_pane2);
+            GridPane.setColumnIndex(grid_pane2, 2);
+            GridPane.setRowIndex(grid_pane2, 0);
+            gridPane_main.getChildren().add(vbox_main);
+            GridPane.setColumnIndex(vbox_main, 1);
+            GridPane.setRowIndex(vbox_main, 0);
+//            gridPane_main.getChildren().add(check_ausstehendeSpiele);
+//            GridPane.setColumnIndex(check_ausstehendeSpiele, 1);
+//            GridPane.setRowIndex(check_ausstehendeSpiele, 0);
+//            gridPane_main.getChildren().add(check_gespielteSpiele);
+//            GridPane.setColumnIndex(check_gespielteSpiele, 1);
+//            GridPane.setRowIndex(check_gespielteSpiele, 0);
+//            gridPane_main.getChildren().add(check_zukuenftigeSpiele);
+//            GridPane.setColumnIndex(check_zukuenftigeSpiele, 1);
+//            GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
+            grid_pane2.getChildren().add(checkComboBox);
+            vbox_main.getChildren().add(check_aktiveSpiele);
+            vbox_main.getChildren().add(check_zukuenftigeSpiele);
+            vbox_main.getChildren().add(check_gespielteSpiele);
+            vbox_main.getChildren().add(check_ausstehendeSpiele);
             check_aktiveSpiele.setText(aktiveSpiele);
             check_aktiveSpiele.setSelected(true);
+            check_aktiveSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
             check_ausstehendeSpiele.setText(ausstehendeSpiele);
+            check_ausstehendeSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAusstehendeSpieleFarbe()));
             check_ausstehendeSpiele.setSelected(true);
             check_gespielteSpiele.setText(gespielteSpiele);
             check_gespielteSpiele.setSelected(true);
+            check_gespielteSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
             check_zukuenftigeSpiele.setText(zukuenftigeSpiele);
             check_zukuenftigeSpiele.setSelected(true);
+            check_zukuenftigeSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getZukuenftigeSpieleFarbe()));
             checkComboBox.setMaxWidth(800);
             checkComboBox.getItems().setAll(auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen());
 

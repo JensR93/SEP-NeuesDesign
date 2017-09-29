@@ -97,9 +97,9 @@ public class SpielklasseDAOimpl implements SpielklasseDAO {
             {
                 if(spielklasse.getSetzliste().get(k).isFreilos()){
                     sqlFreilose += " OR TeamID= ?";
-
                     freilosZaehler++;
                 }
+                sqlspiel_setzliste += " OR TeamID= ?";
             }
 
             try {
@@ -125,13 +125,17 @@ public class SpielklasseDAOimpl implements SpielklasseDAO {
                         smtFreilose.setInt(freilosZaehler,spielklasse.getSetzliste().get(k).getTeamid());
                         freilosZaehler--;
                     }
+                    smtspiel_setzliste.setInt(index,spielklasse.getSetzliste().get(k).getTeamid());
+                    index++;
+
                 }
+                System.out.println(smtspiel_setzliste);
+                System.out.println(smtFreilose);
                 smtErgebnis.executeUpdate();
                 smtErgebnis.close();
                 smtSpielklasseSpielId.executeUpdate();
                 smtSpielklasseSpielId.close();
                 smtspiel_setzliste.executeUpdate();
-                System.out.println(smtspiel_setzliste);
                 smtspiel_setzliste.close();
                 smtSpiel.executeUpdate();
                 smtSpiel.close();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<JFXTabPane fx:id="tabpane_verein" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
+<JFXTabPane fx:id="tabpane_verein" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="100000.0" tabMinWidth="230.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
    <tabs>
-      <Tab fx:id="tab_verein" onSelectionChanged="#Vereinsuebersichtauswahl" text="Vereinsübersicht">
+      <Tab fx:id="tab_verein" onSelectionChanged="#Vereinsuebersichtauswahl" styleClass="font-tab" text="Vereinsübersicht">
          <content>
             <GridPane>
                <columnConstraints>
@@ -37,45 +37,41 @@
                   </TableView>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="Btn_NeuerVerein" onAction="#btn_neueklasse" text="Neuer Verein">
+                        <JFXButton fx:id="Btn_NeuerVerein" onAction="#btn_neueklasse" styleClass="font" stylesheets="@../CSS/custom.css" text="Neuer Verein">
                            <graphic>
-                              <MaterialDesignIconView glyphName="PLUS_CIRCLE_OUTLINE" size="20" />
+                              <MaterialDesignIconView fill="#757575" glyphName="PLUS_CIRCLE_OUTLINE" size="20" />
                            </graphic>
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXTextField fx:id="vereinsuche" labelFloat="true" prefHeight="25.0" prefWidth="250.0" promptText="Vereinssuche" />
+                        <JFXTextField fx:id="vereinsuche" focusColor="#3367d6" labelFloat="true" prefHeight="25.0" prefWidth="250.0" promptText="Vereinssuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
          </content>
       </Tab>
-      <Tab fx:id="tab_startgeld" disable="true" text="Startgeldliste">
+      <Tab fx:id="tab_startgeld" styleClass="font-tab" text="Startgeldliste">
         <content>
         </content>
          <content>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="130.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="10.0" prefWidth="449.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="449.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Anzahl Spieler" />
-                  <Label text="Gesamtgebühren" GridPane.rowIndex="1" />
-                  <Label text="Nicht bezahlt" GridPane.rowIndex="3" />
-                  <JFXTextField fx:id="t_anzahlspieler" editable="false" text="0" GridPane.columnIndex="1" />
-                  <JFXTextField fx:id="t_gesamtgebuehren" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ListView fx:id="list_nichtbezahlt" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Offene Gebühren" GridPane.rowIndex="2" />
-                  <JFXTextField fx:id="t_offenegebuehren" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label styleClass="font" stylesheets="@../CSS/custom.css" text="Nicht bezahlt" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="t_anzahlspieler" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Anzahl Spieler" styleClass="font" text="0" unFocusColor="#757575" />
+                  <JFXTextField fx:id="t_gesamtgebuehren" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Gesamtgebühren" styleClass="font" text="0" unFocusColor="#757575" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="t_offenegebuehren" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Offene Gebühren" styleClass="font" text="0" unFocusColor="#757575" GridPane.rowIndex="2" />
+                  <JFXListView fx:id="list_nichtbezahlt" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </content>

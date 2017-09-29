@@ -196,12 +196,15 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("rdGewinner");
             rdGewinner.setText(titel);
+            rdGewinner.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("rdVerlierer");
             rdVerlierer.setText(titel);
+            rdVerlierer.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("rdAus");
             rdAus.setText(titel);
+            rdAus.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("Label_Drucker");
             Label_Drucker.setText(titel);
@@ -284,7 +287,13 @@ public class EinstellungenController implements Initializable {
         color_aktiv.setValue(Color.valueOf(AktiveSpieleFarbe));
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
         color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
-
+        if (auswahlklasse.getSpieluebersichtController()!=null) {
+            try {
+                auswahlklasse.getSpieluebersichtController().printSpielTable();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         if(SchiedsrichterStandard)
         {
             toggle_schiri.setSelected(true);

@@ -89,6 +89,8 @@ public class KlassenuebersichtController implements Initializable {
     @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
 
+    private ScrollPane scroll_klasse = new ScrollPane();
+
     public void SpracheLaden()
     {
         SpielklassenHinzufuegen();
@@ -215,7 +217,7 @@ public class KlassenuebersichtController implements Initializable {
         SpracheLaden();
         tabWidthAnpassen();
         auswahlklasse.setKlassenuebersichtController(this);
-
+        scroll_klasse.getStyleClass().add("edge-to-edge");
         SpielklassenHinzufuegen();
         try {
 

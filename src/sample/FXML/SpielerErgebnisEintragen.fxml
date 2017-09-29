@@ -3,23 +3,19 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielErgebnisEintragenController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielErgebnisEintragenController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -29,137 +25,100 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="50.0" GridPane.rowIndex="1">
          <children>
-            <JFXTextField fx:id="ts1_1" labelFloat="true" promptText="1. Satz">
+            <JFXTextField fx:id="ts1_1" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
-            <JFXTextField fx:id="ts1_2" labelFloat="true" promptText="1. Satz">
+            <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+            <JFXTextField fx:id="ts1_2" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </HBox.margin>
             </JFXTextField>
          </children>
+         <GridPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </GridPane.margin>
       </HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" spacing="50.0" GridPane.rowIndex="2">
          <children>
-            <JFXTextField fx:id="ts2_1" labelFloat="true" promptText="2. Satz">
+            <JFXTextField fx:id="ts2_1" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
-            <JFXTextField fx:id="ts2_2" labelFloat="true" promptText="2. Satz">
+            <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+            <JFXTextField fx:id="ts2_2" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-         </children></HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <JFXTextField fx:id="ts3_1" labelFloat="true" promptText="3. Satz">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
-            <JFXTextField fx:id="ts3_2" labelFloat="true" promptText="3. Satz">
-               <HBox.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </HBox.margin>
             </JFXTextField>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </GridPane.margin></HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="50.0" GridPane.rowIndex="3">
          <children>
-            <JFXButton fx:id="btn_ErgebnisseSpeichern" onAction="#pressbtn_OK" text="Ergebnisse speichern">
+            <JFXTextField fx:id="ts3_1" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </JFXTextField>
+            <Text fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+            <JFXTextField fx:id="ts3_2" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </JFXTextField>
+         </children>
+         <GridPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.rowIndex="4">
+         <children>
+            <JFXButton fx:id="btn_ErgebnisseSpeichern" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_OK" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Ergebnisse speichern">
                <graphic>
-                  <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" />
                </graphic>
+               <styleClass>
+                  <String fx:value="font" />
+                  <String fx:value="card-white" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btn_Abbrechen" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_Abbbruch" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Abbrechen">
+               <graphic>
+                  <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
+               </graphic>
+               <styleClass>
+                  <String fx:value="font" />
+                  <String fx:value="card-white" />
+               </styleClass>
             </JFXButton>
          </children>
+         <GridPane.margin>
+            <Insets left="50.0" right="50.0" />
+         </GridPane.margin>
       </HBox>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <ImageView fx:id="green_check_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <children>
-            <ImageView fx:id="green_check_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-         <children>
-            <ImageView fx:id="green_check_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <JFXButton fx:id="btn_Abbrechen" onAction="#pressbtn_Abbbruch" text="Abbrechen" GridPane.columnIndex="2" GridPane.rowIndex="4">
-         <graphic>
-            <FontAwesomeIconView glyphName="FLOPPY_ALT" size="20" />
-         </graphic>
-      </JFXButton>
-      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-         <children>
-            <Label fx:id="l_heim" text="Heim">
+            <Label fx:id="l_heim" styleClass="font" stylesheets="@../CSS/custom.css" text="Heim">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="l_gast1" text="vs.">
+            <Label fx:id="l_gast1" styleClass="font" stylesheets="@../CSS/custom.css" text="vs.">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="l_gast" text="Gast">
+            <Label fx:id="l_gast" styleClass="font" stylesheets="@../CSS/custom.css" text="Gast">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

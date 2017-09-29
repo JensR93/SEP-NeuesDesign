@@ -37,8 +37,7 @@ public class DashboardController implements Initializable{
     private JFXTabPane Spieler,Spielsystem,Visualisierung,Vereinsuebersicht;
     private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Spielereigenschaften;
 
-    private GridPane Turnier,home;
-    private VBox Spieluebersicht;
+    private GridPane Turnier,home,Spieluebersicht;
     @FXML
     void Vereinsuebersichtauswahl(ActionEvent event) {
 

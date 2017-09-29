@@ -102,6 +102,8 @@ public class VereinsuebersichtController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         SpracheLaden();
+        tabwidthanpassen();
+        tabpaneanpassen();
 
         auswahlklasse.setVereinsuebersichtController(this);
         fulleObsVereine();
@@ -115,6 +117,27 @@ public class VereinsuebersichtController implements Initializable {
 
 
         ListenerNichtbezahlteSpieler(randomListContextMenu);
+    }
+
+
+
+    private void tabwidthanpassen()
+    {
+        Vereinsname.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
+        Vereinsname.getStyleClass().add("table-viewRightAlignColumn");
+        Vereinsname.setSortable(false);
+        Vereinsverband.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
+        Vereinsverband.getStyleClass().add("table-viewLeftAlignColumn");
+        Vereinsverband.setSortable(false);
+        Vereinsextvereinsid.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
+        Vereinsextvereinsid.getStyleClass().add("table-viewRightAlignColumn");
+        Vereinsextvereinsid.setSortable(false);
+    }
+
+    private void tabpaneanpassen()
+    {
+        tabpane_verein.tabMinWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.32));
+        tabpane_verein.tabMaxWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.33));
     }
 
     private void VereinssucheListener() {
