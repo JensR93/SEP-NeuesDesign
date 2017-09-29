@@ -321,6 +321,9 @@ public class Spiel {
 		this.status = status;
 		this.systemSpielID = systemSpielID;
 		this.feld = feld;
+		if(feld!=null && status==2) {
+			feld.setAktivesSpiel(this);
+		}
 		this.zeitplanNummer=zeitplanNummer;
 		this.rundenZeitplanNummer = getRundenZeitplanNummer();
 	}

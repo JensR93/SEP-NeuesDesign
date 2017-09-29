@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sample.DAO.*;
 import sample.Spielsysteme.*;
 import sample.Enums.*;
@@ -11,6 +13,7 @@ public class Feld {
 	private Spiel aktivesSpiel;
 	private Turnier turnier;
 	private int feldnummer;
+	private ImageView imageView;
 
 	public Feld(Turnier turnier) {
 		this.turnier = turnier;
@@ -52,8 +55,18 @@ public class Feld {
 	}
 
 	public void spielBeenden(){
+		Image image = new Image("/sample/images/Badmintonfeld.jpg");
+		this.imageView.setImage(image);
 		this.aktivesSpiel = this.inVorbereitung;
 		this.inVorbereitung = null;
+	}
+
+	public void setImage(Image image) {
+		this.imageView.setImage(image);
+	}
+
+	public void setImageView(ImageView imageView) {
+		this.imageView = imageView;
 	}
 
 	public Turnier getTurnier() {
@@ -66,5 +79,9 @@ public class Feld {
 
 	public void setAktivesSpiel(Spiel aktivesSpiel) {
 		this.aktivesSpiel = aktivesSpiel;
+		if(this.imageView!=null) {
+			Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+			this.imageView.setImage(image);
+		}
 	}
 }
