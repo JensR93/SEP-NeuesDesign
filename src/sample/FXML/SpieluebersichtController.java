@@ -69,7 +69,7 @@ public class SpieluebersichtController implements Initializable {
     @FXML
     private HBox hBox_felder;
     @FXML
-    public TableView tabelle_spiele;
+    public TableView <Spiel> tabelle_spiele;
     @FXML
     private Tab tab_spieluebersicht = new Tab();
     @FXML
@@ -97,7 +97,7 @@ public class SpieluebersichtController implements Initializable {
     //wenn integer dann die ids abgehen
 
 
-    private void sortiereTabelleSpiele() {
+    public void sortiereTabelleSpiele() {
         sortListe.sort(new Comparator<Spiel>() {
             @Override
             public int compare(Spiel o1, Spiel o2) {
@@ -115,7 +115,6 @@ public class SpieluebersichtController implements Initializable {
         });
         tabelle_spiele.setItems(sortListe);
     }
-
 
     public void printSpielTable() throws Exception {
         tabelle_spiele.getColumns().clear();
@@ -147,6 +146,8 @@ public class SpieluebersichtController implements Initializable {
                 TableColumn<Spiel, String> spielErgebnisSpalte = tableColoumnsetCellFactory(ergebnis, "ErgebnisString");
                 TableColumn<Spiel, String> spielSpielklasseSpalte = tableColoumnsetCellFactory(spielklasse, "SpielklasseString");
                 TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory(runde, "RundenName");
+
+
 
                 tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
 
@@ -293,7 +294,7 @@ public class SpieluebersichtController implements Initializable {
                            Spiel spielSpiel = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key);
                            for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
                                Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
-                               if (feld.getFeldImageStackPane()==pane){
+                               if (feld.getFeldImageStackPane()==pane&&feld.getAktivesSpiel()==null){
                                    spielSpiel.setFeld(feld);
                                    spielSpiel.setStatus(2);
                                    CheckeSpielsuche();
@@ -568,7 +569,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item8 = new MenuItem("Ergebnis korrigieren");
+                    /*MenuItem item8 = new MenuItem("Ergebnis korrigieren");
                     item8.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -579,7 +580,7 @@ public class SpieluebersichtController implements Initializable {
                             auswahlklasse.getSpielErgebnisEintragenController().fuelleUpdateSpiel();
                             auswahlklasse.getDashboardController().setNodeSpielergebnis();
                         }
-                    });
+                    });*/
 
                     contextMenu.getItems().clear();
                     //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
@@ -648,10 +649,10 @@ public class SpieluebersichtController implements Initializable {
                     if (clickedRow.getStatus() == 2) {   //aktiv
                         contextMenu.getItems().addAll(item2, item5, item6, item7);
                     }
-                    if (clickedRow.getStatus() == 3) {
+                  /*  if (clickedRow.getStatus() == 3) {
                         //gespielt
                         contextMenu.getItems().addAll(item8);
-                    }
+                    }*/
 
                     // Add MenuItem to ContextMenu
 
