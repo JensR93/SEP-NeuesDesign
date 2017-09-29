@@ -32,7 +32,7 @@
                <children>
                   <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="font" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <menus>
-                      <Menu mnemonicParsing="false" text="Setzliste erstellen">
+                      <Menu fx:id="menu_setzlisteErstellen" mnemonicParsing="false" text="Setzliste erstellen">
                         <items>
                               <MenuItem mnemonicParsing="false" onAction="#erstelleSetzlisteNormal" text="Nach Setzlisten-Reihenfolge" />
                               <Menu fx:id="menu_rlp" mnemonicParsing="false" text="Nach Ranglistenpunkte">
@@ -43,12 +43,12 @@
                               <MenuItem mnemonicParsing="false" onAction="#erstelleSetzlisteZufall" text="Zufällig" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Spieler">
+                      <Menu fx:id="menu_spieler" mnemonicParsing="false" text="Spieler">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Hinzufügen" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Hilfe" />
+                      <Menu fx:id="menu_hilfe" mnemonicParsing="false" text="Hilfe" />
                     </menus>
                   </MenuBar>
                   <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
@@ -291,7 +291,6 @@
                               <FontAwesomeIconView glyphName="CHECK" size="20" />
                            </graphic>
                         </JFXButton>
-                        <Button mnemonicParsing="false" onAction="#pressbtn_spielklasseStarten" text="Button" />
                      </children>
                   </GridPane>
                </children>
