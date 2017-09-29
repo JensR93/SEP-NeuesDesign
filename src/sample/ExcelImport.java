@@ -104,9 +104,9 @@ public class ExcelImport implements Initializable{
                 Spieler sp = readRow(row);
                 if(sp!=null) {
 
-                    if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler)!=null)
+                    if(auswahlklasse.getSpielererfolgreich().get(sp.toString())!=null)
                     {
-                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp.toString()).getrPunkte();
                         if(sp.getrPunkte()[0]>0)
                         {
                             rpunkte[0]=sp.getrPunkte()[0];
@@ -119,9 +119,11 @@ public class ExcelImport implements Initializable{
                         {
                             rpunkte[2]=sp.getrPunkte()[2];
                         }
+                        auswahlklasse.getSpielererfolgreich().get(sp.toString()).setrPunkte(rpunkte);
+                        auswahlklasse.getSpielererfolgreich().get(sp.toString()).getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(sp.toString()));
                     }
                     //ExcelImport.getObs_vorh().add(sp);
-                    else if(auswahlklasse.getDict_doppelte_spieler().get(aktuellerSpieler)==null)
+                    else if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
                     {
                         // auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",sp.toString()+" wurde hinzugefügt.");
                         sp.getSpielerDAO().create(sp);
@@ -165,9 +167,9 @@ public class ExcelImport implements Initializable{
                 Spieler sp = readRow(row);
                 if(sp!=null) {
                     // ExcelImport.getVorhandeneSpieler().add(sp);,
-                    if(auswahlklasse.getSpielererfolgreich().get(sp)!=null)
+                    if(auswahlklasse.getSpielererfolgreich().get(sp.toString())!=null)
                     {
-                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp.toString()).getrPunkte();
                         if(sp.getrPunkte()[0]>0)
                         {
                             rpunkte[0]=sp.getrPunkte()[0];
@@ -180,6 +182,9 @@ public class ExcelImport implements Initializable{
                         {
                             rpunkte[2]=sp.getrPunkte()[2];
                         }
+                        auswahlklasse.getSpielererfolgreich().get(sp.toString()).setrPunkte(rpunkte);
+                        auswahlklasse.getSpielererfolgreich().get(sp.toString()).getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(sp.toString()));
+
                     }
                     //ExcelImport.getObs_vorh().add(sp);
                     else if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
@@ -207,9 +212,9 @@ public class ExcelImport implements Initializable{
                         auswahlklasse.getObs_spieler().add(tempSpieler);
                         auswahlklasse.addSpieler(tempSpieler);
                         //System.out.println(tempSpieler.getVName()+" "+tempSpieler.getNName()+" gespeichert"+ " geschlecht:"+tempSpieler.getGeschlecht()+" extID:"+tempSpieler.getExtSpielerID()+"verein: "+tempSpieler.getVerein()+" gdatum:"+tempSpieler.getGDatum());
-                        if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler)!=null)
+                        if(auswahlklasse.getSpielererfolgreich().get(sp.toString())!=null)
                         {
-                            int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                            int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp.toString()).getrPunkte();
                             if(sp.getrPunkte()[0]>0)
                             {
                                 rpunkte[0]=sp.getrPunkte()[0];
@@ -222,6 +227,8 @@ public class ExcelImport implements Initializable{
                             {
                                 rpunkte[2]=sp.getrPunkte()[2];
                             }
+                            auswahlklasse.getSpielererfolgreich().get(sp.toString()).setrPunkte(rpunkte);
+                            auswahlklasse.getSpielererfolgreich().get(sp.toString()).getSpielerDAO().update(auswahlklasse.getSpielererfolgreich().get(sp.toString()));
                         }
                         //ExcelImport.getObs_vorh().add(sp);
                         else if(auswahlklasse.getDict_doppelte_spieler().get(tempSpieler)==null)

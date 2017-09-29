@@ -250,6 +250,7 @@ public class SpieluebersichtController implements Initializable {
             feldNummer.getStyleClass().add("feldnummer");
             StackPane pane = new StackPane();
 
+
             pane.getChildren().add(label);
             pane.getChildren().add(feldNummer);
             pane.setAlignment(Pos.CENTER);
