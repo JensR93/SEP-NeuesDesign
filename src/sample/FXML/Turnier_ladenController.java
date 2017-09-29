@@ -194,7 +194,9 @@ public class Turnier_ladenController extends Application implements Initializabl
                             }
                         }
                     });
+
                     MenuItem item3 = new MenuItem("Turnier löschen");
+
                     item3.setOnAction(new EventHandler<ActionEvent>() {
 
 
@@ -276,6 +278,7 @@ public class Turnier_ladenController extends Application implements Initializabl
                                 ResourceBundle bundle = ResourceBundle.getBundle( baseName );
                                 String titel1 = bundle.getString("Label_Spieleinstellungen");
                                 String titel2 = bundle.getString("Label_Spieleinstellungen");
+
                                 auswahlklasse.InfoBenachrichtigung("Titel löschen", "Das Turnier "+ clickedRow.getName()+" wurde gelöscht");
 
                                 auswahlklasse.getTurniere().remove(getTurnierzumupdaten());
