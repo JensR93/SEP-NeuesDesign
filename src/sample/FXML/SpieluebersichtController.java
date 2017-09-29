@@ -183,6 +183,7 @@ public class SpieluebersichtController implements Initializable {
                 spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
                 spielRundeSpalte.getStyleClass().add("table-viewLeftAlignColumn");
                 spielRundeSpalte.setSortable(false);
+
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -476,7 +477,19 @@ public class SpieluebersichtController implements Initializable {
                             //tabpane_spieler.getSelectionModel().select(tab_sphin);
                         }
                     });*/
-                    MenuItem item2 = new MenuItem("Ergebnisse eintragen");
+
+                    String titel ="";
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("ErgebnisEintrag");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+
+                    MenuItem item2 = new MenuItem(titel);
+
                     item2.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -487,8 +500,20 @@ public class SpieluebersichtController implements Initializable {
                             auswahlklasse.getDashboardController().setNodeSpielergebnis();
 
                         }
+
+
+
                     });
-                    Menu item3 = new Menu("Felder zuweisen");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("FeldZuweis");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+                    Menu item3 = new Menu(titel);
+                    //Menu item3 = new Menu("Felder zuweisen");
                     item3.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -497,7 +522,16 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    Menu item4 = new Menu("in Vorbereitung setzen");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("InVorbereitSetz");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+                    Menu item4 = new Menu(titel);
+                    //Menu item4 = new Menu("in Vorbereitung setzen");
                     item4.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -506,7 +540,16 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item5 = new MenuItem("Spiel zurückziehen");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("SpielZurückziehen");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+                    MenuItem item5 = new MenuItem(titel);
+                    //MenuItem item5 = new MenuItem("Spiel zurückziehen");
                     item5.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -515,7 +558,16 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item6 = new MenuItem("Spielzettel drucken");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("SpielzettelDruck");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+                    MenuItem item6 = new MenuItem(titel);
+                    //MenuItem item6 = new MenuItem("Spielzettel drucken");
                     item6.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -524,7 +576,16 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item7 = new MenuItem("Spiel auf anderes Feld verlegen");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("SpielAufAnderesFeld");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+                    MenuItem item7 = new MenuItem(titel);
+                    //MenuItem item7 = new MenuItem("Spiel auf anderes Feld verlegen");
                     item7.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -533,7 +594,17 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    MenuItem item8 = new MenuItem("Ergebnis korrigieren");
+                    try {
+                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                        titel = bundle.getString("ErgebnisKorrigier");
+
+                    }
+                    catch ( MissingResourceException e ) {
+                        System.err.println( e );
+                    }
+
+                    MenuItem item8 = new MenuItem(titel);
+                    //MenuItem item8 = new MenuItem("Ergebnis korrigieren");
                     item8.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
