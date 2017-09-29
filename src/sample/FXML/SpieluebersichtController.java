@@ -208,6 +208,9 @@ public class SpieluebersichtController implements Initializable {
                         if (tabellenspaltentext.equals(heim) || tabellenspaltentext.equals("#")) {
                             setAlignment(Pos.CENTER_RIGHT);
                         }
+                        else{
+                            setAlignment(Pos.CENTER_LEFT);
+                        }
                         if (spiel.getStatus() == 3) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
                         } else if (spiel.getStatus() == 2) {
