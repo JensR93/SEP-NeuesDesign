@@ -32,8 +32,8 @@ public class VereinsuebersichtController implements Initializable {
     @FXML
     private JFXButton btn_vereinbezahlt;
 
-    ObservableList Vereinsspieler;
-
+    private static ObservableList <Spieler> Vereinsspieler;
+    Verein clickedRow;
     String baseName = "resources.Main";
     String titel ="";
 
@@ -265,7 +265,7 @@ public class VereinsuebersichtController implements Initializable {
                         clickedrow.setGebuehrenbezahlt(true);
                         list_nichtbezahlt.getItems().remove(clickedrow);
 
-                        berechneVereinGesamtGebuehren(Vereinsspieler);
+                        berechneVereinGesamtGebuehren();
                         clickedrow.getSpielerDAO().update(clickedrow);
                     }
                 });
@@ -300,7 +300,7 @@ public class VereinsuebersichtController implements Initializable {
             list_nichtbezahlt.getItems().get(i).setGebuehrenbezahlt(true);
         }
         list_nichtbezahlt.getItems().clear();
-        berechneVereinGesamtGebuehren(Vereinsspieler);
+        berechneVereinGesamtGebuehren();
     }
 
     public void tab1Auswahl()
@@ -312,7 +312,7 @@ public class VereinsuebersichtController implements Initializable {
         tabelle_vereine.setRowFactory(tv -> {
             TableRow row = new TableRow();
             row.setOnMouseClicked(event -> {
-                Verein clickedRow = (Verein) row.getItem();
+                 clickedRow = (Verein) row.getItem();
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
                         && event.getClickCount() == 2) {
 
@@ -345,13 +345,17 @@ public class VereinsuebersichtController implements Initializable {
 
                         @Override
                         public void handle(ActionEvent event) {
+                        if(Vereinsspieler!=null)
+                        {
+                            Vereinsspieler.clear();
+                        }
 
 
                         tabpane_verein.getSelectionModel().select(tab_startgeld);
-                           ObservableList Vereinsspieler= berechneAnzahlSpieler(clickedRow);
+                            Vereinsspieler= berechneAnzahlSpieler(clickedRow);
                         t_anzahlspieler.setText(String.valueOf(Vereinsspieler.size()));
                         //t_offenegebuehren.setText(String.valueOf(berechneVereinOffeneGebuehren(Vereinsspieler)));
-                            berechneVereinGesamtGebuehren(Vereinsspieler);
+                            berechneVereinGesamtGebuehren();
 
 
 
@@ -427,15 +431,15 @@ public class VereinsuebersichtController implements Initializable {
 
     }
 
-    private void berechneVereinGesamtGebuehren(ObservableList<Spieler> vereinsspieler) {
+    private void berechneVereinGesamtGebuehren() {
 
         float gebuehr=0;
         float bezahlt=0;
-        for(int i=0;i<vereinsspieler.size();i++)
+        for(int i=0;i<Vereinsspieler.size();i++)
         {
 
 
-                ArrayList<Spielklasse> a = vereinsspieler.get(i).checkeSetzlisteMitglied(vereinsspieler.get(i));
+                ArrayList<Spielklasse> a = Vereinsspieler.get(i).checkeSetzlisteMitglied(Vereinsspieler.get(i));
                 float einzel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrEinzel();
                 float doppel=  auswahlklasse.getAktuelleTurnierAuswahl().getMeldegebuehrDoppel();
                 float summe = 0;
@@ -444,7 +448,7 @@ public class VereinsuebersichtController implements Initializable {
                     if(a.get(j).toString().toUpperCase().contains("EINZEL"))
                     {
                         summe+=einzel;
-                        if(vereinsspieler.get(i).isGebuehrenbezahlt())
+                        if(Vereinsspieler.get(i).isGebuehrenbezahlt())
                         {
                             bezahlt+=einzel;
                         }
@@ -452,7 +456,7 @@ public class VereinsuebersichtController implements Initializable {
                     else
                     {
                         summe+=doppel;
-                        if(vereinsspieler.get(i).isGebuehrenbezahlt())
+                        if(Vereinsspieler.get(i).isGebuehrenbezahlt())
                         {
                             bezahlt+=doppel;
                         }
