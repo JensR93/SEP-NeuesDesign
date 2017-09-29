@@ -44,6 +44,8 @@ public class DashboardController implements Initializable{
 
     private GridPane Turnier,home,Spieluebersicht;
     @FXML
+    private JFXButton btnHilfe;
+    @FXML
     void Vereinsuebersichtauswahl(ActionEvent event) {
 
     }
@@ -120,7 +122,11 @@ public class DashboardController implements Initializable{
     void klassenoeffnen(ActionEvent event) {
 
     }
+    @FXML
+    void Hilfe(ActionEvent event) {
+        prgHelp();
 
+    }
     @FXML
     void spieleroeffnen(ActionEvent event) {
 
@@ -500,7 +506,7 @@ public class DashboardController implements Initializable{
             URL url = HelpSet.findHelpSet(cl, "jhelpset.hs");
             helpViewer = new JHelp(new HelpSet(cl, url));
             // Darzustellendes Kapitel festlegen, ID muss im XML existieren!
-            helpViewer.setCurrentID("Simple.Introduction");
+            //helpViewer.setCurrentID("Simple.Introduction");
         } catch (Exception e) {
             System.err.println("Help-Datei nicht gefunden.");
         }

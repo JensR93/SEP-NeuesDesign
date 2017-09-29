@@ -57,32 +57,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-/*        File f = new File("Einstellungen.xml");
-        if(f.exists() && !f.isDirectory()) {
-            Properties loadProps = new Properties();
-            try {
-                loadProps.loadFromXML(new FileInputStream("Einstellungen.xml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            String  Sprache = loadProps.getProperty("Sprache");
-            if(Sprache.equals("de"))
-            {
-                Locale.setDefault( new Locale("de", "DE") );
-            }
-            if(Sprache.equals("en"))
-            {
-                Locale.setDefault( new Locale("en", "UK") );
-            }
-            if(Sprache.equals("es"))
-            {
-                Locale.setDefault( new Locale("es", "ES") );
-            }
-
-
-        }*/
 
         launch(args);
     }
