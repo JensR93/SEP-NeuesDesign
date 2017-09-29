@@ -395,7 +395,7 @@ public class ExcelImport implements Initializable{
                         auswahlklasse.getObs_vereine_erfolgreich().add(verein);
                     }
 
-                    Spieler neuerSpieler = new Spieler(vName,nName,gDatum,geschlecht,rPunkte,verein,extSpielerID,"");
+                    Spieler neuerSpieler = new Spieler(vName,nName,gDatum,geschlecht,rPunkte,verein,extSpielerID,4);
                     for(Enumeration ee = auswahlklasse.getSpieler().elements();ee.hasMoreElements();)
                     {
                         Spieler sp = (Spieler) ee.nextElement();

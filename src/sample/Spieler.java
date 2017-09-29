@@ -19,6 +19,16 @@ public class Spieler {
 
 	}
 
+	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein, String extSpielerID, int i) {
+		this.vName=vName;
+		this.nName=nName;
+		this.gDatum=gDatum;
+		this.geschlecht=geschlecht;
+		this.rPunkte=rPunkte;
+		this.verein=verein;
+		this.extSpielerID=extSpielerID;
+	}
+
 	public String getNotiz() {
 		return Notiz;
 	}
