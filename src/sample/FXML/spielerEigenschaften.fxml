@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import jfxtras.scene.layout.VBox?>
 
-
 <GridPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.spielerEigenschaftenController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
@@ -99,6 +98,13 @@
                               </HBox>
                               <ChoiceBox fx:id="choice_verein" prefWidth="150.0" />
                               <JFXTextField fx:id="t_spielerid" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                                 <children>
+                                    <JFXTextField fx:id="r_einzel" labelFloat="true" promptText="RLP Einzel" />
+                                    <JFXTextField fx:id="r_doppel" labelFloat="true" promptText="RLP Doppel" />
+                                    <JFXTextField fx:id="r_mix" labelFloat="true" promptText="RLP Mix" />
+                                 </children>
+                              </HBox>
                               <JFXDialog />
       
                            </children>
@@ -114,12 +120,6 @@
                         <VBox fx:id="vbox_spielklassen" layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="566.0" />
                      </children>
                   </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="tab_verfuegbarkeit" text="Verfügbarkeit" />
-            <Tab fx:id="tab_statistik" text="Statistik">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab fx:id="tab_gebuehren" text="Gebühren">

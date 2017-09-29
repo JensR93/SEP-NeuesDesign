@@ -31,7 +31,6 @@ public class spielerEigenschaftenController implements Initializable{
 
     ContextMenu context_spielklasse = new ContextMenu();
     ContextMenu contextMenu_all = new ContextMenu();
-
     @FXML
     private VBox vbox_spielklassen;
     @FXML
@@ -39,6 +38,13 @@ public class spielerEigenschaftenController implements Initializable{
 
     @FXML
     private TextArea t_notiz;
+    @FXML
+    private JFXTextField r_einzel;
+    @FXML
+    private JFXTextField r_doppel;
+    @FXML
+    private JFXTextField r_mix;
+
     @FXML
     private JFXTextField t_vorname;
 
@@ -58,7 +64,7 @@ public class spielerEigenschaftenController implements Initializable{
     private JFXRadioButton r_w;
 
     @FXML
-    private ChoiceBox<Verein> choice_verein;
+    private ChoiceBox choice_verein;
 
     @FXML
     private JFXTextField t_spielerid;
@@ -101,9 +107,14 @@ public class spielerEigenschaftenController implements Initializable{
 
         auswahlklasse.getSpielerzumHinzufeuegen().setgDatum(d_geburtsdatum.getValue());
         auswahlklasse.getSpielerzumHinzufeuegen().setvName(t_vorname.getText());
+        int [] rpunkte= new int[3];
+        rpunkte[0]= Integer.parseInt(r_einzel.getText());
+        rpunkte[1]= Integer.parseInt(r_doppel.getText());
+        rpunkte[2]= Integer.parseInt(r_mix.getText());
+        auswahlklasse.getSpielerzumHinzufeuegen().setrPunkte(rpunkte);
         auswahlklasse.getSpielerzumHinzufeuegen().setnName(t_nachname.getText());
         auswahlklasse.getSpielerzumHinzufeuegen().setExtSpielerID(t_spielerid.getText());
-        auswahlklasse.getSpielerzumHinzufeuegen().setVerein(choice_verein.getSelectionModel().getSelectedItem());
+        auswahlklasse.getSpielerzumHinzufeuegen().setVerein((Verein) choice_verein.getSelectionModel().getSelectedItem());
         if(r_m.isSelected())
         {
             auswahlklasse.getSpielerzumHinzufeuegen().setGeschlecht(true);
@@ -423,6 +434,9 @@ public class spielerEigenschaftenController implements Initializable{
 
         t_notiz.setText(clickedRow.getNotiz());
         t_vorname.setText(clickedRow.getVName());
+        r_einzel.setText(String.valueOf(clickedRow.getrPunkte()[0]));
+            r_doppel.setText(String.valueOf(clickedRow.getrPunkte()[1]));
+            r_mix.setText(String.valueOf(clickedRow.getrPunkte()[2]));
         t_nachname.setText(clickedRow.getNName());
         d_geburtsdatum.setValue(clickedRow.getGDatum());
         t_spielerid.setText(clickedRow.getExtSpielerID());

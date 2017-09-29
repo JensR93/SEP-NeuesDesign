@@ -33,7 +33,8 @@ public class VereinsuebersichtController implements Initializable {
 
     ContextMenu contextMenu=new ContextMenu();
 
-
+    @FXML
+    private JFXButton btn_vereinbezahlt;
     @FXML
     private JFXTextField t_anzahlspieler;
     @FXML
@@ -62,6 +63,8 @@ public class VereinsuebersichtController implements Initializable {
     private Tab tab_verein;
     @FXML
     private Tab tab_startgeld;
+    ObservableList Vereinsspieler;
+
 
     public void SpracheLaden()
     {
@@ -168,6 +171,9 @@ public class VereinsuebersichtController implements Initializable {
 
                         clickedrow.setGebuehrenbezahlt(true);
                         list_nichtbezahlt.getItems().remove(clickedrow);
+
+                        berechneVereinGesamtGebuehren(Vereinsspieler);
+                        clickedrow.getSpielerDAO().update(clickedrow);
                     }
                 });
 
@@ -183,6 +189,17 @@ public class VereinsuebersichtController implements Initializable {
         });
     }
 
+    @FXML
+    void vereinbezahlt(ActionEvent event) {
+        for(int i=0;i<list_nichtbezahlt.getItems().size();i++)
+        {
+            list_nichtbezahlt.getItems().get(i).setGebuehrenbezahlt(true);
+
+        }
+        list_nichtbezahlt.getItems().clear();
+        berechneVereinGesamtGebuehren(Vereinsspieler);
+
+    }
     public void tab1Auswahl()
     {
         tab_startgeld.setDisable(true);
@@ -193,60 +210,47 @@ public class VereinsuebersichtController implements Initializable {
             TableRow row = new TableRow();
             row.setOnMouseClicked(event -> {
                 Verein clickedRow = (Verein) row.getItem();
-                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
-                        && event.getClickCount() == 2) {
+                //System.out.println("R-KLICK");
+                MenuItem item1 = new MenuItem("Verein bearbeiten");
+                item1.setOnAction(new EventHandler<ActionEvent>() {
 
-                    auswahlklasse.getDashboardController().setNodeNeuerVerein();
-                    auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
-                    auswahlklasse.getNeuer_vereinController().updateVerein();
-                    //   a.getStagesdict().get("")
-                }
-                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-                    contextMenu.hide();
-                } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
+                    @Override
+                    public void handle(ActionEvent event) {
 
 
-                    //System.out.println("R-KLICK");
-                    MenuItem item1 = new MenuItem("Verein bearbeiten");
-                    item1.setOnAction(new EventHandler<ActionEvent>() {
+                        auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                        auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
+                        auswahlklasse.getNeuer_vereinController().updateVerein();
+                        //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                    }
+                });
+                MenuItem item2 = new MenuItem("Startgeldliste anzeigen");
+                item2.setOnAction(new EventHandler<ActionEvent>() {
 
-                        @Override
-                        public void handle(ActionEvent event) {
-
-
-                            auswahlklasse.getDashboardController().setNodeNeuerVerein();
-                            auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
-                            auswahlklasse.getNeuer_vereinController().updateVerein();
-                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                        }
-                    });
-                    MenuItem item2 = new MenuItem("Startgeldliste anzeigen");
-                    item2.setOnAction(new EventHandler<ActionEvent>() {
-
-                        @Override
-                        public void handle(ActionEvent event) {
+                    @Override
+                    public void handle(ActionEvent event) {
 
 
                         tabpane_verein.getSelectionModel().select(tab_startgeld);
-                           ObservableList Vereinsspieler= berechneAnzahlSpieler(clickedRow);
+                        Vereinsspieler= berechneAnzahlSpieler(clickedRow);
                         t_anzahlspieler.setText(String.valueOf(Vereinsspieler.size()));
                         //t_offenegebuehren.setText(String.valueOf(berechneVereinOffeneGebuehren(Vereinsspieler)));
-                            berechneVereinGesamtGebuehren(Vereinsspieler);
+                        berechneVereinGesamtGebuehren(Vereinsspieler);
 
 
 
                         listNichtBezahltFuellen(Vereinsspieler);
-                            tab_startgeld.setDisable(false);
+                        tab_startgeld.setDisable(false);
 
-                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                        }
-                    });
-                    MenuItem item3 = new MenuItem("Verein löschen");
-                    item3.setOnAction(new EventHandler<ActionEvent>() {
+                        //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                    }
+                });
+                MenuItem item3 = new MenuItem("Verein löschen");
+                item3.setOnAction(new EventHandler<ActionEvent>() {
 
 
-                        @Override
-                        public void handle(ActionEvent event) {
+                    @Override
+                    public void handle(ActionEvent event) {
                         boolean erfolg = clickedRow.getVereinDAO().delete(clickedRow);
 
 
@@ -268,12 +272,19 @@ public class VereinsuebersichtController implements Initializable {
                             auswahlklasse.WarnungBenachrichtigung("Fehler","Verein enthält Spieler");
                         }
 
-                        }
-                    });
-                    if (!contextMenu.isShowing()) {
-                        contextMenu.getItems().clear();
-                        contextMenu.getItems().addAll(item1,item2, item3);
                     }
+                });
+                if (!contextMenu.isShowing()) {
+                    contextMenu.getItems().clear();
+                    contextMenu.getItems().addAll(item1,item2, item3);
+                }
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.hide();
+                } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
+
+
+
+
                     tabelle_vereine.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 
                         @Override
@@ -285,6 +296,15 @@ public class VereinsuebersichtController implements Initializable {
 
                         }
                     });
+
+                }
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
+                    contextMenu.show(tabelle_vereine, event.getScreenX(), event.getScreenY());
+                   /* auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                    auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
+                    auswahlklasse.getNeuer_vereinController().updateVerein();*/
+                    //   a.getStagesdict().get("")
                 }
             });
 

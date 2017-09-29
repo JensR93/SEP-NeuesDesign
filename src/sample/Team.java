@@ -383,8 +383,20 @@ public class Team {
                 }
             }
             else if(this.einzel == false){
-                return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+"." + " / " + this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
-            }
+                if(spielerEins!=null&&spielerZwei!=null)
+                {
+                    return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+"." + " / " + this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
+
+                }
+                else if(spielerEins!=null)
+                {
+                    return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+".";
+                }
+                else if(spielerZwei!=null)
+                {
+                    return this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
+                }
+                }
         }
         return "Fehler";
     }

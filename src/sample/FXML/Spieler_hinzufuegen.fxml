@@ -259,7 +259,7 @@
                      </rowConstraints>
                      <children>
                         <JFXTextField fx:id="t_suchleistespielerhinzu" labelFloat="true" maxWidth="500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Spielersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
-                        <Label fx:id="label_partner" text="Label" />
+                        <Label fx:id="label_partner" />
                      </children>
                   </GridPane>
                </children>

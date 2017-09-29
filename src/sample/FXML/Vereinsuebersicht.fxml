@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <JFXTabPane fx:id="tabpane_verein" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="100000.0" tabMinWidth="230.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
    <tabs>
@@ -71,7 +72,12 @@
                   <JFXTextField fx:id="t_anzahlspieler" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Anzahl Spieler" styleClass="font" text="0" unFocusColor="#757575" />
                   <JFXTextField fx:id="t_gesamtgebuehren" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Gesamtgebühren" styleClass="font" text="0" unFocusColor="#757575" GridPane.rowIndex="1" />
                   <JFXTextField fx:id="t_offenegebuehren" editable="false" focusColor="#3367d6" labelFloat="true" promptText="Offene Gebühren" styleClass="font" text="0" unFocusColor="#757575" GridPane.rowIndex="2" />
-                  <JFXListView fx:id="list_nichtbezahlt" GridPane.rowIndex="3" />
+                  <VBox GridPane.rowIndex="3">
+                     <children>
+                        <JFXButton fx:id="btn_vereinbezahlt" onAction="#vereinbezahlt" text="Kompletter Verein bezahlt" />
+                        <JFXListView fx:id="list_nichtbezahlt" />
+                     </children>
+                  </VBox>
                </children>
             </GridPane>
          </content>
