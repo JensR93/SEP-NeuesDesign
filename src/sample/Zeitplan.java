@@ -96,7 +96,10 @@ public class Zeitplan {
                 int key =(int) e.nextElement();
                 Spielklasse spielklasse = turnier.getSpielklassen().get(key);
                 if (spielklasse.getSpielsystem()!=null && spielklasse.getDisziplin().toUpperCase().contains(disziplin)){
-                    ArrayList<ZeitplanRunde> getRunden = turnier.getSpielklassen().get(key).getSpielsystem().getRunden();
+                    ArrayList<ZeitplanRunde> getRunden = new ArrayList<>();
+                    for(int i=0;i<turnier.getSpielklassen().get(key).getSpielsystem().getRunden().size();i++){
+                        getRunden.add((ZeitplanRunde)turnier.getSpielklassen().get(key).getSpielsystem().getRunden().get(i).clone());
+                    }
                     if(disziplin.toUpperCase().contains("EINZEL")){
                         spielsystemRundenEinzel.add(getRunden);
                         returnListe = spielsystemRundenEinzel;

@@ -85,6 +85,12 @@ public class ZeitplanController implements Initializable{
         neueRundenListe.addAll(rundenListe);
         zeitplan = Zeitplan.zeitplanErstellen(neueRundenListe,false);
         uebersichtZeichnen();
+        tableColumnsErstellen();
+        try {
+            auswahlklasse.getSpieluebersichtController().printSpielTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void uebersichtZeichnen() {
@@ -360,15 +366,18 @@ public class ZeitplanController implements Initializable{
         /*alleRundenHolen();
         uebersichtZeichnen();
         */
-        tableColumnsErstellen();
+
         rundenListe.addAll(Zeitplan.getAlleRundenEinlesen());
         ArrayList<ZeitplanRunde> neueRundenListe = new ArrayList<>();
         neueRundenListe.addAll(rundenListe);
         zeitplan = Zeitplan.zeitplanErstellen(neueRundenListe,true);
+        for(int i=0;i<rundenListe.size();i++){
+            while (rundenListe.get(i).get(0).containsFreilos()){
+                rundenListe.get(i).remove(0);
+            }
+        }
         uebersichtZeichnen();
-        System.out.println(startZeitEinzel);
-        System.out.println(startZeitDoppel);
-        System.out.println(startZeitMixed);
+        tableColumnsErstellen();
     }
 
 

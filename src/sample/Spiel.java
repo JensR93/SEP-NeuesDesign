@@ -76,14 +76,18 @@ public class Spiel {
 		}
 	}
 
-	public void setFeld(Feld feld) {
-		this.feld = feld;
-		feld.setAktivesSpiel(this);
-		spielDAO.update(this);
-		if(auswahlklasse.getEinstellungenController().getSchiedsrichterzettel())
-        {
-            this.spielzettelDrucken();
-        }
+	public void setFeld(Feld feld) throws Exception {
+		if(alleSpielerVerfuegbar()) {
+			this.feld = feld;
+			feld.setAktivesSpiel(this);
+			spielDAO.update(this);
+			if (auswahlklasse.getEinstellungenController().getSchiedsrichterzettel()) {
+				this.spielzettelDrucken();
+			}
+		}
+		else{
+			throw new Exception("nicht Alle Spieler Verfügbar");
+		}
 	}
 
 
@@ -288,6 +292,19 @@ public class Spiel {
 			setErgebnis(new Ergebnis(21,0,21,0));
 		}*/
 	}
+	public boolean containsFreilos(){
+		if(heim!=null){
+			if (heim.isFreilos()){
+				return true;
+			}
+		}
+		if(gast!=null){
+			if(gast.isFreilos()){
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 	public Spiel(int systemSpielID, Spielsystem spielsystem) { //Constructor für Extrarunden (Gruppe mit Endrunde)
@@ -332,7 +349,7 @@ public class Spiel {
 			feld.setAktivesSpiel(this);
 		}
 		this.zeitplanNummer=zeitplanNummer;
-		this.rundenZeitplanNummer = getRundenZeitplanNummer();
+		this.rundenZeitplanNummer = RundenZeitplanNummer;
 	}
 
 	public Team getSieger(){
@@ -361,6 +378,15 @@ public class Spiel {
 			return "";
 		}
 	}
+	public boolean alleSpielerVerfuegbar(){
+		if(!heim.isVerfuegbar()){
+			return false;
+		}
+		if (!gast.isVerfuegbar()){
+			return false;
+		}
+		return true;
+	}
 
 	public void setSpielsystem(Spielsystem spielsystem) {
 		this.spielsystem = spielsystem;
@@ -373,8 +399,11 @@ public class Spiel {
 		return zeitplanNummer;
 	}
 
-	public void setZeitplanNummer(int zeitplanNummer) {
-		this.zeitplanNummer = zeitplanNummer;
+	public void setZeitplanNummer(int zeitplanNummer){
+		if(this.zeitplanNummer!=zeitplanNummer){
+			this.zeitplanNummer = zeitplanNummer;
+			spielDAO.update(this);
+		}
 	}
 
 	public int getRundenZeitplanNummer() {
@@ -382,7 +411,10 @@ public class Spiel {
 	}
 
 	public void setRundenZeitplanNummer(int rundenZeitplanNummer) {
-		this.rundenZeitplanNummer = rundenZeitplanNummer;
+		if (rundenZeitplanNummer!=this.rundenZeitplanNummer) {
+			this.rundenZeitplanNummer = rundenZeitplanNummer;
+			spielDAO.update(this);
+		}
 	}
 
 	public Spielsystem getSpielsystem() {
@@ -680,5 +712,15 @@ public class Spiel {
 		{
 			System.out.println("Drucken fehlgeschlagen");
 		}
+	}
+
+	public boolean contains(Spieler spieler) {
+		if(heim!=null&&heim.contains(spieler)){
+			return true;
+		}
+		if(gast!=null&&gast.contains(spieler)){
+			return true;
+		}
+		return false;
 	}
 }

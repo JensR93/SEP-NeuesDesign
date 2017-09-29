@@ -101,7 +101,7 @@ public class SpieluebersichtController implements Initializable {
         sortListe.sort(new Comparator<Spiel>() {
             @Override
             public int compare(Spiel o1, Spiel o2) {
-                int a=0,b=0;
+                /*int a=0,b=0;
                 if(o1.getStatus()==0)
                 {
                     a-=100000;
@@ -109,8 +109,8 @@ public class SpieluebersichtController implements Initializable {
                 if(o2.getStatus()==0)
                 {
                     b-=100000;
-                }
-                return o1.getZeitplanNummer()-a - o2.getZeitplanNummer()-b;
+                }*/
+                return o1.getZeitplanNummer() - o2.getZeitplanNummer();
             }
         });
         tabelle_spiele.setItems(sortListe);
@@ -176,6 +176,7 @@ public class SpieluebersichtController implements Initializable {
             catch ( MissingResourceException e ) {
                 System.err.println( e );
             }
+            sortiereTabelleSpiele();
         } else {
             System.out.println("kann Turnier nicht laden");
         }
@@ -296,9 +297,13 @@ public class SpieluebersichtController implements Initializable {
                            for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
                                Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
                                if (feld.getFeldImageStackPane()==pane&&feld.getAktivesSpiel()==null){
-                                   spielSpiel.setFeld(feld);
-                                   spielSpiel.setStatus(2);
-                                   CheckeSpielsuche();
+                                   try {
+                                       spielSpiel.setFeld(feld);
+                                       spielSpiel.setStatus(2);
+                                       CheckeSpielsuche();
+                                   } catch (Exception e) {
+                                       e.printStackTrace();
+                                   }
                                }
                            }
                            //System.out.println(spiel);
@@ -622,11 +627,19 @@ public class SpieluebersichtController implements Initializable {
                                         @Override
                                         public void handle(ActionEvent event) {
                                             //System.out.println("Feld = " + feld.get(ii));
-                                            clickedRow.setFeld(feld.get(ii));
+                                            try {
+                                                clickedRow.setFeld(feld.get(ii));
+                                                clickedRow.setStatus(2);
+                                                CheckeSpielsuche();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                                auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
+
+                                            }
+
                                             /*Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
                                             feld.get(ii).setImage(image);*/
-                                            clickedRow.setStatus(2);
-                                            CheckeSpielsuche();
+
                                        /*     auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().remove(clickedRow);
                                             auswahlklasse.getAktuelleTurnierAuswahl().getObs_aktiveSpiele().add(clickedRow);*/
                                         }
@@ -716,7 +729,10 @@ public class SpieluebersichtController implements Initializable {
                         contains(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key).getSpielklasseid()
                         ))
                 {
-                    sortListe.add(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key));
+                    Spiel spiel = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key);
+                    if(!spiel.containsFreilos()) {
+                        sortListe.add(spiel);
+                    }
                 }
 
             }
