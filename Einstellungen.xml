@@ -4,7 +4,7 @@
 <comment>Badminton Turnierverwaltung Settings</comment>
 <entry key="Sprache">en</entry>
 <entry key="AktiveSpieleFarbe">#00008b</entry>
-<entry key="ZukuenftigeSpieleFarbe">#000000</entry>
+<entry key="ZukuenftigeSpieleFarbe">0x039be5ff</entry>
 <entry key="dbPass"/>
 <entry key="VormerkungSchiedsrichter">Gewinner</entry>
 <entry key="SchiedsrichterStandard">true</entry>

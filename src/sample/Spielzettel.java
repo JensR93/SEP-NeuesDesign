@@ -50,10 +50,6 @@ public class Spielzettel implements Printable {
             Rectangle2D.Double border = new Rectangle2D.Double(0, 0, pf.getImageableWidth(), pf.getImageableHeight());
             //g2.drawLine((int) pf.getImageableWidth() / 2, 0, (int) pf.getImageableWidth() / 2, (int) pf.getImageableHeight());
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            Font[] fonts = ge.getAllFonts();
-            for (int i = 0; i < fonts.length; i++) { //gibt alle möglichen Schriftarten aus!
-                System.out.println(fonts[i].getFontName());
-            }
             g2.draw(border);
             Font font = new Font("Calibri Bold", Font.PLAIN, 20);
             // Now we perform our rendering
@@ -63,9 +59,10 @@ public class Spielzettel implements Printable {
 
             g2.drawString("Turnier:", 22, 60);
             g2.drawString(spiel.getSpielsystem().getSpielklasse().getTurnier().getName(), 157, 60);
-            g2.drawString("Disziplin:", 22, 85);
-            g2.drawString(spiel.getSpielsystem().getSpielklasse().getDisziplin(), 157, 85);
+            g2.drawString("Spielklasse:", 22, 85);
+            g2.drawString(spiel.getSpielklasseString(), 157, 85);
             g2.drawString("Feldnummer:", 22, 110);
+            g2.drawString(spiel.getFeldNr(), 157, 110);
 
 
             g2.drawString("Datum:", 370, 60);

@@ -508,7 +508,7 @@ public class SpieluebersichtController implements Initializable {
 
                         @Override
                         public void handle(ActionEvent event) {
-
+                            clickedRow.spielzettelDrucken();
 
                         }
                     });
