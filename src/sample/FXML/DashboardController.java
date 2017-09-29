@@ -191,7 +191,6 @@ public class DashboardController implements Initializable{
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
             SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
             Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
-            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -478,6 +477,8 @@ public class DashboardController implements Initializable{
             Turnier = fxmlLoaderTurnier.load();
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
             NeuerVerein = FXMLLoader.load(getClass().getResource("Neuer_Verein.fxml"));
+            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Vereinsuebersicht.fxml"));
+
 
             Spiel.SpracheLaden();
 
