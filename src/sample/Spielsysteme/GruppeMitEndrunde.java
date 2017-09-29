@@ -16,7 +16,7 @@ public class GruppeMitEndrunde extends Spielsystem{
 	private Spielsystem endrunde;
 	private Dictionary<Integer,Integer[]> setzPlatze = new Hashtable<>();
 
-	public GruppeMitEndrunde(Spielklasse spielklasse, int anzahlGruppen, int anzahlWeiterkommender,boolean ko) {
+	public GruppeMitEndrunde(Spielklasse spielklasse, int anzahlGruppen, int anzahlWeiterkommender,boolean platz3ausspielen) {
 		this.setSpielSystemArt(2);
 		this.setzliste = spielklasse.getSetzliste();
 		this.anzahlGruppen = anzahlGruppen;
@@ -24,7 +24,18 @@ public class GruppeMitEndrunde extends Spielsystem{
 		setSpielklasse(spielklasse);
 		setzListeAufteilen();
 		gruppenErstellen();
-		endRundeErstellen(ko);
+		endRundeErstellen(platz3ausspielen);
+		rundenArrayErstellen();
+	}
+	public GruppeMitEndrunde(Spielklasse spielklasse, int anzahlGruppen, int anzahlWeiterkommender) {
+		this.setSpielSystemArt(2);
+		this.setzliste = spielklasse.getSetzliste();
+		this.anzahlGruppen = anzahlGruppen;
+		this.anzahlWeiterkommender = anzahlWeiterkommender;
+		setSpielklasse(spielklasse);
+		setzListeAufteilen();
+		gruppenErstellen();
+		endRundeErstellen();
 		rundenArrayErstellen();
 	}
 
@@ -77,7 +88,7 @@ public class GruppeMitEndrunde extends Spielsystem{
 			}
 			if(i==0){
 				if(endrundeAufKOpruefen(endrundenSpiele)) {
-					endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), false, endrundenSpiele, endrundenErgebnisse);
+					endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), endrundenSpiele, endrundenErgebnisse);
 				}
 				else {
 					Gruppe endrundenGruppe = new Gruppe(anzahlWeiterkommender,this,getSpielklasse(),endrundenSpiele,endrundenErgebnisse);
@@ -206,15 +217,17 @@ public class GruppeMitEndrunde extends Spielsystem{
 		}
 	}
 
+	private void endRundeErstellen(){
+		endrunde = new Gruppe(anzahlWeiterkommender,this,this.getSpielklasse());
+	}
 
-	private void endRundeErstellen(boolean ko){
-		if(ko) {
-			endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), false);
+	private void endRundeErstellen(boolean platzDreiAusspielen){
+		if(platzDreiAusspielen) {
+			endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), true);
 		}
 		else{
-			endrunde = new Gruppe(anzahlWeiterkommender,this,this.getSpielklasse());
+			endrunde = new KO(anzahlWeiterkommender, this, this.getSpielklasse(), false);
 		}
-
 	}
 
 

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import sample.DAO.*;
 import sample.Spielsysteme.*;
 import sample.Enums.*;
@@ -14,6 +15,7 @@ public class Feld {
 	private Turnier turnier;
 	private int feldnummer;
 	private ImageView imageView;
+	private StackPane feldImageStackPane;
 
 	public Feld(Turnier turnier) {
 		this.turnier = turnier;
@@ -71,6 +73,14 @@ public class Feld {
 
 	public Turnier getTurnier() {
 		return turnier;
+	}
+
+	public StackPane getFeldImageStackPane() {
+		return feldImageStackPane;
+	}
+
+	public void setFeldImageStackPane(StackPane feldImageStackPane) {
+		this.feldImageStackPane = feldImageStackPane;
 	}
 
 	public void setInVorbereitung(Spiel inVorbereitung) {

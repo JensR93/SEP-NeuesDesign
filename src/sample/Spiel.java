@@ -7,8 +7,11 @@ import java.awt.print.PrinterJob;
 import java.time.LocalTime;
 import java.util.Dictionary;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import sample.DAO.*;
 import sample.Spielsysteme.*;
 
@@ -77,6 +80,10 @@ public class Spiel {
 		this.feld = feld;
 		feld.setAktivesSpiel(this);
 		spielDAO.update(this);
+		if(auswahlklasse.getEinstellungenController().getSchiedsrichterzettel())
+        {
+            this.spielzettelDrucken();
+        }
 	}
 
 
@@ -643,23 +650,35 @@ public class Spiel {
 	}
 
 	public void spielzettelDrucken() {
-		Spielzettel test = new Spielzettel(this);
-
-		PrinterJob job = PrinterJob.getPrinterJob();
-		PageFormat querFormat = new PageFormat();
-		Paper paper = querFormat.getPaper();
-		paper.setImageableArea(45, 45, querFormat.getPaper().getWidth()-90, querFormat.getPaper().getHeight()-90);
-		querFormat.setPaper(paper);
-		querFormat.setOrientation(PageFormat.LANDSCAPE);
-		job.setPrintable(test,querFormat);
 		try {
-			job.print();
+			Spielzettel test = new Spielzettel(this);
+			PrinterJob job = PrinterJob.getPrinterJob();
+			PageFormat querFormat = new PageFormat();
+			Paper paper = querFormat.getPaper();
+			paper.setImageableArea(45, 45, querFormat.getPaper().getWidth()-90, querFormat.getPaper().getHeight()-90);
+			querFormat.setPaper(paper);
+			querFormat.setOrientation(PageFormat.LANDSCAPE);
+			job.setPrintable(test,querFormat);
+			if(job!=null && (auswahlklasse.isDruckerGesetzt()||job.printDialog())){
+				if (!auswahlklasse.isDruckerGesetzt()){
+					Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+					alert.setTitle("Drucker speichern?");
+					alert.setContentText("Soll der Drucker gespeichert werden?");
+					alert.getButtonTypes().clear();
+					alert.getButtonTypes().add(ButtonType.YES);
+					alert.getButtonTypes().add(ButtonType.NO);
+					Optional<ButtonType> auswahl = alert.showAndWait();
+					if(auswahl.get()==ButtonType.YES){
+						auswahlklasse.setDruckerGesetzt(true);
+					}
+				}
+				job.print();
+			}
+
 		}
 		catch (PrinterException e)
 		{
 			System.out.println("Drucken fehlgeschlagen");
 		}
-		System.exit(0);
 	}
-
 }

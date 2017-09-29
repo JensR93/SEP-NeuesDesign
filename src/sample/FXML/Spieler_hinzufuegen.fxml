@@ -90,7 +90,7 @@
                                     <String fx:value="font" />
                                  </styleClass>
                               </ChoiceBox>
-                              <JFXButton fx:id="b_neuerVerein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Neuer Verein">
+                              <JFXButton fx:id="b_neuerVerein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_neuerVerein" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Neuer Verein">
                                  <graphic>
                                     <FontAwesomeIconView fill="#757575" glyphName="PLUS" size="20" />
                                  </graphic>

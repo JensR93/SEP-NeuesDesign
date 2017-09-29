@@ -66,7 +66,7 @@ public class KO extends Spielsystem {
 	}
 
 
-	public KO(int anzahlSpieler, Spielsystem gruppeMitEndrunde, Spielklasse spielklasse, boolean platzDreiAusspielen, ArrayList<Spiel> spiele, Dictionary<Integer,Ergebnis> ergebnisse) {
+	public KO(int anzahlSpieler, Spielsystem gruppeMitEndrunde, Spielklasse spielklasse, ArrayList<Spiel> spiele, Dictionary<Integer,Ergebnis> ergebnisse) {
 		this.spielsystem = gruppeMitEndrunde;//Constructor für Endrunde bei Gruppe mit Endrunde einlesen
 		this.platzDreiAusspielen = platzDreiAusspielen;
 		this.setSpielklasse(spielklasse);
@@ -75,9 +75,6 @@ public class KO extends Spielsystem {
 		finale = new SpielTree(spielSystemIDberechnen(), 1, 2);
 		freiloseHinzufuegen(anzahlSpieler);
 		knotenEinlesen(spiele);
-		if(platzDreiAusspielen){
-			spielUmDreiErstellen();
-		}
 		alleErgebnisseEinlesen(ergebnisse);
 	}
 

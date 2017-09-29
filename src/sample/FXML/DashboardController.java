@@ -42,7 +42,7 @@ public class DashboardController implements Initializable{
     private JFXTabPane Spieler,Spielsystem,Visualisierung,Vereinsuebersicht;
     private GridPane Einstellungen,NeuesTurnier,Spieler_vorhanden,Klassenuebersicht,Zeitplan,SpielErgebnisEintragen,NeuerVerein,Spielereigenschaften;
 
-    private GridPane Turnier,home,Spieluebersicht;
+    private GridPane Turnier,Spieluebersicht;
     @FXML
     private JFXButton btnHilfe;
     @FXML
@@ -67,8 +67,7 @@ public class DashboardController implements Initializable{
     @FXML // fx:id="sideAnchor"
     private AnchorPane sideAnchor; // Value injected by FXMLLoader
 
-    @FXML // fx:id="btnHome"
-    private JFXButton btnHome; // Value injected by FXMLLoader
+
 
     @FXML // fx:id="btnTurnierübersicht"
     private JFXButton btnTurnierübersicht; // Value injected by FXMLLoader
@@ -182,8 +181,6 @@ public class DashboardController implements Initializable{
             titel = bundle.getString("btnVerein");
             btnVerein.setText(titel);
 
-            titel = bundle.getString("btnHome");
-            btnHome.setText(titel);
 
             titel = bundle.getString("btnHilfe");
             btnHilfe.setText(titel);
@@ -197,7 +194,6 @@ public class DashboardController implements Initializable{
 
     public void createPages() {
         try {
-            home = FXMLLoader.load(getClass().getResource("Turnier_laden.fxml"));
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
             NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
             Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
@@ -370,9 +366,6 @@ public class DashboardController implements Initializable{
     {
         setNode(Turnier);
     }
-    @FXML public void setNodeHome(ActionEvent event){
-        setNode(home);
-    }
     @FXML public void setNodeKlassenuebersicht(ActionEvent event)
     {
         setNode(Klassenuebersicht);
@@ -454,7 +447,6 @@ public class DashboardController implements Initializable{
 
     public void allesFreigeben(){
         btnKlassen.setDisable(false);
-        btnHome.setDisable(false);
         btnzeitplan.setDisable(false);
         btnSpieluebersicht.setDisable(false);
         turnierbaumFreigeben();

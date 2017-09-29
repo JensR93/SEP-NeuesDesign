@@ -40,7 +40,6 @@ public class ZeitplanController implements Initializable{
 
     String baseName = "resources.Main";
     String titel = "";
-    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
     private ObservableList<ZeitplanRunde> rundenListe = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanEinzel = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanDoppel = FXCollections.observableArrayList();
@@ -374,7 +373,7 @@ public class ZeitplanController implements Initializable{
                     Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
                     db.setDragView(row.snapshot(null, null));
                     ClipboardContent cc = new ClipboardContent();
-                    cc.put(SERIALIZED_MIME_TYPE, index);
+                    cc.put(auswahlklasse.getSerializedMimeType2(), index);
 
                     db.setContent(cc);
                     event.consume();
@@ -383,8 +382,8 @@ public class ZeitplanController implements Initializable{
 
             row.setOnDragOver(event -> {
                 Dragboard db = event.getDragboard();
-                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-                    if (row.getIndex() != ((Integer)db.getContent(SERIALIZED_MIME_TYPE)).intValue()) {
+                if (db.hasContent(auswahlklasse.getSerializedMimeType2())) {
+                    if (row.getIndex() != ((Integer)db.getContent(auswahlklasse.getSerializedMimeType2())).intValue()) {
                         event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                         event.consume();
                     }
@@ -393,8 +392,8 @@ public class ZeitplanController implements Initializable{
 
             row.setOnDragDropped(event -> {
                 Dragboard db = event.getDragboard();
-                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                if (db.hasContent(auswahlklasse.getSerializedMimeType2())) {
+                    int draggedIndex = (Integer) db.getContent(auswahlklasse.getSerializedMimeType2());
                     ZeitplanRunde draggedPerson = tableview_runden.getItems().remove(draggedIndex);
 
                     int dropIndex ;
