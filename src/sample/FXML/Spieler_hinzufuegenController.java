@@ -1006,7 +1006,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("tabelle_spielerliste_SpielerID");
             tabelle_spielerliste_SpielerID.setText(titel);
 
-            titel = bundle.getString("tabelle_spielerliste_geschlecht");
+            titel = "";//bundle.getString("tabelle_spielerliste_geschlecht");
             tabelle_spielerliste_geschlecht.setText(titel);
 
             titel = bundle.getString("tabelle_spielerliste_geburtstag");
@@ -1028,7 +1028,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("Label_Nationalitaet");
             Label_Nationalitaet.setText(titel);
 
-            titel = bundle.getString("tabelle_spielerliste_nationalitaet");
+            titel = "";//bundle.getString("tabelle_spielerliste_nationalitaet");
             tabelle_spielerliste_nationalitaet.setText(titel);
 
 
