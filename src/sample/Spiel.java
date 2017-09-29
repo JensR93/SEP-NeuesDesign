@@ -77,7 +77,8 @@ public class Spiel {
 	}
 
 	public void setFeld(Feld feld) throws Exception {
-		if(alleSpielerVerfuegbar()) {
+		boolean alleverfuegbar =alleSpielerVerfuegbar(true);
+		if(alleverfuegbar) {
 			this.feld = feld;
 			feld.setAktivesSpiel(this);
 			spielDAO.update(this);
@@ -378,11 +379,11 @@ public class Spiel {
 			return "";
 		}
 	}
-	public boolean alleSpielerVerfuegbar(){
-		if(!heim.isVerfuegbar()){
+	public boolean alleSpielerVerfuegbar(boolean warnung){
+		if(!heim.isVerfuegbar(warnung)){
 			return false;
 		}
-		if (!gast.isVerfuegbar()){
+		if (!gast.isVerfuegbar(warnung)){
 			return false;
 		}
 		return true;
