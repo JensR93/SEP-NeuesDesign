@@ -166,6 +166,16 @@ public class SpielsystemController implements Initializable {
     @FXML
     private JFXTextField t_suchleistespieler;
 
+    @FXML
+    private Text t_platz3ausspielGmE;
+
+    @FXML
+    private JFXRadioButton radio_p3_ja;
+
+    @FXML
+    private JFXRadioButton radio_p3_nein;
+
+
 
     Dictionary<Integer,Spielklasse> turnierauswahlspielklassendict = null;
     Spielklasse ausgewaehlte_spielklasse=  auswahlklasse.getAktuelleSpielklassenAuswahl();
@@ -1146,6 +1156,8 @@ public class SpielsystemController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        radioAuswahlPlatzDrei();
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -1217,6 +1229,15 @@ public class SpielsystemController implements Initializable {
             titel = bundle.getString("t_suchleistespieler");
             t_suchleistespieler.setPromptText(titel);
             t_suchleistespieler.setLabelFloat(true);
+
+            titel = bundle.getString("t_platz3ausspielGmE");
+            t_platz3ausspielGmE.setText(titel);
+
+            titel = bundle.getString("radio_p3_ja");
+            radio_p3_ja.setText(titel);
+
+            titel = bundle.getString("radio_p3_nein");
+            radio_p3_nein.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
@@ -1500,9 +1521,6 @@ public class SpielsystemController implements Initializable {
             });
 
 
-
-
-
         }
         t_suchleistesetzliste.textProperty().addListener((observable, oldValue, newValue) -> {
             // System.out.println("textfield changed from " + oldValue + " to " + newValue);
@@ -1526,6 +1544,23 @@ public class SpielsystemController implements Initializable {
 
 
     }//Ende Initialize
+
+
+    @FXML
+    private void radioAuswahlPlatzDrei(){
+        if(rb_ko.isSelected()){
+            t_platz3ausspielGmE.setVisible(true);
+            radio_p3_ja.setVisible(true);
+            radio_p3_nein.setVisible(true);
+        }
+        if(rb_Gruppe.isSelected()){
+            t_platz3ausspielGmE.setVisible(false);
+            radio_p3_ja.setVisible(false);
+            radio_p3_nein.setVisible(false);
+
+        }
+
+    }
 
     private void addSpielerMixCheck(Spieler clickedRow) {
         if(ausgewaehlte_spielklasse.toString().toUpperCase().contains("MIX"))
