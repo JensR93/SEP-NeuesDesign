@@ -50,9 +50,10 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
                   <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Beenden" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="9">
+                  <JFXButton fx:id="btnBeenden" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Beenden" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Beenden" textFill="#757575" GridPane.rowIndex="10">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -157,6 +158,14 @@
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="#757575" glyphName="USERS" size="20" wrappingWidth="40.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="btnHilfe" maxHeight="39.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Hilfe" prefHeight="39.0" prefWidth="250.0" styleClass="side-buttons" stylesheets="@../CSS/custom.css" text="Hilfe" textFill="#757575" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" text="" wrappingWidth="40.0" />
                      </graphic>
                   </JFXButton>
                </children>
