@@ -71,6 +71,8 @@ public class SpieluebersichtController implements Initializable {
     @FXML
     public TableView tabelle_spiele;
     @FXML
+    private Label Label_Spielübersicht;
+    @FXML
     private Tab tab_spieluebersicht = new Tab();
     @FXML
     JFXTabPane tabPane_spielklassen = new JFXTabPane();
@@ -84,9 +86,19 @@ public class SpieluebersichtController implements Initializable {
     private GridPane grid_pane1 = new GridPane();
 
     private GridPane grid_pane2 = new GridPane();
-
+    ResourceBundle bundle = ResourceBundle.getBundle( baseName );
     public void SpracheLaden()
     {
+        try
+        {
+
+        titel = bundle.getString("Label_Spielübersicht");
+        Label_Spielübersicht.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
 
     }
 
