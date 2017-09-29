@@ -68,10 +68,7 @@ public class SpielsystemController implements Initializable {
     //Tab1
     @FXML
     private VBox vbox_info;
-    @FXML
-    private TextField t_suchleistespieler;
-    @FXML
-    private TextField t_suchleistesetzliste;
+
     @FXML
     private Label l_meldungsetzliste1;
 
@@ -153,6 +150,31 @@ public class SpielsystemController implements Initializable {
 
     @FXML
     private JFXTextField textField_anzahlRundenSchweizer;
+
+    @FXML
+    private Menu menu_setzlisteErstellen;
+
+    @FXML
+    private Menu menu_spieler;
+
+    @FXML
+    private Menu menu_hilfe;
+
+    @FXML
+    private JFXTextField t_suchleistesetzliste;
+
+    @FXML
+    private JFXTextField t_suchleistespieler;
+
+    @FXML
+    private Text t_platz3ausspielGmE;
+
+    @FXML
+    private JFXRadioButton radio_p3_ja;
+
+    @FXML
+    private JFXRadioButton radio_p3_nein;
+
 
 
     Dictionary<Integer,Spielklasse> turnierauswahlspielklassendict = null;
@@ -1134,6 +1156,7 @@ public class SpielsystemController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -1188,6 +1211,32 @@ public class SpielsystemController implements Initializable {
 
             titel = bundle.getString("t_AnzahlRunden");
             t_AnzahlRunden.setText(titel);
+
+            titel = bundle.getString("menu_setzlisteErstellen");
+            menu_setzlisteErstellen.setText(titel);
+
+            titel = bundle.getString("menu_spieler");
+            menu_spieler.setText(titel);
+
+            titel = bundle.getString("menu_hilfe");
+            menu_hilfe.setText(titel);
+
+            titel = bundle.getString("t_suchleistesetzliste");
+            t_suchleistesetzliste.setPromptText(titel);
+            t_suchleistesetzliste.setLabelFloat(true);
+
+            titel = bundle.getString("t_suchleistespieler");
+            t_suchleistespieler.setPromptText(titel);
+            t_suchleistespieler.setLabelFloat(true);
+
+            titel = bundle.getString("t_platz3ausspielGmE");
+            t_platz3ausspielGmE.setText(titel);
+
+            titel = bundle.getString("radio_p3_ja");
+            radio_p3_ja.setText(titel);
+
+            titel = bundle.getString("radio_p3_nein");
+            radio_p3_nein.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
@@ -1471,9 +1520,6 @@ public class SpielsystemController implements Initializable {
             });
 
 
-
-
-
         }
         t_suchleistesetzliste.textProperty().addListener((observable, oldValue, newValue) -> {
             // System.out.println("textfield changed from " + oldValue + " to " + newValue);
@@ -1497,6 +1543,20 @@ public class SpielsystemController implements Initializable {
 
 
     }//Ende Initialize
+
+    @FXML
+    private void radioAuswahlPlatzDrei(){
+        if(rb_ko.isSelected()){
+            t_platz3ausspielGmE.setVisible(true);
+            radio_p3_ja.setVisible(true);
+            radio_p3_nein.setVisible(true);
+        }
+        if(rb_Gruppe.isSelected()){
+            t_platz3ausspielGmE.setVisible(false);
+            radio_p3_ja.setVisible(false);
+            radio_p3_nein.setVisible(false);
+        }
+    }
 
     private void addSpielerMixCheck(Spieler clickedRow) {
         if(ausgewaehlte_spielklasse.toString().toUpperCase().contains("MIX"))

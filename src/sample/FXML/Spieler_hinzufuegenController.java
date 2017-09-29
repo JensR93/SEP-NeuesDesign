@@ -1037,6 +1037,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             System.err.println( e );
         }
 
+
     }
 
     public void neuenVereinauswaehlen() {

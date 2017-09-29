@@ -33,8 +33,7 @@ public class VereinsuebersichtController implements Initializable {
 
     ContextMenu contextMenu=new ContextMenu();
 
-    @FXML
-    private Tab tab_startgeld;
+
     @FXML
     private JFXTextField t_anzahlspieler;
     @FXML
@@ -44,7 +43,6 @@ public class VereinsuebersichtController implements Initializable {
 
     @FXML
     private ListView<Spieler> list_nichtbezahlt;
-    @FXML private Tab    tab_verein;
     @FXML
     private TableView tabelle_vereine;
     @FXML
@@ -60,6 +58,10 @@ public class VereinsuebersichtController implements Initializable {
     public TableColumn Vereinsextvereinsid;
     @FXML
     private JFXButton Btn_NeuerVerein;
+    @FXML
+    private Tab tab_verein;
+    @FXML
+    private Tab tab_startgeld;
 
     public void SpracheLaden()
     {
@@ -83,6 +85,11 @@ public class VereinsuebersichtController implements Initializable {
             vereinsuche.setPromptText(titel);
             vereinsuche.setLabelFloat(true);
 
+            titel = bundle.getString("tab_verein");
+            tab_verein.setText(titel);
+
+            titel = bundle.getString("tab_startgeld");
+            tab_startgeld.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
@@ -95,8 +102,6 @@ public class VereinsuebersichtController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         SpracheLaden();
-        tabwidthanpassen();
-        tabpaneanpassen();
 
         auswahlklasse.setVereinsuebersichtController(this);
         fulleObsVereine();
@@ -110,27 +115,6 @@ public class VereinsuebersichtController implements Initializable {
 
 
         ListenerNichtbezahlteSpieler(randomListContextMenu);
-    }
-
-
-
-    private void tabwidthanpassen()
-    {
-        Vereinsname.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
-        Vereinsname.getStyleClass().add("table-viewRightAlignColumn");
-        Vereinsname.setSortable(false);
-        Vereinsverband.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
-        Vereinsverband.getStyleClass().add("table-viewLeftAlignColumn");
-        Vereinsverband.setSortable(false);
-        Vereinsextvereinsid.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.330));
-        Vereinsextvereinsid.getStyleClass().add("table-viewRightAlignColumn");
-        Vereinsextvereinsid.setSortable(false);
-    }
-
-    private void tabpaneanpassen()
-    {
-        tabpane_verein.tabMinWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.32));
-        tabpane_verein.tabMaxWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.33));
     }
 
     private void VereinssucheListener() {
