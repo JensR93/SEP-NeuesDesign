@@ -34,17 +34,17 @@ public class Zeitplan {
         if (spielsystemRundenEinzel.size()>0){
             spielSystemeSortieren(spielsystemRundenEinzel);
             alleRundenSortiertEinzel = alleRundenSortieren(spielsystemRundenEinzel);
-            zeitplanErstellen(alleRundenSortiertEinzel);
+            zeitplanErstellen(alleRundenSortiertEinzel,true);
         }
         if (spielsystemRundenDoppel.size()>0){
             spielSystemeSortieren(spielsystemRundenDoppel);
             alleRundenSortiertDoppel = alleRundenSortieren(spielsystemRundenDoppel);
-            zeitplanErstellen(alleRundenSortiertDoppel);
+            zeitplanErstellen(alleRundenSortiertDoppel,true);
         }
         if (spielsystemRundenDoppel.size()>0){
             spielSystemeSortieren(spielsystemRundenDoppel);
             alleRundenSortiertMixed = alleRundenSortieren(spielsystemRundenDoppel);
-            zeitplanErstellen(alleRundenSortiertMixed);
+            zeitplanErstellen(alleRundenSortiertMixed,true);
         }
     }
 
@@ -70,6 +70,23 @@ public class Zeitplan {
         }
         return alleRundenSortiert;
     }
+    public static ArrayList<ZeitplanRunde> getAlleRundenEinlesen(){
+        ArrayList<ZeitplanRunde> alleRunden = new ArrayList<>();
+        ArrayList<ZeitplanRunde> einzelRunden = getAlleRundenSortiert("EINZEL");
+        if(einzelRunden!=null) {
+            alleRunden.addAll(einzelRunden);
+        }
+        ArrayList<ZeitplanRunde> doppelRunden = getAlleRundenSortiert("DOPPEL");
+        if(doppelRunden!=null) {
+            alleRunden.addAll(doppelRunden);
+        }
+        ArrayList<ZeitplanRunde> mixedRunden = getAlleRundenSortiert("MIXED");
+        if(mixedRunden!=null) {
+            alleRunden.addAll(mixedRunden);
+        }
+        alleRunden.sort(ZeitplanRunde.comparator);
+        return alleRunden;
+    }
 
     private static ArrayList<ArrayList<ZeitplanRunde>> alleSpielsystemeEinlesen(Turnier turnier, String disziplin){
         ArrayList<ArrayList<ZeitplanRunde>> returnListe = null;
@@ -79,7 +96,10 @@ public class Zeitplan {
                 int key =(int) e.nextElement();
                 Spielklasse spielklasse = turnier.getSpielklassen().get(key);
                 if (spielklasse.getSpielsystem()!=null && spielklasse.getDisziplin().toUpperCase().contains(disziplin)){
-                    ArrayList<ZeitplanRunde> getRunden = turnier.getSpielklassen().get(key).getSpielsystem().getRunden();
+                    ArrayList<ZeitplanRunde> getRunden = new ArrayList<>();
+                    for(int i=0;i<turnier.getSpielklassen().get(key).getSpielsystem().getRunden().size();i++){
+                        getRunden.add((ZeitplanRunde)turnier.getSpielklassen().get(key).getSpielsystem().getRunden().get(i).clone());
+                    }
                     if(disziplin.toUpperCase().contains("EINZEL")){
                         spielsystemRundenEinzel.add(getRunden);
                         returnListe = spielsystemRundenEinzel;
@@ -130,38 +150,42 @@ public class Zeitplan {
         return alleRundenSortiert;
     }
 
-    public static ObservableList<Spiel> zeitplanErstellen(ArrayList<ZeitplanRunde> alleRunden,ObservableList<Spiel> alterZeitplan ){
+    public static ObservableList<Spiel> zeitplanErstellen(ArrayList<ZeitplanRunde> alleRunden,ObservableList<Spiel> alterZeitplan ,boolean nurLesen){
         int spielnummer = alterZeitplan.size()+1;
         int rundenZeitPlanNummer = 1;
         if (alterZeitplan.size()>0){
             rundenZeitPlanNummer = alterZeitplan.get(alterZeitplan.size()-1).getRundenZeitplanNummer()+1;
         }
         ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
-        listenVereinen(alleRunden, rundenZeitPlanNummer, zeitplan, spielnummer);
+        listenVereinen(alleRunden, rundenZeitPlanNummer, zeitplan, spielnummer,nurLesen);
         return zeitplan;
     }
-    public static ObservableList<Spiel> zeitplanErstellen(ArrayList<ZeitplanRunde> alleRunden){
+    public static ObservableList<Spiel> zeitplanErstellen(ArrayList<ZeitplanRunde> alleRunden, boolean nurLesen){
         int spielnummer = 1;
         int rundenZeitPlanNummer = 1;
         ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
-        listenVereinen(alleRunden, rundenZeitPlanNummer, zeitplan, spielnummer);
+        listenVereinen(alleRunden, rundenZeitPlanNummer, zeitplan, spielnummer,nurLesen);
         return zeitplan;
     }
 
-    private static void listenVereinen(ArrayList<ZeitplanRunde> alleRunden, int rundenZeitPlanNummer, ObservableList<Spiel> zeitplan, int spielnummer) {
+    private static void listenVereinen(ArrayList<ZeitplanRunde> alleRunden, int rundenZeitPlanNummer, ObservableList<Spiel> zeitplan, int spielnummer, boolean nurLesen) {
         for(int i=0;i<alleRunden.size();i++){
             for(int j=0;j<alleRunden.get(i).size();j++){
                 Spiel spiel = alleRunden.get(i).get(j);
                 if(spiel!=null) {
                     if (spiel.getHeim() == null || spiel.getGast() == null) {
                         zeitplan.add(spiel);
-                        spiel.setZeitplanNummer(spielnummer);
-                        spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        if(!nurLesen) {
+                            spiel.setZeitplanNummer(spielnummer);
+                            spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        }
                         spielnummer++;
                     } else if (!spiel.getHeim().isFreilos() && !spiel.getGast().isFreilos()) {
                         zeitplan.add(spiel);
-                        spiel.setZeitplanNummer(spielnummer);
-                        spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        if(!nurLesen) {
+                            spiel.setZeitplanNummer(spielnummer);
+                            spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
+                        }
                         spielnummer++;
                     } else {
                         spiel.setRundenZeitplanNummer(rundenZeitPlanNummer);
@@ -235,8 +259,8 @@ public class Zeitplan {
         zeitplanEinzel.sort(zeitplanComparator);
         zeitplanDoppel.sort(zeitplanComparator);
         zeitplanMixed.sort(zeitplanComparator);
-
     }
+
 
 
 }

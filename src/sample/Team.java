@@ -141,10 +141,10 @@ public class Team {
             }
             if(spielerZwei!=null)
             {
-            if(spielerZwei.getGeschlecht())
-            {
-                return spielerZwei;
-            }}
+                if(spielerZwei.getGeschlecht())
+                {
+                    return spielerZwei;
+                }}
         }
         return spielerEins;
     }
@@ -167,9 +167,9 @@ public class Team {
 
             if (spielklasse.isEinzel()) {
                 if(spielerEins!=null) {
-                if (spielerEins.getrPunkte() != null) {
-                    rlp = getSpielerEins().getrPunkte()[index];
-                }}
+                    if (spielerEins.getrPunkte() != null) {
+                        rlp = getSpielerEins().getrPunkte()[index];
+                    }}
 
             } else {
                 if(spielerEins!=null) {
@@ -178,9 +178,9 @@ public class Team {
                     }
                 }
                 if(spielerZwei!=null) {
-                if (spielerEins.getrPunkte() != null) {
-                    rlp += getSpielerZwei().getrPunkte()[index];
-                }}
+                    if (spielerEins.getrPunkte() != null) {
+                        rlp += getSpielerZwei().getrPunkte()[index];
+                    }}
 
             }
         }
@@ -383,8 +383,20 @@ public class Team {
                 }
             }
             else if(this.einzel == false){
-                return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+"." + " / " + this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
-            }
+                if(spielerEins!=null&&spielerZwei!=null)
+                {
+                    return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+"." + " / " + this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
+
+                }
+                else if(spielerEins!=null)
+                {
+                    return this.spielerEins.getNName()+" "+this.spielerEins.getVName().charAt(0)+".";
+                }
+                else if(spielerZwei!=null)
+                {
+                    return this.spielerZwei.getNName()+" "+this.spielerZwei.getVName().charAt(0)+".";
+                }
+                }
         }
         return "Fehler";
     }
@@ -444,9 +456,38 @@ public class Team {
 
     public int getBHZ() {
         int BHZ =0;
-            for (int i=0;i< bisherigeGegner.size();i++){
-                BHZ+=bisherigeGegner.get(i).getGewonneneSpiele();
-            }
+        for (int i=0;i< bisherigeGegner.size();i++){
+            BHZ+=bisherigeGegner.get(i).getGewonneneSpiele();
+        }
         return BHZ;
+    }
+    public boolean contains(Spieler spieler){
+        if(spielerEins==spieler){
+            return true;
+        }
+        if(spielerZwei==spieler){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isVerfuegbar() {
+        if(spielerEins==null){
+            return false;
+        }
+        else{
+            if(!spielerEins.isVerfuegbar()){
+                return false;
+            }
+        }
+        if(spielerZwei==null){
+            return false;
+        }
+        else{
+            if(!spielerZwei.isVerfuegbar()){
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -192,6 +192,9 @@ public class Spieler_hinzufuegenController implements Initializable{
     @FXML
     public void UpdateAbbrechen(ActionEvent event)
     {
+        updateAbbrechen();
+    }
+    public void updateAbbrechen(){
         tab_sphin.setDisable(false);
         tab_spbea.setDisable(false);
         b_abbrechen.setVisible(false);
@@ -929,7 +932,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
     @FXML
     public void pressBtn_neuerVerein(ActionEvent event) throws Exception {
         try {
-            auswahlklasse.getDashboardController().setNodeNeuerVerein();
+            auswahlklasse.getDashboardController().setNodeVereinsuebersicht();
             /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Neuer_Verein.fxml"));
 
             Parent root1 = (Parent) fxmlLoader.load();
@@ -1030,8 +1033,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("d_geb");
             d_geb.setPromptText(titel);
 
-            titel = bundle.getString("label_partner");
-            label_partner.setText(titel);
+
 
             titel = bundle.getString("Label_Verein");
             Label_Verein.setText(titel);

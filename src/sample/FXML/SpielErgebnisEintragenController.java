@@ -22,6 +22,8 @@ import sample.Turnier;
 
 import javax.xml.soap.Text;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Dictionary;
 import java.util.MissingResourceException;
 import java.util.Optional;
@@ -214,6 +216,7 @@ public class SpielErgebnisEintragenController implements Initializable{
                             auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
                             auswahlklasse.getSpieluebersichtController().spielInTabelleAuswaehlen(sp);
                             auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -228,13 +231,27 @@ public class SpielErgebnisEintragenController implements Initializable{
                 if (erg != null) {
                     try {
                         if(bestaetigungsFrameErstellen(erg)) {
-
-                            auswahlklasse.getSpielAuswahlErgebniseintragen().setErgebnis(erg);
+                            Spiel spiel =auswahlklasse.getSpielAuswahlErgebniseintragen();
+                            spiel.setErgebnis(erg);
                             auswahlklasse.InfoBenachrichtigung("Erfolg", "Ergebnis akutalisiert");
                             auswahlklasse.getDashboardController().setNodeSpieluebersicht();
                             auswahlklasse.getSpieluebersichtController().CheckeSpielsuche();
                             auswahlklasse.getSpieluebersichtController().spielInTabelleAuswaehlen(sp);
                             auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
+                            LocalTime verfuegbar = LocalTime.now().plusMinutes(auswahlklasse.getEinstellungenController().getPausenzeit());
+                            if(spiel.getHeim().getSpielerEins()!=null) {
+                                spiel.getHeim().getSpielerEins().setVerfuegbar(LocalDate.from(verfuegbar));
+                            }
+                            if(spiel.getHeim().getSpielerZwei()!=null){
+                                spiel.getHeim().getSpielerZwei().setVerfuegbar(LocalDate.from(verfuegbar));
+                            }
+                            if(spiel.getGast().getSpielerEins()!=null) {
+                                spiel.getGast().getSpielerEins().setVerfuegbar(LocalDate.from(verfuegbar));
+                            }
+                            if(spiel.getGast().getSpielerZwei()!=null){
+                                spiel.getGast().getSpielerZwei().setVerfuegbar(LocalDate.from(verfuegbar));
+                            }
+
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

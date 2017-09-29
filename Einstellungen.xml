@@ -3,8 +3,8 @@
 <properties>
 <comment>Badminton Turnierverwaltung Settings</comment>
 <entry key="Sprache">de</entry>
-<entry key="Schiedsrichterzettel">false</entry>
-<entry key="Pausenzeit">16</entry>
+<entry key="Schiedsrichterzettel">true</entry>
+<entry key="Pausenzeit">14</entry>
 <entry key="AktiveSpieleFarbe">#00008b</entry>
 <entry key="ZukuenftigeSpieleFarbe">0x039be5ff</entry>
 <entry key="dbPass"/>

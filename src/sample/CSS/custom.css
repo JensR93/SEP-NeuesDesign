@@ -168,16 +168,39 @@
 }
 .jfxtab-pane .tab-header-background {
     -fx-background-color: #ffffff;
+
+}.jfxtab-pane .tab-header-background {
+    -fx-background-color: #ffffff;
 }
 
-.jfxtab-pane .tab
+.jfxtab-pane .tab:selected
 {
     -fx-background-color: #3367D6;
     -fx-background-radius: 50 50 50 50;
     -fx-padding: 10 0 10 0;
     -fx-background-insets: 10 35 10 35;
     -fx-tile-alignment: center-right;
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
 }
+
+.jfxtab-pane .tab
+{
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+    -fx-background-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+    -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+    -fx-background-radius: 50 50 50 50;
+    -fx-padding: 10 0 10 0;
+    -fx-background-insets: 10 35 10 35;
+    -fx-tile-alignment: center-right;
+    -fx-text-fill: #757575;
+    -fx-font-weight: bold;
+    ;
+
+}
+
 
 /* Scroll-Bar*/
 

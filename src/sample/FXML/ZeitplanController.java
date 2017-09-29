@@ -83,8 +83,14 @@ public class ZeitplanController implements Initializable{
     public void pressBtn_speichern(){
         ArrayList<ZeitplanRunde> neueRundenListe = new ArrayList<>();
         neueRundenListe.addAll(rundenListe);
-        zeitplanEinzel = Zeitplan.zeitplanErstellen(neueRundenListe);
+        zeitplan = Zeitplan.zeitplanErstellen(neueRundenListe,false);
         uebersichtZeichnen();
+        tableColumnsErstellen();
+        try {
+            auswahlklasse.getSpieluebersichtController().printSpielTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void uebersichtZeichnen() {
@@ -128,18 +134,19 @@ public class ZeitplanController implements Initializable{
             boolean neueDisziplin =false;
             for (int i = 0; i < zeitplanTabelle.size(); i++) {
                 if(zeitplanTabelle.get(i).size()>0) {
-                    if (!disziplinTesten(zeitplanTabelle.get(i).get(0)).equals(testString) && !testString.equals("")) {
+                    if (!disziplinTesten(zeitplanTabelle.get(i).get(0)).contains(testString) && !testString.equals("")) {
                         disziplinZeitNummer = 0;
                         neueDisziplin = true;
                     }
                     if(neueDisziplin||testString.equals("")){
-                        String disziplinString = disziplinTesten(zeitplanTabelle.get(i).get(0));
+                        String disziplinString = disziplinStringGenerieren(zeitplanTabelle.get(i).get(0));
+
                         Text text = new Text(disziplinString);
                         text.setFont(gc.getFont());
                         double textbreite = text.getLayoutBounds().getWidth();
                         gc.fillText(disziplinString, xObenLinks - textbreite - 5, yObenLinks + (i ) * zellenHoehe + 15);
                     }
-                    testString=disziplinTesten(zeitplanTabelle.get(i).get(0));
+                    testString=disziplinStringGenerieren(zeitplanTabelle.get(i).get(0)).toUpperCase();
                     LocalTime startzeit = getStartZeit(zeitplanTabelle.get(i).get(0)).plusMinutes(auswahlklasse.getAktuelleTurnierAuswahl().getMatchDauer() * disziplinZeitNummer);
                     String startzeitString = String.format("%02d:%02d", startzeit.getHour(), startzeit.getMinute());
                     Text text = new Text(startzeitString);
@@ -153,6 +160,20 @@ public class ZeitplanController implements Initializable{
             }
         }
 
+    }
+
+    private String disziplinStringGenerieren(Spiel spiel) {
+        String disziplinString = disziplinTesten(spiel);
+        if(disziplinString.substring(0,1).contains("E")){
+            disziplinString="Einzel";
+        }
+        else if(disziplinString.substring(0,1).contains("D")){
+            disziplinString="Doppel";
+        }
+        else{
+            disziplinString="Mixed";
+        }
+        return disziplinString;
     }
 
     private LocalTime getStartZeit(Spiel spiel) {
@@ -219,17 +240,17 @@ public class ZeitplanController implements Initializable{
             if(startZeiten.get(i)==startZeitEinzel && einzelRunden !=null){
                 rundenListe.addAll(einzelRunden);
                 alleDisziplinRunden.add(einzelRunden);
-                zeitplan.addAll(Zeitplan.zeitplanErstellen(einzelRunden,zeitplan));
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(einzelRunden,zeitplan,true));
             }
             if(startZeiten.get(i)==startZeitDoppel && doppelRunden !=null){
                 rundenListe.addAll(doppelRunden);
                 alleDisziplinRunden.add(doppelRunden);
-                zeitplan.addAll(Zeitplan.zeitplanErstellen(doppelRunden,zeitplan));
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(doppelRunden,zeitplan,true));
             }
             if(startZeiten.get(i)==startZeitMixed && mixedRunden !=null){
                 rundenListe.addAll(mixedRunden);
                 alleDisziplinRunden.add(mixedRunden);
-                zeitplan.addAll(Zeitplan.zeitplanErstellen(mixedRunden,zeitplan));
+                zeitplan.addAll(Zeitplan.zeitplanErstellen(mixedRunden,zeitplan,true));
             }
         }
         return alleDisziplinRunden;
@@ -255,7 +276,7 @@ public class ZeitplanController implements Initializable{
                     }
                     else{
                         zeitplanKopie.remove(spiel);
-                        disziplinTest = disziplinTesten(spiel);
+                        disziplinTest = disziplinStringGenerieren(spiel).toUpperCase();
                         zeitplanTabelle.get(zeitplanTabelle.size() - 1).add(spiel);
                         if (zeitplanKopie.size() == 0) {
                             return;
@@ -274,12 +295,12 @@ public class ZeitplanController implements Initializable{
         }
         else if(spiel.getSpielsystem().getSpielklasse().getDisziplin().toUpperCase().contains("DOPPEL")){
             String returnString = "DOPPEL";
-            returnString = getString(returnString,startZeitEinzel);
+            returnString = getString(returnString,startZeitDoppel);
             return returnString;
         }
         else{
             String returnString = "MIXED";
-            returnString = getString(returnString,startZeitEinzel);
+            returnString = getString(returnString,startZeitMixed);
             return returnString;
         }
     }
@@ -345,10 +366,18 @@ public class ZeitplanController implements Initializable{
         /*alleRundenHolen();
         uebersichtZeichnen();
         */
+
+        rundenListe.addAll(Zeitplan.getAlleRundenEinlesen());
+        ArrayList<ZeitplanRunde> neueRundenListe = new ArrayList<>();
+        neueRundenListe.addAll(rundenListe);
+        zeitplan = Zeitplan.zeitplanErstellen(neueRundenListe,true);
+        for(int i=0;i<rundenListe.size();i++){
+            while (rundenListe.get(i).get(0).containsFreilos()){
+                rundenListe.get(i).remove(0);
+            }
+        }
+        uebersichtZeichnen();
         tableColumnsErstellen();
-        System.out.println(startZeitEinzel);
-        System.out.println(startZeitDoppel);
-        System.out.println(startZeitMixed);
     }
 
 
