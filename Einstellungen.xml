@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Badminton Turnierverwaltung Settings</comment>
+<entry key="Sprache">es</entry>
+<entry key="AktiveSpieleFarbe">#00008b</entry>
+<entry key="ZukuenftigeSpieleFarbe">#000000</entry>
+<entry key="dbPass"/>
+<entry key="VormerkungSchiedsrichter">Gewinner</entry>
+<entry key="SchiedsrichterStandard">true</entry>
+<entry key="dbHost">localhost</entry>
+<entry key="AusstehendeSpieleFarbe">#006400</entry>
+<entry key="dbName">turnierverwaltung_neu</entry>
+<entry key="dbPort">3306</entry>
+<entry key="dbUser">root</entry>
+<entry key="GespielteSpieleFarbe">#ff0000</entry>
+</properties>
