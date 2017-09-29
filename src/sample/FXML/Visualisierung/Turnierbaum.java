@@ -186,7 +186,7 @@ public class Turnierbaum implements Visualisierung {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Drucker speichern?");
                 alert.setContentText("Soll der Drucker gespeichert werden?");
-                alert.getButtonTypes().removeAll();
+                alert.getButtonTypes().clear();
                 alert.getButtonTypes().add(ButtonType.YES);
                 alert.getButtonTypes().add(ButtonType.NO);
                 Optional<ButtonType> auswahl = alert.showAndWait();

@@ -455,11 +455,17 @@ public class SpielsystemController implements Initializable {
             System.out.println("Math.ceil: " + (int) Math.ceil(ausgewaehlte_spielklasse.getSetzliste().size() / gruppenGroesse));
             int anzahlWeiterkommender = Integer.valueOf(textField_anzahlWeiterkommender.getText());
             if (rb_Gruppe.isSelected()) {
-                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, false);
+                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender);
                 ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
             } else {
-                GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, true);
-                ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+                if(radio_p3_ja.isSelected()) {
+                    GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, true);
+                    ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+                }
+                else{
+                    GruppeMitEndrunde gruppeMitEndrunde = new GruppeMitEndrunde(ausgewaehlte_spielklasse, anzahlGruppen, anzahlWeiterkommender, false);
+                    ausgewaehlte_spielklasse.setSpielsystem(gruppeMitEndrunde);
+                }
             }
             l_meldungsetzliste1.setText("ERFOLG");
             auswahlklasse.InfoBenachrichtigung("Spielsystem start", "Das Spielsystem wurde erfolgreich gestartet");
@@ -480,16 +486,11 @@ public class SpielsystemController implements Initializable {
         Gruppe gruppe = new Gruppe (ausgewaehlte_spielklasse.getSetzliste(),ausgewaehlte_spielklasse);
         try {
             ausgewaehlte_spielklasse.setSpielsystem( gruppe);
-
             l_meldungsetzliste1.setText("ERFOLG");
             auswahlklasse.InfoBenachrichtigung("Spielsystem start","Das Spielsystem wurde erfolgreich gestartet");
             //TurnierladenController t = new TurnierladenController("Badminton Turnierverwaltung - "+auswahlklasse.getAktuelleTurnierAuswahl().getName());
-
-
             //a.getStages().get(0).close();
-
             //a.getStages().get(2).close();
-
         } catch (Exception e) {
             l_meldungsetzliste1.setText("Fehlschlag");
             auswahlklasse.InfoBenachrichtigung("Fehler","Das Spielsystem konnte nicht erfolgreich gestartet werden");
