@@ -1,11 +1,14 @@
 package sample;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sample.DAO.*;
+
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
@@ -18,7 +21,25 @@ public class Spieler {
 	public Spieler() {
 
 	}
-
+    public boolean isVerfuegbar(){
+        if (LocalTime.now().isBefore(LocalTime.from(verfuegbar))){
+            int differenz = (int)MINUTES.between(LocalTime.now(),verfuegbar);
+            auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" hat noch "+differenz+ " Minuten Pause");
+            return false;
+        }
+        for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+            Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+            if(feld.getAktivesSpiel()!=null){
+                Spiel spiel = feld.getAktivesSpiel();
+                if (spiel.contains(this)){
+                    String feldnr = spiel.getFeldNr();
+                    auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" spiel aktuell auf "+feldnr);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein, String extSpielerID, int i) {
 		this.vName=vName;
 		this.nName=nName;

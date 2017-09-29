@@ -22,6 +22,7 @@ import sample.Turnier;
 
 import javax.xml.soap.Text;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Dictionary;
 import java.util.MissingResourceException;
@@ -239,16 +240,16 @@ public class SpielErgebnisEintragenController implements Initializable{
                             auswahlklasse.getSpielAuswahlErgebniseintragen().getSpielsystem().updateVisualisierung();
                             LocalTime verfuegbar = LocalTime.now().plusMinutes(auswahlklasse.getEinstellungenController().getPausenzeit());
                             if(spiel.getHeim().getSpielerEins()!=null) {
-                                spiel.getHeim().getSpielerEins().setVerfuegbar(verfuegbar);
+                                spiel.getHeim().getSpielerEins().setVerfuegbar(LocalDate.from(verfuegbar));
                             }
                             if(spiel.getHeim().getSpielerZwei()!=null){
-                                spiel.getHeim().getSpielerZwei().setVerfuegbar(verfuegbar);
+                                spiel.getHeim().getSpielerZwei().setVerfuegbar(LocalDate.from(verfuegbar));
                             }
                             if(spiel.getGast().getSpielerEins()!=null) {
-                                spiel.getGast().getSpielerEins().setVerfuegbar(verfuegbar);
+                                spiel.getGast().getSpielerEins().setVerfuegbar(LocalDate.from(verfuegbar));
                             }
                             if(spiel.getGast().getSpielerZwei()!=null){
-                                spiel.getGast().getSpielerZwei().setVerfuegbar(verfuegbar);
+                                spiel.getGast().getSpielerZwei().setVerfuegbar(LocalDate.from(verfuegbar));
                             }
 
                         }

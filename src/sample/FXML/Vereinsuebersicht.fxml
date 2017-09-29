@@ -39,7 +39,7 @@
                   </TableView>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="Btn_NeuerVerein" onAction="#btn_neueklasse" styleClass="font" stylesheets="@../CSS/custom.css" text="Neuer Verein">
+                        <JFXButton fx:id="Btn_NeuerVerein" styleClass="font" stylesheets="@../CSS/custom.css" text="Neuer Verein">
                            <graphic>
                               <MaterialDesignIconView fill="#757575" glyphName="PLUS_CIRCLE_OUTLINE" size="20" />
                            </graphic>
