@@ -269,6 +269,7 @@ public class SpieluebersichtController implements Initializable {
             }
             aktuellesFeld.setImageView(feld);
             aktuellesFeld.setFeldImageStackPane(pane);
+            aktuellesFeld.setTooltip(tooltip);
             pane.setOnDragOver(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent event) {
