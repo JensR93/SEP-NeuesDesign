@@ -446,6 +446,16 @@
     /*-fx-opacity: .4;*/
 /*}*/
 
+.feld{
+    -fx-background-radius: 1px;
+    -fx-background-image: url("/sample/images/Badmintonfeld.jpg");
+    -fx-background-size: 45px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 96%;
+    -fx-background-position: center;
+
+}
+
 .check-box .box{
 
     -fx-background-radius: 50px;
