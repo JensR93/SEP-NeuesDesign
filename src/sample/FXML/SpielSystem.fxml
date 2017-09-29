@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
+<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
    <tabs>
       <Tab fx:id="tab_Setzliste" text="Setzliste">
         <content>
@@ -43,7 +43,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#erstelleSetzlisteZufall" text="Zufällig" />
                         </items>
                       </Menu>
-                      <Menu fx:id="menu_spieler" mnemonicParsing="false" text="Spieler">
+                      <Menu fx:id="menu_spieler" mnemonicParsing="false">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Hinzufügen" />
                         </items>

@@ -1234,6 +1234,13 @@ public class SpielsystemController implements Initializable {
             titel = bundle.getString("radio_p3_nein");
             radio_p3_nein.setText(titel);
 
+            titel = bundle.getString("menu_setzlisteErstellen");
+            menu_setzlisteErstellen.setText(titel);
+
+            titel = bundle.getString("btn_stoppen");
+            btn_stoppen.setText(titel);
+
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );

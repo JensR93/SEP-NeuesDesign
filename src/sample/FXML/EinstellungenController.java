@@ -53,6 +53,9 @@ public class EinstellungenController implements Initializable {
     private Label lab_Sprache;
 
     @FXML
+    private Label Label_SpielerPause;
+
+    @FXML
     private Label Label_SchiriStandVerw;
 
     @FXML
@@ -170,6 +173,9 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("lab_ausstehSpiel");
             lab_ausstehSpiel.setText(titel);
+
+            titel = bundle.getString("Label_SpielerPause");
+            Label_SpielerPause.setText(titel);
 
             titel = bundle.getString("lab_aktiveSpiele");
             lab_aktiveSpiele.setText(titel);
