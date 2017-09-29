@@ -329,6 +329,7 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxListener();
         checkComboBox.getStyleClass().add("check-combo-box");
+        checkComboBox.getStyleClass().add("font");
         layoutErstellen();
         suchleisteListener();
         checkboxListener(check_aktiveSpiele);
@@ -412,15 +413,15 @@ public class SpieluebersichtController implements Initializable {
             hBox.getChildren().addAll(lspielklassen,checkComboBox);
             hBox.setSpacing(150);
             GridPane.setColumnIndex(tspielsuche, 0);
-            GridPane.setRowIndex(tspielsuche, 1);
+            GridPane.setRowIndex(tspielsuche, 0);
 
 
             gridPane_main.getChildren().add(grid_pane2);
             GridPane.setColumnIndex(grid_pane2, 2);
-            GridPane.setRowIndex(grid_pane2, 1);
+            GridPane.setRowIndex(grid_pane2, 0);
             gridPane_main.getChildren().add(vbox_main);
             GridPane.setColumnIndex(vbox_main, 1);
-            GridPane.setRowIndex(vbox_main, 1);
+            GridPane.setRowIndex(vbox_main, 0);
             grid_pane2.getChildren().add(checkComboBox);
             vbox_main.getChildren().add(check_aktiveSpiele);
             vbox_main.getChildren().add(check_zukuenftigeSpiele);
