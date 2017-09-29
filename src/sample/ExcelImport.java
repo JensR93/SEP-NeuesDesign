@@ -104,9 +104,24 @@ public class ExcelImport implements Initializable{
                 Spieler sp = readRow(row);
                 if(sp!=null) {
 
-
+                    if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler)!=null)
+                    {
+                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                        if(sp.getrPunkte()[0]>0)
+                        {
+                            rpunkte[0]=sp.getrPunkte()[0];
+                        }
+                        if(sp.getrPunkte()[1]>0)
+                        {
+                            rpunkte[1]=sp.getrPunkte()[1];
+                        }
+                        if(sp.getrPunkte()[2]>0)
+                        {
+                            rpunkte[2]=sp.getrPunkte()[2];
+                        }
+                    }
                     //ExcelImport.getObs_vorh().add(sp);
-                    if(auswahlklasse.getDict_doppelte_spieler().get(aktuellerSpieler)==null)
+                    else if(auswahlklasse.getDict_doppelte_spieler().get(aktuellerSpieler)==null)
                     {
                         // auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",sp.toString()+" wurde hinzugefügt.");
                         sp.getSpielerDAO().create(sp);
@@ -150,9 +165,24 @@ public class ExcelImport implements Initializable{
                 Spieler sp = readRow(row);
                 if(sp!=null) {
                     // ExcelImport.getVorhandeneSpieler().add(sp);,
-
+                    if(auswahlklasse.getSpielererfolgreich().get(sp)!=null)
+                    {
+                        int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                        if(sp.getrPunkte()[0]>0)
+                        {
+                            rpunkte[0]=sp.getrPunkte()[0];
+                        }
+                        if(sp.getrPunkte()[1]>0)
+                        {
+                            rpunkte[1]=sp.getrPunkte()[1];
+                        }
+                        if(sp.getrPunkte()[2]>0)
+                        {
+                            rpunkte[2]=sp.getrPunkte()[2];
+                        }
+                    }
                     //ExcelImport.getObs_vorh().add(sp);
-                    if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
+                    else if(auswahlklasse.getDict_doppelte_spieler().get(sp)==null)
                     {
                         System.out.println("Spieler nicht vorhanden"+sp.getVName());
                         //auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",sp.toString()+" wurde hinzugefügt.");
@@ -177,9 +207,24 @@ public class ExcelImport implements Initializable{
                         auswahlklasse.getObs_spieler().add(tempSpieler);
                         auswahlklasse.addSpieler(tempSpieler);
                         //System.out.println(tempSpieler.getVName()+" "+tempSpieler.getNName()+" gespeichert"+ " geschlecht:"+tempSpieler.getGeschlecht()+" extID:"+tempSpieler.getExtSpielerID()+"verein: "+tempSpieler.getVerein()+" gdatum:"+tempSpieler.getGDatum());
-
+                        if(auswahlklasse.getSpielererfolgreich().get(aktuellerSpieler)!=null)
+                        {
+                            int [] rpunkte = auswahlklasse.getSpielererfolgreich().get(sp).getrPunkte();
+                            if(sp.getrPunkte()[0]>0)
+                            {
+                                rpunkte[0]=sp.getrPunkte()[0];
+                            }
+                            if(sp.getrPunkte()[1]>0)
+                            {
+                                rpunkte[1]=sp.getrPunkte()[1];
+                            }
+                            if(sp.getrPunkte()[2]>0)
+                            {
+                                rpunkte[2]=sp.getrPunkte()[2];
+                            }
+                        }
                         //ExcelImport.getObs_vorh().add(sp);
-                        if(auswahlklasse.getDict_doppelte_spieler().get(tempSpieler)==null)
+                        else if(auswahlklasse.getDict_doppelte_spieler().get(tempSpieler)==null)
                         {
                             System.out.println("Spieler nicht vorhanden"+tempSpieler.getVName());
                             //auswahlklasse.InfoBenachrichtigung("Spieler nicht vorhanden",tempSpieler.toString()+" wurde hinzugefügt.");

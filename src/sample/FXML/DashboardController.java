@@ -467,7 +467,7 @@ public class DashboardController implements Initializable{
             FXMLLoader fxmlLoaderTurnier = new FXMLLoader(getClass().getResource("Turnier_laden.fxml"));
             Turnier = fxmlLoaderTurnier.load();
             Spieler = FXMLLoader.load(getClass().getResource("Spieler_hinzufuegen.fxml"));
-            Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Turnier.fxml"));
+            //Vereinsuebersicht = FXMLLoader.load(getClass().getResource("Turnier.fxml"));
 
 
             Spiel.SpracheLaden();
