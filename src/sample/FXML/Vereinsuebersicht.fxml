@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -18,7 +19,7 @@
 
 <JFXTabPane fx:id="tabpane_verein" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="100000.0" tabMinWidth="230.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VereinsuebersichtController">
    <tabs>
-      <Tab fx:id="tab_verein" onSelectionChanged="#Vereinsuebersichtauswahl" styleClass="font-tab" text="Vereinsübersicht">
+      <Tab fx:id="tab_verein" onSelectionChanged="#Vereinsuebersichtauswahl" styleClass="font" text="Vereinsübersicht">
          <content>
             <GridPane>
                <columnConstraints>
@@ -53,7 +54,7 @@
             </GridPane>
          </content>
       </Tab>
-      <Tab fx:id="tab_startgeld" styleClass="font-tab" text="Startgeldliste">
+      <Tab fx:id="tab_startgeld" text="Startgeldliste">
         <content>
         </content>
          <content>
@@ -81,6 +82,10 @@
                </children>
             </GridPane>
          </content>
+         <styleClass>
+            <String fx:value="jfxtab-pane" />
+            <String fx:value="font" />
+         </styleClass>
       </Tab>
    </tabs>
 </JFXTabPane>

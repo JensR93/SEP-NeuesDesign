@@ -27,14 +27,15 @@ import java.util.ResourceBundle;
  * Created by jens on 26.09.2017.
  */
 public class VereinsuebersichtController implements Initializable {
+    private Verein updateverein;
+
 
     String baseName = "resources.Main";
     String titel ="";
 
     ContextMenu contextMenu=new ContextMenu();
 
-    @FXML
-    private JFXButton btn_vereinbezahlt;
+
     @FXML
     private JFXTextField t_anzahlspieler;
     @FXML
@@ -58,13 +59,20 @@ public class VereinsuebersichtController implements Initializable {
     @FXML
     public TableColumn Vereinsextvereinsid;
     @FXML
-    private JFXButton Btn_NeuerVerein;
-    @FXML
     private Tab tab_verein;
     @FXML
     private Tab tab_startgeld;
-    ObservableList Vereinsspieler;
+    @FXML
+    private JFXTextField tf_Name;
 
+    @FXML
+    private JFXTextField tf_Verband;
+
+    @FXML
+    private JFXTextField tf_ExtVereinsID;
+
+    @FXML
+    private JFXButton btn_Speichern_Verein;
 
     public void SpracheLaden()
     {
@@ -81,8 +89,6 @@ public class VereinsuebersichtController implements Initializable {
             titel = bundle.getString("Vereinsextvereinsid");
             Vereinsextvereinsid.setText(titel);
 
-            titel = bundle.getString("Btn_NeuerVerein");
-            Btn_NeuerVerein.setText(titel);
 
             titel = bundle.getString("vereinsuche");
             vereinsuche.setPromptText(titel);
@@ -94,6 +100,28 @@ public class VereinsuebersichtController implements Initializable {
             titel = bundle.getString("tab_startgeld");
             tab_startgeld.setText(titel);
 
+            titel = bundle.getString("tf_Name");
+            tf_Name.setPromptText(titel);
+            tf_Name.setLabelFloat(true);
+
+            titel = bundle.getString("tf_Verband");
+            tf_Verband.setPromptText(titel);
+            tf_Verband.setLabelFloat(true);
+
+            titel = bundle.getString("tf_ExtVereinsID");
+            tf_ExtVereinsID.setPromptText(titel);
+            tf_ExtVereinsID.setLabelFloat(true);
+
+            if(updateverein==null)
+            {
+                titel = bundle.getString("btn_Speichern_Verein");
+                btn_Speichern_Verein.setText(titel);
+            }
+            else
+            {
+                btn_Speichern_Verein.setText("UPDATE");
+            }
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );
@@ -101,11 +129,51 @@ public class VereinsuebersichtController implements Initializable {
     }
 
     ObservableList <Verein> obs_Vereine  = FXCollections.observableArrayList();
+    @FXML
+    public void pressBtn_speichern(){
+        if(updateverein==null) {
+            String verband = tf_Verband.getText();
+
+            String name = tf_Name.getText();
+
+            String vereinsid = tf_ExtVereinsID.getText();
+
+            Verein verein = new Verein(vereinsid, name, verband);
+
+            auswahlklasse.getSpieler_hinzufuegenController().getVereine().add(verein);
+            auswahlklasse.getVereine().put(verein.getExtVereinsID(), verein);
+            auswahlklasse.getSpieler_hinzufuegenController().neuenVereinauswaehlen();
+            //hier
+            //auswahlklasse.getDashboardController().setNodeSpieler();
+            updateverein=null;
+            obs_Vereine.add(verein);
+            tabelle_vereine.refresh();
+        }
+        else
+        {
+            updateverein.setName(tf_Name.getText());
+            updateverein.setVerband(tf_Verband.getText());
+            updateverein.setExtVereinsID(tf_ExtVereinsID.getText());
+            updateverein.getVereinDAO().update(updateverein);
+            //auswahlklasse.getDashboardController().setNodeVereinsuebersicht();
+
+            try {
+                auswahlklasse.getSpieler_hinzufuegenController().printSpielerZuordnenTableNeu();
+                auswahlklasse.getSpieler_hinzufuegenController().ladeVereine();
+                auswahlklasse.getVereinsuebersichtController().fulleObsVereine();
+                tabelle_vereine.refresh();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         SpracheLaden();
-
+        tabpaneanpassen();
+        tableviewanpassen();
         auswahlklasse.setVereinsuebersichtController(this);
         fulleObsVereine();
         zeigeTabelle();
@@ -120,6 +188,27 @@ public class VereinsuebersichtController implements Initializable {
         ListenerNichtbezahlteSpieler(randomListContextMenu);
     }
 
+    private void tabpaneanpassen()
+    {
+        tabpane_verein.tabMinWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.49));
+        tabpane_verein.tabMaxWidthProperty().bind(tabpane_verein.widthProperty().multiply(0.49));
+    }
+
+    private void tableviewanpassen()
+    {
+        Vereinsname.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.331));
+        Vereinsname.getStyleClass().add("table-viewLeftAlignColumn");
+        Vereinsname.setSortable(false);
+        Vereinsverband.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.331));
+        Vereinsverband.getStyleClass().add("table-viewLeftAlignColumn");
+        Vereinsverband.setSortable(false);
+        Vereinsextvereinsid.prefWidthProperty().bind(tabelle_vereine.widthProperty().multiply(0.331));
+        Vereinsextvereinsid.getStyleClass().add("table-viewLeftAlignColumn");
+        Vereinsextvereinsid.setSortable(false);
+    }
+    public void setUpdateverein(Verein updateverein) {
+        this.updateverein = updateverein;
+    }
     private void VereinssucheListener() {
         vereinsuche.textProperty().addListener((observable, oldValue, newValue) -> {
             // System.out.println("textfield changed from " + oldValue + " to " + newValue);
@@ -171,9 +260,6 @@ public class VereinsuebersichtController implements Initializable {
 
                         clickedrow.setGebuehrenbezahlt(true);
                         list_nichtbezahlt.getItems().remove(clickedrow);
-
-                        berechneVereinGesamtGebuehren(Vereinsspieler);
-                        clickedrow.getSpielerDAO().update(clickedrow);
                     }
                 });
 
@@ -189,17 +275,17 @@ public class VereinsuebersichtController implements Initializable {
         });
     }
 
-    @FXML
-    void vereinbezahlt(ActionEvent event) {
-        for(int i=0;i<list_nichtbezahlt.getItems().size();i++)
-        {
-            list_nichtbezahlt.getItems().get(i).setGebuehrenbezahlt(true);
-
+    public void updateVerein()
+    {
+        if(updateverein!=null) {
+            tf_Name.setText(updateverein.getName());
+            tf_ExtVereinsID.setText(updateverein.getExtVereinsID());
+            tf_Verband.setText(updateverein.getVerband());
+            btn_Speichern_Verein.setText("Verein aktualisieren");
         }
-        list_nichtbezahlt.getItems().clear();
-        berechneVereinGesamtGebuehren(Vereinsspieler);
 
     }
+
     public void tab1Auswahl()
     {
         tab_startgeld.setDisable(true);
@@ -210,47 +296,60 @@ public class VereinsuebersichtController implements Initializable {
             TableRow row = new TableRow();
             row.setOnMouseClicked(event -> {
                 Verein clickedRow = (Verein) row.getItem();
-                //System.out.println("R-KLICK");
-                MenuItem item1 = new MenuItem("Verein bearbeiten");
-                item1.setOnAction(new EventHandler<ActionEvent>() {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+                        && event.getClickCount() == 2) {
 
-                    @Override
-                    public void handle(ActionEvent event) {
+//                    auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                    setUpdateverein(clickedRow);
+                    updateVerein();
+                    //   a.getStagesdict().get("")
+                }
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.hide();
+                } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
 
 
-                        auswahlklasse.getDashboardController().setNodeNeuerVerein();
-                        auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
-                        auswahlklasse.getNeuer_vereinController().updateVerein();
-                        //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                    }
-                });
-                MenuItem item2 = new MenuItem("Startgeldliste anzeigen");
-                item2.setOnAction(new EventHandler<ActionEvent>() {
+                    //System.out.println("R-KLICK");
+                    MenuItem item1 = new MenuItem("Verein bearbeiten");
+                    item1.setOnAction(new EventHandler<ActionEvent>() {
 
-                    @Override
-                    public void handle(ActionEvent event) {
+                        @Override
+                        public void handle(ActionEvent event) {
+
+
+ //                           auswahlklasse.getDashboardController().setNodeNeuerVerein();
+                            setUpdateverein(clickedRow);
+                            updateVerein();
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                        }
+                    });
+                    MenuItem item2 = new MenuItem("Startgeldliste anzeigen");
+                    item2.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
 
 
                         tabpane_verein.getSelectionModel().select(tab_startgeld);
-                        Vereinsspieler= berechneAnzahlSpieler(clickedRow);
+                           ObservableList Vereinsspieler= berechneAnzahlSpieler(clickedRow);
                         t_anzahlspieler.setText(String.valueOf(Vereinsspieler.size()));
                         //t_offenegebuehren.setText(String.valueOf(berechneVereinOffeneGebuehren(Vereinsspieler)));
-                        berechneVereinGesamtGebuehren(Vereinsspieler);
+                            berechneVereinGesamtGebuehren(Vereinsspieler);
 
 
 
                         listNichtBezahltFuellen(Vereinsspieler);
-                        tab_startgeld.setDisable(false);
+                            tab_startgeld.setDisable(false);
 
-                        //tabpane_spieler.getSelectionModel().select(tab_sphin);
-                    }
-                });
-                MenuItem item3 = new MenuItem("Verein löschen");
-                item3.setOnAction(new EventHandler<ActionEvent>() {
+                            //tabpane_spieler.getSelectionModel().select(tab_sphin);
+                        }
+                    });
+                    MenuItem item3 = new MenuItem("Verein löschen");
+                    item3.setOnAction(new EventHandler<ActionEvent>() {
 
 
-                    @Override
-                    public void handle(ActionEvent event) {
+                        @Override
+                        public void handle(ActionEvent event) {
                         boolean erfolg = clickedRow.getVereinDAO().delete(clickedRow);
 
 
@@ -272,19 +371,12 @@ public class VereinsuebersichtController implements Initializable {
                             auswahlklasse.WarnungBenachrichtigung("Fehler","Verein enthält Spieler");
                         }
 
+                        }
+                    });
+                    if (!contextMenu.isShowing()) {
+                        contextMenu.getItems().clear();
+                        contextMenu.getItems().addAll(item1,item2, item3);
                     }
-                });
-                if (!contextMenu.isShowing()) {
-                    contextMenu.getItems().clear();
-                    contextMenu.getItems().addAll(item1,item2, item3);
-                }
-                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
-                    contextMenu.hide();
-                } else if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
-
-
-
-
                     tabelle_vereine.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 
                         @Override
@@ -296,15 +388,6 @@ public class VereinsuebersichtController implements Initializable {
 
                         }
                     });
-
-                }
-                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
-                        && event.getClickCount() == 2) {
-                    contextMenu.show(tabelle_vereine, event.getScreenX(), event.getScreenY());
-                   /* auswahlklasse.getDashboardController().setNodeNeuerVerein();
-                    auswahlklasse.getNeuer_vereinController().setUpdateverein(clickedRow);
-                    auswahlklasse.getNeuer_vereinController().updateVerein();*/
-                    //   a.getStagesdict().get("")
                 }
             });
 
@@ -438,11 +521,6 @@ public class VereinsuebersichtController implements Initializable {
 
         //TurnierIDSpalte.setCellValueFactory(new PropertyValueFactory<Turnier, Integer>("turnierid"));
 
-    }
-    @FXML
-    public void btn_neueklasse(ActionEvent event)
-    {
-        auswahlklasse.getDashboardController().setNodeNeuerVerein();
     }
 
     @FXML

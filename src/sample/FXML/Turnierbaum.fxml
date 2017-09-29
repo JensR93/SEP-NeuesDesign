@@ -3,4 +3,4 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 
 
-<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" />
+<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" />
