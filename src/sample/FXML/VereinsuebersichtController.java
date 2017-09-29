@@ -33,8 +33,7 @@ public class VereinsuebersichtController implements Initializable {
 
     ContextMenu contextMenu=new ContextMenu();
 
-    @FXML
-    private Tab tab_startgeld;
+    
     @FXML
     private JFXTextField t_anzahlspieler;
     @FXML
@@ -44,7 +43,6 @@ public class VereinsuebersichtController implements Initializable {
 
     @FXML
     private ListView<Spieler> list_nichtbezahlt;
-    @FXML private Tab    tab_verein;
     @FXML
     private TableView tabelle_vereine;
     @FXML
@@ -61,9 +59,9 @@ public class VereinsuebersichtController implements Initializable {
     @FXML
     private JFXButton Btn_NeuerVerein;
     @FXML
-    private Tab tab_Vereinsuebersicht;
+    private Tab tab_verein;
     @FXML
-    private Tab tab_Startgeldliste;
+    private Tab tab_startgeld;
 
     public void SpracheLaden()
     {
@@ -87,11 +85,11 @@ public class VereinsuebersichtController implements Initializable {
             vereinsuche.setPromptText(titel);
             vereinsuche.setLabelFloat(true);
 
-            titel = bundle.getString("tab_Vereinsuebersicht");
-            tab_Vereinsuebersicht.setText(titel);
+            titel = bundle.getString("tab_verein");
+            tab_verein.setText(titel);
 
-            titel = bundle.getString("tab_Startgeldliste");
-            tab_Startgeldliste.setText(titel);
+            titel = bundle.getString("tab_startgeld");
+            tab_startgeld.setText(titel);
 
         }
         catch ( MissingResourceException e ) {
