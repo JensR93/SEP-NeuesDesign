@@ -1033,8 +1033,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("d_geb");
             d_geb.setPromptText(titel);
 
-            titel = bundle.getString("label_partner");
-            label_partner.setText(titel);
+
 
             titel = bundle.getString("Label_Verein");
             Label_Verein.setText(titel);

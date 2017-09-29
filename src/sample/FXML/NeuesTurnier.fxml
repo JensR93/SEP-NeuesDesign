@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 
-<GridPane prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
+<GridPane prefHeight="630.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -203,11 +203,11 @@
             <Label fx:id="Label_Disziplin_Mixed" text="Disziplin" visible="false" GridPane.rowIndex="8" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="45.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <children>
-                  <JFXTextField fx:id="meldegebuehr_einzel" labelFloat="true" promptText="Einzel">
+                  <JFXTextField fx:id="meldegebuehr_einzel" labelFloat="true" promptText="Einzel" text="5">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></JFXTextField>
-                  <JFXTextField fx:id="meldegebuehr_doppel" labelFloat="true" promptText="Doppel / Mixed" />
+                  <JFXTextField fx:id="meldegebuehr_doppel" labelFloat="true" promptText="Doppel / Mixed" text="5" />
                </children>
             </HBox>
             <Label fx:id="Label_Meldegebuehr" text="Meledegebühr" GridPane.rowIndex="9" />
