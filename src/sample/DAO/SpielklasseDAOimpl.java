@@ -83,7 +83,7 @@ public class SpielklasseDAOimpl implements SpielklasseDAO {
             String sqlErgebnis = "DELETE FROM spiel_satzergebnis WHERE SpielID= 'start'";
             String sqlSpielklasseSpielID = "DELETE FROM spielklasse_spielid WHERE SpielID= 'start'";
             String sqlSpiel = "DELETE FROM spiel WHERE SpielID= 'start'";
-            String sqlspiel_setzliste = "DELETE FROM spielklasse_setzliste WHERE TeamID= 'start'";
+            String sqlspiel_setzliste = "DELETE FROM spielklasse_setzliste WHERE SpielklasseID= ?";
             String sqlFreilose = "DELETE FROM TEAM WHERE TeamID = 'start'";
             for (int i=0;i<spielklasse.getSpielsystem().getRunden().size();i++){
                 for (int j=0;j<spielklasse.getSpielsystem().getRunden().get(i).size();j++){
@@ -99,7 +99,6 @@ public class SpielklasseDAOimpl implements SpielklasseDAO {
                     sqlFreilose += " OR TeamID= ?";
                     freilosZaehler++;
                 }
-                sqlspiel_setzliste += " OR TeamID= ?";
             }
 
             try {
@@ -119,14 +118,12 @@ public class SpielklasseDAOimpl implements SpielklasseDAO {
                         zaehler++;
                     }
                 }
-                int index=1;
+                smtspiel_setzliste.setInt(1,spielklasse.getSpielklasseID());
                 for (int k=0;k<spielklasse.getSetzliste().size();k++){
                     if(spielklasse.getSetzliste().get(k).isFreilos()){
                         smtFreilose.setInt(freilosZaehler,spielklasse.getSetzliste().get(k).getTeamid());
                         freilosZaehler--;
                     }
-                    smtspiel_setzliste.setInt(index,spielklasse.getSetzliste().get(k).getTeamid());
-                    index++;
 
                 }
                 System.out.println(smtspiel_setzliste);
