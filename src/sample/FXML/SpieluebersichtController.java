@@ -18,12 +18,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseButton;
+import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.controlsfx.control.CheckComboBox;
@@ -31,6 +32,7 @@ import sample.*;
 import sample.DAO.auswahlklasse;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -169,7 +171,6 @@ public class SpieluebersichtController implements Initializable {
                 spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
                 spielRundeSpalte.getStyleClass().add("table-viewLeftAlignColumn");
                 spielRundeSpalte.setSortable(false);
-
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -234,15 +235,40 @@ public class SpieluebersichtController implements Initializable {
         for (int i=1; i<=auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
             ImageView feld = new ImageView();
             Image image = new Image("/sample/images/Badmintonfeld.jpg");
-            feld.setImage(image);
-            feld.setScaleX(0.2);
-            feld.setScaleY(0.2);
+            Image imageBesetzt = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+            Label label = new Label();
+            label.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            label.setGraphic(feld);
             //Button feld = new Button(i+"");
-            feld.getStyleClass().add("feldFrei");
+            //feld.getStyleClass().add("feldFrei");
            /* feld.setMaxSize(100,300);
             feld.setPrefSize(100,300);*/
-            hBox_felder.getChildren().add(feld);
-            hBox_felder.setSpacing(20);
+
+            Text feldNummer = new Text(i+"");
+            feldNummer.getStyleClass().add("feldnummer");
+            StackPane pane = new StackPane();
+
+            pane.getChildren().add(label);
+            pane.getChildren().add(feldNummer);
+            pane.setAlignment(Pos.CENTER);
+            hBox_felder.getChildren().add(pane);
+            hBox_felder.setSpacing(15);
+            Tooltip tooltip = new Tooltip();
+            Feld aktuellesFeld =auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i-1);
+            if(aktuellesFeld.getAktivesSpiel()==null){
+                feld.setImage(image);
+                tooltip.setText("freies Feld");
+            }
+            else{
+                feld.setImage(imageBesetzt);
+                String spiel = "Spiel: "+ aktuellesFeld.getAktivesSpiel().getHeimStringKomplett()+" vs. "+aktuellesFeld.getAktivesSpiel().getGastStringKomplett();
+                LocalTime aufrufZeit = aktuellesFeld.getAktivesSpiel().getAufrufZeit();
+                String aufrufzeit = "Aufrufzeit: "+ String.format("%02d:%02d", aufrufZeit.getHour(), aufrufZeit.getMinute());
+                String spielklasse = "Spielklasse: " + aktuellesFeld.getAktivesSpiel().getSpielklasseString();
+                tooltip.setText(spiel + "\n" + aufrufzeit +"\n"+spielklasse);
+            }
+            aktuellesFeld.setImageView(feld);
+            label.setTooltip(tooltip);
         }
     }
 
@@ -251,11 +277,11 @@ public class SpieluebersichtController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         auswahlklasse.setSpieluebersichtController(this);
 
-
+        tabelleSpieleContextMenu();
         //auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
         felderHinzufuegen();
         klassenTabsErstellen();
-        tabelleSpieleContextMenu();
+
         checkComboBoxListener();
         checkComboBox.getStyleClass().add("check-combo-box");
         layoutErstellen();
@@ -271,7 +297,7 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxFuellen();
         CheckeSpielsuche();
-
+        //dragNdropInitialisieren();
         //tabelle_spiele.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
@@ -548,6 +574,8 @@ public class SpieluebersichtController implements Initializable {
                                         public void handle(ActionEvent event) {
                                             //System.out.println("Feld = " + feld.get(ii));
                                             clickedRow.setFeld(feld.get(ii));
+                                            Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+                                            feld.get(ii).setImage(image);
                                             clickedRow.setStatus(2);
                                             CheckeSpielsuche();
                                        /*     auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().remove(clickedRow);
@@ -645,6 +673,49 @@ public class SpieluebersichtController implements Initializable {
             }
         }
         sortiereTabelleSpiele();
+
+    }
+    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/Spiel");
+    private void dragNdropInitialisieren(){
+        tabelle_spiele.setRowFactory(tv -> {
+            TableRow<Spiel> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    event.consume();
+
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    Spiel draggedPerson = (Spiel)tabelle_spiele.getItems().get(draggedIndex);
+                    System.out.println(db.getContent(SERIALIZED_MIME_TYPE));
+                    event.setDropCompleted(true);
+                    event.consume();
+                }
+            });
+
+            return row ;
+        });
 
     }
 /*
