@@ -171,7 +171,6 @@ public class SpieluebersichtController implements Initializable {
                 spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
                 spielRundeSpalte.getStyleClass().add("table-viewLeftAlignColumn");
                 spielRundeSpalte.setSortable(false);
-
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -278,11 +277,11 @@ public class SpieluebersichtController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         auswahlklasse.setSpieluebersichtController(this);
 
-
+        tabelleSpieleContextMenu();
         //auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
         felderHinzufuegen();
         klassenTabsErstellen();
-        tabelleSpieleContextMenu();
+
         checkComboBoxListener();
         checkComboBox.getStyleClass().add("check-combo-box");
         layoutErstellen();
@@ -298,7 +297,7 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxFuellen();
         CheckeSpielsuche();
-        dragNdropInitialisieren();
+        //dragNdropInitialisieren();
         //tabelle_spiele.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
