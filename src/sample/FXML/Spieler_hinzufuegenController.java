@@ -630,8 +630,19 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
                                 auswahlklasse.getSpieler().remove(clickedRow);
                                 tabelle_spielerliste.refresh();
                                 System.out.println("Lösche   " + clickedRow.getNName());
-                                auswahlklasse.InfoBenachrichtigung("erf","erfolg");
 
+                                String titel ="";
+                                try {
+                                    ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+                                    titel = bundle.getString("Erfolg");
+
+                                }
+                                catch ( MissingResourceException e ) {
+                                    System.err.println( e );
+                                }
+
+                                //auswahlklasse.InfoBenachrichtigung("erf","erfolg");
+                                auswahlklasse.InfoBenachrichtigung(titel,titel);
                             }
                             else
                             {

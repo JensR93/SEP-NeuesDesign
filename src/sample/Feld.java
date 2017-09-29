@@ -7,6 +7,9 @@ import sample.DAO.*;
 import sample.Spielsysteme.*;
 import sample.Enums.*;
 
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 public class Feld {
 	private FeldDAO feldDAO = new FeldDAOimpl();
 	private int feldID;
@@ -36,7 +39,18 @@ public class Feld {
 	}
 
 	public String toString(){
-		return "Feld "+feldnummer;
+		String baseName = "resources.Main";
+		String titel ="";
+		try {
+			ResourceBundle bundle = ResourceBundle.getBundle(baseName);
+			titel = bundle.getString("SpielAufAnderesFeld");
+
+		}
+		catch ( MissingResourceException e ) {
+			System.err.println( e );
+		}
+
+		return titel+" "+feldnummer;
 	}
 
 
