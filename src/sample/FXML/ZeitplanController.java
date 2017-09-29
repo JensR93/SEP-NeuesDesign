@@ -280,7 +280,7 @@ public class ZeitplanController implements Initializable{
     public void pressBtn_optimalerZeitplan(){
         alleRundenHolen();
         uebersichtZeichnen();
-        //tableColumnsErstellen();
+        tableColumnsErstellen();
         tabelleZeichnen();
     }
 
@@ -318,6 +318,7 @@ public class ZeitplanController implements Initializable{
         System.out.println(startZeitMixed);
     }
 
+
     private void sortiereRundenListe() {
         rundenListe.sort(new Comparator<ZeitplanRunde>() {
             @Override
@@ -345,6 +346,17 @@ public class ZeitplanController implements Initializable{
             tableview_runden.getColumns().clear();
             tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
             tableview_runden.setItems(rundenListe);
+
+            anzahlSpiele.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            anzahlSpiele.getStyleClass().add("table-viewCenterAlignColumn");
+            anzahlSpiele.setSortable(false);
+            rundenName.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            rundenName.getStyleClass().add("table-viewCenterAlignColumn");
+            rundenName.setSortable(false);
+            index.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            index.getStyleClass().add("table-viewCenterAlignColumn");
+            index.setSortable(false);
+
         }
         catch ( MissingResourceException e ) {
             System.err.println( e );

@@ -41,7 +41,7 @@
                <children>
                   <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <Label fx:id="Label_Klassenübersicht" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Klassenübersicht" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <Label fx:id="Label_Klassenübersicht" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" styleClass="font-head" stylesheets="@../CSS/custom.css" text="Klassenübersicht" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -58,13 +58,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXTabPane fx:id="tabpane_uebersicht" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="150.0">
+                  <JFXTabPane fx:id="tabpane_uebersicht" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../CSS/custom.css" tabMaxWidth="100000.0" tabMinWidth="180.0">
                      <tabs>
-                        <Tab fx:id="tab_einzel" styleClass="jfxtab-pane" text="Einzel">
+                        <Tab fx:id="tab_einzel" text="Einzel">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../CSS/custom.css">
                                  <children>
-                                    <ScrollPane prefHeight="435.0" prefWidth="647.0" styleClass="scroll-bar" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <ScrollPane fx:id="scroll_klasse" prefHeight="435.0" prefWidth="647.0" styleClass="scroll-bar" stylesheets="@../CSS/custom.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
                                           <VBox fx:id="klassseeinzel_vbox" />
                                        </content>
@@ -72,8 +72,12 @@
                                  </children>
                               </AnchorPane>
                            </content>
+                           <styleClass>
+                              <String fx:value="jfxtab-pane" />
+                              <String fx:value="font-tab" />
+                           </styleClass>
                         </Tab>
-                        <Tab fx:id="tab_doppel" styleClass="jfxtab-pane" text="Doppel">
+                        <Tab fx:id="tab_doppel" text="Doppel">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -85,8 +89,12 @@
                                  </children>
                               </AnchorPane>
                            </content>
+                           <styleClass>
+                              <String fx:value="jfxtab-pane" />
+                              <String fx:value="font-tab" />
+                           </styleClass>
                         </Tab>
-                        <Tab styleClass="jfxtab-pane" text="Mixed">
+                        <Tab text="Mixed">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -98,11 +106,16 @@
                                  </children>
                               </AnchorPane>
                            </content>
+                           <styleClass>
+                              <String fx:value="jfxtab-pane" />
+                              <String fx:value="font-tab" />
+                           </styleClass>
                         </Tab>
                      </tabs>
                      <styleClass>
                         <String fx:value="jfxtab-pane" />
-                        <String fx:value="font" />
+                        <String fx:value="sscroll-bar" />
+                        <String fx:value="font-tab" />
                      </styleClass>
                      <GridPane.margin>
                         <Insets left="30.0" right="10.0" />
@@ -128,9 +141,9 @@
          <children>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="300.0" prefHeight="550.0" prefWidth="515.0" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
-                  <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="-17.0">
+                  <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <Label fx:id="Label_Klassehinzufügen" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" text="Klasse hinzufügen" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <Label fx:id="Label_Klassehinzufügen" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" styleClass="font-head" stylesheets="@../CSS/custom.css" text="Klasse hinzufügen" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

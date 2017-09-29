@@ -42,11 +42,13 @@ public class TeamDAOimpl implements TeamDAO {
             smt.setInt(1, team.getSpielklasse().getSpielklasseID());
             smt.executeUpdate();
             smt.close();
-            PreparedStatement smtSpielerEins = con.prepareStatement(sqlSpielerEins);
-            smtSpielerEins.setInt(1, team.getTeamid() );
-            smtSpielerEins.setInt(2, team.getSpielerEins().getSpielerID());
-            smtSpielerEins.executeUpdate();
-            smtSpielerEins.close();
+            if(team.getSpielerEins()!=null) {
+                PreparedStatement smtSpielerEins = con.prepareStatement(sqlSpielerEins);
+                smtSpielerEins.setInt(1, team.getTeamid());
+                smtSpielerEins.setInt(2, team.getSpielerEins().getSpielerID());
+                smtSpielerEins.executeUpdate();
+                smtSpielerEins.close();
+            }
             if(team.getSpielerZwei()!=null) {
                 PreparedStatement smtSpielerZwei = con.prepareStatement(sqlSpielerZwei);
                 smtSpielerZwei.setInt(1, team.getTeamid());

@@ -145,6 +145,7 @@ public class Turnier_ladenController extends Application implements Initializabl
         columnsAnpassen();
         SpracheLaden();
 
+
         auswahlklasse.setTurnier_ladenController(this);
 
         try {

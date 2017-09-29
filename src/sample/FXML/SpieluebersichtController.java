@@ -20,6 +20,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
@@ -72,6 +73,12 @@ public class SpieluebersichtController implements Initializable {
     private JFXTextField tspielsuche;
 
     private HBox hBox =new HBox();
+
+    private VBox vbox_main = new VBox();
+
+    private GridPane grid_pane1 = new GridPane();
+
+    private GridPane grid_pane2 = new GridPane();
 
     public void SpracheLaden()
     {
@@ -649,28 +656,35 @@ public class SpieluebersichtController implements Initializable {
             tspielsuche = new JFXTextField("");
             tspielsuche.setLabelFloat(true);
             tspielsuche.setPromptText(Spielsuche);
-            gridPane_main.getChildren().add(tspielsuche);
+            tspielsuche.getStyleClass().add("text-field");
+            gridPane_main.getChildren().add(grid_pane1);
+            grid_pane1.getChildren().add(tspielsuche);
             hBox.getChildren().addAll(lspielklassen,checkComboBox);
             hBox.setSpacing(150);
             GridPane.setColumnIndex(tspielsuche, 0);
             GridPane.setRowIndex(tspielsuche, 0);
 
 
-            gridPane_main.getChildren().add(checkComboBox);
-            GridPane.setColumnIndex(checkComboBox, 5);
-            GridPane.setRowIndex(checkComboBox, 0);
-            gridPane_main.getChildren().add(check_aktiveSpiele);
-            GridPane.setColumnIndex(check_aktiveSpiele, 1);
-            GridPane.setRowIndex(check_aktiveSpiele, 0);
-            gridPane_main.getChildren().add(check_ausstehendeSpiele);
-            GridPane.setColumnIndex(check_ausstehendeSpiele, 2);
-            GridPane.setRowIndex(check_ausstehendeSpiele, 0);
-            gridPane_main.getChildren().add(check_gespielteSpiele);
-            GridPane.setColumnIndex(check_gespielteSpiele, 3);
-            GridPane.setRowIndex(check_gespielteSpiele, 0);
-            gridPane_main.getChildren().add(check_zukuenftigeSpiele);
-            GridPane.setColumnIndex(check_zukuenftigeSpiele, 4);
-            GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
+            gridPane_main.getChildren().add(grid_pane2);
+            GridPane.setColumnIndex(grid_pane2, 2);
+            GridPane.setRowIndex(grid_pane2, 0);
+            gridPane_main.getChildren().add(vbox_main);
+            GridPane.setColumnIndex(vbox_main, 1);
+            GridPane.setRowIndex(vbox_main, 0);
+//            gridPane_main.getChildren().add(check_ausstehendeSpiele);
+//            GridPane.setColumnIndex(check_ausstehendeSpiele, 1);
+//            GridPane.setRowIndex(check_ausstehendeSpiele, 0);
+//            gridPane_main.getChildren().add(check_gespielteSpiele);
+//            GridPane.setColumnIndex(check_gespielteSpiele, 1);
+//            GridPane.setRowIndex(check_gespielteSpiele, 0);
+//            gridPane_main.getChildren().add(check_zukuenftigeSpiele);
+//            GridPane.setColumnIndex(check_zukuenftigeSpiele, 1);
+//            GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
+            grid_pane2.getChildren().add(checkComboBox);
+            vbox_main.getChildren().add(check_aktiveSpiele);
+            vbox_main.getChildren().add(check_zukuenftigeSpiele);
+            vbox_main.getChildren().add(check_gespielteSpiele);
+            vbox_main.getChildren().add(check_ausstehendeSpiele);
             check_aktiveSpiele.setText(aktiveSpiele);
             check_aktiveSpiele.setSelected(true);
             check_aktiveSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));

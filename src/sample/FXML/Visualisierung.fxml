@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import java.lang.String?>
 
-
-<JFXTabPane fx:id="tabPane_spielklassen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VisualisierungController" />
+<JFXTabPane fx:id="tabPane_spielklassen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="180.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.VisualisierungController">
+   <styleClass>
+      <String fx:value="Root" />
+      <String fx:value="jfxtab-pane" />
+      <String fx:value="font-tab" />
+   </styleClass>
+</JFXTabPane>

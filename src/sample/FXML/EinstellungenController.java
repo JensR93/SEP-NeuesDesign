@@ -196,12 +196,15 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("rdGewinner");
             rdGewinner.setText(titel);
+            rdGewinner.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("rdVerlierer");
             rdVerlierer.setText(titel);
+            rdVerlierer.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("rdAus");
             rdAus.setText(titel);
+            rdAus.setSelectedColor(Color.AQUAMARINE);
 
             titel = bundle.getString("Label_Drucker");
             Label_Drucker.setText(titel);
