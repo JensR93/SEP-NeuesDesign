@@ -102,7 +102,12 @@ public class Spieler_hinzufuegenController implements Initializable{
 
     @FXML
     private JFXTabPane tabpane_spieler;
-
+    @FXML
+    private Label l_rm;
+    @FXML
+    private Label l_rd;
+    @FXML
+    private Label l_re;
 
 
 
@@ -470,6 +475,8 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         setzeBearbeitenNachVorne();
         SpracheLaden();
         fuellechoiceNationalitaet();
+        tabwidthanpassen();
+
 
         //region Tabelle Spielerliste RowFactory
         tabelle_spielerliste.setRowFactory(tv -> {
@@ -713,6 +720,11 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
         });
     }
 
+    private void tabwidthanpassen() {
+        tabpane_spieler.tabMinWidthProperty().bind(tabpane_spieler.widthProperty().multiply(0.49));
+        tabpane_spieler.tabMaxWidthProperty().bind(tabpane_spieler.widthProperty().multiply(0.49));
+    }
+
     public void setzeBearbeitenNachVorne() {
         if(auswahlklasse.getObs_spieler().size()>0){
             tabpane_spieler.getTabs().remove(tab_spbea);
@@ -947,16 +959,16 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             t_spid.setLabelFloat(true);
 
             titel = bundle.getString("t_re");
-            t_re.setPromptText(titel);
-            t_re.setLabelFloat(true);
+            l_re.setText(titel);
+            //l_re.setLabelFloat(true);
 
             titel = bundle.getString("t_rd");
-            t_rd.setPromptText(titel);
-            t_rd.setLabelFloat(true);
+            l_rd.setText(titel);
+            //t_rd.setLabelFloat(true);
 
             titel = bundle.getString("t_rm");
-            t_rm.setPromptText(titel);
-            t_rm.setLabelFloat(true);
+            l_rm.setText(titel);
+            //t_rm.setLabelFloat(true);
 
             titel = bundle.getString("b_neuerVerein");
             b_neuerVerein.setText(titel);
@@ -994,7 +1006,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("tabelle_spielerliste_SpielerID");
             tabelle_spielerliste_SpielerID.setText(titel);
 
-            titel = bundle.getString("tabelle_spielerliste_geschlecht");
+            titel = "";//bundle.getString("tabelle_spielerliste_geschlecht");
             tabelle_spielerliste_geschlecht.setText(titel);
 
             titel = bundle.getString("tabelle_spielerliste_geburtstag");
@@ -1016,7 +1028,7 @@ auswahlklasse.getDashboardController().setNodeSpielervorhanden();
             titel = bundle.getString("Label_Nationalitaet");
             Label_Nationalitaet.setText(titel);
 
-            titel = bundle.getString("tabelle_spielerliste_nationalitaet");
+            titel = "";//bundle.getString("tabelle_spielerliste_nationalitaet");
             tabelle_spielerliste_nationalitaet.setText(titel);
 
 

@@ -315,6 +315,8 @@ else
     public void initialize(URL location, ResourceBundle resources) {
         auswahlklasse.setSpieler_vorhandenController(this);
         Tabellefuelle();
+        tabwidthanpassen();
+
         try
         {
             ResourceBundle bundle = ResourceBundle.getBundle( baseName );
@@ -536,6 +538,53 @@ else
         popup_tabelle2.getSelectionModel().selectFirst();
         popup_tabelle2.getFocusModel().focus(0);*/
         //popup_tabelle2.refresh();
+    }
+
+    private void tabwidthanpassen()
+    {
+        popup_spielerid.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_spielerid.getStyleClass().add("table-viewRightAlignColumn");
+        popup_spielerid.setSortable(false);
+        popup_vorname.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_vorname.getStyleClass().add("table-viewLeftAlignColumn");
+        popup_vorname.setSortable(false);
+        popup_nachname.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_nachname.getStyleClass().add("table-viewRightAlignColumn");
+        popup_nachname.setSortable(false);
+        popup_geschlecht.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_geschlecht.getStyleClass().add("table-viewRightAlignColumn");
+        popup_geschlecht.setSortable(false);
+        popup_gdatum.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_gdatum.getStyleClass().add("table-viewLeftAlignColumn");
+        popup_gdatum.setSortable(false);
+        popup_verein.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_verein.getStyleClass().add("table-viewRightAlignColumn");
+        popup_verein.setSortable(false);
+        popup_nationalitaet.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_nationalitaet.getStyleClass().add("table-viewRightAlignColumn");
+        popup_nationalitaet.setSortable(false);
+
+        popup_spielerid2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_spielerid2.getStyleClass().add("table-viewRightAlignColumn");
+        popup_spielerid2.setSortable(false);
+        popup_vorname2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_vorname2.getStyleClass().add("table-viewLeftAlignColumn");
+        popup_vorname2.setSortable(false);
+        popup_nachname2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_nachname2.getStyleClass().add("table-viewRightAlignColumn");
+        popup_nachname2.setSortable(false);
+        popup_geschlecht2.prefWidthProperty().bind(popup_tabelle.widthProperty().divide(7));
+        popup_geschlecht2.getStyleClass().add("table-viewRightAlignColumn");
+        popup_geschlecht2.setSortable(false);
+        popup_gdatum2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_gdatum2.getStyleClass().add("table-viewLeftAlignColumn");
+        popup_gdatum2.setSortable(false);
+        popup_verein2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_verein2.getStyleClass().add("table-viewRightAlignColumn");
+        popup_verein2.setSortable(false);
+        popup_nationalitaet2.prefWidthProperty().bind(popup_tabelle2.widthProperty().divide(7));
+        popup_nationalitaet2.getStyleClass().add("table-viewRightAlignColumn");
+        popup_nationalitaet2.setSortable(false);
     }
 
 

@@ -16,10 +16,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
@@ -61,7 +64,8 @@ public class SpieluebersichtController implements Initializable {
     private JFXCheckBox check_ausstehendeSpiele = new JFXCheckBox();
     @FXML
     private JFXCheckBox check_zukuenftigeSpiele = new JFXCheckBox();
-
+    @FXML
+    private HBox hBox_felder;
     @FXML
     public TableView tabelle_spiele;
     @FXML
@@ -72,6 +76,12 @@ public class SpieluebersichtController implements Initializable {
     private JFXTextField tspielsuche;
 
     private HBox hBox =new HBox();
+
+    private VBox vbox_main = new VBox();
+
+    private GridPane grid_pane1 = new GridPane();
+
+    private GridPane grid_pane2 = new GridPane();
 
     public void SpracheLaden()
     {
@@ -201,6 +211,9 @@ public class SpieluebersichtController implements Initializable {
                         if (tabellenspaltentext.equals(heim) || tabellenspaltentext.equals("#")) {
                             setAlignment(Pos.CENTER_RIGHT);
                         }
+                        else{
+                            setAlignment(Pos.CENTER_LEFT);
+                        }
                         if (spiel.getStatus() == 3) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
                         } else if (spiel.getStatus() == 2) {
@@ -217,356 +230,30 @@ public class SpieluebersichtController implements Initializable {
         return spalte;
     }
 
+    private void felderHinzufuegen() {
+        for (int i=1; i<=auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+            ImageView feld = new ImageView();
+            Image image = new Image("/sample/images/Badmintonfeld.jpg");
+            feld.setImage(image);
+            feld.setScaleX(0.2);
+            feld.setScaleY(0.2);
+            //Button feld = new Button(i+"");
+            feld.getStyleClass().add("feldFrei");
+           /* feld.setMaxSize(100,300);
+            feld.setPrefSize(100,300);*/
+            hBox_felder.getChildren().add(feld);
+            hBox_felder.setSpacing(20);
+        }
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         auswahlklasse.setSpieluebersichtController(this);
-        //region Sprache
-        /*try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_turnierLaden");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_turnierLaden.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_klassen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_klassen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_spieler");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_spieler.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_zeitplan");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_zeitplan.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("btn_statistik");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        btn_statistik.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_turnierbaum");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_turnierbaum.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("tab_spieluebersicht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        tab_spieluebersicht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("m_datei");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        m_datei.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("m_turnier");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        m_turnier.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("m_ansicht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        m_ansicht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("m_sonstiges");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        m_sonstiges.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("m_neuesFenster");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        m_neuesFenster.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_turnierLaden");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_turnierLaden.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Meldeform_import");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Meldeform_import.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Prog_beenden");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Prog_beenden.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Turnierdaten_bearbeiten");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Turnierdaten_bearbeiten.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Klassendaten_bearbeiten");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Klassendaten_bearbeiten.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Spielerdaten_bearbeiten");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Spielerdaten_bearbeiten.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Vereine_bearbeiten");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Vereine_bearbeiten.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_statistiken");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_statistiken.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Feldübersicht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Feldübersicht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Klassen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Klassen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_spielübersicht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_spielübersicht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Zeitplan");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Zeitplan.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Platzierung");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Platzierung.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_klassen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_klassen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Spielübersicht");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Spielübersicht.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_zeitplan");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_zeitplan.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_x");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_x.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Teilnehmerl_drucken");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Teilnehmerl_drucken.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Startgeldl_drucken");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Startgeldl_drucken.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Ergebnisf_erstellen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Ergebnisf_erstellen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("menu_Optionen");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        menu_Optionen.setText(titel);
-
-        try
-        {
-            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
-            titel = bundle.getString("lab_Badmin_Turnierverw");
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
-        lab_Badmin_Turnierverw.setText(titel);
-*/
-        //endregion
 
 
         //auswahlklasse.getAktuelleTurnierAuswahl().getObs_alleSpiele().clear();
-
+        felderHinzufuegen();
         klassenTabsErstellen();
         tabelleSpieleContextMenu();
         checkComboBoxListener();
@@ -649,28 +336,26 @@ public class SpieluebersichtController implements Initializable {
             tspielsuche = new JFXTextField("");
             tspielsuche.setLabelFloat(true);
             tspielsuche.setPromptText(Spielsuche);
-            gridPane_main.getChildren().add(tspielsuche);
+            tspielsuche.getStyleClass().add("text-field");
+            gridPane_main.getChildren().add(grid_pane1);
+            grid_pane1.getChildren().add(tspielsuche);
             hBox.getChildren().addAll(lspielklassen,checkComboBox);
             hBox.setSpacing(150);
             GridPane.setColumnIndex(tspielsuche, 0);
             GridPane.setRowIndex(tspielsuche, 0);
 
 
-            gridPane_main.getChildren().add(checkComboBox);
-            GridPane.setColumnIndex(checkComboBox, 5);
-            GridPane.setRowIndex(checkComboBox, 0);
-            gridPane_main.getChildren().add(check_aktiveSpiele);
-            GridPane.setColumnIndex(check_aktiveSpiele, 1);
-            GridPane.setRowIndex(check_aktiveSpiele, 0);
-            gridPane_main.getChildren().add(check_ausstehendeSpiele);
-            GridPane.setColumnIndex(check_ausstehendeSpiele, 2);
-            GridPane.setRowIndex(check_ausstehendeSpiele, 0);
-            gridPane_main.getChildren().add(check_gespielteSpiele);
-            GridPane.setColumnIndex(check_gespielteSpiele, 3);
-            GridPane.setRowIndex(check_gespielteSpiele, 0);
-            gridPane_main.getChildren().add(check_zukuenftigeSpiele);
-            GridPane.setColumnIndex(check_zukuenftigeSpiele, 4);
-            GridPane.setRowIndex(check_zukuenftigeSpiele, 0);
+            gridPane_main.getChildren().add(grid_pane2);
+            GridPane.setColumnIndex(grid_pane2, 2);
+            GridPane.setRowIndex(grid_pane2, 0);
+            gridPane_main.getChildren().add(vbox_main);
+            GridPane.setColumnIndex(vbox_main, 1);
+            GridPane.setRowIndex(vbox_main, 0);
+            grid_pane2.getChildren().add(checkComboBox);
+            vbox_main.getChildren().add(check_aktiveSpiele);
+            vbox_main.getChildren().add(check_zukuenftigeSpiele);
+            vbox_main.getChildren().add(check_gespielteSpiele);
+            vbox_main.getChildren().add(check_ausstehendeSpiele);
             check_aktiveSpiele.setText(aktiveSpiele);
             check_aktiveSpiele.setSelected(true);
             check_aktiveSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
