@@ -471,12 +471,12 @@ public class Team {
         return false;
     }
 
-    public boolean isVerfuegbar() {
+    public boolean isVerfuegbar(boolean warnung) {
         if(spielerEins==null){
             return false;
         }
         else{
-            if(!spielerEins.isVerfuegbar()){
+            if(!spielerEins.isVerfuegbar(warnung)){
                 return false;
             }
         }
@@ -484,7 +484,7 @@ public class Team {
             return false;
         }
         else{
-            if(!spielerZwei.isVerfuegbar()){
+            if(!spielerZwei.isVerfuegbar(warnung)){
                 return false;
             }
         }

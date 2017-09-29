@@ -101,7 +101,6 @@ public class SpielerDAOimpl implements SpielerDAO {
                 "RLP_Doppel = ?, " +
                 "RLP_Mixed = ?, " +
                 "Nationalitaet = ?, " + //9
-                "Verfuegbar = ?, " +
                 "MattenSpiele = ?, " +
                 "ExtSpielerID = ?, " +
                 "OffenerBetrag = ?, " +
@@ -125,27 +124,26 @@ public class SpielerDAOimpl implements SpielerDAO {
             smt.setInt(7, spieler.getrPunkte()[1]);
             smt.setInt(8, spieler.getrPunkte()[2]);
             smt.setInt(9, spieler.getNationalitaet());
-            smt.setObject(10, spieler.getVerfuegbar());
-            smt.setInt(11, spieler.getMattenSpiele());
-            smt.setString(12, spieler.getExtSpielerID());
-            smt.setBoolean(13,spieler.isGebuehrenbezahlt());
+            smt.setInt(10, spieler.getMattenSpiele());
+            smt.setString(11, spieler.getExtSpielerID());
+            smt.setBoolean(12,spieler.isGebuehrenbezahlt());
             if(spieler.getNotiz()!=null)
             {
-                smt.setString(14,spieler.getNotiz());
+                smt.setString(13,spieler.getNotiz());
             }
             else
             {
-                smt.setNull(14,Types.VARCHAR);
+                smt.setNull(13,Types.VARCHAR);
             }
 
             if(spieler.getAktuellesSpiel()!=null){
-                smt.setInt(15, spieler.getAktuellesSpiel().getSpielID());
+                smt.setInt(14, spieler.getAktuellesSpiel().getSpielID());
             }
             else {
-                smt.setNull(15,Types.INTEGER);
+                smt.setNull(14,Types.INTEGER);
             }
 
-            smt.setInt(16, spieler.getSpielerID());
+            smt.setInt(15, spieler.getSpielerID());
 
             smt.executeUpdate();
             smt.close();

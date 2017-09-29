@@ -221,7 +221,7 @@ public class SpieluebersichtController implements Initializable {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
                         } else if (spiel.getStatus() == 2) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
-                        } else if (spiel.getStatus() == 1) {
+                        } else if (spiel.getStatus() == 1 && spiel.alleSpielerVerfuegbar(false)) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAusstehendeSpieleFarbe()));
                         } else {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getZukuenftigeSpieleFarbe()));
@@ -249,7 +249,6 @@ public class SpieluebersichtController implements Initializable {
             Text feldNummer = new Text(i+"");
             feldNummer.getStyleClass().add("feldnummer");
             StackPane pane = new StackPane();
-
             pane.getChildren().add(label);
             pane.getChildren().add(feldNummer);
             pane.setAlignment(Pos.CENTER);
@@ -302,6 +301,7 @@ public class SpieluebersichtController implements Initializable {
                                        spielSpiel.setStatus(2);
                                        CheckeSpielsuche();
                                    } catch (Exception e) {
+                                       auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
                                        e.printStackTrace();
                                    }
                                }
@@ -342,7 +342,6 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxFuellen();
         CheckeSpielsuche();
-
         //tabelle_spiele.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
@@ -423,7 +422,6 @@ public class SpieluebersichtController implements Initializable {
             GridPane.setColumnIndex(vbox_main, 1);
             GridPane.setRowIndex(vbox_main, 1);
             grid_pane2.getChildren().add(checkComboBox);
-
             vbox_main.getChildren().add(check_aktiveSpiele);
             vbox_main.getChildren().add(check_zukuenftigeSpiele);
             vbox_main.getChildren().add(check_gespielteSpiele);
@@ -554,8 +552,7 @@ public class SpieluebersichtController implements Initializable {
 
                         @Override
                         public void handle(ActionEvent event) {
-
-
+                            clickedRow.getFeld().spielZurueckziehen();
                         }
                     });
                     MenuItem item6 = new MenuItem("Spielzettel drucken");

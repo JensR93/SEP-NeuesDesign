@@ -59,10 +59,11 @@ public class GruppenTabelle implements Visualisierung {
         //int anzahlSpiele = spielklasse.getSpiele().size();
         //double anzahlTeilnehmerDouble = (((Math.sqrt(1 + anzahlSpiele * 2 * 4)) / 2 * 2) + 1) / 2;
         int anzahlTeilnehmer = teams.size();
+        int gesamtbreite = (anzahlTeilnehmer+1)*zellenBreite+xObenLinks*2;
+        int gesamtHoehe = (anzahlTeilnehmer+2)*zellenHoehe+yObenLinks*2 +zellenHoehePlatzierungsTabelle*(anzahlTeilnehmer+2);
 
 
-
-        Canvas spieluebersicht = new Canvas(2000, 2000);
+        Canvas spieluebersicht = new Canvas(gesamtbreite, gesamtHoehe);
         GraphicsContext gc = spieluebersicht.getGraphicsContext2D();
         ScrollPane scrollPane = new ScrollPane();
         tab.setContent(scrollPane);

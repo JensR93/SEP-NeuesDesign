@@ -275,10 +275,12 @@ public class Spieler {
 		return vorhandenspielklassen;
 	}
 
-	public boolean isVerfuegbar(){
+	public boolean isVerfuegbar(boolean warnung){
 		if (LocalTime.now().isBefore(verfuegbar)){
 			int differenz = (int)MINUTES.between(LocalTime.now(),verfuegbar);
-			auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" hat noch "+differenz+ " Minuten Pause");
+			if(warnung) {
+				auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar", this.toString() + " hat noch " + differenz + " Minuten Pause");
+			}
 			return false;
 		}
 		for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
@@ -287,7 +289,9 @@ public class Spieler {
 				Spiel spiel = feld.getAktivesSpiel();
 				if (spiel.contains(this)){
 					String feldnr = spiel.getFeldNr();
-					auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" spiel aktuell auf "+feldnr);
+					if(warnung) {
+						auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar", this.toString() + " spiel aktuell auf " + feldnr);
+					}
 					return false;
 				}
 			}
