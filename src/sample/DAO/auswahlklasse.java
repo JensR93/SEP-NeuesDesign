@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.input.DataFormat;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -24,6 +25,15 @@ import java.util.Hashtable;
 public class auswahlklasse
 {
 
+    private static DataFormat SERIALIZED_MIME_TYPE2 = new DataFormat("application/x-java-serialized-object");
+
+    public static DataFormat getSerializedMimeType2() {
+        return SERIALIZED_MIME_TYPE2;
+    }
+
+    public static void setSerializedMimeType2(DataFormat serializedMimeType2) {
+        SERIALIZED_MIME_TYPE2 = serializedMimeType2;
+    }
 
     public static boolean druckerGesetzt = false;
     public static Dictionary<String, Spieler> getSpielererfolgreich() {

@@ -268,6 +268,44 @@ public class SpieluebersichtController implements Initializable {
                 tooltip.setText(spiel + "\n" + aufrufzeit +"\n"+spielklasse);
             }
             aktuellesFeld.setImageView(feld);
+            aktuellesFeld.setFeldImageStackPane(pane);
+            pane.setOnDragOver(new EventHandler<DragEvent>() {
+                @Override
+                public void handle(DragEvent event) {
+
+                    if(event.getDragboard().hasString())
+                    {
+                        event.acceptTransferModes(TransferMode.ANY);
+                    }
+
+                }
+            });
+            pane.setOnDragDropped(new EventHandler<DragEvent>() {
+                @Override
+                public void handle(DragEvent event) {
+                    String spiel =  event.getDragboard().getString();
+                   Enumeration enumeration= auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().keys();
+                   while(enumeration.hasMoreElements())
+                   {
+                       int key = (int) enumeration.nextElement();
+                       if(auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key).toString().equals(spiel))
+                       {
+                           Spiel spielSpiel = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key);
+                           for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+                               Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+                               if (feld.getFeldImageStackPane()==pane){
+                                   spielSpiel.setFeld(feld);
+                                   spielSpiel.setStatus(2);
+                                   CheckeSpielsuche();
+                               }
+                           }
+                           //System.out.println(spiel);
+
+                       }
+                   }
+
+                }
+            });
             label.setTooltip(tooltip);
         }
     }
@@ -297,7 +335,7 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxFuellen();
         CheckeSpielsuche();
-        //dragNdropInitialisieren();
+
         //tabelle_spiele.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
@@ -443,6 +481,15 @@ public class SpieluebersichtController implements Initializable {
         ContextMenu contextMenu = new ContextMenu();
         tabelle_spiele.setRowFactory(tv -> {
             TableRow row = new TableRow();
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Dragboard db = row.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.putString(String.valueOf(row.getItem()));
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
             row.setOnMouseClicked(event -> {
 
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
@@ -574,8 +621,8 @@ public class SpieluebersichtController implements Initializable {
                                         public void handle(ActionEvent event) {
                                             //System.out.println("Feld = " + feld.get(ii));
                                             clickedRow.setFeld(feld.get(ii));
-                                            Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
-                                            feld.get(ii).setImage(image);
+                                            /*Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+                                            feld.get(ii).setImage(image);*/
                                             clickedRow.setStatus(2);
                                             CheckeSpielsuche();
                                        /*     auswahlklasse.getAktuelleTurnierAuswahl().getObs_ausstehendeSpiele().remove(clickedRow);
@@ -675,49 +722,8 @@ public class SpieluebersichtController implements Initializable {
         sortiereTabelleSpiele();
 
     }
-    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/Spiel");
-    private void dragNdropInitialisieren(){
-        tabelle_spiele.setRowFactory(tv -> {
-            TableRow<Spiel> row = new TableRow<>();
 
-            row.setOnDragDetected(event -> {
-                if (! row.isEmpty()) {
-                    Integer index = row.getIndex();
-                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
 
-                    db.setDragView(row.snapshot(null, null));
-                    ClipboardContent cc = new ClipboardContent();
-                    cc.put(SERIALIZED_MIME_TYPE, index);
-
-                    db.setContent(cc);
-                    event.consume();
-                }
-            });
-
-            row.setOnDragOver(event -> {
-                Dragboard db = event.getDragboard();
-                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                    event.consume();
-
-                }
-            });
-
-            row.setOnDragDropped(event -> {
-                Dragboard db = event.getDragboard();
-                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
-                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
-                    Spiel draggedPerson = (Spiel)tabelle_spiele.getItems().get(draggedIndex);
-                    System.out.println(db.getContent(SERIALIZED_MIME_TYPE));
-                    event.setDropCompleted(true);
-                    event.consume();
-                }
-            });
-
-            return row ;
-        });
-
-    }
 /*
 
     @FXML

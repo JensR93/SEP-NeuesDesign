@@ -27,6 +27,7 @@ public class EinstellungenController implements Initializable {
     String baseName = "resources.Main";
     String titel ="";
 
+
     @FXML
     private ChoiceBox<String> Choice_Sprache;
 
@@ -242,7 +243,6 @@ public class EinstellungenController implements Initializable {
         GespielteSpieleFarbe = "#ff0000";
 
         Sprache = "de";
-        SchiedsrichterStandard=true;
         VormerkungSchiedsrichter="Gewinner";
         Einstellungen_schreiben();
         SetzeEinstellungen();
@@ -259,8 +259,8 @@ public class EinstellungenController implements Initializable {
     String GespielteSpieleFarbe = "#ff0000";
 
     String Sprache = "de";
-    Boolean SchiedsrichterStandard=true;
     String VormerkungSchiedsrichter="Gewinner";
+    Boolean Schiedsrichterzettel=false;
 
     private void variablenLaden() {
         File f = new File("Einstellungen.xml");
@@ -275,9 +275,8 @@ public class EinstellungenController implements Initializable {
             AusstehendeSpieleFarbe = loadProps.getProperty("AusstehendeSpieleFarbe");
             AktiveSpieleFarbe = loadProps.getProperty("AktiveSpieleFarbe");
             GespielteSpieleFarbe = loadProps.getProperty("GespielteSpieleFarbe");
-
+            Schiedsrichterzettel= Boolean.valueOf(loadProps.getProperty("Schiedsrichterzettel"));
             Sprache = loadProps.getProperty("Sprache");
-            SchiedsrichterStandard = Boolean.valueOf(loadProps.getProperty("SchiedsrichterStandard"));
             VormerkungSchiedsrichter = loadProps.getProperty("VormerkungSchiedsrichter");
 
         }
@@ -292,6 +291,7 @@ public class EinstellungenController implements Initializable {
         color_aktiv.setValue(Color.valueOf(AktiveSpieleFarbe));
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
         color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
+        toggle_schiri.setSelected(Schiedsrichterzettel);
         if (auswahlklasse.getSpieluebersichtController()!=null) {
             try {
                 auswahlklasse.getSpieluebersichtController().printSpielTable();
@@ -299,7 +299,7 @@ public class EinstellungenController implements Initializable {
                 e.printStackTrace();
             }
         }
-        if(SchiedsrichterStandard)
+        if(Schiedsrichterzettel)
         {
             toggle_schiri.setSelected(true);
         }
@@ -334,8 +334,7 @@ public class EinstellungenController implements Initializable {
 
 
         saveProps.setProperty("Sprache", Sprache);
-        saveProps.setProperty("SchiedsrichterStandard", SchiedsrichterStandard.toString());
-        saveProps.setProperty("VormerkungSchiedsrichter", VormerkungSchiedsrichter);
+        saveProps.setProperty("Schiedsrichterzettel", String.valueOf(Schiedsrichterzettel));
         //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
         saveProps.setProperty("ZukuenftigeSpieleFarbe", ZukuenftigeSpieleFarbe);
         saveProps.setProperty("AusstehendeSpieleFarbe", AusstehendeSpieleFarbe);
@@ -391,7 +390,22 @@ public class EinstellungenController implements Initializable {
 
     }
 
+    public Boolean getSchiedsrichterzettel() {
+        return Schiedsrichterzettel;
+    }
+
+    public void setSchiedsrichterzettel(Boolean schiedsrichterzettel) {
+        Schiedsrichterzettel = schiedsrichterzettel;
+    }
+
     private void changeListener() {
+        toggle_schiri.setOnAction(e ->
+        {
+
+            Schiedsrichterzettel=toggle_schiri.isSelected();
+            Einstellungen_schreiben();
+
+        });
         color_zukunft.setOnAction(e ->
         {
             //System.out.println(color_ausstehend.getValue());
@@ -506,7 +520,7 @@ public class EinstellungenController implements Initializable {
         {
             //System.out.println(color_ausstehend.getValue());
 
-            SchiedsrichterStandard= Boolean.valueOf(toggle_schiri.isSelected());
+            Schiedsrichterzettel= Boolean.valueOf(toggle_schiri.isSelected());
             Einstellungen_schreiben();
 
         });

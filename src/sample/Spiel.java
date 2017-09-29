@@ -80,6 +80,10 @@ public class Spiel {
 		this.feld = feld;
 		feld.setAktivesSpiel(this);
 		spielDAO.update(this);
+		if(auswahlklasse.getEinstellungenController().getSchiedsrichterzettel())
+        {
+            this.spielzettelDrucken();
+        }
 	}
 
 
