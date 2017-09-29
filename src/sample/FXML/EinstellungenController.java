@@ -193,6 +193,11 @@ public class EinstellungenController implements Initializable {
             if (Sprache.equals("tk")){
                 Choice_Sprache.getSelectionModel().select(3);
             }
+            Choice_Sprache.getItems().add(bundle.getString("spracheFranzoesisch"));
+            if (Sprache.equals("fr")){
+                Choice_Sprache.getSelectionModel().select(4);
+            }
+
 
             titel = bundle.getString("rdGewinner");
             rdGewinner.setText(titel);
