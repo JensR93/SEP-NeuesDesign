@@ -153,7 +153,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" text="" wrappingWidth="40.0" />
+                        <FontAwesomeIconView fill="#757575" glyphName="QUESTION" size="20" wrappingWidth="40.0" />
                      </graphic>
                   </JFXButton>
                </children>

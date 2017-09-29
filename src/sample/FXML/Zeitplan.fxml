@@ -69,11 +69,12 @@
                <children>
                   <JFXButton fx:id="btn_OptiPlan" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_optimalerZeitplan" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Optimaler Plan" GridPane.valignment="BOTTOM">
                      <graphic>
-                        <FontAwesomeIconView fill="#757575" glyphName="THUMBS_ALT_UP" size="20" />
+                        <FontAwesomeIconView fill="#757575" glyphName="THUMBS_ALT_UP" size="20" wrappingWidth="40.0" />
                      </graphic>
                      <styleClass>
                         <String fx:value="font" />
                         <String fx:value="card-white" />
+                        <String fx:value="buttons" />
                      </styleClass>
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
@@ -81,11 +82,12 @@
                   </JFXButton>
                   <JFXButton fx:id="btn_Speichern_Zeitplan" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_speichern" prefHeight="39.0" prefWidth="200.0" stylesheets="@../CSS/custom.css" text="Speichern" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                      <graphic>
-                        <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" />
+                        <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" wrappingWidth="40.0" />
                      </graphic>
                      <styleClass>
                         <String fx:value="font" />
                         <String fx:value="card-white" />
+                        <String fx:value="buttons" />
                      </styleClass>
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />

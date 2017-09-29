@@ -134,7 +134,7 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </GridPane>
-                                    <JFXListView fx:id="list_nichtbezahlt" styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" />
+                                    <JFXListView fx:id="list_nichtbezahlt" style="-fx-border-color: #ffffff;" styleClass="scroll-pane" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" />
                                  </children>
                                  <GridPane.margin>
                                     <Insets bottom="10.0" />
