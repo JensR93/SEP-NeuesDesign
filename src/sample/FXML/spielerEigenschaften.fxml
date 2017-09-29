@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import jfxtras.scene.layout.VBox?>
 
-<GridPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.spielerEigenschaftenController">
+<GridPane xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.spielerEigenschaftenController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
@@ -79,7 +79,7 @@
                         <VBox layoutX="141.0" layoutY="28.0" prefHeight="341.0" prefWidth="282.0" spacing="30.0">
                            <children>
                               <VBox />
-                              <JFXTextField fx:id="t_vorname" />
+                              <JFXTextField fx:id="t_vorname" labelFloat="true" />
                               <JFXTextField fx:id="t_nachname" />
                               <JFXDatePicker fx:id="d_geburtsdatum">
                                  <padding>

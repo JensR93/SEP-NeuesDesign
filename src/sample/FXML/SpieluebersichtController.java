@@ -76,6 +76,8 @@ public class SpieluebersichtController implements Initializable {
     JFXTabPane tabPane_spielklassen = new JFXTabPane();
     @FXML
     private JFXTextField tspielsuche;
+    @FXML
+    private Label Label_Spielübersicht;
 
     private HBox hBox =new HBox();
 
@@ -87,6 +89,17 @@ public class SpieluebersichtController implements Initializable {
 
     public void SpracheLaden()
     {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("Label_Spielübersicht");
+            Label_Spielübersicht.setText(titel);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
 
     }
 
@@ -340,6 +353,7 @@ public class SpieluebersichtController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SpracheLaden();
         auswahlklasse.setSpieluebersichtController(this);
 
         tabelleSpieleContextMenu();
