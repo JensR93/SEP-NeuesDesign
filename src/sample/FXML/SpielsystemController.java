@@ -157,8 +157,6 @@ public class SpielsystemController implements Initializable {
     @FXML
     private Menu menu_spieler;
 
-    @FXML
-    private Menu menu_hilfe;
 
     @FXML
     private JFXTextField t_suchleistesetzliste;
@@ -1218,9 +1216,6 @@ public class SpielsystemController implements Initializable {
 
             titel = bundle.getString("menu_spieler");
             menu_spieler.setText(titel);
-
-            titel = bundle.getString("menu_hilfe");
-            menu_hilfe.setText(titel);
 
             titel = bundle.getString("t_suchleistesetzliste");
             t_suchleistesetzliste.setPromptText(titel);

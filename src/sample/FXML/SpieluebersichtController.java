@@ -69,9 +69,7 @@ public class SpieluebersichtController implements Initializable {
     @FXML
     private HBox hBox_felder;
     @FXML
-    public TableView tabelle_spiele;
-    @FXML
-    private Label Label_Spielübersicht;
+    public TableView <Spiel> tabelle_spiele;
     @FXML
     private Tab tab_spieluebersicht = new Tab();
     @FXML
@@ -86,19 +84,9 @@ public class SpieluebersichtController implements Initializable {
     private GridPane grid_pane1 = new GridPane();
 
     private GridPane grid_pane2 = new GridPane();
-    ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
     public void SpracheLaden()
     {
-        try
-        {
-
-        titel = bundle.getString("Label_Spielübersicht");
-        Label_Spielübersicht.setText(titel);
-
-        }
-        catch ( MissingResourceException e ) {
-            System.err.println( e );
-        }
 
     }
 
@@ -109,7 +97,7 @@ public class SpieluebersichtController implements Initializable {
     //wenn integer dann die ids abgehen
 
 
-    private void sortiereTabelleSpiele() {
+    public void sortiereTabelleSpiele() {
         sortListe.sort(new Comparator<Spiel>() {
             @Override
             public int compare(Spiel o1, Spiel o2) {
@@ -127,7 +115,6 @@ public class SpieluebersichtController implements Initializable {
         });
         tabelle_spiele.setItems(sortListe);
     }
-
 
     public void printSpielTable() throws Exception {
         tabelle_spiele.getColumns().clear();
@@ -160,6 +147,8 @@ public class SpieluebersichtController implements Initializable {
                 TableColumn<Spiel, String> spielSpielklasseSpalte = tableColoumnsetCellFactory(spielklasse, "SpielklasseString");
                 TableColumn<Spiel, String> spielRundeSpalte = tableColoumnsetCellFactory(runde, "RundenName");
 
+
+
                 tabelle_spiele.getColumns().addAll(spielNummerSpalte, spielFeldSpalte, spielHeimSpalte, spielGastSpalte, spielErgebnisSpalte, spielSpielklasseSpalte, spielRundeSpalte);
 
                 spielNummerSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.0400));
@@ -183,7 +172,6 @@ public class SpieluebersichtController implements Initializable {
                 spielRundeSpalte.prefWidthProperty().bind(tabelle_spiele.widthProperty().multiply(0.1428));
                 spielRundeSpalte.getStyleClass().add("table-viewLeftAlignColumn");
                 spielRundeSpalte.setSortable(false);
-
             }
             catch ( MissingResourceException e ) {
                 System.err.println( e );
@@ -282,6 +270,7 @@ public class SpieluebersichtController implements Initializable {
             }
             aktuellesFeld.setImageView(feld);
             aktuellesFeld.setFeldImageStackPane(pane);
+            aktuellesFeld.setTooltip(tooltip);
             pane.setOnDragOver(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent event) {
@@ -306,7 +295,7 @@ public class SpieluebersichtController implements Initializable {
                            Spiel spielSpiel = auswahlklasse.getAktuelleTurnierAuswahl().getSpiele().get(key);
                            for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
                                Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
-                               if (feld.getFeldImageStackPane()==pane){
+                               if (feld.getFeldImageStackPane()==pane&&feld.getAktivesSpiel()==null){
                                    spielSpiel.setFeld(feld);
                                    spielSpiel.setStatus(2);
                                    CheckeSpielsuche();
@@ -524,19 +513,7 @@ public class SpieluebersichtController implements Initializable {
                             //tabpane_spieler.getSelectionModel().select(tab_sphin);
                         }
                     });*/
-
-                    String titel ="";
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("ErgebnisEintrag");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-
-                    MenuItem item2 = new MenuItem(titel);
-
+                    MenuItem item2 = new MenuItem("Ergebnisse eintragen");
                     item2.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -547,20 +524,8 @@ public class SpieluebersichtController implements Initializable {
                             auswahlklasse.getDashboardController().setNodeSpielergebnis();
 
                         }
-
-
-
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("FeldZuweis");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-                    Menu item3 = new Menu(titel);
-
+                    Menu item3 = new Menu("Felder zuweisen");
                     item3.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -569,16 +534,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("InVorbereitSetz");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-                    Menu item4 = new Menu(titel);
-
+                    Menu item4 = new Menu("in Vorbereitung setzen");
                     item4.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -587,16 +543,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("SpielZurückziehen");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-                    MenuItem item5 = new MenuItem(titel);
-
+                    MenuItem item5 = new MenuItem("Spiel zurückziehen");
                     item5.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -605,16 +552,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("SpielzettelDruck");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-                    MenuItem item6 = new MenuItem(titel);
-
+                    MenuItem item6 = new MenuItem("Spielzettel drucken");
                     item6.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -623,16 +561,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("SpielAufAnderesFeld");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-                    MenuItem item7 = new MenuItem(titel);
-
+                    MenuItem item7 = new MenuItem("Spiel auf anderes Feld verlegen");
                     item7.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -641,17 +570,7 @@ public class SpieluebersichtController implements Initializable {
 
                         }
                     });
-                    try {
-                        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-                        titel = bundle.getString("ErgebnisKorrigier");
-
-                    }
-                    catch ( MissingResourceException e ) {
-                        System.err.println( e );
-                    }
-
-                    MenuItem item8 = new MenuItem(titel);
-
+                    /*MenuItem item8 = new MenuItem("Ergebnis korrigieren");
                     item8.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
@@ -662,7 +581,7 @@ public class SpieluebersichtController implements Initializable {
                             auswahlklasse.getSpielErgebnisEintragenController().fuelleUpdateSpiel();
                             auswahlklasse.getDashboardController().setNodeSpielergebnis();
                         }
-                    });
+                    });*/
 
                     contextMenu.getItems().clear();
                     //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
@@ -731,10 +650,10 @@ public class SpieluebersichtController implements Initializable {
                     if (clickedRow.getStatus() == 2) {   //aktiv
                         contextMenu.getItems().addAll(item2, item5, item6, item7);
                     }
-                    if (clickedRow.getStatus() == 3) {
+                  /*  if (clickedRow.getStatus() == 3) {
                         //gespielt
                         contextMenu.getItems().addAll(item8);
-                    }
+                    }*/
 
                     // Add MenuItem to ContextMenu
 

@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -7,8 +8,7 @@ import sample.DAO.*;
 import sample.Spielsysteme.*;
 import sample.Enums.*;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import java.time.LocalTime;
 
 public class Feld {
 	private FeldDAO feldDAO = new FeldDAOimpl();
@@ -19,6 +19,7 @@ public class Feld {
 	private int feldnummer;
 	private ImageView imageView;
 	private StackPane feldImageStackPane;
+	private Tooltip tooltip;
 
 	public Feld(Turnier turnier) {
 		this.turnier = turnier;
@@ -39,18 +40,7 @@ public class Feld {
 	}
 
 	public String toString(){
-		String baseName = "resources.Main";
-		String titel ="";
-		try {
-			ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-			titel = bundle.getString("SpielAufAnderesFeld");
-
-		}
-		catch ( MissingResourceException e ) {
-			System.err.println( e );
-		}
-
-		return titel+" "+feldnummer;
+		return "Feld "+feldnummer;
 	}
 
 
@@ -75,6 +65,7 @@ public class Feld {
 		this.imageView.setImage(image);
 		this.aktivesSpiel = this.inVorbereitung;
 		this.inVorbereitung = null;
+		tooltip.setText("freies Feld");
 	}
 
 	public void setImage(Image image) {
@@ -106,6 +97,15 @@ public class Feld {
 		if(this.imageView!=null) {
 			Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
 			this.imageView.setImage(image);
+			String spiel = "Spiel: "+ aktivesSpiel.getHeimStringKomplett()+" vs. "+aktivesSpiel.getGastStringKomplett();
+			LocalTime aufrufZeit = aktivesSpiel.getAufrufZeit();
+			String aufrufzeit = "Aufrufzeit: "+ String.format("%02d:%02d", aufrufZeit.getHour(), aufrufZeit.getMinute());
+			String spielklasse = "Spielklasse: " + aktivesSpiel.getSpielklasseString();
+			tooltip.setText(spiel + "\n" + aufrufzeit +"\n"+spielklasse);
 		}
+	}
+
+	public void setTooltip(Tooltip tooltip) {
+		this.tooltip = tooltip;
 	}
 }

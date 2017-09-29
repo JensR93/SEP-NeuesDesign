@@ -26,6 +26,7 @@ import sample.Zeitplan;
 import sample.ZeitplanRunde;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class ZeitplanController implements Initializable{
     private ObservableList<Spiel> zeitplanDoppel = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplanMixed = FXCollections.observableArrayList();
     private ObservableList<Spiel> zeitplan = FXCollections.observableArrayList();
+    private ArrayList<LocalDateTime> alleStartzeiten;
     private LocalDateTime startZeitEinzel = auswahlklasse.getAktuelleTurnierAuswahl().getStartzeitEinzel();
     private LocalDateTime startZeitDoppel = auswahlklasse.getAktuelleTurnierAuswahl().getStartzeitDoppel();
     private LocalDateTime startZeitMixed = auswahlklasse.getAktuelleTurnierAuswahl().getStartzeitMixed();
@@ -244,7 +246,7 @@ public class ZeitplanController implements Initializable{
                 zeitplanTabelle.add(new ArrayList<>());
                 for (int i = 0; i < anzahlFelder; i++) {
                     Spiel spiel = zeitplanKopie.get(0);
-                    if (!disziplinTesten(spiel).equals(disziplinTest) && !disziplinTest.equals("")) {
+                    if (!disziplinTesten(spiel).contains(disziplinTest) && !disziplinTest.equals("")) {
                         disziplinTest = disziplinTesten(spiel);
                         if(zeitplanTabelle.get(zeitplanTabelle.size()-1).size()!=0){
                             zeitplanTabelle.add(new ArrayList<>());
@@ -266,14 +268,41 @@ public class ZeitplanController implements Initializable{
 
     private String disziplinTesten(Spiel spiel) {
         if(spiel.getSpielsystem().getSpielklasse().getDisziplin().toUpperCase().contains("EINZEL")){
-            return "EINZEL";
+            String returnString = "EINZEL";
+            returnString = getString(returnString,startZeitEinzel);
+            return returnString;
         }
         else if(spiel.getSpielsystem().getSpielklasse().getDisziplin().toUpperCase().contains("DOPPEL")){
-            return "DOPPEL";
+            String returnString = "DOPPEL";
+            returnString = getString(returnString,startZeitEinzel);
+            return returnString;
         }
         else{
-            return "MIXED";
+            String returnString = "MIXED";
+            returnString = getString(returnString,startZeitEinzel);
+            return returnString;
         }
+    }
+
+    private String getString(String returnString, LocalDateTime startZeit) {
+        for(int i=0;i<alleStartzeiten.size();i++){
+            if(alleStartzeiten.get(i)!= startZeit){
+                LocalDateTime vergleichsStartZeit = alleStartzeiten.get(i);
+                int matchdauer = auswahlklasse.getAktuelleTurnierAuswahl().getMatchDauer();
+                if(vergleichsStartZeit.minusMinutes(matchdauer).isBefore(startZeit)){
+                    if(vergleichsStartZeit==startZeitDoppel){
+                        returnString+="DOPPEL";
+                    }
+                    else if (vergleichsStartZeit==startZeitMixed){
+                        returnString+="MIXED";
+                    }
+                    else{
+                        returnString+="EINZEL";
+                    }
+                }
+            }
+        }
+        return returnString;
     }
 
     public void pressBtn_optimalerZeitplan(){
@@ -285,6 +314,11 @@ public class ZeitplanController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        alleStartzeiten = new ArrayList<>();
+        alleStartzeiten.add(startZeitMixed);
+        alleStartzeiten.add(startZeitDoppel);
+        alleStartzeiten.add(startZeitEinzel);
+        alleStartzeiten.sort(LocalDateTime::compareTo);
         SpracheLaden();
         dragNdropInitialisieren();
         //Zeitplan.zeitplanEinlesen(auswahlklasse.getAktuelleTurnierAuswahl());

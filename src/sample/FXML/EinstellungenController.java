@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import jfxtras.labs.scene.control.BigDecimalField;
 import sample.DAO.auswahlklasse;
 import sample.Spiel;
 
@@ -28,6 +29,8 @@ public class EinstellungenController implements Initializable {
     String titel ="";
 
 
+    @FXML
+    private BigDecimalField spielerpausenzeit;
     @FXML
     private ChoiceBox<String> Choice_Sprache;
 
@@ -244,6 +247,7 @@ public class EinstellungenController implements Initializable {
         AusstehendeSpieleFarbe="#006400" ;
         AktiveSpieleFarbe="#00008b" ;
         GespielteSpieleFarbe = "#ff0000";
+        Pausenzeit = 10;
 
         Sprache = "de";
         VormerkungSchiedsrichter="Gewinner";
@@ -261,6 +265,7 @@ public class EinstellungenController implements Initializable {
     String AktiveSpieleFarbe="#00008b" ;
     String GespielteSpieleFarbe = "#ff0000";
 
+    int Pausenzeit = 10;
     String Sprache = "de";
     String VormerkungSchiedsrichter="Gewinner";
     Boolean Schiedsrichterzettel=false;
@@ -276,6 +281,8 @@ public class EinstellungenController implements Initializable {
             }
             ZukuenftigeSpieleFarbe = loadProps.getProperty("ZukuenftigeSpieleFarbe");
             AusstehendeSpieleFarbe = loadProps.getProperty("AusstehendeSpieleFarbe");
+            Pausenzeit = Integer.parseInt(loadProps.getProperty("Pausenzeit"));
+
             AktiveSpieleFarbe = loadProps.getProperty("AktiveSpieleFarbe");
             GespielteSpieleFarbe = loadProps.getProperty("GespielteSpieleFarbe");
             Schiedsrichterzettel= Boolean.valueOf(loadProps.getProperty("Schiedsrichterzettel"));
@@ -291,6 +298,7 @@ public class EinstellungenController implements Initializable {
     public void SetzeEinstellungen()
     {
         color_ausstehend.setValue(Color.valueOf(AusstehendeSpieleFarbe));
+        spielerpausenzeit.setText(String.valueOf(Pausenzeit));
         color_aktiv.setValue(Color.valueOf(AktiveSpieleFarbe));
         color_gespielt.setValue(Color.valueOf(GespielteSpieleFarbe));
         color_zukunft.setValue(Color.valueOf(ZukuenftigeSpieleFarbe));
@@ -335,11 +343,12 @@ public class EinstellungenController implements Initializable {
         saveProps.setProperty("dbPass", "");
 
 
-
+        saveProps.setProperty("Pausenzeit", String.valueOf(Pausenzeit));
         saveProps.setProperty("Sprache", Sprache);
         saveProps.setProperty("Schiedsrichterzettel", String.valueOf(Schiedsrichterzettel));
         //0= unvollständig 1 = ausstehend, 2=aktiv, 3=gespielt
         saveProps.setProperty("ZukuenftigeSpieleFarbe", ZukuenftigeSpieleFarbe);
+
         saveProps.setProperty("AusstehendeSpieleFarbe", AusstehendeSpieleFarbe);
         saveProps.setProperty("AktiveSpieleFarbe", AktiveSpieleFarbe);
         saveProps.setProperty("GespielteSpieleFarbe", GespielteSpieleFarbe);
@@ -402,6 +411,18 @@ public class EinstellungenController implements Initializable {
     }
 
     private void changeListener() {
+
+        spielerpausenzeit.setOnMouseClicked(e ->
+        {
+
+            try {
+                Pausenzeit= Integer.parseInt(spielerpausenzeit.getText());
+                Einstellungen_schreiben();
+            } catch (NumberFormatException e1) {
+                e1.printStackTrace();
+            }
+
+        });
         toggle_schiri.setOnAction(e ->
         {
 
@@ -562,5 +583,11 @@ public class EinstellungenController implements Initializable {
         AktiveSpieleFarbe = aktiveSpieleFarbe;
     }
 
+    public int getPausenzeit() {
+        return Pausenzeit;
+    }
 
+    public void setPausenzeit(int pausenzeit) {
+        Pausenzeit = pausenzeit;
+    }
 }
