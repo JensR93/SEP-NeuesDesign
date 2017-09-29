@@ -29,6 +29,10 @@ import java.util.ResourceBundle;
 public class VereinsuebersichtController implements Initializable {
     private Verein updateverein;
 
+    @FXML
+    private JFXButton btn_vereinbezahlt;
+
+    ObservableList Vereinsspieler;
 
     String baseName = "resources.Main";
     String titel ="";
@@ -260,6 +264,9 @@ public class VereinsuebersichtController implements Initializable {
 
                         clickedrow.setGebuehrenbezahlt(true);
                         list_nichtbezahlt.getItems().remove(clickedrow);
+
+                        berechneVereinGesamtGebuehren(Vereinsspieler);
+                        clickedrow.getSpielerDAO().update(clickedrow);
                     }
                 });
 
@@ -284,6 +291,16 @@ public class VereinsuebersichtController implements Initializable {
             btn_Speichern_Verein.setText("Verein aktualisieren");
         }
 
+    }
+
+    @FXML
+    private void vereinbezahlt(ActionEvent event) {
+        for(int i=0;i<list_nichtbezahlt.getItems().size();i++)
+        {
+            list_nichtbezahlt.getItems().get(i).setGebuehrenbezahlt(true);
+        }
+        list_nichtbezahlt.getItems().clear();
+        berechneVereinGesamtGebuehren(Vereinsspieler);
     }
 
     public void tab1Auswahl()
