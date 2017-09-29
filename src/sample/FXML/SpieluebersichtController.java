@@ -234,7 +234,7 @@ public class SpieluebersichtController implements Initializable {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getGespielteSpieleFarbe()));
                         } else if (spiel.getStatus() == 2) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
-                        } else if (spiel.getStatus() == 1) {
+                        } else if (spiel.getStatus() == 1 && spiel.alleSpielerVerfuegbar(false)) {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getAusstehendeSpieleFarbe()));
                         } else {
                             setTextFill(Color.valueOf(auswahlklasse.getEinstellungenController().getZukuenftigeSpieleFarbe()));
@@ -262,7 +262,6 @@ public class SpieluebersichtController implements Initializable {
             Text feldNummer = new Text(i+"");
             feldNummer.getStyleClass().add("feldnummer");
             StackPane pane = new StackPane();
-
             pane.getChildren().add(label);
             pane.getChildren().add(feldNummer);
             pane.setAlignment(Pos.CENTER);
@@ -285,6 +284,26 @@ public class SpieluebersichtController implements Initializable {
             aktuellesFeld.setImageView(feld);
             aktuellesFeld.setFeldImageStackPane(pane);
             aktuellesFeld.setTooltip(tooltip);
+            pane.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+                @Override
+                public void handle(ContextMenuEvent event) {
+                    ContextMenu contextMenu = new ContextMenu();
+                    contextMenu.getItems().clear();
+                    MenuItem item2 = new MenuItem("Ergebnisse eintragen");
+                    item2.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            //tabpane_spieler.getSelectionModel().select(tab_spupdate);
+                            //FuelleFelder(clickedRow);
+
+                        }
+                    });
+                    contextMenu.getItems().addAll(item2);
+                    contextMenu.show(pane, event.getScreenX(), event.getScreenY());
+
+                }
+            });
             pane.setOnDragOver(new EventHandler<DragEvent>() {
                 @Override
                 public void handle(DragEvent event) {
@@ -315,6 +334,7 @@ public class SpieluebersichtController implements Initializable {
                                        spielSpiel.setStatus(2);
                                        CheckeSpielsuche();
                                    } catch (Exception e) {
+                                       auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
                                        e.printStackTrace();
                                    }
                                }
@@ -343,6 +363,7 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxListener();
         checkComboBox.getStyleClass().add("check-combo-box");
+        checkComboBox.getStyleClass().add("font");
         layoutErstellen();
         suchleisteListener();
         checkboxListener(check_aktiveSpiele);
@@ -356,7 +377,6 @@ public class SpieluebersichtController implements Initializable {
 
         checkComboBoxFuellen();
         CheckeSpielsuche();
-
         //tabelle_spiele.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 
@@ -567,8 +587,7 @@ public class SpieluebersichtController implements Initializable {
 
                         @Override
                         public void handle(ActionEvent event) {
-
-
+                            clickedRow.getFeld().spielZurueckziehen();
                         }
                     });
                     MenuItem item6 = new MenuItem("Spielzettel drucken");

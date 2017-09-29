@@ -97,6 +97,7 @@
                                  <styleClass>
                                     <String fx:value="card-white" />
                                     <String fx:value="font" />
+                                    <String fx:value="buttons" />
                                  </styleClass>
                               </JFXButton>
                            </children>
@@ -161,6 +162,7 @@
                            <styleClass>
                               <String fx:value="card-white" />
                               <String fx:value="font" />
+                              <String fx:value="buttons" />
                            </styleClass>
                         </JFXButton>
                         <JFXButton fx:id="b_abbrechen" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#UpdateAbbrechen" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Abbrechen" visible="false">
@@ -169,15 +171,11 @@
                            </HBox.margin>
                            <styleClass>
                               <String fx:value="card-white" />
+                              <String fx:value="buttons" />
                               <String fx:value="font" />
                            </styleClass>
                            <graphic>
-                              <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20">
-                                 <styleClass>
-                                    <String fx:value="font" />
-                                    <String fx:value="card-white" />
-                                 </styleClass>
-                              </FontAwesomeIconView>
+                              <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
                            </graphic>
                         </JFXButton>
                         <JFXButton fx:id="b_spielerspeichern" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Spieler speichern">
@@ -190,6 +188,7 @@
                            <styleClass>
                               <String fx:value="card-white" />
                               <String fx:value="font" />
+                              <String fx:value="buttons" />
                            </styleClass>
                         </JFXButton>
                      </children>

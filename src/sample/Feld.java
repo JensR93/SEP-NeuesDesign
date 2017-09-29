@@ -92,6 +92,18 @@ public class Feld {
 		this.inVorbereitung = inVorbereitung;
 	}
 
+	public void spielZurueckziehen(){
+		if(aktivesSpiel!=null){
+			aktivesSpiel.setStatus(1);
+			this.spielBeenden();
+			try {
+				auswahlklasse.getSpieluebersichtController().printSpielTable();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void setAktivesSpiel(Spiel aktivesSpiel) {
 		this.aktivesSpiel = aktivesSpiel;
 		if(this.imageView!=null) {

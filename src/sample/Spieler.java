@@ -3,61 +3,22 @@ package sample;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
-
+import static java.time.temporal.ChronoUnit.MINUTES;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sample.DAO.*;
-
-import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class Spieler {
 	SpielerDAO spielerDAO = new SpielerDAOimpl();
 	private String vName;
 	private boolean gebuehrenbezahlt;
-
-
 	private String Notiz;
-
-	public Spieler() {
-
-	}
-    public boolean isVerfuegbar(){
-        if (LocalTime.now().isBefore(LocalTime.from(verfuegbar))){
-            int differenz = (int)MINUTES.between(LocalTime.now(),verfuegbar);
-            auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" hat noch "+differenz+ " Minuten Pause");
-            return false;
-        }
-        for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
-            Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
-            if(feld.getAktivesSpiel()!=null){
-                Spiel spiel = feld.getAktivesSpiel();
-                if (spiel.contains(this)){
-                    String feldnr = spiel.getFeldNr();
-                    auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar",this.toString()+" spiel aktuell auf "+feldnr);
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein, String extSpielerID, int i) {
-		this.vName=vName;
-		this.nName=nName;
-		this.gDatum=gDatum;
-		this.geschlecht=geschlecht;
-		this.rPunkte=rPunkte;
-		this.verein=verein;
-		this.extSpielerID=extSpielerID;
-	}
-
 	public String getNotiz() {
 		return Notiz;
 	}
-
 	public void setNotiz(String notiz) {
 		Notiz = notiz;
 	}
-
 	private String nName;
 	private LocalDate gDatum;
 	private int spielerID;
@@ -65,7 +26,7 @@ public class Spieler {
 	private int[] rPunkte = new int[3]; //[0]=Einzel-, [1]=Doppel-, [2]=Mixed-Ranglistenpunkte
 	private Verein verein;
 	private int Nationalitaet = 0;
-	private LocalDate verfuegbar = LocalDate.now();
+	private LocalTime verfuegbar = LocalTime.now();
 	private int mattenSpiele = 0;
 	private String extSpielerID;
 	private Spiel aktuellesSpiel;
@@ -98,6 +59,17 @@ public class Spieler {
 		return geschlecht;
 	}
 
+	public Spieler(String vName, String nName, LocalDate gDatum, boolean geschlecht, int[] rPunkte, Verein verein, String extSpielerID, int i) {
+		this.vName=vName;
+		this.nName=nName;
+		this.gDatum=gDatum;
+		this.geschlecht=geschlecht;
+		this.rPunkte=rPunkte;
+		this.verein=verein;
+		this.extSpielerID=extSpielerID;
+	}
+
+
 	//Einlesen neu
 	public Spieler(String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, int nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID) {
 		this.vName = vName;
@@ -108,14 +80,16 @@ public class Spieler {
 		this.rPunkte = rPunkte;
 		this.verein = verein;
 		this.Nationalitaet = nationalitaet;
-		this.verfuegbar = verfuegbar;
-
+		this.verfuegbar = LocalTime.now();
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
 
 	}
 
+	public Spieler() {
+
+	}
 	public Spieler(String notiz, LocalDate gDatum, String vName, String nName, LocalDate gdatum, int spielerID, boolean geschlecht, int[] rPunkte, Verein verein, float meldegebuehren, int nationalitaet, LocalDate verfuegbar, int mattenSpiele, String extSpielerID, boolean offenerBetrag) {
 		this.Notiz=notiz;
 		this.vName = vName;
@@ -127,7 +101,7 @@ public class Spieler {
 		this.verein = verein;
 
 		this.Nationalitaet = nationalitaet;
-		this.verfuegbar = verfuegbar;
+		this.verfuegbar = LocalTime.now();
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
@@ -248,7 +222,7 @@ public class Spieler {
 		//spielerDAO.update(this);
 	}
 
-	public void setVerfuegbar(LocalDate verfuegbar) {
+	public void setVerfuegbar(LocalTime verfuegbar) {
 		this.verfuegbar = verfuegbar;
 		//spielerDAO.update(this);
 	}
@@ -299,6 +273,30 @@ public class Spieler {
 			}
 		}
 		return vorhandenspielklassen;
+	}
+
+	public boolean isVerfuegbar(boolean warnung){
+		if (LocalTime.now().isBefore(verfuegbar)){
+			int differenz = (int)MINUTES.between(LocalTime.now(),verfuegbar);
+			if(warnung) {
+				auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar", this.toString() + " hat noch " + differenz + " Minuten Pause");
+			}
+			return false;
+		}
+		for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+			Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+			if(feld.getAktivesSpiel()!=null){
+				Spiel spiel = feld.getAktivesSpiel();
+				if (spiel.contains(this)){
+					String feldnr = spiel.getFeldNr();
+					if(warnung) {
+						auswahlklasse.WarnungBenachrichtigung("Spieler nicht verfügbar", this.toString() + " spiel aktuell auf " + feldnr);
+					}
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public int getRLPanzeigen()
@@ -411,7 +409,7 @@ public class Spieler {
 
 
 
-	public LocalDate getVerfuegbar() {
+	public LocalTime getVerfuegbar() {
 		return verfuegbar;
 	}
 

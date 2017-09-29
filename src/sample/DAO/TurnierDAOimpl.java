@@ -499,9 +499,6 @@ public class TurnierDAOimpl implements TurnierDAO {
                 if (geburtstag!=null){
                     gdatum = geburtstag.toLocalDate();
                 }
-                if(spielerResult.getDate("Verfuegbar")!=null) {
-                    verfuegbar = spielerResult.getDate("Verfuegbar").toLocalDate();
-                }
                 auswahlklasse.getSpieler().put(spielerID,new Spieler(spielerResult.getString("Notiz"),geburtstag.toLocalDate(),spielerResult.getString("VName"),
                         spielerResult.getString("NName"),
                         gdatum,

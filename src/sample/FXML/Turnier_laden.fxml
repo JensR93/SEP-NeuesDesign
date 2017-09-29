@@ -62,7 +62,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <JFXButton fx:id="btn_neuesTurnier" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="200.0" onAction="#pressBtn_neuesTurnier" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Neues Turnier" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                              <JFXButton fx:id="btn_neuesTurnier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_neuesTurnier" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Neues Turnier" textFill="#757575" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -80,9 +80,9 @@
                                     <String fx:value="buttons" />
                                  </styleClass>
                               </JFXButton>
-                              <JFXTextField fx:id="t_turniersuche" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="200.0" promptText="Turniersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                              <JFXTextField fx:id="t_turniersuche" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Turniersuche" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                  <GridPane.margin>
-                                    <Insets bottom="90.0" left="85.0" right="85.0" top="90.0" />
+                                    <Insets bottom="40.0" left="85.0" right="85.0" top="40.0" />
                                  </GridPane.margin>
                               </JFXTextField>
                            </children>

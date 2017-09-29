@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -24,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
+<JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="754.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMaxWidth="10000.0" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielsystemController">
    <tabs>
       <Tab fx:id="tab_Setzliste" text="Setzliste">
         <content>
@@ -60,7 +61,7 @@
                       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                         <RowConstraints />
                         <RowConstraints />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
                     </rowConstraints>
                      <children>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
@@ -71,7 +72,8 @@
                                     <Label fx:id="anzahlsetzlistespieler" text="Label" textFill="#160af2">
                                        <font>
                                           <Font size="15.0" />
-                                       </font></Label>
+                                       </font>
+                                    </Label>
                                  </children>
                               </HBox>
                               <TableView fx:id="spielsystem_setzliste" maxHeight="600.0" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="345.0" />
@@ -118,7 +120,11 @@
                               <FontAwesomeIconView fx:id="pfeil_rechts" glyphName="ANGLE_DOUBLE_RIGHT" onMouseClicked="#verschiebevonSetzliste" size="36.0" />
                            </children>
                         </VBox>
-                        <Label fx:id="l_meldungsetzliste1" text="Label" GridPane.rowIndex="3" />
+                        <Label fx:id="l_meldungsetzliste1" text="Label" textFill="RED" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
                </children>
@@ -127,7 +133,7 @@
       </Tab>
       <Tab fx:id="tabsperst" text="Spielsystem starten">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css">
                <children>
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
@@ -141,20 +147,20 @@
                         <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fx:id="t_spielsystem" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielsystem:" GridPane.halignment="RIGHT">
+                        <Text fx:id="t_spielsystem" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Spielsystem:" GridPane.halignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <JFXRadioButton fx:id="radio_gruppe" onAction="#klassenSwitch" selected="true" text="Gruppe">
+                              <JFXRadioButton fx:id="radio_gruppe" onAction="#klassenSwitch" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Gruppe">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="spielSystemAuswahl" />
                                  </toggleGroup></JFXRadioButton>
-                              <JFXRadioButton fx:id="radio_gruppeMitE" onAction="#klassenSwitch" text="Gruppe mit Endrunde" toggleGroup="$spielSystemAuswahl" />
-                              <JFXRadioButton fx:id="radio_ko" onAction="#klassenSwitch" text="K.O.-System" toggleGroup="$spielSystemAuswahl" />
-                              <JFXRadioButton fx:id="radio_schweizer" onAction="#klassenSwitch" text="Schweizer System" toggleGroup="$spielSystemAuswahl" />
+                              <JFXRadioButton fx:id="radio_gruppeMitE" onAction="#klassenSwitch" styleClass="font" stylesheets="@../CSS/custom.css" text="Gruppe mit Endrunde" toggleGroup="$spielSystemAuswahl" />
+                              <JFXRadioButton fx:id="radio_ko" onAction="#klassenSwitch" styleClass="font" stylesheets="@../CSS/custom.css" text="K.O.-System" toggleGroup="$spielSystemAuswahl" />
+                              <JFXRadioButton fx:id="radio_schweizer" onAction="#klassenSwitch" styleClass="font" stylesheets="@../CSS/custom.css" text="Schweizer System" toggleGroup="$spielSystemAuswahl" />
                            </children>
                         </HBox>
                         <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -189,37 +195,37 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Text fx:id="t_Gruppengröße" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppengröße:" GridPane.halignment="RIGHT" />
-                                          <JFXTextField fx:id="textField_gruppenGroesse" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
+                                          <Text fx:id="t_Gruppengröße" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Gruppengröße:" GridPane.halignment="RIGHT" />
+                                          <JFXTextField fx:id="textField_gruppenGroesse" focusColor="#3367d6" labelFloat="true" maxWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </JFXTextField>
-                                          <Text fx:id="t_AnzahlWeiterkom" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Weiterkommender:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                          <JFXTextField fx:id="textField_anzahlWeiterkommender" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <Text fx:id="t_AnzahlWeiterkom" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Anzahl Weiterkommender:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                          <JFXTextField fx:id="textField_anzahlWeiterkommender" focusColor="#3367d6" labelFloat="true" maxWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
                                           </JFXTextField>
-                                          <Text fx:id="t_Endrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                          <Text fx:id="t_Endrunde" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <JFXRadioButton fx:id="rb_ko" onAction="#radioAuswahlPlatzDrei" selected="true" text="K.O.">
+                                                <JFXRadioButton fx:id="rb_ko" onAction="#radioAuswahlPlatzDrei" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="K.O.">
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="group_endrunde" />
                                                    </toggleGroup></JFXRadioButton>
-                                                <JFXRadioButton fx:id="rb_Gruppe" onAction="#radioAuswahlPlatzDrei" text="Gruppe" toggleGroup="$group_endrunde" />
+                                                <JFXRadioButton fx:id="rb_Gruppe" onAction="#radioAuswahlPlatzDrei" styleClass="font" stylesheets="@../CSS/custom.css" text="Gruppe" toggleGroup="$group_endrunde" />
                                              </children>
                                           </HBox>
-                                          <Text fx:id="t_platz3ausspielGmE" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                          <Text fx:id="t_platz3ausspielGmE" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <children>
-                                                <JFXRadioButton fx:id="radio_p3_ja" selected="true" text="Ja">
+                                                <JFXRadioButton fx:id="radio_p3_ja" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Ja" textFill="#757575">
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="GruppeMitEnd_p3" />
                                                    </toggleGroup>
                                                 </JFXRadioButton>
-                                                <JFXRadioButton fx:id="radio_p3_nein" text="Nein" toggleGroup="$GruppeMitEnd_p3" />
+                                                <JFXRadioButton fx:id="radio_p3_nein" styleClass="font" stylesheets="@../CSS/custom.css" text="Nein" textFill="#757575" toggleGroup="$GruppeMitEnd_p3" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -244,15 +250,15 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielen" selected="true" text="Ja">
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielen" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Ja" textFill="#757575">
                                                          <toggleGroup>
                                                             <ToggleGroup fx:id="group_platz3ausspielenko" />
                                                          </toggleGroup>
                                                       </JFXRadioButton>
-                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielenNein" text="Nein" toggleGroup="$group_platz3ausspielenko" />
+                                                      <JFXRadioButton fx:id="radio_platzDreiAusspielenNein" styleClass="font" stylesheets="@../CSS/custom.css" text="Nein" textFill="#757575" toggleGroup="$group_platz3ausspielenko" />
                                                    </children>
                                                 </HBox>
-                                                <Text fx:id="t_Platz3" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" />
+                                                <Text fx:id="t_Platz3" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -273,8 +279,8 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Text fx:id="t_AnzahlRunden" strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Runden:" GridPane.halignment="RIGHT" />
-                                          <JFXTextField fx:id="textField_anzahlRundenSchweizer" focusColor="#757575" maxWidth="250.0" GridPane.columnIndex="1">
+                                          <Text fx:id="t_AnzahlRunden" fill="#757575" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text="Anzahl Runden:" GridPane.halignment="RIGHT" />
+                                          <JFXTextField fx:id="textField_anzahlRundenSchweizer" focusColor="#3367d6" labelFloat="true" maxWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" GridPane.columnIndex="1">
                                              <GridPane.margin>
                                                 <Insets left="10.0" />
                                              </GridPane.margin>
@@ -285,10 +291,15 @@
                               </AnchorPane>
                            </children>
                         </StackPane>
-                        <JFXButton fx:id="btn_spielklasseStarten" onAction="#pressbtn_spielklasseStarten" text="Spielsystem starten">
+                        <JFXButton fx:id="btn_spielklasseStarten" onAction="#pressbtn_spielklasseStarten" stylesheets="@../CSS/custom.css" text="Spielsystem starten">
                            <graphic>
-                              <FontAwesomeIconView glyphName="CHECK" size="20" />
+                              <FontAwesomeIconView fill="#757575" glyphName="CHECK" size="20" />
                            </graphic>
+                           <styleClass>
+                              <String fx:value="font" />
+                              <String fx:value="buttons" />
+                              <String fx:value="card-white" />
+                           </styleClass>
                         </JFXButton>
                      </children>
                   </GridPane>
