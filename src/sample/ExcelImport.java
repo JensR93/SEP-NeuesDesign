@@ -51,7 +51,10 @@ public class ExcelImport implements Initializable{
         obs_vorh.clear();
         aktuellerSpieler=new Spieler();
         UpdateSpieler=new Spieler();
-
+        auswahlklasse.setDict_doppelte_spieler(new Hashtable<>());
+        auswahlklasse.setSpielererfolgreich(new Hashtable<>());
+        auswahlklasse.setSpielerupdate(new Hashtable<>());
+        auswahlklasse.getObs_vereine_erfolgreich().clear();
 
         if(auswahlklasse.getDict_doppelte_spieler().size()>0)
         {
