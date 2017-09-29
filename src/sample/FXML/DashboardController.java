@@ -492,7 +492,26 @@ public class DashboardController implements Initializable{
             e.printStackTrace();
         }
     }
+    public void prgHelp() {
+        JHelp helpViewer = null;
+        try {
+            //Hauptfenster in der nächsten Zeile ersetzen durch aktuellen Klassennamen
+            ClassLoader cl = Main.class.getClassLoader();
+            URL url = HelpSet.findHelpSet(cl, "jhelpset.hs");
+            helpViewer = new JHelp(new HelpSet(cl, url));
+            // Darzustellendes Kapitel festlegen, ID muss im XML existieren!
+            helpViewer.setCurrentID("Simple.Introduction");
+        } catch (Exception e) {
+            System.err.println("Help-Datei nicht gefunden.");
+        }
 
+        JFrame frame = new JFrame();
+        frame.setTitle("Infos zur Turnierverwaltung");
+        frame.setSize(800, 600);
+        frame.getContentPane().add(helpViewer);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
+    }
 
 
 
