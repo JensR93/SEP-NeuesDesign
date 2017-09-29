@@ -158,8 +158,8 @@ public class EinstellungenController implements Initializable {
             titel = bundle.getString("Label_SchiriStandVerw");
             Label_SchiriStandVerw.setText(titel);
 
-            titel = bundle.getString("lab_VormSchiri");
-            lab_VormSchiri.setText(titel);
+           /* titel = bundle.getString("lab_VormSchiri");
+            lab_VormSchiri.setText(titel);*/
 
             titel = bundle.getString("lab_ausstehSpiel");
             lab_ausstehSpiel.setText(titel);
@@ -199,7 +199,7 @@ public class EinstellungenController implements Initializable {
             }
 
 
-            titel = bundle.getString("rdGewinner");
+            /*titel = bundle.getString("rdGewinner");
             rdGewinner.setText(titel);
             rdGewinner.setSelectedColor(Color.AQUAMARINE);
 
@@ -209,9 +209,9 @@ public class EinstellungenController implements Initializable {
 
             titel = bundle.getString("rdAus");
             rdAus.setText(titel);
-            rdAus.setSelectedColor(Color.AQUAMARINE);
+            rdAus.setSelectedColor(Color.AQUAMARINE);*/
 
-            titel = bundle.getString("Label_Drucker");
+          /*  titel = bundle.getString("Label_Drucker");
             Label_Drucker.setText(titel);
 
             titel = bundle.getString("btn_DruckerAendern");
@@ -223,7 +223,7 @@ public class EinstellungenController implements Initializable {
             titel = bundle.getString("tf_aktuellerDrucker");
             tf_aktuellerDrucker.setPromptText(titel);
             tf_aktuellerDrucker.setLabelFloat(true);
-
+*/
 
         }
         catch ( MissingResourceException e ) {
@@ -307,7 +307,7 @@ public class EinstellungenController implements Initializable {
         {
             toggle_schiri.setSelected(false);
         }
-        if(VormerkungSchiedsrichter.equals("Gewinner"))
+       /* if(VormerkungSchiedsrichter.equals("Gewinner"))
         {
             rdGewinner.setSelected(true);
         }
@@ -318,7 +318,7 @@ public class EinstellungenController implements Initializable {
         if(VormerkungSchiedsrichter.equals("Aus"))
         {
             rdAus.setSelected(true);
-        }
+        }*/
 
     }
 
@@ -510,31 +510,6 @@ public class EinstellungenController implements Initializable {
             Einstellungen_schreiben();
 
         });
-        rdGewinner.setOnAction(e ->
-        {
-            if(!VormerkungSchiedsrichter.equals("Gewinner"))
-            {
-                VormerkungSchiedsrichter="Gewinner";
-                Einstellungen_schreiben();
-            }
-        });
-        rdVerlierer.setOnAction(e ->
-        {
-            if(!VormerkungSchiedsrichter.equals("Verlierer"))
-            {
-                VormerkungSchiedsrichter="Verlierer";
-                Einstellungen_schreiben();
-            }
-        });
-        rdAus.setOnAction(e ->
-        {
-            if(!VormerkungSchiedsrichter.equals("Aus"))
-            {
-                VormerkungSchiedsrichter="Aus";
-                Einstellungen_schreiben();
-            }
-        });
-
     }
 
 
