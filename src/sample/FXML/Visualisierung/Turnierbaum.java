@@ -50,7 +50,10 @@ public class Turnierbaum implements Visualisierung {
         this.spielsystem=spielsystem;
         KO kosystem = (KO) spielsystem;
         spielsystem.setVisualisierung(this);
-        ArrayList<ZeitplanRunde> runden = spielsystem.getRunden();
+        ArrayList<ZeitplanRunde> runden = new ArrayList<>();
+        for (int i=0;i<spielsystem.getRunden().size();i++){
+            runden.add((ZeitplanRunde)spielsystem.getRunden().get(i).clone());
+        }
         if (kosystem.getSpielUm3()!=null){
             spielUmPlatz3 = kosystem.getSpielUm3();
             runden.get(runden.size()-1).remove(spielUmPlatz3);
