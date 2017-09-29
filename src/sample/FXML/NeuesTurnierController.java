@@ -5,6 +5,7 @@ import com.jfoenix.controls.*;
 import java.math.BigDecimal;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -353,7 +354,7 @@ public class NeuesTurnierController implements Initializable{
             auswahlklasse.WarnungBenachrichtigung("Gebühr hat falsches format","f");
         }
 
-}
+    }
 
     private void ladeTurnierladen() {
         auswahlklasse.getTurnier_ladenController().tabelleReload();
@@ -362,6 +363,10 @@ public class NeuesTurnierController implements Initializable{
 
     @FXML
     private void radioAuswahl(){
+        if(Radio_AnschlussDisziMixed.isSelected()&&Radio_AnschlussDisziDoppel.isSelected()&&Radio_AnschlussDisziEinzel.isSelected()){
+            auswahlklasse.WarnungBenachrichtigung("Fehler","Mindestens eine Klasse muss ein Startdatum haben!");
+            Radio_DatumUhrEinzel.setSelected(true);
+        }
         if(Radio_AnschlussDisziDoppel.isSelected()){
             Label_Disziplin_Doppel.setVisible(true);
             Ap_doppel_Choice.setVisible(true);
@@ -407,31 +412,53 @@ public class NeuesTurnierController implements Initializable{
     @FXML
     private void choiceBoxFuellen(){
         String selectionEinzel = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
-        Choicebox_Einzel.getItems().add(keineAuswahl);
-        String selectionDoppel = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
-        Choicebox_Doppel.getItems().add(keineAuswahl);
-        String selectionMixed = (String) Choicebox_Einzel.getSelectionModel().getSelectedItem();
-        Choicebox_Mixed.getItems().add(keineAuswahl);
+        if(!Choicebox_Einzel.getItems().contains(keineAuswahl)) {
+            Choicebox_Einzel.getItems().add(keineAuswahl);
+        }
+        String selectionDoppel = (String) Choicebox_Doppel.getSelectionModel().getSelectedItem();
+        if(!Choicebox_Doppel.getItems().contains(keineAuswahl)) {
+            Choicebox_Doppel.getItems().add(keineAuswahl);
+        }
+        String selectionMixed = (String) Choicebox_Mixed.getSelectionModel().getSelectedItem();
+        if(!Choicebox_Mixed.getItems().contains(keineAuswahl)) {
+            Choicebox_Mixed.getItems().add(keineAuswahl);
+        }
 
 
-        if(time_einzel.getValue()!=null&&date_einzel.getValue()!=null){
+        //adden der Strings in die ChoiceBox
+
+        if((time_einzel.getValue()!=null&&date_einzel.getValue()!=null)||(Radio_AnschlussDisziEinzel.isSelected()&&(selectionEinzel!=null&&selectionEinzel.length()>0&&!selectionEinzel.equals(keineAuswahl)))){
             Choicebox_Doppel.getItems().remove(keineAuswahl);
-            Choicebox_Doppel.getItems().add(einzel);
+            if(!Choicebox_Doppel.getItems().contains(einzel)) {
+                Choicebox_Doppel.getItems().add(einzel);
+            }
             Choicebox_Mixed.getItems().remove(keineAuswahl);
-            Choicebox_Mixed.getItems().add(einzel);
+            if(!Choicebox_Mixed.getItems().contains(einzel)) {
+                Choicebox_Mixed.getItems().add(einzel);
+            }
         }
-        if(time_doppel.getValue()!=null&&date_doppel.getValue()!=null){
+        if(time_doppel.getValue()!=null&&date_doppel.getValue()!=null||(Radio_AnschlussDisziDoppel.isSelected()&&(selectionDoppel!=null&&selectionDoppel.length()>0&&!selectionDoppel.equals(keineAuswahl)))){
             Choicebox_Einzel.getItems().remove(keineAuswahl);
-            Choicebox_Einzel.getItems().add(doppel);
+            if(!Choicebox_Einzel.getItems().contains(doppel)) {
+                Choicebox_Einzel.getItems().add(doppel);
+            }
             Choicebox_Mixed.getItems().remove(keineAuswahl);
-            Choicebox_Mixed.getItems().add(doppel);
+            if(!Choicebox_Mixed.getItems().contains(doppel)) {
+                Choicebox_Mixed.getItems().add(doppel);
+            }
         }
-        if(time_mixed.getValue()!=null&&date_mixed.getValue()!=null){
+        if(time_mixed.getValue()!=null&&date_mixed.getValue()!=null||(Radio_AnschlussDisziMixed.isSelected()&&(selectionMixed!=null&&selectionMixed.length()>0&&!selectionMixed.equals(keineAuswahl)))){
             Choicebox_Einzel.getItems().remove(keineAuswahl);
-            Choicebox_Einzel.getItems().add(mixed);
+            if(!Choicebox_Einzel.getItems().contains(mixed)) {
+                Choicebox_Einzel.getItems().add(mixed);
+            }
             Choicebox_Doppel.getItems().remove(keineAuswahl);
-            Choicebox_Doppel.getItems().add(mixed);
+            if(!Choicebox_Doppel.getItems().contains(mixed)) {
+                Choicebox_Doppel.getItems().add(mixed);
+            }
         }
+
+        //Auswahl von vorher wieder setzen:
         if (selectionEinzel!=null && !selectionEinzel.equals("")) {
             Choicebox_Einzel.getSelectionModel().select(selectionEinzel);
         }
@@ -454,6 +481,28 @@ public class NeuesTurnierController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Choicebox_Einzel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                choiceBoxFuellen();
+            }
+        });
+        Choicebox_Doppel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                choiceBoxFuellen();
+            }
+        });
+        Choicebox_Mixed.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                choiceBoxFuellen();
+            }
+        });
         SpracheLaden();
         time_einzel.setIs24HourView(true);
         time_doppel.setIs24HourView(true);
@@ -470,7 +519,7 @@ public class NeuesTurnierController implements Initializable{
             @Override
             public String toString(LocalTime object) {
                 if(object!=null)
-                return object.toString();
+                    return object.toString();
                 else
                     return null;
             }
