@@ -54,9 +54,9 @@
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="131.0" minHeight="-Infinity" prefHeight="90.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="370.0" minHeight="10.0" prefHeight="329.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="131.0" minHeight="-Infinity" prefHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="329.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <GridPane fx:id="gridPane_main" maxWidth="1.7976931348623157E308">
@@ -66,8 +66,7 @@
                                     <ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity" prefWidth="150.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints maxHeight="-Infinity" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <GridPane.margin>
                                     <Insets left="30.0" right="30.0" />
