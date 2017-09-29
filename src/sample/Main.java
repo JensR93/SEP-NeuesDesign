@@ -11,12 +11,18 @@ import javafx.stage.StageStyle;
 import sample.DAO.auswahlklasse;
 import sample.FXML.DashboardController;
 
+import javax.help.HelpSet;
+import javax.help.JHelp;
+import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 import java.util.Properties;
-
+import java.net.URL;
+import javax.help.HelpSet;
+import javax.help.JHelp;
 public class Main extends Application {
 
 
