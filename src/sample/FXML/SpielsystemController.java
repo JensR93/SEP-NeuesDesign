@@ -1156,7 +1156,6 @@ public class SpielsystemController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        radioAuswahlPlatzDrei();
 
         try
         {
@@ -1545,7 +1544,6 @@ public class SpielsystemController implements Initializable {
 
     }//Ende Initialize
 
-
     @FXML
     private void radioAuswahlPlatzDrei(){
         if(rb_ko.isSelected()){
@@ -1557,9 +1555,7 @@ public class SpielsystemController implements Initializable {
             t_platz3ausspielGmE.setVisible(false);
             radio_p3_ja.setVisible(false);
             radio_p3_nein.setVisible(false);
-
         }
-
     }
 
     private void addSpielerMixCheck(Spieler clickedRow) {

@@ -205,11 +205,11 @@
                                           <Text fx:id="t_Endrunde" strokeType="OUTSIDE" strokeWidth="0.0" text="Endrunde:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <JFXRadioButton fx:id="rb_ko" selected="true" text="K.O.">
+                                                <JFXRadioButton fx:id="rb_ko" onAction="#radioAuswahlPlatzDrei" selected="true" text="K.O.">
                                                    <toggleGroup>
                                                       <ToggleGroup fx:id="group_endrunde" />
                                                    </toggleGroup></JFXRadioButton>
-                                                <JFXRadioButton fx:id="rb_Gruppe" text="Gruppe" toggleGroup="$group_endrunde" />
+                                                <JFXRadioButton fx:id="rb_Gruppe" onAction="#radioAuswahlPlatzDrei" text="Gruppe" toggleGroup="$group_endrunde" />
                                              </children>
                                           </HBox>
                                           <Text fx:id="t_platz3ausspielGmE" strokeType="OUTSIDE" strokeWidth="0.0" text="Platz 3 ausspielen:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
