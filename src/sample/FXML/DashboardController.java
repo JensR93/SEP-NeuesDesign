@@ -27,7 +27,12 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import sample.DAO.auswahlklasse;
+import sample.Main;
 import sample.Spiel;
+
+import javax.help.HelpSet;
+import javax.help.JHelp;
+import javax.swing.*;
 
 public class DashboardController implements Initializable{
 
@@ -486,6 +491,8 @@ public class DashboardController implements Initializable{
             e.printStackTrace();
         }
     }
+
+
 
 
 
