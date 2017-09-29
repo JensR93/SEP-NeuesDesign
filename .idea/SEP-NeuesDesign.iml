@@ -14,8 +14,8 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.42-bin" level="project" />
     <orderEntry type="library" name="jfxtras-labs-samples-8.0-r6-SNAPSHOT-all" level="project" />
     <orderEntry type="library" name="junit-4.10" level="project" />
-    <orderEntry type="library" name="hsviewer" level="project" />
-    <orderEntry type="library" name="jh" level="project" />
     <orderEntry type="library" name="FertigeHelpDatei" level="project" />
+    <orderEntry type="library" name="jh" level="project" />
+    <orderEntry type="library" name="hsviewer" level="project" />
   </component>
 </module>

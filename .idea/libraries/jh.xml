@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jh">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/SEP/dobudishes/dobudish alt/documents/FertigeHelpDatei/output/javahelp/jh.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/lib/jh.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
