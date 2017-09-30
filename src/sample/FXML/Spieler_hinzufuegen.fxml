@@ -28,17 +28,17 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <JFXTabPane fx:id="tabpane_spieler" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1100.0" stylesheets="@../CSS/custom.css" tabMinWidth="290.0">
+      <JFXTabPane fx:id="tabpane_spieler" stylesheets="@../CSS/custom.css" tabMinWidth="290.0">
          <tabs>
             <Tab fx:id="tab_sphin" styleClass="root" text="Spieler hinzufügen">
                <graphic>
                   <MaterialDesignIconView fx:id="spielerhinzu_icon" fill="WHITE" glyphName="ACCOUNT_PLUS" size="20" />
                </graphic>
                <content>
-                  <GridPane alignment="CENTER" prefHeight="845.0" prefWidth="1063.0" styleClass="Root" stylesheets="@../CSS/custom.css">
+                  <GridPane alignment="CENTER" styleClass="Root" stylesheets="@../CSS/custom.css">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" prefWidth="100.0" />
                      </columnConstraints>
@@ -52,18 +52,18 @@
                               <ColumnConstraints prefWidth="1100.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="105.0" minHeight="82.0" prefHeight="82.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="113.0" minHeight="69.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="202.0" minHeight="54.0" prefHeight="151.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="233.0" minHeight="29.0" prefHeight="171.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="264.0" minHeight="89.0" prefHeight="138.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
                                     <JFXTextField fx:id="t_vn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="Vorname" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
                                        <HBox.margin>
-                                          <Insets bottom="15.0" left="100.0" top="15.0" />
+                                          <Insets bottom="15.0" left="25.0" top="15.0" />
                                        </HBox.margin>
                                     </JFXTextField>
                                     <JFXTextField fx:id="t_nn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="360.0" promptText="Nachname" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
@@ -83,7 +83,7 @@
                                  <children>
                                     <JFXTextField fx:id="t_spid" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="SpielerID" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
                                        <HBox.margin>
-                                          <Insets bottom="15.0" left="150.0" top="15.0" />
+                                          <Insets bottom="15.0" left="75.0" top="15.0" />
                                        </HBox.margin>
                                     </JFXTextField>
                                     <VBox spacing="15.0">
@@ -123,11 +123,11 @@
                                     <Insets top="50.0" />
                                  </GridPane.margin>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                                  <children>
-                                    <Label fx:id="Label_Geschlecht" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Geschlecht:">
+                                    <Label fx:id="Label_Geschlecht" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Geschlecht:">
                                        <HBox.margin>
-                                          <Insets bottom="15.0" left="150.0" top="15.0" />
+                                          <Insets bottom="15.0" left="75.0" top="15.0" />
                                        </HBox.margin>
                                     </Label>
                                     <VBox alignment="CENTER" spacing="15.0">
@@ -159,8 +159,11 @@
                                                 <JFXTextField fx:id="t_rm" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" text="0" unFocusColor="#757575" />
                                              </children>
                                              <HBox.margin>
-                                                <Insets left="50.0" />
+                                                <Insets />
                                              </HBox.margin>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
                                           </VBox>
                                        </children>
                                        <HBox.margin>
@@ -176,7 +179,7 @@
                                  <children>
                                     <JFXButton fx:id="btn_MeldefImport" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_ExcelImport" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Meldeformular importieren">
                                        <HBox.margin>
-                                          <Insets left="150.0" />
+                                          <Insets left="75.0" />
                                        </HBox.margin>
                                        <graphic>
                                           <FontAwesomeIconView fill="#757575" glyphName="COPY" size="20" />
@@ -215,14 +218,14 @@
                                     </JFXButton>
                                  </children>
                                  <GridPane.margin>
-                                    <Insets top="50.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <JFXDatePicker fx:id="d_geb" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" overLay="true" prefHeight="39.0" prefWidth="350.0" promptText="Geburtsdatum" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css">
                                        <HBox.margin>
-                                          <Insets bottom="15.0" left="100.0" top="15.0" />
+                                          <Insets bottom="15.0" left="25.0" top="15.0" />
                                        </HBox.margin>
                                     </JFXDatePicker>
                                     <HBox spacing="5.0">
@@ -254,7 +257,7 @@
                               <String fx:value="card-white" />
                            </styleClass>
                            <GridPane.margin>
-                              <Insets />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </GridPane>
                      </children>
@@ -281,7 +284,7 @@
                            <children>
                               <GridPane fx:id="grid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../CSS/custom.css">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="2048.0" minWidth="10.0" prefWidth="498.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
@@ -298,6 +301,9 @@
                                           <TableColumn fx:id="tabelle_spielerliste_geschlecht" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Geschlecht" />
                                           <TableColumn fx:id="tabelle_spielerliste_geburtstag" minWidth="100.0" prefWidth="75.0" resizable="false" text="Geburtsdatum" />
                                        </columns>
+                                       <GridPane.margin>
+                                          <Insets bottom="40.0" />
+                                       </GridPane.margin>
                                     </TableView>
                                     <GridPane>
                                        <columnConstraints>
@@ -319,7 +325,7 @@
                               </GridPane>
                            </children>
                            <GridPane.margin>
-                              <Insets />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                         </GridPane>
                      </children>
@@ -335,7 +341,7 @@
             <String fx:value="Root" />
          </styleClass>
          <GridPane.margin>
-            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            <Insets left="20.0" right="20.0" />
          </GridPane.margin>
       </JFXTabPane>
    </children>
