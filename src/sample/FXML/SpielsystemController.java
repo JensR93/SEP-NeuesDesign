@@ -943,7 +943,7 @@ public class SpielsystemController implements Initializable {
                         }*/
 
                     }
-                    if(event.getNewValue()==0)
+                    else if(event.getNewValue()==0)
                     {
                         setzplatzZuruecksetzen(t);
                     }
