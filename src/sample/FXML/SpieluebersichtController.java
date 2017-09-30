@@ -289,17 +289,52 @@ public class SpieluebersichtController implements Initializable {
                 public void handle(ContextMenuEvent event) {
                     ContextMenu contextMenu = new ContextMenu();
                     contextMenu.getItems().clear();
-                    MenuItem item2 = new MenuItem("Ergebnisse eintragen");
+                    MenuItem item2 = new MenuItem("Spiel zurückziehen");
                     item2.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent event) {
                             //tabpane_spieler.getSelectionModel().select(tab_spupdate);
                             //FuelleFelder(clickedRow);
+                            for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+                                Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+                                if (feld.getFeldImageStackPane()==pane){
+                                    feld.spielZurueckziehen();
+                                }
+                            }
 
                         }
                     });
-                    contextMenu.getItems().addAll(item2);
+                    MenuItem item1 = new MenuItem("Ergebnis eingeben");
+                    item2.setOnAction(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            //tabpane_spieler.getSelectionModel().select(tab_spupdate);
+                            //FuelleFelder(clickedRow);
+                            for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+                                Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+                                if (feld.getFeldImageStackPane()==pane){
+                                    auswahlklasse.setSpielAuswahlErgebniseintragen(feld.getAktivesSpiel());
+                                    auswahlklasse.getDashboardController().setNodeSpielergebnis();
+                                }
+                            }
+
+                        }
+                    });
+                    Feld f = null;
+                    for (int i=0;i<auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
+                        Feld feld = auswahlklasse.getAktuelleTurnierAuswahl().getFelder().get(i);
+                        if (feld.getFeldImageStackPane()==pane){
+                            f=feld;
+
+
+                        }
+                    }
+                    if(f!=null && f.getAktivesSpiel()!=null)
+                    {
+                        contextMenu.getItems().addAll(item2,item1);
+                    }
                     contextMenu.show(pane, event.getScreenX(), event.getScreenY());
 
                 }
@@ -372,6 +407,7 @@ public class SpieluebersichtController implements Initializable {
         checkboxListener(check_gespielteSpiele);
         checkboxListener(check_zukuenftigeSpiele);
         check_zukuenftigeSpiele.getStyleClass().add("check");
+
 
 
 
@@ -461,6 +497,7 @@ public class SpieluebersichtController implements Initializable {
             vbox_main.getChildren().add(check_zukuenftigeSpiele);
             vbox_main.getChildren().add(check_gespielteSpiele);
             vbox_main.getChildren().add(check_ausstehendeSpiele);
+            vbox_main.setSpacing(2);
             check_aktiveSpiele.setText(aktiveSpiele);
             check_aktiveSpiele.setSelected(true);
             check_aktiveSpiele.setCheckedColor(Color.valueOf(auswahlklasse.getEinstellungenController().getAktiveSpieleFarbe()));
@@ -694,7 +731,7 @@ public class SpieluebersichtController implements Initializable {
                         contextMenu.getItems().addAll(item3);
                     }
                     if (clickedRow.getStatus() == 2) {   //aktiv
-                        contextMenu.getItems().addAll(item2, item5, item6, item7);
+                        contextMenu.getItems().addAll(item2, item5, item6);
                     }
                   /*  if (clickedRow.getStatus() == 3) {
                         //gespielt

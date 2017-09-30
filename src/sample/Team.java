@@ -480,11 +480,11 @@ public class Team {
                 return false;
             }
         }
-        if(spielerZwei==null){
+        if(spielerZwei==null && !isEinzel()){
             return false;
         }
         else{
-            if(!spielerZwei.isVerfuegbar(warnung)){
+            if(!isEinzel() && !spielerZwei.isVerfuegbar(warnung)){
                 return false;
             }
         }

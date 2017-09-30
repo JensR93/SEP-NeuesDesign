@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SEP-NeuesDesign:jar">
+    <output-path>$PROJECT_DIR$/../out/artifacts/SEP_NeuesDesign_jar</output-path>
+    <root id="archive" name="SEP-NeuesDesign.jar">
+      <element id="module-output" name="SEP-NeuesDesign" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/fontawesomefx-8.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/hsviewer.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/FertigeHelpDatei.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/jfxtras-labs-samples-8.0-r6-SNAPSHOT-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/junit-4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/mysql-connector-java-5.1.42-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/poi-3.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/jfoenix-1.7.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/controlsfx-8.40.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/.idea/lib/jh.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
