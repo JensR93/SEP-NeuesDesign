@@ -306,7 +306,7 @@ public class SpieluebersichtController implements Initializable {
                         }
                     });
                     MenuItem item1 = new MenuItem("Ergebnis eingeben");
-                    item2.setOnAction(new EventHandler<ActionEvent>() {
+                    item1.setOnAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent event) {
