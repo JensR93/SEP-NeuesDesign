@@ -16,88 +16,168 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielErgebnisEintragenController">
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.SpielErgebnisEintragenController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="84.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.0" minWidth="10.0" prefWidth="398.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="346.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <JFXTextField fx:id="ts1_1" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
-            <JFXTextField fx:id="ts1_2" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <JFXTextField fx:id="ts2_1" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
-            <JFXTextField fx:id="ts2_2" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-         </children></HBox>
-      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <JFXTextField fx:id="ts3_1" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
-            <JFXTextField fx:id="ts3_2" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </JFXTextField>
-         </children>
-      </HBox>
-      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="230.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="168.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="398.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" />
-            <JFXButton fx:id="btn_Abbrechen" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_Abbbruch" prefHeight="39.0" prefWidth="125.0" stylesheets="@../CSS/custom.css" text="Abbrechen" GridPane.columnIndex="1">
-               <graphic>
-                  <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
-               </graphic>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <JFXTextField fx:id="ts1_1" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+                  <JFXTextField fx:id="ts1_2" labelFloat="true" promptText="1. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="50.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <children>
+                  <JFXTextField fx:id="ts2_1" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+                  <JFXTextField fx:id="ts2_2" labelFloat="true" promptText="2. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <children>
+                  <JFXTextField fx:id="ts3_1" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="font" text=":" />
+                  <JFXTextField fx:id="ts3_2" labelFloat="true" promptText="3. Satz" styleClass="font" stylesheets="@../CSS/custom.css">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="green_check_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/green_check.jpg" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="red_cross_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/red_cross.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="green_check_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/green_check.jpg" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="red_cross_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/red_cross.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <ImageView fx:id="green_check_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/green_check.jpg" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="red_cross_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../Images/icon/red_cross.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="5.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Label fx:id="l_heim" styleClass="font" stylesheets="@../CSS/custom.css" text="Heim">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="l_gast1" styleClass="font" stylesheets="@../CSS/custom.css" text="vs.">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="l_gast" styleClass="font" stylesheets="@../CSS/custom.css" text="Gast">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.rowIndex="1">
+         <children>
+            <JFXButton fx:id="btn_Abbrechen" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_Abbbruch" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Abbrechen">
                <styleClass>
                   <String fx:value="card-white" />
                   <String fx:value="buttons" />
                   <String fx:value="font" />
                </styleClass>
-               <GridPane.margin>
-                  <Insets left="20.0" right="20.0" />
-               </GridPane.margin>
+               <graphic>
+                  <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
+               </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_ErgebnisseSpeichern" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_OK" prefHeight="39.0" prefWidth="225.0" stylesheets="@../CSS/custom.css" text="Ergebnisse speichern">
+            <JFXButton fx:id="btn_ErgebnisseSpeichern" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_OK" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Ergebnisse speichern">
                <styleClass>
                   <String fx:value="card-white" />
                   <String fx:value="buttons" />
@@ -107,85 +187,6 @@
                   <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" />
                </graphic>
             </JFXButton>
-         </children>
-      </GridPane>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <ImageView fx:id="green_check_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_1" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <children>
-            <ImageView fx:id="green_check_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_2" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-         <children>
-            <ImageView fx:id="green_check_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/green_check.jpg" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-            <ImageView fx:id="red_cross_3" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../Images/icon/red_cross.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets left="5.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
-      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
-         <children>
-            <Label fx:id="l_heim" styleClass="font" stylesheets="@../CSS/custom.css" text="Heim">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="l_gast1" styleClass="font" stylesheets="@../CSS/custom.css" text="vs.">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="l_gast" styleClass="font" stylesheets="@../CSS/custom.css" text="Gast">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
          </children>
       </HBox>
    </children>

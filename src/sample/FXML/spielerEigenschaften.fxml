@@ -7,6 +7,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -20,21 +21,20 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import jfxtras.scene.layout.VBox?>
 
-<GridPane xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.spielerEigenschaftenController">
+<GridPane styleClass="Root" stylesheets="@../CSS/custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.spielerEigenschaftenController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="597.0" minHeight="10.0" prefHeight="562.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="90.0" minHeight="-Infinity" prefHeight="90.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="602.0" prefWidth="701.0">
+      <JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="602.0" prefWidth="701.0" styleClass="jfxtab-pane" stylesheets="@../CSS/custom.css" tabMinWidth="160.0">
          <tabs>
           <Tab fx:id="tab_allgemein" text="Allgemein">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css">
                      <children>
                         <VBox layoutX="30.0" layoutY="57.0" prefHeight="350.0" prefWidth="100.0" spacing="40.0">
                            <children>
@@ -51,17 +51,17 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label fx:id="Label_GebDatum" text="Geburtsdatum">
+                              <Label fx:id="Label_GebDatum" styleClass="font" stylesheets="@../CSS/custom.css" text="Geburtsdatum">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label fx:id="Text_Geschlecht" text="Geschlecht">
+                              <Label fx:id="Text_Geschlecht" styleClass="font" stylesheets="@../CSS/custom.css" text="Geschlecht">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label fx:id="Label_Verein" text="Verein">
+                              <Label fx:id="Label_Verein" styleClass="font" stylesheets="@../CSS/custom.css" text="Verein">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -79,30 +79,34 @@
                         <VBox layoutX="141.0" layoutY="28.0" prefHeight="341.0" prefWidth="282.0" spacing="30.0">
                            <children>
                               <VBox />
-                              <JFXTextField fx:id="t_vorname" labelFloat="true" />
-                              <JFXTextField fx:id="t_nachname" labelFloat="true" />
-                              <JFXDatePicker fx:id="d_geburtsdatum">
+                              <JFXTextField fx:id="t_vorname" focusColor="#3367d6" labelFloat="true" />
+                              <JFXTextField fx:id="t_nachname" focusColor="#3367d6" labelFloat="true" />
+                              <JFXDatePicker fx:id="d_geburtsdatum" defaultColor="#3367d6">
                                  <padding>
                                     <Insets bottom="10.0" />
                                  </padding>
                               </JFXDatePicker>
                               <HBox alignment="BOTTOM_LEFT" prefHeight="17.0" prefWidth="258.0">
                                  <children>
-                                    <JFXRadioButton fx:id="r_m" selected="true" text="männlich">
+                                    <JFXRadioButton fx:id="r_m" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="männlich">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="geschlecht" />
                                        </toggleGroup>
                                     </JFXRadioButton>
-                                    <JFXRadioButton fx:id="r_w" text="weiblich" toggleGroup="$geschlecht" />
+                                    <JFXRadioButton fx:id="r_w" styleClass="font" stylesheets="@../CSS/custom.css" text="weiblich" toggleGroup="$geschlecht" />
                                  </children>
                               </HBox>
-                              <ChoiceBox fx:id="choice_verein" prefWidth="150.0" />
-                              <JFXTextField fx:id="t_spielerid" labelFloat="true" />
+                              <ChoiceBox fx:id="choice_verein" prefWidth="150.0" stylesheets="@../CSS/custom.css">
+                                 <styleClass>
+                                    <String fx:value="card-white" />
+                                    <String fx:value="font" />
+                                 </styleClass></ChoiceBox>
+                              <JFXTextField fx:id="t_spielerid" focusColor="#3367d6" labelFloat="true" />
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                  <children>
-                                    <JFXTextField fx:id="r_einzel" labelFloat="true" promptText="RLP Einzel" />
-                                    <JFXTextField fx:id="r_doppel" labelFloat="true" promptText="RLP Doppel" />
-                                    <JFXTextField fx:id="r_mix" labelFloat="true" promptText="RLP Mix" />
+                                    <JFXTextField fx:id="r_einzel" focusColor="#3367d6" labelFloat="true" promptText="RLP Einzel" styleClass="font" stylesheets="@../CSS/custom.css" />
+                                    <JFXTextField fx:id="r_doppel" focusColor="#3367d6" labelFloat="true" promptText="RLP Doppel" styleClass="font" stylesheets="@../CSS/custom.css" />
+                                    <JFXTextField fx:id="r_mix" focusColor="#3367d6" labelFloat="true" promptText="RLP Mix" styleClass="font" stylesheets="@../CSS/custom.css" />
                                  </children>
                               </HBox>
                               <JFXDialog />
@@ -115,44 +119,53 @@
           </Tab>
             <Tab fx:id="tab_spielklassen" text="Spielklassen">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css">
                      <children>
-                        <VBox fx:id="vbox_spielklassen" layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="566.0" />
+                        <VBox fx:id="vbox_spielklassen" layoutX="68.0" layoutY="80.0" prefHeight="348.0" prefWidth="566.0" style="-fx-border-color: #757575;" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
             <Tab fx:id="tab_gebuehren" text="Gebühren">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css">
                      <children>
-                        <Label fx:id="Label_Gebühren" layoutX="46.0" layoutY="53.0" text="Gebühren bezahlt" />
-                        <JFXTextField fx:id="t_gesamtgebuehr" labelFloat="true" layoutX="154.0" layoutY="115.0" promptText="Gesamte Meldegebühr" />
-                        <JFXToggleButton fx:id="t_offenegebuehr" layoutX="151.0" layoutY="34.0" text=" " />
+                        <Label fx:id="Label_Gebühren" layoutX="46.0" layoutY="53.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Gebühren bezahlt" />
+                        <JFXTextField fx:id="t_gesamtgebuehr" focusColor="#3367d6" labelFloat="true" layoutX="154.0" layoutY="115.0" promptText="Gesamte Meldegebühr" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575" />
+                        <JFXToggleButton fx:id="t_offenegebuehr" layoutX="212.0" layoutY="37.0" text=" " toggleColor="#3367d6" toggleLineColor="#4eb4ee" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
             <Tab fx:id="tab_notizen" text="Notizen">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="Root" stylesheets="@../CSS/custom.css">
                      <children>
-                        <TextArea fx:id="t_notiz" layoutX="14.0" layoutY="20.0" prefHeight="327.0" prefWidth="560.0" wrapText="true" />
+                        <TextArea fx:id="t_notiz" layoutX="71.0" layoutY="110.0" prefHeight="327.0" prefWidth="560.0" style="-fx-border-color: #757575;" wrapText="true" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
          </tabs>
       </JFXTabPane>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.rowIndex="1">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" GridPane.rowIndex="1">
          <children>
-            <JFXButton fx:id="btn_abbrechen" onAction="#pressbtn_Abbrechen" text="Abbrechen" />
-            <JFXButton fx:id="btn_Speichern" onAction="#pressbtn_speichern" text="Speichern" />
+            <JFXButton fx:id="btn_abbrechen" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_Abbrechen" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Abbrechen">
+               <styleClass>
+                  <String fx:value="card-white" />
+                  <String fx:value="buttons" />
+                  <String fx:value="font" />
+               </styleClass></JFXButton>
+            <JFXButton fx:id="btn_Speichern" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressbtn_speichern" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Speichern">
+               <styleClass>
+                  <String fx:value="card-white" />
+                  <String fx:value="buttons" />
+                  <String fx:value="font" />
+               </styleClass></JFXButton>
          </children>
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>
       </HBox>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" GridPane.columnIndex="1" />
    </children>
 </GridPane>
