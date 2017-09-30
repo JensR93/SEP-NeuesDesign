@@ -159,6 +159,8 @@ public class VereinsuebersichtController implements Initializable {
             updateverein.setVerband(tf_Verband.getText());
             updateverein.setExtVereinsID(tf_ExtVereinsID.getText());
             updateverein.getVereinDAO().update(updateverein);
+            updateverein=null;
+            btn_Speichern_Verein.setText("Verein speichern");
             //auswahlklasse.getDashboardController().setNodeVereinsuebersicht();
 
             try {

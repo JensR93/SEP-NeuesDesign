@@ -80,7 +80,7 @@ public class Spieler {
 		this.rPunkte = rPunkte;
 		this.verein = verein;
 		this.Nationalitaet = nationalitaet;
-		this.verfuegbar = LocalTime.now();
+		this.verfuegbar = LocalTime.now().minusMinutes(5);
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
@@ -101,7 +101,7 @@ public class Spieler {
 		this.verein = verein;
 
 		this.Nationalitaet = nationalitaet;
-		this.verfuegbar = LocalTime.now();
+		this.verfuegbar = LocalTime.now().minusMinutes(5);
 		this.mattenSpiele = mattenSpiele;
 		this.extSpielerID = extSpielerID;
 		this.aktuellesSpiel = aktuellesSpiel;
