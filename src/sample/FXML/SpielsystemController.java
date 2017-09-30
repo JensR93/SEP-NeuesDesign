@@ -283,16 +283,22 @@ public class SpielsystemController implements Initializable {
             }
             TableColumn<Spieler,String> spielerVornameSpalte = new TableColumn("Vorname");
             spielerVornameSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("vName"));
+            spielerVornameSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             TableColumn<Spieler,String> spielerNachnameSpalte = new TableColumn("Nachname");
             spielerNachnameSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("nName"));
+            spielerNachnameSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             TableColumn<ImageView,String> spielerGeschlechtSpalte = new TableColumn("Geschlecht");
             spielerGeschlechtSpalte.setCellValueFactory(new PropertyValueFactory<ImageView,String>("iGeschlecht"));
+            spielerGeschlechtSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             TableColumn<Spieler,String> spielerVereinSpalte = new TableColumn("Verein");
             spielerVereinSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,String>("verein"));
+            spielerVereinSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             TableColumn<Spieler,Date> spielerGeburtsdatumSpalte = new TableColumn("Geburtsdatum");
             spielerGeburtsdatumSpalte.setCellValueFactory(new PropertyValueFactory<Spieler,Date>("gDatum"));
+            spielerGeburtsdatumSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             TableColumn<Spieler,Integer> spielerRLP = new TableColumn("Ranglistenpunkte");
             spielerRLP.setCellValueFactory(new PropertyValueFactory<Spieler,Integer>("RLPanzeigen"));
+            spielerRLP.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.16666));
             spielsystem_spielerliste_alleSpieler.setItems(obs_spieler);
             spielsystem_spielerliste_alleSpieler.getColumns().addAll(spielerVornameSpalte,spielerNachnameSpalte,spielerGeschlechtSpalte,spielerRLP,spielerVereinSpalte,spielerGeburtsdatumSpalte);
         }
@@ -991,9 +997,16 @@ public class SpielsystemController implements Initializable {
             System.out.println("Spielklasse = "+ausgewaehlte_spielklasse.getDisziplin());
             if (ausgewaehlte_spielklasse.isEinzel()){
                 spielsystem_setzliste.getColumns().addAll(setzplatz,spielerEinsSpalte,RLPSpalte);
+                setzplatz.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.2));
+                spielerEinsSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.6));
+                RLPSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.2));
             }
             else{
                 spielsystem_setzliste.getColumns().addAll(setzplatz,spielerEinsSpalte,spielerZweiSpalte,RLPSpalte);
+                setzplatz.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.2));
+                spielerEinsSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.30));
+                spielerZweiSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.30));
+                RLPSpalte.prefWidthProperty().bind(spielsystem_spielerliste_alleSpieler.widthProperty().multiply(0.2));
             }
 
         }
@@ -1154,7 +1167,6 @@ public class SpielsystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tabwidthanpassen();
 
 
         try
@@ -1548,18 +1560,6 @@ public class SpielsystemController implements Initializable {
 
     }//Ende Initialize
 
-    private void tabwidthanpassen() {
-
-//        setzplatz.prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(1);
-//        setzplatz.getStyleClass().add("table-viewCenterAlignColumn");
-//        setzplatz.setSortable(false);
-//        prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(3);
-//        rundenName.getStyleClass().add("table-viewCenterAlignColumn");
-//        rundenName.setSortable(false);
-//        rundenName.prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(3);
-//        index.getStyleClass().add("table-viewCenterAlignColumn");
-//        index.setSortable(false);
-    }
 
     @FXML
     private void radioAuswahlPlatzDrei(){

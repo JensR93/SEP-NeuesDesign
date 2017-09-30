@@ -61,7 +61,7 @@ public class Feld {
 	}
 
 	public void spielBeenden(){
-		Image image = new Image("/sample/images/Badmintonfeld.jpg");
+		Image image = new Image("/resources/Badmintonfeld.jpg");
 		this.imageView.setImage(image);
 		this.aktivesSpiel = this.inVorbereitung;
 		this.inVorbereitung = null;
@@ -107,7 +107,7 @@ public class Feld {
 	public void setAktivesSpiel(Spiel aktivesSpiel) {
 		this.aktivesSpiel = aktivesSpiel;
 		if(this.imageView!=null) {
-			Image image = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+			Image image = new Image("/resources/BadmintonfeldBesetzt.jpg");
 			this.imageView.setImage(image);
 			String spiel = "Spiel: "+ aktivesSpiel.getHeimStringKomplett()+" vs. "+aktivesSpiel.getGastStringKomplett();
 			LocalTime aufrufZeit = aktivesSpiel.getAufrufZeit();

@@ -24,6 +24,10 @@
       <element id="library" level="project" name="mysql-connector-java-5.1.42-bin" />
       <element id="library" level="project" name="poi-3.16" />
       <element id="dir-copy" path="$PROJECT_DIR$" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/sample/Images/BadmintonfeldBesetzt.jpg" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/sample/Images/LogoBlau.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/sample/Images/Badmintonfeld.jpg" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/sample/Images" />
     </root>
   </artifact>
 </component>

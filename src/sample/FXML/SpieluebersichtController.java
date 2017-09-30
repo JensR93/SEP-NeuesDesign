@@ -249,8 +249,10 @@ public class SpieluebersichtController implements Initializable {
     private void felderHinzufuegen() {
         for (int i=1; i<=auswahlklasse.getAktuelleTurnierAuswahl().getFelder().size();i++){
             ImageView feld = new ImageView();
-            Image image = new Image("/sample/images/Badmintonfeld.jpg");
-            Image imageBesetzt = new Image("/sample/images/BadmintonfeldBesetzt.jpg");
+            Image image = new Image("/resources/Badmintonfeld.jpg");
+            System.out.println("Erstes Image geladen");
+            Image imageBesetzt = new Image("/resources/BadmintonfeldBesetzt.jpg");
+            System.out.println("Zweites Image geladen");
             Label label = new Label();
             label.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             label.setGraphic(feld);
