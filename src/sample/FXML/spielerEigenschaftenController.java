@@ -99,6 +99,18 @@ public class spielerEigenschaftenController implements Initializable{
     @FXML
     private JFXButton btn_Speichern;
 
+    @FXML
+    private Label Text_Geschlecht;
+
+    @FXML
+    private Label Label_Verein;
+
+    @FXML
+    private Label Label_GebDatum;
+
+    @FXML
+    private Label Label_Gebühren;
+
     public void SpracheLaden()
     {
         try
@@ -108,6 +120,65 @@ public class spielerEigenschaftenController implements Initializable{
             titel = bundle.getString("t_vorname");
             t_vorname.setPromptText(titel);
             t_vorname.setLabelFloat(true);
+
+            titel = bundle.getString("t_nachname");
+            t_nachname.setPromptText(titel);
+            t_nachname.setLabelFloat(true);
+
+            titel = bundle.getString("d_geburtsdatum");
+            d_geburtsdatum.setPromptText(titel);
+
+            titel = bundle.getString("Text_Geschlecht");
+            Text_Geschlecht.setText(titel);
+
+            titel = bundle.getString("r_m");
+            r_m.setText(titel);
+
+            titel = bundle.getString("r_w");
+            r_w.setText(titel);
+
+            titel = bundle.getString("Label_Verein");
+            Label_Verein.setText(titel);
+
+            titel = bundle.getString("t_spielerid");
+            t_spielerid.setPromptText(titel);
+            t_spielerid.setLabelFloat(true);
+
+            titel = bundle.getString("r_einzel");
+            r_einzel.setPromptText(titel);
+            r_einzel.setLabelFloat(true);
+
+            titel = bundle.getString("r_doppel");
+            r_doppel.setPromptText(titel);
+            r_doppel.setLabelFloat(true);
+
+            titel = bundle.getString("r_mix");
+            r_mix.setPromptText(titel);
+            r_mix.setLabelFloat(true);
+
+            titel = bundle.getString("Label_GebDatum");
+            Label_GebDatum.setText(titel);
+
+            titel = bundle.getString("tab_allgemein");
+            tab_allgemein.setText(titel);
+
+            titel = bundle.getString("tab_spielklassen");
+            tab_spielklassen.setText(titel);
+
+            titel = bundle.getString("tab_gebuehren");
+            tab_gebuehren.setText(titel);
+
+            titel = bundle.getString("tab_notizen");
+            tab_notizen.setText(titel);
+
+            titel = bundle.getString("Label_Gebühren");
+            Label_Gebühren.setText(titel);
+
+            titel = bundle.getString("t_gesamtgebuehr");
+            t_gesamtgebuehr.setPromptText(titel);
+            t_gesamtgebuehr.setLabelFloat(true);
+
+
 
         }
         catch ( MissingResourceException e ) {
