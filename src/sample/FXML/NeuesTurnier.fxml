@@ -17,233 +17,324 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 <?import jfxtras.labs.scene.control.BigDecimalField?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-   </rowConstraints>
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="900.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.NeuesTurnierController">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints prefHeight="668.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="483.0" prefWidth="523.0">
+      <GridPane alignment="CENTER" prefHeight="800.0" prefWidth="1100.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </GridPane.margin>
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="406.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="70.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <JFXTextField fx:id="Turniername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </JFXTextField>
-            <BigDecimalField fx:id="AnzahlFelder" promptText="Anzahl Felder" styleClass="font" stylesheets="@../CSS/custom.css" text="9" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </BigDecimalField>
-            <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="69.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <AnchorPane styleClass="card-white" stylesheets="@../CSS/custom.css" GridPane.hgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="btn_abbrechen_NeuesTurnier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Abbrechen" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Abbrechen">
-                     <graphic>
-                        <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" wrappingWidth="40.0" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="font" />
-                        <String fx:value="card-white" />
-                        <String fx:value="buttons" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="btn_Speichern_NeuesTurnier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#erstelleTurnier" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Speichern">
-                     <graphic>
-                        <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" wrappingWidth="40.0" />
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="font" />
-                        <String fx:value="card-white" />
-                        <String fx:value="buttons" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </HBox>
-            <Label fx:id="Label_Turniername_NeuesTurnier" styleClass="font" stylesheets="@../CSS/custom.css" text="Turniername:" />
-            <Label fx:id="Label_AnzahlFelder" styleClass="font" stylesheets="@../CSS/custom.css" text="Anzahl Felder:" GridPane.rowIndex="1" />
-            <Label fx:id="Label_StartEinzel" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Einzel:" GridPane.rowIndex="2" />
-            <Label fx:id="Label_StartDoppel" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Doppel:" GridPane.rowIndex="4" />
-            <Label fx:id="Label_StartMixed" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Mixed:" GridPane.rowIndex="6" />
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <JFXRadioButton fx:id="Radio_DatumUhrEinzel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="startzeitEinzelGruppe" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton fx:id="Radio_AnschlussDisziEinzel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startzeitEinzelGruppe" />
-               </children>
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <JFXRadioButton fx:id="Radio_DatumUhrDoppel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="startZeitDoppelGruppe" />
-                     </toggleGroup>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </JFXRadioButton>
-                  <JFXRadioButton fx:id="Radio_AnschlussDisziDoppel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startZeitDoppelGruppe" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="0.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <children>
-                  <JFXRadioButton fx:id="Radio_DatumUhrMixed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="startZeitMixedGruppe" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton fx:id="Radio_AnschlussDisziMixed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startZeitMixedGruppe" />
-               </children>
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin>
-            </HBox>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <AnchorPane fx:id="Ap_einzel_Choice" visible="false">
+                  <AnchorPane layoutX="85.0" layoutY="-23.0" opacity="0.9" styleClass="card-blue" stylesheets="@../CSS/custom.css" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="-17.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ChoiceBox fx:id="Choicebox_Einzel" prefWidth="300.0">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                        </HBox>
+                        <Label fx:id="Label_NeuesTurnier" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="260.0" styleClass="font-head" stylesheets="@../CSS/custom.css" text="Neues Turnier" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="Ap_einzel_datetime">
+                  <GridPane layoutX="50.0" layoutY="50.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="50.0" />
+                     </rowConstraints>
                      <children>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" minWidth="-Infinity" />
+                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="70.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="100.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <JFXDatePicker fx:id="date_einzel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
-                                 <HBox.margin>
+                              <JFXTextField fx:id="Turniername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </JFXTextField>
+                              <BigDecimalField fx:id="AnzahlFelder" maxHeight="-Infinity" maxWidth="-Infinity" promptText="Anzahl Felder" styleClass="font" stylesheets="@../CSS/custom.css" text="9" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </BigDecimalField>
+                              <Label fx:id="Label_Turniername_NeuesTurnier" styleClass="font" stylesheets="@../CSS/custom.css" text="Turniername:">
+                                 <GridPane.margin>
                                     <Insets left="50.0" />
-                                 </HBox.margin>
-                              </JFXDatePicker>
-                              <JFXTimePicker fx:id="time_einzel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin></JFXTimePicker>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <AnchorPane fx:id="Ap_doppel_Choice" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ChoiceBox fx:id="Choicebox_Doppel" prefWidth="300.0" styleClass="card-white" stylesheets="@../CSS/custom.css">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="Ap_doppel_datetime" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <JFXDatePicker fx:id="date_doppel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
-                                 <HBox.margin>
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="Label_AnzahlFelder" styleClass="font" stylesheets="@../CSS/custom.css" text="Anzahl Felder:" GridPane.rowIndex="1">
+                                 <GridPane.margin>
                                     <Insets left="50.0" />
-                                 </HBox.margin>
-                              </JFXDatePicker>
-                              <JFXTimePicker fx:id="time_doppel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <children>
-                  <AnchorPane fx:id="Ap_mixed_Choice" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ChoiceBox fx:id="Choicebox_Mixed" prefWidth="300.0">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="Ap_mixed_datetime" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="0.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <JFXDatePicker fx:id="date_mixed" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
-                                 <HBox.margin>
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="Label_StartEinzel" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Einzel:" GridPane.rowIndex="2">
+                                 <GridPane.margin>
                                     <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="Label_StartDoppel" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Doppel:" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="Label_StartMixed" styleClass="font" stylesheets="@../CSS/custom.css" text="Startzeit Mixed:" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <JFXRadioButton fx:id="Radio_DatumUhrEinzel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="startzeitEinzelGruppe" />
+                                       </toggleGroup>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="Radio_AnschlussDisziEinzel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startzeitEinzelGruppe">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <JFXRadioButton fx:id="Radio_DatumUhrDoppel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="startZeitDoppelGruppe" />
+                                       </toggleGroup>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="Radio_AnschlussDisziDoppel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startZeitDoppelGruppe" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets right="50.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <children>
+                                    <JFXRadioButton fx:id="Radio_DatumUhrMixed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Datum/Uhrzeit">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="startZeitMixedGruppe" />
+                                       </toggleGroup>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="Radio_AnschlussDisziMixed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#radioAuswahl" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Im Anschluss an Disziplin" toggleGroup="$startZeitMixedGruppe" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <AnchorPane fx:id="Ap_einzel_Choice" visible="false">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ChoiceBox fx:id="Choicebox_Einzel" prefWidth="300.0" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="font" />
+                                                      <String fx:value="card-white" />
+                                                   </styleClass>
+                                                </ChoiceBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Ap_einzel_datetime">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <JFXDatePicker fx:id="date_einzel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="50.0" />
+                                                   </HBox.margin>
+                                                </JFXDatePicker>
+                                                <JFXTimePicker fx:id="time_einzel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </JFXTimePicker>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <StackPane.margin>
+                                          <Insets right="50.0" />
+                                       </StackPane.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <children>
+                                    <AnchorPane fx:id="Ap_doppel_Choice" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ChoiceBox fx:id="Choicebox_Doppel" prefWidth="300.0" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="card-white" />
+                                                      <String fx:value="font" />
+                                                   </styleClass>
+                                                </ChoiceBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Ap_doppel_datetime" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <JFXDatePicker fx:id="date_doppel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="50.0" />
+                                                   </HBox.margin>
+                                                </JFXDatePicker>
+                                                <JFXTimePicker fx:id="time_doppel" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <StackPane.margin>
+                                          <Insets right="50.0" />
+                                       </StackPane.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <AnchorPane fx:id="Ap_mixed_Choice" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ChoiceBox fx:id="Choicebox_Mixed" prefWidth="300.0" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="Font" />
+                                                      <String fx:value="card-white" />
+                                                   </styleClass>
+                                                </ChoiceBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Ap_mixed_datetime" prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="0.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <JFXDatePicker fx:id="date_mixed" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css">
+                                                   <HBox.margin>
+                                                      <Insets left="50.0" />
+                                                   </HBox.margin>
+                                                </JFXDatePicker>
+                                                <JFXTimePicker fx:id="time_mixed" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <StackPane.margin>
+                                          <Insets right="50.0" />
+                                       </StackPane.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </StackPane>
+                              <Label fx:id="Label_Disziplin_Einzel" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="3" />
+                              <Label fx:id="Label_Disziplin_Doppel" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="5" />
+                              <Label fx:id="Label_Disziplin_Mixed" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="7" />
+                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                                 <children>
+                                    <JFXTextField fx:id="meldegebuehr_einzel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Einzel" styleClass="font" text="5" unFocusColor="#757575">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="meldegebuehr_doppel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Doppel / Mixed" styleClass="font" text="5" unFocusColor="#757575" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <Label fx:id="Label_Meldegebuehr" styleClass="font" stylesheets="@../CSS/custom.css" text="Meledegebühr:" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="69.0" spacing="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <JFXButton fx:id="btn_abbrechen_NeuesTurnier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#Abbrechen" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Abbrechen">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" wrappingWidth="40.0" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="font" />
+                                    <String fx:value="card-white" />
+                                    <String fx:value="buttons" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
                                  </HBox.margin>
-                              </JFXDatePicker>
-                              <JFXTimePicker fx:id="time_mixed" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" styleClass="font" stylesheets="@../CSS/custom.css" />
+                              </JFXButton>
+                              <JFXButton fx:id="btn_Speichern_NeuesTurnier" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#erstelleTurnier" prefHeight="39.0" prefWidth="250.0" stylesheets="@../CSS/custom.css" text="Speichern">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#757575" glyphName="FLOPPY_ALT" size="20" wrappingWidth="40.0" />
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="font" />
+                                    <String fx:value="card-white" />
+                                    <String fx:value="buttons" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
                            </children>
                         </HBox>
                      </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
-            <Label fx:id="Label_Disziplin_Einzel" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="3" />
-            <Label fx:id="Label_Disziplin_Doppel" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="5" />
-            <Label fx:id="Label_Disziplin_Mixed" styleClass="font" stylesheets="@../CSS/custom.css" text="Disziplin" visible="false" GridPane.rowIndex="7" />
-            <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="200.0" spacing="100.0" stylesheets="@../CSS/custom.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <children>
-                  <JFXTextField fx:id="meldegebuehr_einzel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Einzel" styleClass="font" text="5" unFocusColor="#757575">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin></JFXTextField>
-                  <JFXTextField fx:id="meldegebuehr_doppel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Doppel / Mixed" styleClass="font" text="5" unFocusColor="#757575" />
+                  </GridPane>
                </children>
                <GridPane.margin>
-                  <Insets left="50.0" />
+                  <Insets />
                </GridPane.margin>
-            </HBox>
-            <Label fx:id="Label_Meldegebuehr" styleClass="font" stylesheets="@../CSS/custom.css" text="Meledegebühr:" GridPane.rowIndex="8" />
+            </AnchorPane>
          </children>
       </GridPane>
    </children>
