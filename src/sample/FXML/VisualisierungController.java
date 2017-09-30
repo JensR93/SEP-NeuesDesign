@@ -9,6 +9,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import sample.DAO.auswahlklasse;
 import sample.FXML.Visualisierung.GruppenTabelle;
 import sample.FXML.Visualisierung.PlatzierungsTabelle;
@@ -39,14 +41,21 @@ public class VisualisierungController implements Initializable {
             Spielklasse spielklasse = auswahlklasse.getAktuelleTurnierAuswahl().getObs_spielklassen().get(i);
             if(spielklasse.getSpielsystem()!=null) {
                 Tab tab = new Tab(spielklasse.toString());
+                Text text = new Text(spielklasse.toString());
+                Font font = new Font("Arial",28);
+                text.setFont(font);
+                double textBreite = text.getLayoutBounds().getWidth();
+                if((tabPane_spielklassen.tabMinWidthProperty().get())<textBreite){
+                    tabPane_spielklassen.tabMinWidthProperty().set(textBreite);
+                }
                 tab.setClosable(false);
                 tabPane_spielklassen.getTabs().add(tab);
                 klassenVisualisierung(spielklasse.getSpielsystem(),tab);
                 auswahlklasse.getDashboardController().turnierbaumAktivieren();
             }
         }
-
     }
+
     private void klassenVisualisierung(Spielsystem spielsystem, Tab tab) {
         if (spielsystem.getSpielSystemArt()==1){
             gruppeVisualisierung(spielsystem, tab, false);
@@ -85,6 +94,13 @@ public class VisualisierungController implements Initializable {
         TabPane tabPane = new TabPane();
         tab.setContent(tabPane);
         for(int i = 0;i<gruppeMitEndrunde.getAlleGruppen().size();i++){
+            Text text = new Text("Gruppe "+(i+1));
+            Font font = new Font("Arial",40);
+            text.setFont(font);
+            double textBreite = text.getLayoutBounds().getWidth();
+            if((tabPane.tabMinWidthProperty().get())<textBreite){
+                tabPane.tabMinWidthProperty().set(textBreite);
+            }
             Tab gruppe = new Tab("Gruppe "+(i+1));
             gruppe.setClosable(false);
             tabPane.getTabs().add(gruppe);
