@@ -237,7 +237,7 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></JFXTextField>
-                  <JFXTextField fx:id="meldegebuehr_doppel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Doppel / Mixed" styleClass="font" unFocusColor="#757575" />
+                  <JFXTextField fx:id="meldegebuehr_doppel" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="250.0" promptText="Doppel / Mixed" styleClass="font" text="5" unFocusColor="#757575" />
                </children>
                <GridPane.margin>
                   <Insets left="50.0" />
