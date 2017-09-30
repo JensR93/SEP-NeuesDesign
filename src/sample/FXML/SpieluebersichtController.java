@@ -369,7 +369,7 @@ public class SpieluebersichtController implements Initializable {
                                        spielSpiel.setStatus(2);
                                        CheckeSpielsuche();
                                    } catch (Exception e) {
-                                       auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
+                                      // auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
                                        e.printStackTrace();
                                    }
                                }
@@ -703,7 +703,7 @@ public class SpieluebersichtController implements Initializable {
                                                 CheckeSpielsuche();
                                             } catch (Exception e) {
                                                 e.printStackTrace();
-                                                auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
+                                               // auswahlklasse.WarnungBenachrichtigung("Fehler","Nicht alle Spieler Verfügbar");
 
                                             }
 

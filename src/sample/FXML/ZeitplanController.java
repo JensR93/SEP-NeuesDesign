@@ -118,7 +118,9 @@ public class ZeitplanController implements Initializable{
 
         if(zeitplanTabelle.size()>0) {
             //canvas_zeitplantabelle = new Canvas(xObenLinks*2+zellenBreite*zeitplanTabelle.get(0).size(),zeitplanTabelle.size()*zeitplanTabelle.size()*zellenHoehe+yObenLinks*2);
-            canvas_zeitplantabelle = new Canvas(5000,5000);
+            int gesamtbreite = zellenBreite*zeitplanTabelle.get(0).size()+xObenLinks*2;
+            int gesamthoehe = zellenHoehe*zeitplanTabelle.size()+yObenLinks*2;
+            canvas_zeitplantabelle = new Canvas(gesamtbreite,gesamthoehe);
             scrollpane_zeitplantabelle.setContent(canvas_zeitplantabelle);
             gc = canvas_zeitplantabelle.getGraphicsContext2D();
             for (int i = 0; i < zeitplanTabelle.get(0).size(); i++) { //Spaltentitel erstellen

@@ -42,9 +42,9 @@ public class Main extends Application {
 /*        Image icon = new Image(getClass().getResourceAsStream("Images/icon/Logo.ico"));
         primaryStage.getIcons().add(icon);*/
 
-
+/*
             primaryStage.setMinHeight(820);
-            primaryStage.setMinWidth(1400);
+            primaryStage.setMinWidth(1400);*/
             primaryStage.show();
             auswahlklasse.setPrimaryStage(primaryStage);
         }
