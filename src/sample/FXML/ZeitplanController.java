@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
@@ -63,6 +60,10 @@ public class ZeitplanController implements Initializable{
     private JFXButton btn_OptiPlan;
     @FXML
     private JFXButton btn_Speichern_Zeitplan;
+    @FXML
+    private Label Label_Planungsdaten;
+    @FXML
+    private Label Label_Zeitplan;
 
     public void SpracheLaden() {
         try {
@@ -73,6 +74,15 @@ public class ZeitplanController implements Initializable{
 
             titel = bundle.getString("btn_Speichern_Zeitplan");
             btn_Speichern_Zeitplan.setText(titel);
+
+            titel = bundle.getString("Label_Planungsdaten");
+            Label_Planungsdaten.setText(titel);
+
+            titel = bundle.getString("Label_Zeitplan");
+            Label_Zeitplan.setText(titel);
+
+
+
         }
                  catch ( MissingResourceException e ) {
             System.err.println( e );

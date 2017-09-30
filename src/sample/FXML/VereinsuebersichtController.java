@@ -78,6 +78,12 @@ public class VereinsuebersichtController implements Initializable {
     @FXML
     private JFXButton btn_Speichern_Verein;
 
+    @FXML
+    private Label Label_Vereinsübersicht;
+
+    @FXML
+    private Label Label_NeuerVerein;
+
     public void SpracheLaden()
     {
         try
@@ -100,6 +106,12 @@ public class VereinsuebersichtController implements Initializable {
 
             titel = bundle.getString("tab_verein");
             tab_verein.setText(titel);
+
+            titel = bundle.getString("Label_Vereinsübersicht");
+            Label_Vereinsübersicht.setText(titel);
+
+            titel = bundle.getString("Label_NeuerVerein");
+            Label_NeuerVerein.setText(titel);
 
             titel = bundle.getString("tab_startgeld");
             tab_startgeld.setText(titel);
