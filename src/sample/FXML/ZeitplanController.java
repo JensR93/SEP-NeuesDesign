@@ -421,13 +421,13 @@ public class ZeitplanController implements Initializable{
             tableview_runden.getColumns().addAll(index,rundenName,anzahlSpiele);
             tableview_runden.setItems(rundenListe);
 
-            anzahlSpiele.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            anzahlSpiele.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.231));
             anzahlSpiele.getStyleClass().add("table-viewCenterAlignColumn");
             anzahlSpiele.setSortable(false);
-            rundenName.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            rundenName.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.531));
             rundenName.getStyleClass().add("table-viewCenterAlignColumn");
             rundenName.setSortable(false);
-            index.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.331));
+            index.prefWidthProperty().bind(tableview_runden.widthProperty().multiply(0.231));
             index.getStyleClass().add("table-viewCenterAlignColumn");
             index.setSortable(false);
 
