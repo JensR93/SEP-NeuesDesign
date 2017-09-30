@@ -50,7 +50,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </JFXTextField>
-            <BigDecimalField fx:id="AnzahlFelder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="80.0" promptText="Anzahl Felder" styleClass="font" stylesheets="@../CSS/custom.css" text="9" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <BigDecimalField fx:id="AnzahlFelder" promptText="Anzahl Felder" styleClass="font" stylesheets="@../CSS/custom.css" text="9" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
