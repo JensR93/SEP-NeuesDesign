@@ -78,13 +78,13 @@ public class SpieluebersichtController implements Initializable {
     private JFXTextField tspielsuche;
     @FXML
     private Label Label_Spielübersicht;
-
+    @FXML
     private HBox hBox =new HBox();
-
+    @FXML
     private VBox vbox_main = new VBox();
-
+    @FXML
     private GridPane grid_pane1 = new GridPane();
-
+    @FXML
     private GridPane grid_pane2 = new GridPane();
 
     public void SpracheLaden()
@@ -478,7 +478,7 @@ public class SpieluebersichtController implements Initializable {
             tspielsuche.setLabelFloat(true);
             tspielsuche.setPromptText(Spielsuche);
             tspielsuche.getStyleClass().add("text-field");
-            gridPane_main.getChildren().add(grid_pane1);
+            //gridPane_main.getChildren().add(grid_pane1);
             grid_pane1.getChildren().add(tspielsuche);
             hBox.getChildren().addAll(lspielklassen,checkComboBox);
             hBox.setSpacing(150);
@@ -486,10 +486,10 @@ public class SpieluebersichtController implements Initializable {
             GridPane.setRowIndex(tspielsuche, 0);
 
 
-            gridPane_main.getChildren().add(grid_pane2);
+//            gridPane_main.getChildren().add(grid_pane2);
             GridPane.setColumnIndex(grid_pane2, 2);
             GridPane.setRowIndex(grid_pane2, 0);
-            gridPane_main.getChildren().add(vbox_main);
+  //          gridPane_main.getChildren().add(vbox_main);
             GridPane.setColumnIndex(vbox_main, 1);
             GridPane.setRowIndex(vbox_main, 0);
             grid_pane2.getChildren().add(checkComboBox);

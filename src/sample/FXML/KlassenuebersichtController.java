@@ -88,7 +88,7 @@ public class KlassenuebersichtController implements Initializable {
 
     @FXML
     public ComboBox<AnzahlRunden> combo_anzahlRunden = new ComboBox<>();
-
+    @FXML
     private ScrollPane scroll_klasse = new ScrollPane();
 
     public void SpracheLaden()

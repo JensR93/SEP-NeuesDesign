@@ -61,12 +61,12 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <JFXTextField fx:id="t_vn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="Vorname" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
+                                    <JFXTextField fx:id="t_vn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="Vorname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                                        <HBox.margin>
                                           <Insets bottom="15.0" left="25.0" top="15.0" />
                                        </HBox.margin>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="t_nn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="360.0" promptText="Nachname" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
+                                    <JFXTextField fx:id="t_nn" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="360.0" promptText="Nachname" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -81,7 +81,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <JFXTextField fx:id="t_spid" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="SpielerID" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" unFocusColor="#757575">
+                                    <JFXTextField fx:id="t_spid" focusColor="#3367d6" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="350.0" promptText="SpielerID" styleClass="font" stylesheets="@../CSS/custom.css" unFocusColor="#757575">
                                        <HBox.margin>
                                           <Insets bottom="15.0" left="75.0" top="15.0" />
                                        </HBox.margin>
@@ -91,8 +91,8 @@
                                           <Insets bottom="15.0" left="70.0" top="15.0" />
                                        </HBox.margin>
                                        <children>
-                                          <Label fx:id="Label_Verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Verein:" />
-                                          <Label fx:id="Label_Verein1" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Verein:" />
+                                          <Label fx:id="Label_Verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Verein:" />
+                                          <Label fx:id="Label_Verein1" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Verein:" />
                                        </children>
                                     </VBox>
                                     <VBox spacing="15.0">
@@ -100,13 +100,13 @@
                                           <Insets bottom="15.0" left="5.0" top="15.0" />
                                        </HBox.margin>
                                        <children>
-                                          <ChoiceBox fx:id="combo_verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css">
+                                          <ChoiceBox fx:id="combo_verein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css">
                                              <styleClass>
                                                 <String fx:value="card-white" />
                                                 <String fx:value="font" />
                                              </styleClass>
                                           </ChoiceBox>
-                                          <JFXButton fx:id="b_neuerVerein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_neuerVerein" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Neuer Verein">
+                                          <JFXButton fx:id="b_neuerVerein" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_neuerVerein" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Neuer Verein">
                                              <graphic>
                                                 <FontAwesomeIconView fill="#757575" glyphName="PLUS" size="20" />
                                              </graphic>
@@ -125,28 +125,28 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                                  <children>
-                                    <Label fx:id="Label_Geschlecht" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Geschlecht:">
+                                    <Label fx:id="Label_Geschlecht" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Geschlecht:">
                                        <HBox.margin>
                                           <Insets bottom="15.0" left="75.0" top="15.0" />
                                        </HBox.margin>
                                     </Label>
                                     <VBox alignment="CENTER" spacing="15.0">
                                        <children>
-                                          <JFXRadioButton fx:id="r_m" selected="true" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Männlich">
+                                          <JFXRadioButton fx:id="r_m" selected="true" styleClass="font" stylesheets="@../CSS/custom.css" text="Männlich">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="Geschlecht" />
                                              </toggleGroup>
                                           </JFXRadioButton>
-                                          <JFXRadioButton fx:id="r_w" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Weiblich" toggleGroup="$Geschlecht" />
+                                          <JFXRadioButton fx:id="r_w" styleClass="font" stylesheets="@../CSS/custom.css" text="Weiblich" toggleGroup="$Geschlecht" />
                                        </children>
                                     </VBox>
                                     <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="600.0">
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <children>
-                                                <Label fx:id="l_re" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="KP" />
-                                                <Label fx:id="l_rd" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="KP" />
-                                                <Label fx:id="l_rm" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="KP" />
+                                                <Label fx:id="l_re" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
+                                                <Label fx:id="l_rd" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
+                                                <Label fx:id="l_rm" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="KP" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="170.0" />
@@ -177,7 +177,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="600.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <JFXButton fx:id="btn_MeldefImport" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_ExcelImport" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Meldeformular importieren">
+                                    <JFXButton fx:id="btn_MeldefImport" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_ExcelImport" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Meldeformular importieren">
                                        <HBox.margin>
                                           <Insets left="75.0" />
                                        </HBox.margin>
@@ -190,7 +190,7 @@
                                           <String fx:value="buttons" />
                                        </styleClass>
                                     </JFXButton>
-                                    <JFXButton fx:id="b_abbrechen" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#UpdateAbbrechen" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Abbrechen" visible="false">
+                                    <JFXButton fx:id="b_abbrechen" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#UpdateAbbrechen" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Abbrechen" visible="false">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -203,7 +203,7 @@
                                           <FontAwesomeIconView fill="#757575" glyphName="CLOSE" size="20" />
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="b_spielerspeichern" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Spieler speichern">
+                                    <JFXButton fx:id="b_spielerspeichern" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#pressBtn_SpielerSpeichern" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css" text="Spieler speichern">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -223,19 +223,19 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <JFXDatePicker fx:id="d_geb" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" overLay="true" prefHeight="39.0" prefWidth="350.0" promptText="Geburtsdatum" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css">
+                                    <JFXDatePicker fx:id="d_geb" defaultColor="#3367d6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" overLay="true" prefHeight="39.0" prefWidth="350.0" promptText="Geburtsdatum" styleClass="font" stylesheets="@../CSS/custom.css">
                                        <HBox.margin>
                                           <Insets bottom="15.0" left="25.0" top="15.0" />
                                        </HBox.margin>
                                     </JFXDatePicker>
                                     <HBox spacing="5.0">
                                        <children>
-                                          <Label fx:id="Label_Nationalitaet" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css" text="Nationalität:">
+                                          <Label fx:id="Label_Nationalitaet" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="100.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Nationalität:">
                                              <HBox.margin>
                                                 <Insets bottom="15.0" top="15.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <ChoiceBox fx:id="choice_nationalitaet" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../../../../../Downloads/SEP-NeuesDesign-master/src/sample/CSS/custom.css">
+                                          <ChoiceBox fx:id="choice_nationalitaet" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="260.0" stylesheets="@../CSS/custom.css">
                                              <styleClass>
                                                 <String fx:value="card-white" />
                                                 <String fx:value="font" />
