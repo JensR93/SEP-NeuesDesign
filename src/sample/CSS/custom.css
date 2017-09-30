@@ -201,6 +201,11 @@
 
 }
 
+.jfxtab-pane .tab:disabled
+{
+    visibility: hidden;
+}
+
 
 /* Scroll-Bar*/
 
