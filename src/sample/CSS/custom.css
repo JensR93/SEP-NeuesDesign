@@ -420,6 +420,11 @@
     -fx-effect: innershadow(gaussian,rgba(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
 }
 
+.align{
+    -fx-alignment: center-left;
+
+}
+
 /*.combo-box .list-cell*/
 /*{*/
     /*-fx-background: white;*/

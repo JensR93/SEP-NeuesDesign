@@ -1154,6 +1154,7 @@ public class SpielsystemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tabwidthanpassen();
 
 
         try
@@ -1546,6 +1547,19 @@ public class SpielsystemController implements Initializable {
 
 
     }//Ende Initialize
+
+    private void tabwidthanpassen() {
+
+//        setzplatz.prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(1);
+//        setzplatz.getStyleClass().add("table-viewCenterAlignColumn");
+//        setzplatz.setSortable(false);
+//        prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(3);
+//        rundenName.getStyleClass().add("table-viewCenterAlignColumn");
+//        rundenName.setSortable(false);
+//        rundenName.prefWidthProperty().bind(spielsystem_setzliste.widthProperty().divide(3);
+//        index.getStyleClass().add("table-viewCenterAlignColumn");
+//        index.setSortable(false);
+    }
 
     @FXML
     private void radioAuswahlPlatzDrei(){

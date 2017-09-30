@@ -97,7 +97,7 @@
                               </VBox>
                               <VBox fx:id="vbox_info" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="445.0">
                                  <children>
-                                    <Label fx:id="label_spiele" prefHeight="17.0" prefWidth="530.0" text="Anzahl Spiele: ">
+                                    <Label fx:id="label_spiele" prefHeight="17.0" prefWidth="530.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Anzahl Spiele: ">
                                        <VBox.margin>
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
@@ -105,7 +105,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_spieler" prefHeight="17.0" prefWidth="523.0" text="Anzahl Spieler in der Setzliste: ">
+                                    <Label fx:id="label_spieler" prefHeight="17.0" prefWidth="523.0" styleClass="font" stylesheets="@../CSS/custom.css" text="Anzahl Spieler in der Setzliste: ">
                                        <VBox.margin>
                                           <Insets bottom="20.0" />
                                        </VBox.margin>

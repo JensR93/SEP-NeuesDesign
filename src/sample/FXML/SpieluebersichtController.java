@@ -492,6 +492,7 @@ public class SpieluebersichtController implements Initializable {
   //          gridPane_main.getChildren().add(vbox_main);
             GridPane.setColumnIndex(vbox_main, 1);
             GridPane.setRowIndex(vbox_main, 0);
+            vbox_main.getStyleClass().add("align");
             grid_pane2.getChildren().add(checkComboBox);
             vbox_main.getChildren().add(check_aktiveSpiele);
             vbox_main.getChildren().add(check_zukuenftigeSpiele);
