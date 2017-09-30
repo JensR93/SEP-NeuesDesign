@@ -27,6 +27,9 @@ import java.util.*;
  */
 public class spielerEigenschaftenController implements Initializable{
 
+    String baseName = "resources.Main";
+    String titel ="";
+
     ObservableList<Spielklasse> obs_spielklasse = FXCollections.observableArrayList();
 
     ContextMenu context_spielklasse = new ContextMenu();
@@ -96,6 +99,22 @@ public class spielerEigenschaftenController implements Initializable{
     @FXML
     private JFXButton btn_Speichern;
 
+    public void SpracheLaden()
+    {
+        try
+        {
+            ResourceBundle bundle = ResourceBundle.getBundle( baseName );
+
+            titel = bundle.getString("t_vorname");
+            t_vorname.setPromptText(titel);
+            t_vorname.setLabelFloat(true);
+
+        }
+        catch ( MissingResourceException e ) {
+            System.err.println( e );
+        }
+    }
+
     @FXML
     void pressbtn_Abbrechen(ActionEvent event) {
     auswahlklasse.setSpielerzumHinzufeuegen(null);
@@ -134,6 +153,9 @@ public class spielerEigenschaftenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SpracheLaden();
+
         auswahlklasse.setSpielerEigenschaftenController(this);
         try {
             ladeVereine();

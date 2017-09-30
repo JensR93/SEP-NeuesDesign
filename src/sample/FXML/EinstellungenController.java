@@ -153,6 +153,9 @@ public class EinstellungenController implements Initializable {
         if(auswahlklasse.getSpieluebersichtController() != null) {
             auswahlklasse.getSpieluebersichtController().SpracheLaden();
         }
+        if(auswahlklasse.getSpielerEigenschaftenController() != null) {
+            auswahlklasse.getSpielerEigenschaftenController().SpracheLaden();
+        }
         Spiel.SpracheLaden();
 
         try
