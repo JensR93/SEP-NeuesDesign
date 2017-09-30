@@ -23,6 +23,7 @@
       <element id="library" level="project" name="junit-4.10" />
       <element id="library" level="project" name="mysql-connector-java-5.1.42-bin" />
       <element id="library" level="project" name="poi-3.16" />
+      <element id="dir-copy" path="$PROJECT_DIR$" />
     </root>
   </artifact>
 </component>

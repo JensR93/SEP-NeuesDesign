@@ -195,14 +195,41 @@ public class DashboardController implements Initializable{
     public void createPages() {
         try {
             Zeitplan = FXMLLoader.load(getClass().getResource("Zeitplan.fxml"));
-            NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
-            Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
-            Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
-            SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
-            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann Zeitplan nicht laden");
+        }
+        try{
+            NeuesTurnier =  FXMLLoader.load(getClass().getResource("NeuesTurnier.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann NeuesTurnier nicht laden");
+        }
+        try{
+            Visualisierung = FXMLLoader.load(getClass().getResource("Visualisierung.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann Visualisierung nicht laden");
+        }
+        try{
+            Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann Klassenuebersicht nicht laden");
+        }
+
+        try{
+            Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann Spieluebersicht nicht laden");
+        }
+        try{
+            SpielErgebnisEintragen =FXMLLoader.load(getClass().getResource("SpielerErgebnisEintragen.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            auswahlklasse.WarnungBenachrichtigung("ERROR","Kann SpielErgebnisEintragen nicht laden");
         }
 
     }
@@ -260,7 +287,7 @@ public class DashboardController implements Initializable{
         }
     }
 
-     public void setNodeSpieluebersicht()
+    public void setNodeSpieluebersicht()
     {
         try {
             Spieluebersicht=FXMLLoader.load(getClass().getResource("Spieluebersicht.fxml"));
@@ -309,7 +336,7 @@ public class DashboardController implements Initializable{
 
         setNode(Vereinsuebersicht);
     }
-  public void setNodeVereinsuebersicht()
+    public void setNodeVereinsuebersicht()
     {
         try {
             if(auswahlklasse.getVereinsuebersichtController()!=null)
@@ -353,6 +380,13 @@ public class DashboardController implements Initializable{
     }
     @FXML public void setNodeKlassenuebersicht(ActionEvent event)
     {
+        if(Klassenuebersicht==null){
+            try {
+                Klassenuebersicht =  FXMLLoader.load(getClass().getResource("Klasse.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         setNode(Klassenuebersicht);
     }
     public void setNodeKlassenuebersicht()
@@ -380,7 +414,7 @@ public class DashboardController implements Initializable{
                 auswahlklasse.setSpielererfolgreich(new Hashtable<>());
                 auswahlklasse.setSpielerupdate(new Hashtable<>());
                 auswahlklasse.getObs_vereine_erfolgreich().clear();
-               // auswahlklasse.getSpieler_vorhandenController().resetteDaten();
+                // auswahlklasse.getSpieler_vorhandenController().resetteDaten();
                 System.out.println(auswahlklasse.getSpielererfolgreich());
                 auswahlklasse.getSpieler_vorhandenController().Tabellefuelle();
             }
@@ -421,7 +455,7 @@ public class DashboardController implements Initializable{
     {
         holderPane.getChildren().clear();
         holderPane.getChildren().add(node);
-       FadeTransition ft = new FadeTransition(Duration.millis(500));
+        FadeTransition ft = new FadeTransition(Duration.millis(500));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
